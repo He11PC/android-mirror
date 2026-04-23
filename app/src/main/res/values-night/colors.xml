@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <color name="primary">#00334d</color>
+    <color name="primary_dark">#0e232e</color>
+    <color name="accent">#005580</color>
+    <color name="secondary">#005580</color>
+
+    <color name="background_app">#0A0A0A</color>
+    <color name="background_card">#222222</color>
+    <color name="background_popup">#2C2C2C</color>
+    <color name="background_progressbar">#404040</color>
+
+    <color name="text_black">#FFFFFF</color>
+    <color name="text_notifications">#DEFFFFFF</color>
+
+    <color name="gray">#bebebe</color>
+    <color name="gray_reversed">#666666</color>
+    <color name="pale_gray">#696969</color>
+
+    <color name="blue">#0088CC</color>
+    <color name="blue_reversed">#005580</color>
+    <color name="green">#00AA00</color>
+    <color name="orange">#FFA500</color>
+    <color name="red">#FF0000</color>
+
+    <color name="backup_background_default">@color/background_card</color>
+    <color name="backup_background_red">#330000</color>
+    <color name="backup_background_orange">#331A00</color>
+    <color name="backup_background_yellow">#333300</color>
+    <color name="backup_background_chartreuse">#1A3300</color>
+    <color name="backup_background_green">#003300</color>
+    <color name="backup_background_spring_green">#00331A</color>
+    <color name="backup_background_cyan">#003333</color>
+    <color name="backup_background_dodger_blue">#001A33</color>
+    <color name="backup_background_blue">#000033</color>
+    <color name="backup_background_indigo">#1A0033</color>
+    <color name="backup_background_magenta">#330033</color>
+    <color name="backup_background_pink">#33001A</color>
+
+    <color name="backup_border_red">#FF3333</color>
+    <color name="backup_border_orange">#FF9933</color>
+    <color name="backup_border_yellow">#FFFF33</color>
+    <color name="backup_border_chartreuse">#99FF33</color>
+    <color name="backup_border_green">#33FF33</color>
+    <color name="backup_border_spring_green">#33FF99</color>
+    <color name="backup_border_cyan">#33FFFF</color>
+    <color name="backup_border_dodger_blue">#3399FF</color>
+    <color name="backup_border_blue">#3333FF</color>
+    <color name="backup_border_indigo">#9933FF</color>
+    <color name="backup_border_magenta">#FF33FF</color>
+    <color name="backup_border_pink">#FF3399</color>
+
+    <color name="backup_icon_default">@color/gray</color>
+    <color name="backup_icon_red">#D98C8C</color>
+    <color name="backup_icon_orange">#D9B38C</color>
+    <color name="backup_icon_yellow">#D9D98C</color>
+    <color name="backup_icon_chartreuse">#B3D98C</color>
+    <color name="backup_icon_green">#8CD98C</color>
+    <color name="backup_icon_spring_green">#8CD9B3</color>
+    <color name="backup_icon_cyan">#8CD9D9</color>
+    <color name="backup_icon_dodger_blue">#8CB3D9</color>
+    <color name="backup_icon_blue">#8C8CD9</color>
+    <color name="backup_icon_indigo">#B38CD9</color>
+    <color name="backup_icon_magenta">#D98CD9</color>
+    <color name="backup_icon_pink">#D98CB3</color>
+
+    <color name="progressbar_secondary_default">#66AACC</color>
+    <color name="progressbar_secondary_red">#DF9F9F</color>
+    <color name="progressbar_secondary_orange">#DFBF9F</color>
+    <color name="progressbar_secondary_yellow">#DFDF9F</color>
+    <color name="progressbar_secondary_chartreuse">#BFDF9F</color>
+    <color name="progressbar_secondary_green">#9FDF9F</color>
+    <color name="progressbar_secondary_spring_green">#9FDFBF</color>
+    <color name="progressbar_secondary_cyan">#9FDFDF</color>
+    <color name="progressbar_secondary_dodger_blue">#9FBFDF</color>
+    <color name="progressbar_secondary_blue">#9F9FDF</color>
+    <color name="progressbar_secondary_indigo">#BF9FDF</color>
+    <color name="progressbar_secondary_magenta">#DF9FDF</color>
+    <color name="progressbar_secondary_pink">#DF9FBF</color>
+</resources>

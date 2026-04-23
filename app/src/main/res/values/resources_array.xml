@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <array name="country_flags">
+        <item>@drawable/ic_question</item>
+        <item>@drawable/flag_bd</item> <!-- Bangladesh -->
+        <item>@drawable/flag_cz</item> <!-- Czechia -->
+        <item>@drawable/flag_de</item> <!-- Germany -->
+        <item>@drawable/flag_gr</item> <!-- Greece -->
+        <item>@drawable/flag_gb</item> <!-- English -->
+        <item>@drawable/flag_es</item> <!-- Spain -->
+        <item>@drawable/flag_fr</item> <!-- France -->
+        <item>@drawable/flag_in</item> <!-- India -->
+        <item>@drawable/flag_hu</item> <!-- Hungary -->
+        <item>@drawable/flag_id</item> <!-- Indonesia -->
+        <item>@drawable/flag_it</item> <!-- Italy -->
+        <item>@drawable/flag_jp</item> <!-- Japan -->
+        <item>@drawable/flag_kr</item> <!-- Korea -->
+        <item>@drawable/flag_nl</item> <!-- Netherlands -->
+        <item>@drawable/flag_pl</item> <!-- Poland -->
+        <item>@drawable/flag_pt</item> <!-- Portugal -->
+        <item>@drawable/flag_ro</item> <!-- Romania -->
+        <item>@drawable/flag_ru</item> <!-- Russia -->
+        <item>@drawable/flag_se</item> <!-- Sweden -->
+        <item>@drawable/flag_tr</item> <!-- Türkiye -->
+        <item>@drawable/flag_ua</item> <!-- Ukraine -->
+        <item>@drawable/flag_cn</item> <!-- China -->
+    </array>
+</resources>

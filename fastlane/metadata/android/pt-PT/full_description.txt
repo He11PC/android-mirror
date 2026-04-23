@@ -1,0 +1,26 @@
+O Mirror é uma aplicação de backup multiprotocolo do tipo espelhamento para Android.
+Concebido para ser mais simples e leve do que o software de sincronização, permite utilizar a sua própria infraestrutura em vez de serviços de cloud de terceiros.
+
+Pode configurar vários backups da seguinte forma:
+
+* Selecione um diretório de origem
+* Selecione um diretório de destino
+* Escolha as opções de filtragem (opcional)
+* Configure o agendamento automático (opcional)
+
+O Mirror irá analisar o conteúdo de ambos os diretórios, comparar e reproduzir a estrutura do diretório de origem (subdiretórios e ficheiros) no diretório de destino, respeitando as opções de filtragem escolhidas.
+
+A origem e o destino podem estar localizados em:
+
+* Armazenamento interno ou externo do seu dispositivo
+* Uma partilha NFS
+* Uma partilha SMB
+* Um servidor FTP ou FTPS
+* Um servidor SFTP
+* Um servidor WebDAV
+
+**SEGURANÇA E PRIVACIDADE**
+
+* **Armazenamento Local:** As informações sensíveis são encriptadas (AES-GCM + Android KeyStore) e armazenadas localmente no seu dispositivo utilizando uma base de dados Room.
+* **Sem rastreio:** Esta aplicação não contém qualquer tipo de análise, rastreador, publicidade ou kit de desenvolvimento de software (SDK) proprietário.
+* **Código Aberto:** O Mirror é um projeto independente. O código-fonte está disponível no GitHub para transparência e auditoria.

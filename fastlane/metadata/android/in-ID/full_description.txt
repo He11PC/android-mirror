@@ -1,0 +1,26 @@
+Mirror adalah aplikasi pencadangan tipe mirror multi-protokol untuk Android.
+Dirancang agar lebih sederhana dan ringan daripada perangkat lunak sinkronisasi, aplikasi ini memungkinkan Anda menggunakan infrastruktur Anda sendiri daripada layanan cloud pihak ketiga.
+
+Anda dapat mengkonfigurasi beberapa pencadangan sebagai berikut:
+
+* Pilih direktori sumber
+* Pilih direktori tujuan
+* Pilih opsi pemfilteran (opsional)
+* Konfigurasi penjadwalan otomatis (opsional)
+
+Mirror akan menganalisis isi kedua direktori, membandingkannya, dan mereproduksi struktur direktori sumber (subdirektori dan file) di direktori tujuan, dengan memperhatikan opsi pemfilteran yang telah Anda pilih.
+
+Sumber dan tujuan dapat berada di:
+
+* Penyimpanan internal atau eksternal perangkat Anda
+* Berbagi NFS
+* Berbagi SMB
+* Server FTP atau FTPS
+* Server SFTP
+* Server WebDAV
+
+**KEAMANAN & PRIVASI**
+
+* **Penyimpanan Lokal:** Informasi sensitif dienkripsi (AES-GCM + Android KeyStore) dan disimpan secara lokal di perangkat Anda menggunakan basis data Room.
+* **Tanpa Pelacakan:** Aplikasi ini tidak mengandung analitik, pelacak, iklan, atau perangkat pengembangan perangkat lunak (SDK) milik perusahaan.
+* **Sumber Terbuka:** Mirror adalah proyek independen. Kode sumber tersedia di GitHub untuk transparansi dan audit.

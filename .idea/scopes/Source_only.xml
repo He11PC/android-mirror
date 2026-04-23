@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Source_only" pattern="file:*.kt||file:*.java||file:*.xml&amp;&amp;!file:**/drawable*/*&amp;&amp;!file:**/mipmap*/*&amp;&amp;!file:.idea//*&amp;&amp;!file:AndroidManifest.xml&amp;&amp;!file:*ic_launcher*" />
+</component>

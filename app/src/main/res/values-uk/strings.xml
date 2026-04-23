@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- UKRAINIAN -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Багатопротокольна програма резервного копіювання з відкритим кодом (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">Потрібно мати WiFi</string>
+    <string name="wifi_required_text">Було обрано варіант WiFi, але зараз не задіяно жодного з’єднання.\nЩоб створити резервну копію, під\'єднайте її до мережі WiFi</string>
+    <string name="tooltip_new_backup">Використовуйте кнопку + вище, щоб створити нову резервну копію</string>
+    <string name="tooltip_edit_mode">Верхня половина ваших резервних карт є інтерактивною:\n- Натисніть, щоб переключатися між кнопками резервного копіювання та редагування\n- Натисніть і утримуйте, щоб вимкнути/увімкнути резервне копіювання</string>
+    <string name="tooltip_group_launch">Верхня кнопка \"синхронізувати\" має дві функції:\n- Торкніться, щоб запустити всі резервні копії одночасно\n- Ви можете групувати резервні копії за колірною темою. Якщо у вас кілька груп, утримуйте цю кнопку, щоб вибрати одну та запустити її резервне копіювання</string>
+    <string name="main_recycler_hint">Список резервних копій</string>
+    <string name="main_color_theme_group">Група #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Розпочати всі резервні копії</string>
+    <string name="menu_cancel_all">Скасувати всі резервні копії</string>
+    <string name="menu_backup_new">Нова резервна копія</string>
+    <string name="menu_settings">Налаштування</string>
+    <string name="menu_permissions">дозволи</string>
+    <string name="menu_about">Про</string>
+
+    <!--Global-->
+    <string name="global_information">Інформація</string>
+    <string name="global_confirmation">Підтвердження</string>
+    <string name="global_warning">УВАГА</string>
+    <string name="global_error">Помилка</string>
+    <string name="global_yes">Так</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">Ні</string>
+    <string name="global_cancel">Скасувати</string>
+    <string name="global_always">Завжди</string>
+    <string name="global_understood">Зрозумів</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Налаштування</string>
+    <string name="settings_interface_title">Інтерфейс</string>
+    <string name="settings_language_text">Мову:</string>
+    <string name="settings_theme_text">Тема:</string>
+    <string name="settings_logs_title">лаг</string>
+    <string name="settings_logs_text">Кількість журналів, які потрібно зберігати для однієї резервної копії:</string>
+    <string name="settings_logs_errors">Зберігайте оригінальні необроблені повідомлення про помилки замість їхньої спрощеної версії</string>
+    <string name="settings_logs_warning_setforeground">Записати попередження, коли не вдається сповістити про хід виконання</string>
+    <string name="settings_logs_preserve_scroll_position">Зберігати позицію прокрутки під час зміни файлу журналу</string>
+    <string name="settings_notifications_title">Сповіщення</string>
+    <string name="settings_notifications_theme">Застосувати налаштовану колірну тему</string>
+    <string name="settings_notifications_type">Результат запланованого резервного копіювання:</string>
+    <string name="settings_notifications_tip">- Кілька: одне сповіщення для кожної резервної копії\n- Глобально: єдине сповіщення, щоденний підсумок усіх резервних копій\n\n- Відкидається: можна видалити\n- Постійний: завжди видно\n\nПостійне сповіщення може запобігти проблемам із запланованим резервним копіюванням</string>
+    <string name="settings_notifications_warning">Щоб змінити це налаштування, надайте дозвіл на сповіщення</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">дозволи</string>
+    <string name="permission_locked_title">Дозвіл заблоковано</string>
+
+    <string name="permission_files_title">Дозволити доступ до файлів (обов’ язково)</string>
+    <string name="permission_files_text">Резервне копіювання неможливе без доступу до файлів і тек</string>
+    <string name="permission_files_locked_text">Android заблокував цей дозвіл, зробивши додаток нефункціональним.\n\nБудь ласка, переконайтеся, що Mirror ніколи не збиратиме інформацію про вас або ваші дані.\n\nБажаєте відкрити параметри програми і дозволити її вручну?</string>
+
+    <string name="permission_notifications_title">Дозволити сповіщення (наполегливо рекомендовано)</string>
+    <string name="permission_notifications_text">Сповіщення використовуються для відображення прогресу поточного резервного копіювання та результату запланованого резервного копіювання</string>
+    <string name="permission_notifications_locked_text">Android заблокував цей дозвіл.\n\nБажаєте відкрити налаштування програми та дозволити це вручну?</string>
+
+    <string name="permission_battery_title">Вимкнути оптимізацію акумулятора (рекомендовано)</string>
+    <string name="permission_battery_text">Оптимізація акумулятора Android може бути надто агресивною та заважати запланованим резервним копіюванням</string>
+
+    <string name="permission_permanent_title">Вимкнути анулювання дозволів (рекомендовано)</string>
+    <string name="permission_permanent_text">Дозволи можуть бути автоматично видалені Android, що може викликати несправності</string>
+
+    <string name="permission_auto_startup_title">Увімкнути автоматичний запуск (рекомендовано)</string>
+    <string name="permission_auto_startup_text">Без цього дозволу заплановані резервні копії можуть припинити роботу після перезавантаження пристрою</string>
+    <string name="permission_auto_startup_try">Кожен виробник обробляє цю функціональність по-своєму і Mirror може тільки спробувати відкрити відповідну сторінку налаштувань.\n\nУ разі збою вам доведеться виконати вручну налаштування, адаптовані до пристрою</string>
+    <string name="permission_auto_startup_manual">Кожен виробник керує цією функціональністю по-своєму, що вимагає ручної настройки, адаптованої до пристрою</string>
+    <string name="permission_auto_startup_open">Открыт</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Про</string>
+    <string name="about_app_title">застосування</string>
+    <string name="about_app_author">Створено <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Ліцензія: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Кредити та ліцензії третіх сторін</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: клієнт NFS v3 - Ліцензовано під Apache-2.0 EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: клієнт SMB2/SMB3 – Ліцензовано hierynomus під Apache-2.0</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP-клієнт - Ліцензовано Apache-2.0 Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP-клієнт – Ліцензовано mwiede у стилі BSD</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: клієнт WebDAV - Ліцензовано thegrizzlylabs під Apache-2.0</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Дайджест-автентифікація для WebDAV – Ліцензовано rburgst під Apache-2.0</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Автозапуск</a>: відкриває диспетчер дозволів автозапуску - Ліцензовано judemanutd відповідно до MIT</string>
+    <string name="about_libraries_thanks">Дякуємо за вашу важку роботу, Mirror не міг би існувати без вас :)</string>
+    <string name="about_support_title">Підтримка</string>
+    <string name="about_support_intro">Mirror — це безкоштовний додаток з відкритим кодом, який поширюється без реклами та відстеження.\n\nЯкщо ви вважаєте його корисним і хочете підтримати мою роботу, невеликий внесок буде дуже вдячний.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Вилучити цю резервну копію</string>
+    <string name="backup_delete_warning_message">Бажаєте вилучити цю резервну копію?</string>
+    <string name="backup_info">Інформація про цю резервну копію</string>
+    <string name="backup_launch">Запустіть резервну копію</string>
+    <string name="backup_enqueued">Назад до очікування</string>
+    <string name="backup_last_date">Остання резервна копія:</string>
+    <string name="backup_card_move">Перемістити резервну картку</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Розблокувати видання</string>
+    <string name="edit_authentication_message">Для цієї резервної копії потрібна біометрична автентифікація</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Видання</string>
+    <string name="edit_title_new">Створення</string>
+    <string name="edit_save">зберегти</string>
+    <string name="edit_cancel">Скасувати</string>
+    <string name="edit_source">Джерело</string>
+    <string name="edit_destination">Призначення</string>
+
+    <string name="edit_exit_alert">Повторіть, щоб вийти без збереження</string>
+    <string name="edit_invalid_alert">Будь ласка, вкажіть коректне джерело і призначення</string>
+    <string name="edit_invalid_credentials_alert">Будь ласка, вкажіть коректні дані (ім’ я користувача/пароль)</string>
+    <string name="edit_invalid_hostkey_alert">Будь ласка, отримайте ключ хосту SFTP-сервера з міркувань безпеки</string>
+    <string name="edit_remote_alert_message">Створення резервних копій між двома віддаленими серверами через ваш пристрій не є найефективнішим.\n\nЯкщо ви можете, було б краще налаштувати резервне копіювання безпосередньо на одній із цих машин</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Не вдалося виявити поточну вкладку</string>
+    <string name="target_location">Місце проведення:</string>
+    <string name="target_location_error">Вибрано неправильне розташування</string>
+    <string name="target_location_device">Апарат</string>
+    <string name="target_location_warning_remote_to_webdav">Резервне копіювання з віддаленого джерела на сервер WebDav вимагає створення тимчасових проміжних файлів на вашому пристрої</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Виберіть папку</string>
+    <string name="target_local_information_timezone">Файлова система FAT, яка зазвичай використовується на зовнішніх накопичувачах, не може керувати часовими поясами та зберігає дати на основі місцевого часу пристрою. Як наслідок, після зміни часового поясу може відбутися повне резервне копіювання ваших файлів</string>
+    <string name="target_local_warning_android_10">Google вирішив скасувати дозвіл додатків на запис у зовнішню пам’ять за межами їхньої приватної папки на Android 10.\n\nВи бажаєте перемістити папку призначення в папку Mirror?\n\nБудьте обережні, Android видалить його, коли ви видалите цю програму!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Сервер:</string>
+    <string name="target_common_server_hint">Доменне ім\'я або IP</string>
+    <string name="target_common_path">Тека:</string>
+    <string name="target_common_path_hint">Папка/підтека</string>
+    <string name="target_common_login">Користувач:</string>
+    <string name="target_common_login_hint">Ім’_я_користувача</string>
+    <string name="target_common_password">Пароль:</string>
+    <string name="target_common_password_hint">Пропуск_користувача</string>
+    <string name="target_common_port">Порт:</string>
+    <string name="target_common_share">Поділитися:</string>
+    <string name="target_common_search">Пошук</string>
+    <string name="target_common_autofill">Автозаповнення</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Ідентифікатор користувача:</string>
+    <string name="target_nfs_uid_hint">UID (факультативно)</string>
+    <string name="target_nfs_gid">Ідентифікатор групи:</string>
+    <string name="target_nfs_gid_hint">GID (факультативно)</string>
+    <string name="target_nfs_share_hint">Шлях до кореневої спільної папки</string>
+    <string name="target_nfs_non_root_mount_warning">Android потрібен некореневий дозвіл на монтування на вашому сервері</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Ім\'я або ІП</string>
+    <string name="target_smb_domain">Площа:</string>
+    <string name="target_smb_domain_hint">(необов’ язково)</string>
+    <string name="target_smb_share_hint">Назва кореневої спільної папки</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Використовувати SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Android не дозволяє використовувати SSL/TLS з серверами з використанням опції відновлення сесії TLS на з\'єднанні даних</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Ключ хосту:</string>
+    <string name="target_sftp_hostkey_hint">Торкніться, щоб отримати ключ хосту сервера</string>
+    <string name="target_sftp_hostkey_load">Отримання ключа хоста…</string>
+    <string name="target_sftp_hostkey_confirmation">Чи довіряєте ви цьому серверу?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Використовувати SSL</string>
+    <string name="target_webdav_ssl_warning">Самопідписаних сертифікатів зазвичай недостатньо, і їх може бути відхилено під час перевірки безпеки</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Охорона</string>
+    <string name="backup_protect">Редагування вимагає біометричної автентифікації</string>
+    <string name="backup_protect_warning">Біометрична автентифікація на цьому пристрої не налаштована</string>
+
+    <string name="backup_opt">Подкрепление</string>
+    <string name="backup_recursive">Обробити підтеки</string>
+    <string name="backup_retry_corrupted">Повторіть спробу копіювання, якщо виявлено пошкоджений файл</string>
+    <string name="backup_date_comparison_auto">Режим автоматичного порівняння дат файлів</string>
+    <string name="backup_date_comparison_mode">Режим порівняння дати файлу:</string>
+    <string name="backup_wifi">Резервне копіювання лише через WiFi</string>
+    <string name="backup_nomedia">Сховати пункт призначення у галереї (.nomedia)</string>
+
+    <string name="orphans_opt">Файли-сироти</string>
+    <string name="orphans_action">Якщо файл існує лише у пункті призначення:</string>
+    <string name="orphans_folder">До цієї папки:</string>
+    <string name="orphans_folder_name">Сироти</string>
+    <string name="orphans_invalid_folder">Недійсна назва папки</string>
+
+    <string name="filters_opt">Фільтрах</string>
+    <string name="filter_images">Зображень</string>
+    <string name="filter_audio">Аудіо</string>
+    <string name="filter_videos">Відео</string>
+    <string name="filter_documents">Документів</string>
+    <string name="filter_others">інші</string>
+    <string name="filter_min_size">Ігнорувати файли менші за:</string>
+    <string name="filter_max_size">Ігнорувати файли більші за:</string>
+    <string name="filter_black_list">Список виключень (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">шаблон glob</a>):</string>
+    <string name="filter_black_list_hint">/Файл/підфайл/**\n.trashed*</string>
+
+    <string name="schedule_opt">Планування</string>
+    <string name="schedule_auto">Виконати автоматичне резервне копіювання</string>
+    <string name="schedule_charging">Лише коли пристрій заряджається</string>
+    <string name="schedule_idle">Лише тоді, коли пристрій перебуває у сплячому режимі</string>
+    <string name="schedule_idle_warning">Не може працювати: Деякі пристрої неправильно повідомляють про стан режиму очікування</string>
+    <string name="schedule_interval">Кожен:</string>
+    <string name="schedule_time">на</string>
+
+    <string name="options_low_interval_alert">Коротка затримка зменшить вашу автономність</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Зовнішній вигляд</string>
+    <string name="backup_color_background">Фон:</string>
+    <string name="backup_color_border">Межі:</string>
+    <string name="backup_color_icons">Піктограми:</string>
+    <string name="backup_color_progressbar">Індикатор прогресу:</string>
+    <string name="backup_appearance_preview">Попередній перегляд</string>
+    <string name="backup_appearance_load_theme">Торкніться, щоб завантажити тему</string>
+    <string name="backup_appearance_theme_custom">Користувацький #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Автозаповнення</string>
+    <string name="autofill_authentication_message">Підтвердьте свою особу</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Список облікових даних</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Введіть адресу свого сервера та облікові дані</string>
+    <string name="folder_explorer_missing_address">Будь ласка, введіть адресу свого сервера</string>
+    <string name="folder_explorer_missing_share">Будь ласка, введіть спільний доступ для пошуку</string>
+    <string name="folder_explorer_unable_connect">Підключення не вдалося</string>
+    <string name="folder_explorer_unable_list">Неможливо прочитати вміст цієї папки</string>
+    <string name="folder_explorer_error_details">Повідомлення про помилку:</string>
+    <string name="folder_explorer_error_protocol">Протокол зв\'язку не знайдено</string>
+    <string name="folder_explorer_recycler_hint">Вміст віддаленого сервера</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Джерело</string>
+    <string name="log_destination">Призначення</string>
+
+    <string name="log_error">ПОМИЛКА</string>
+    <string name="log_warning">ТРИВОГА</string>
+    <string name="log_note">ПРИМІТКА</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Запущено резервну копію</string>
+    <string name="log_backup_start_scheduled">Запущено автоматичне збереження</string>
+    <string name="log_backup_initialisation">Ініціалізація …</string>
+    <string name="log_folder_destination_create">Створення відсутньої папки цільового призначення</string>
+    <string name="log_searching_files">Пошук файлів …</string>
+    <string name="log_found">Знайдено файлів:</string>
+    <string name="log_excluding">Фільтрування файлів …</string>
+    <string name="log_remaining">Файли, що залишилися:</string>
+    <string name="log_checking_backup">Перевірка файлів для резервного копіювання …</string>
+    <string name="log_flexible_mode">(гнучкий режим) …</string>
+    <string name="log_to_backup">Файли, які слід скопіювати:</string>
+    <string name="log_orphans_keep">Сироти на утримання:</string>
+    <string name="log_orphans_move">Сиротам на переїзд:</string>
+    <string name="log_orphans_delete">Сироти для видалення:</string>
+    <string name="log_obsolete">Застарілі сироти слід видалити:</string>
+    <string name="log_orphans_after_backup">(i) Сиріти в папці призначення:</string>
+
+    <string name="error_wifi">Необхідна WiFi не підключена</string>
+    <string name="error_target">Неправильна ціль резервного копіювання</string>
+    <string name="error_blacklist">Синтаксична помилка в списку виключень</string>
+
+    <string name="error_server_reach">Неможливо досягти цього сервера</string>
+    <string name="error_server_connect">Не вдалося з’ єднатися з цим сервером</string>
+    <string name="error_share_connect">Не вдається підключитися до цього ресурсу</string>
+    <string name="error_ssl_connect">Неможливо використовувати SSL/TLS</string>
+    <string name="error_ssl_certificate">Некоректний/відсутній сертифікат SSL/TLS</string>
+    <string name="error_ftp_filetype">Не вдається перейти у режим бінарної передачі даних</string>
+    <string name="error_server_login">Неможливо автентифікуватися</string>
+    <string name="error_server_disconnect">Не вдається роз\'єднатися від сервера</string>
+
+    <string name="error_permission_read">Читати заборонено дозвіл</string>
+    <string name="error_permission_write">Відмовлено в авторизуванні</string>
+    <string name="error_permission_unknown">Неможливо перевірити права доступу</string>
+
+    <string name="error_space_low">Низький вільний простір</string>
+    <string name="error_space_critical">Недостатньо вільного місця</string>
+    <string name="error_space_unverifiable">Неможливо перевірити зазор</string>
+    <string name="error_quota_low">Наявна квота низька</string>
+    <string name="error_quota_critical">Недостатньо доступної квоти</string>
+    <string name="error_quota_unverifiable">Не в силах перевірте наявну квоту</string>
+
+    <string name="error_folder_existence">Теку не знайдено</string>
+    <string name="error_folder_invalid">Некоректний файл</string>
+    <string name="error_folder_list">Не вдалося перелічити файли у цій теці</string>
+    <string name="error_folder_delete">Не вдалося вилучити цю теку</string>
+    <string name="error_folder_create">Не вдається щоб створити цю теку</string>
+    <string name="error_folder_create_tmp">Не вдалося створити папку тимчасових файлів</string>
+
+    <string name="error_path_reach">Неможливо отримати доступ до цього шляху</string>
+
+    <string name="error_orphan_folder_not_specified">Тека для дітей-сиріт не вказана</string>
+    <string name="error_orphan_folder_in_use">Не використовуйте ім’я папки, наявне у джерелі, для зберігання файлів-сиріт</string>
+
+    <string name="error_setforeground">Неможливо відобразити сповіщення про прогрес. Тривалість резервного копіювання обмежена 10 хвилинами</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Починається резервне копіювання …</string>
+    <string name="log_orphans_move_long">Переміщення дітей-сиріт</string>
+    <string name="log_orphans_delete_long">Видалення сироти</string>
+    <string name="log_delete_obsolete_orphans">Вилучення застарілих сиріт</string>
+    <string name="log_folders_create">Створення нових файлів</string>
+    <string name="log_copy">Копіювання</string>
+    <string name="log_move">Переміщення</string>
+    <string name="log_delete">Видалення</string>
+    <string name="log_nomedia_created">Створено файл .nomedia</string>
+    <string name="log_nomedia_removed">Файл .nomedia видалено</string>
+    <string name="log_empty_folders_delete">Вилучення порожніх тек</string>
+
+    <string name="error_file_read">Неможливо прочитати цей файл</string>
+    <string name="error_file_read_finish">Не вдалося закрити програму для читання файлів</string>
+    <string name="error_file_copy">Не вдалося скопіювати цей файл</string>
+    <string name="error_file_move">Не вдалося пересунути цей файл</string>
+    <string name="error_file_delete">Не вдалося вилучити цей файл</string>
+    <string name="error_file_corrupted">Виявлено пошкодження файла, повторну спробу …</string>
+    <string name="error_file_corrupted_final">Не вдалося скопіювати цей файл без пошкодження. Повторіть спробу наступної резервної копії</string>
+    <string name="error_file_date_modification">Не вдалося змінити дату файлу. Перехід у гнучкий режим порівняння</string>
+    <string name="success_file_date_modification">Успішна зміна дати файлу. Перехід у режим суворого порівняння</string>
+    <string name="error_file_tmp_space">Недостатньо вільного місця у внутрішній пам’яті пристрою для створення тимчасового файлу</string>
+    <string name="error_file_tmp_skipped">Файл пропущено</string>
+    <string name="error_file_tmp">Не вдалося створити тимчасовий файл</string>
+    <string name="error_nomedia_create">Не вдалося створити файл .nomedia</string>
+    <string name="error_nomedia_remove">Не вдалося вилучити файл . nomedia</string>
+    <string name="error_ftp_mlst">Команда MLST, необхідна для отримання розміру файлу та точної позначки часу, здається, не підтримується цим сервером</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Успішно збережено</string>
+    <string name="log_backup_warning">Успішно збережено за допомогою сповіщень</string>
+    <string name="log_backup_canceled">Резервне копіювання скасовано</string>
+    <string name="error_backup_failed">Спроба резервного копіювання зазнала невдачі</string>
+
+    <string name="log_next_schedule_success">Наступна резервна копія за розкладом:</string>
+    <string name="log_next_schedule_failed">Наступна запланована спроба:</string>
+
+    <string name="log_backup_duration">Тривалість створення резервної копії:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Папку журналу не знайдено</string>
+    <string name="logs_file_not_found">Немає доступного файлу журналу для цієї резервної копії</string>
+    <string name="logs_file_read_error">Під час завантаження цього файла журналу сталася помилка</string>
+    <string name="logs_navigation_previous">Попередній</string>
+    <string name="logs_navigation_next">Слідом</string>
+    <string name="logs_recycler_hint">Вміст файлу журналу</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Постійне резервне копіювання</string>
+    <string name="notification_ongoing_channel_description">Деталі прогресу під час резервного копіювання</string>
+    <string name="notification_result_channel_name">Резервне копіювання завершено</string>
+    <string name="notification_result_channel_description">Результати завершених запланованих резервних копій</string>
+    <string name="notification_result">Результат запланованого резервного копіювання</string>
+    <string name="notification_scheduled">Заплановані резервні копії</string>
+    <string name="notification_no_backup">Сьогодні не завершено</string>
+    <string name="notification_active">Триває</string>
+    <string name="notification_files">Файли</string>
+    <string name="notification_no_file">Немає нових файлів або сиріт</string>
+    <string name="notification_orphans">Сироти</string>
+    <string name="notification_success">Успіх</string>
+    <string name="notification_warning">УВАГА</string>
+    <string name="notification_failed">Не вдалося</string>
+    <string name="notification_canceled">Скасовано</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Автономія занадто низька</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Не вдалося запустити цю резервну копію: Резервну копію не було задіяно</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>система</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>система</item>
+        <item>світло</item>
+        <item>Темний</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Жодного</item>
+        <item>Кілька – Відкидається</item>
+        <item>Глобально - Відкидається</item>
+        <item>Глобально – Постійний</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Апарат</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>За умовчанням</item>
+        <item>Червоний</item>
+        <item>Помаранчевий</item>
+        <item>Жовтий</item>
+        <item>Лайм</item>
+        <item>Зелений</item>
+        <item>Монетний двір</item>
+        <item>Ціан</item>
+        <item>Azure</item>
+        <item>Синій</item>
+        <item>Індиго</item>
+        <item>Пурпуровий</item>
+        <item>Рожевий</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Жодного</item>
+        <item>Червоний</item>
+        <item>Помаранчевий</item>
+        <item>Жовтий</item>
+        <item>Лайм</item>
+        <item>Зелений</item>
+        <item>Монетний двір</item>
+        <item>Ціан</item>
+        <item>Azure</item>
+        <item>Синій</item>
+        <item>Індиго</item>
+        <item>Пурпуровий</item>
+        <item>Рожевий</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Суворий (джерело != призначення)</item>
+        <item>гнучкий (джерело > призначення)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Зберігайте</item>
+        <item>Дисмісце</item>
+        <item>Видалити</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>днів</item>
+        <item>годин</item>
+        <item>хвилин</item>
+    </string-array>
+
+</resources>

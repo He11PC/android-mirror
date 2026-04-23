@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/target_smb_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    tools:context=".ui.fragments.Fragment_TargetSMB">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/target_smb_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="target_smb_txt_path,target_smb_txt_password,target_smb_txt_server,target_smb_txt_domain,target_smb_txt_login" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_server"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_server"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_server"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_server"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_smb_server_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:nextFocusForward="@id/target_smb_edit_domain"
+        app:layout_constraintEnd_toStartOf="@+id/target_smb_btn_credentials_fill"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/target_smb_btn_credentials_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/target_common_autofill"
+        android:src="@drawable/ic_autofill"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/target_smb_edit_server"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/target_smb_edit_server" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_domain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_smb_domain"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_domain"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_domain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_smb_domain_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:nextFocusForward="@id/target_smb_edit_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_server"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_login"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_login"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_common_login_hint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:nextFocusForward="@id/target_smb_edit_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_domain"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_password"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_common_password_hint"
+        android:importantForAutofill="no"
+        android:inputType="textWebPassword|textNoSuggestions"
+        android:nextFocusForward="@id/target_smb_edit_share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_login"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_share"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_share"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_share"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_smb_share_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:nextFocusForward="@id/target_nfs_edit_path"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_password"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_smb_txt_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_path"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_smb_edit_path"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_smb_edit_path"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:hint="@string/target_common_path_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:nextFocusForward="@id/target_smb_btn_path_search"
+        app:layout_constraintEnd_toStartOf="@+id/target_smb_btn_path_search"
+        app:layout_constraintStart_toEndOf="@+id/target_smb_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_share"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/target_smb_btn_path_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/target_common_search"
+        android:minWidth="32dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/target_smb_edit_path"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_smb_edit_share" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

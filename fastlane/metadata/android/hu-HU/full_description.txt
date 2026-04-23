@@ -1,0 +1,26 @@
+A Mirror egy többprotokollos, tükrözött típusú biztonsági mentési alkalmazás Androidra.
+Úgy tervezték, hogy egyszerűbb és könnyebb legyen, mint a szinkronizációs szoftverek, lehetővé téve saját infrastruktúra használatát harmadik féltől származó felhőszolgáltatások helyett.
+
+Több biztonsági mentést is konfigurálhat az alábbiak szerint:
+
+* Válasszon ki egy forráskönyvtárat
+* Válasszon ki egy célkönyvtárat
+* Válasszon szűrési beállításokat (opcionális)
+* Konfigurálja az automatikus ütemezést (opcionális)
+
+A Mirror elemzi mindkét könyvtár tartalmát, összehasonlítja azokat, és reprodukálja a forráskönyvtár (alkönyvtárak és fájlok) szerkezetét a célkönyvtárban, tiszteletben tartva a kiválasztott szűrési beállításokat.
+
+A forrás és a cél a következő helyeken található:
+
+* Az eszköz belső vagy külső tárolója
+* NFS megosztás
+* SMB megosztás
+* FTP vagy FTPS szerver
+* SFTP szerver
+* WebDAV szerver
+
+**BIZTONSÁG ÉS ADATVÉDELEM**
+
+* **Helyi tárhely:** Az érzékeny információkat titkosítjuk (AES-GCM + Android KeyStore), és helyben tároljuk az eszközödön egy Room adatbázis segítségével.
+* **Nincs követés:** Ez az alkalmazás nem tartalmaz semmilyen analitikát, nyomkövetőt, hirdetést vagy saját fejlesztésű szoftverfejlesztő készletet (SDK).
+* **Nyílt forráskód:** A Mirror egy független projekt. A forráskód elérhető a GitHubon az átláthatóság és az auditálás érdekében.

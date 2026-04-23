@@ -1,0 +1,1 @@
+Többprotokollos biztonsági mentési alkalmazás (NFS, SMB, FTP, SFTP, WebDAV)

@@ -1,0 +1,1 @@
+Aplicación de copia de seguridad multiprotocolo (NFS, SMB, FTP, SFTP, WebDAV)

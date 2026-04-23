@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- GREEK -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Εφαρμογή δημιουργίας αντιγράφων ασφαλείας πολλαπλών πρωτοκόλλων ανοιχτού κώδικα (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">Απαιτείται WiFi</string>
+    <string name="wifi_required_text">Έχει επιλεγεί η επιλογή WiFi, αλλά δεν υπάρχει ενεργή σύνδεση.\nΠαρακαλούμε συνδεθείτε σε δίκτυο WiFi για να εκτελέσετε το αντίγραφο ασφαλείας</string>
+    <string name="tooltip_new_backup">Χρησιμοποιήστε το κουμπί + παραπάνω για να δημιουργήσετε ένα νέο αντίγραφο ασφαλείας</string>
+    <string name="tooltip_edit_mode">Το επάνω μισό των εφεδρικών καρτών σας είναι διαδραστικό:\n- Πατήστε για εναλλαγή μεταξύ των κουμπιών δημιουργίας αντιγράφων ασφαλείας και επεξεργασίας\n- Πατήστε παρατεταμένα για να απενεργοποιήσετε/ενεργοποιήσετε τα αντίγραφα ασφαλείας σας</string>
+    <string name="tooltip_group_launch">Το επάνω κουμπί \"συγχρονισμός\" έχει δύο λειτουργίες:\n- Πατήστε για να ξεκινήσετε όλα τα αντίγραφα ασφαλείας ταυτόχρονα\n- Μπορείτε να ομαδοποιήσετε τα αντίγραφα ασφαλείας ανά θέμα χρώματος. Εάν έχετε πολλές ομάδες, πατήστε παρατεταμένα αυτό το κουμπί για να επιλέξετε μία και να ξεκινήσετε τα αντίγραφα ασφαλείας της</string>
+    <string name="main_recycler_hint">Λίστα αντιγράφων ασφαλείας</string>
+    <string name="main_color_theme_group">Ομάδα #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Ξεκινήστε όλα τα αντίγραφα ασφαλείας</string>
+    <string name="menu_cancel_all">Ακυρώστε όλα τα αντίγραφα ασφαλείας</string>
+    <string name="menu_backup_new">Νέα αποθήκευση</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    <string name="menu_permissions">Αδεια</string>
+    <string name="menu_about">Περίπου</string>
+
+    <!--Global-->
+    <string name="global_information">Πληροφορίες</string>
+    <string name="global_confirmation">Επιβεβαίωση</string>
+    <string name="global_warning">Προσοχή</string>
+    <string name="global_error">Σφάλμα</string>
+    <string name="global_yes">Ναί</string>
+    <string name="global_ok">Εντάξει</string>
+    <string name="global_no">Όχι</string>
+    <string name="global_cancel">Vα ακυρώσω</string>
+    <string name="global_always">ΑΚΟΜΑ</string>
+    <string name="global_understood">Κατάλαβα</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Ρυθμίσεις</string>
+    <string name="settings_interface_title">Διεπαφή</string>
+    <string name="settings_language_text">Γλώσσα:</string>
+    <string name="settings_theme_text">Θέμα:</string>
+    <string name="settings_logs_title">Καταγράφω</string>
+    <string name="settings_logs_text">Αριθμός αρχείων καταγραφής για διατήρηση ανά αντίγραφο ασφαλείας:</string>
+    <string name="settings_logs_errors">Διατηρήστε τα αρχικά ακατέργαστα μηνύματα σφάλματος αντί για την απλοποιημένη έκδοσή τους</string>
+    <string name="settings_logs_warning_setforeground">Εγγραφή προειδοποίησης όταν αποτυγχάνει η ειδοποίηση προόδου</string>
+    <string name="settings_logs_preserve_scroll_position">Διατήρηση της θέσης κύλισης κατά την αλλαγή του αρχείου καταγραφής</string>
+    <string name="settings_notifications_title">Γνωστοποίηση</string>
+    <string name="settings_notifications_theme">Εφαρμογή του διαμορφωμένου θέματος χρώματος</string>
+    <string name="settings_notifications_type">Αποτέλεσμα προγραμματισμένων αντιγράφων ασφαλείας:</string>
+    <string name="settings_notifications_tip">- Πολλαπλές: μία ειδοποίηση ανά αποθήκευση\n- Παγκόσμια: ενιαία ειδοποίηση, καθημερινή σύνοψη όλων των αντιγράφων ασφαλείας\n\n- Διαγράψιμο: μπορεί να αφαιρεθεί\n- Μόνιμος: πάντα ορατή\n\nΗ μόνιμη ειδοποίηση μπορεί να αποτρέψει προβλήματα προγραμματισμένων αντιγράφων ασφαλείας</string>
+    <string name="settings_notifications_warning">Επιτρέψτε στις ειδοποιήσεις να αλλάξουν αυτήν τη ρύθμιση</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Αδεια</string>
+    <string name="permission_locked_title">Η εξουσιοδότηση μπλοκαρίστηκε</string>
+
+    <string name="permission_files_title">Επιτρέψτε την πρόσβαση σε αρχεία (απαιτείται)</string>
+    <string name="permission_files_text">Η δημιουργία αντιγράφων ασφαλείας είναι αδύνατη χωρίς πρόσβαση στα αρχεία και τους φακέλους σας</string>
+    <string name="permission_files_locked_text">Το Android έχει μπλοκάρει αυτή την άδεια καθιστώντας την εφαρμογή μη λειτουργική.\n\nΒεβαιωθείτε ότι το Mirror δεν θα συλλέξει ποτέ πληροφορίες για εσάς ή τα δεδομένα σας.\n\nΘέλετε να ανοίξετε τις ρυθμίσεις της εφαρμογής και να την επιτρέψετε χειροκίνητα;</string>
+
+    <string name="permission_notifications_title">Να επιτρέπονται οι ειδοποιήσεις (συνιστάται ανεπιφύλακτα)</string>
+    <string name="permission_notifications_text">Οι ειδοποιήσεις χρησιμοποιούνται για την εμφάνιση της προόδου των συνεχιζόμενων αντιγράφων ασφαλείας και του αποτελέσματος των προγραμματισμένων αντιγράφων ασφαλείας</string>
+    <string name="permission_notifications_locked_text">Το Android έχει αποκλείσει αυτήν την άδεια.\n\nΘέλετε να ανοίξετε τις ρυθμίσεις της εφαρμογής και να το επιτρέψετε μη αυτόματα;</string>
+
+    <string name="permission_battery_title">Απενεργοποίηση βελτιστοποίησης μπαταρίας (συνιστάται)</string>
+    <string name="permission_battery_text">Η βελτιστοποίηση μπαταρίας Android μπορεί να είναι πολύ επιθετική και να παρεμβαίνει στα προγραμματισμένα αντίγραφα ασφαλείας</string>
+
+    <string name="permission_permanent_title">Απενεργοποίηση ανάκλησης δικαιωμάτων (συνιστάται)</string>
+    <string name="permission_permanent_text">Τα δικαιώματα μπορούν να αφαιρεθούν αυτόματα από το Android, γεγονός που μπορεί να οδηγήσει σε δυσλειτουργίες</string>
+
+    <string name="permission_auto_startup_title">Ενεργοποίηση αυτόματης εκκίνησης (συνιστάται)</string>
+    <string name="permission_auto_startup_text">Χωρίς αυτή την άδεια, τα προγραμματισμένα αντίγραφα ασφαλείας ενδέχεται να σταματήσουν να λειτουργούν μετά από επανεκκίνηση της συσκευής</string>
+    <string name="permission_auto_startup_try">Κάθε κατασκευαστής διαχειρίζεται αυτή τη λειτουργία με τον δικό του τρόπο και το Mirror μπορεί μόνο να προσπαθήσει να ανοίξει την αντίστοιχη σελίδα ρυθμίσεων.\n\nΑν αυτό δεν λειτουργήσει, θα πρέπει να το ρυθμίσετε χειροκίνητα για τη συσκευή σας</string>
+    <string name="permission_auto_startup_manual">Κάθε κατασκευαστής χειρίζεται αυτή τη λειτουργία με τον δικό του τρόπο, ο οποίος απαιτεί χειροκίνητη διαμόρφωση για τη συσκευή σας</string>
+    <string name="permission_auto_startup_open">Ανοίξτε το</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Περίπου</string>
+    <string name="about_app_title">Εφαρμογή</string>
+    <string name="about_app_author">Δημιουργήθηκε από <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Αδεια: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Πιστώσεις και Άδειες Τρίτων</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 client - Με άδεια χρήσης Apache-2.0 από EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: πελάτης SMB2/SMB3 - Άδεια χρήσης βάσει Apache-2.0 από hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: Πελάτης FTP - Άδεια χρήσης βάσει Apache-2.0 από το Ίδρυμα Λογισμικού Apache</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: πρόγραμμα-πελάτης SFTP - Με άδεια χρήσης βάσει στυλ BSD από mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: πρόγραμμα-πελάτης WebDAV - Με άδεια χρήσης σύμφωνα με το Apache-2.0 από την thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Έλεγχος ταυτότητας Digest για WebDAV - Με άδεια χρήσης Apache-2.0 από rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Αυτόματη εκκίνηση</a>: Ανοίγει τη διαχείριση αδειών αυτόματης εκκίνησης - Με άδεια στο MIT από την judemanutd</string>
+    <string name="about_libraries_thanks">Σας ευχαριστούμε για τη σκληρή δουλειά σας, το Mirror δεν θα μπορούσε να υπάρξει χωρίς εσάς :)</string>
+    <string name="about_support_title">Υποστήριξη</string>
+    <string name="about_support_intro">Το Mirror είναι μια δωρεάν εφαρμογή ανοιχτού κώδικα, που διανέμεται χωρίς διαφημίσεις ή παρακολούθηση.\n\nΑν το βρείτε χρήσιμο και θέλετε να υποστηρίξετε το έργο μου, μια μικρή δωρεά θα εκτιμηθεί ιδιαίτερα.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Διαγράψτε αυτό το αντίγραφο ασφαλείας</string>
+    <string name="backup_delete_warning_message">Θέλετε να διαγράψετε αυτό το αντίγραφο ασφαλείας;</string>
+    <string name="backup_info">Πληροφορίες σχετικά με αυτό το αντίγραφο ασφαλείας</string>
+    <string name="backup_launch">Ξεκινήστε το αντίγραφο ασφαλείας</string>
+    <string name="backup_enqueued">Εκκρεμεί η δημιουργία αντιγράφων ασφαλείας</string>
+    <string name="backup_last_date">Τελευταίο αντίγραφο ασφαλείας:</string>
+    <string name="backup_card_move">Μετακίνηση εφεδρικής κάρτας</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Ξεκλείδωμα έκδοσης</string>
+    <string name="edit_authentication_message">Αυτό το αντίγραφο ασφαλείας απαιτεί βιομετρικό έλεγχο ταυτότητας</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Επεξεργασία</string>
+    <string name="edit_title_new">Δημιουργία</string>
+    <string name="edit_save">Αποθηκεύσετε</string>
+    <string name="edit_cancel">Ματαίωση</string>
+    <string name="edit_source">Πηγή</string>
+    <string name="edit_destination">Προορισμός</string>
+
+    <string name="edit_exit_alert">Επαναλάβετε για έξοδο χωρίς αποθήκευση</string>
+    <string name="edit_invalid_alert">Παρακαλούμε δώστε έγκυρες πηγές και προορισμούς</string>
+    <string name="edit_invalid_credentials_alert">Παρακαλούμε δώστε έγκυρα στοιχεία σύνδεσης (όνομα χρήστη/κωδικός πρόσβασης)</string>
+    <string name="edit_invalid_hostkey_alert">Ανακτήστε το κλειδί κεντρικού υπολογιστή του διακομιστή SFTP για λόγους ασφαλείας</string>
+    <string name="edit_remote_alert_message">Η δημιουργία αντιγράφων ασφαλείας μεταξύ δύο απομακρυσμένων διακομιστών μέσω της συσκευής σας δεν είναι η πιο αποτελεσματική.\n\nΕάν μπορείτε, θα ήταν καλύτερο να δημιουργήσετε το αντίγραφο ασφαλείας σας απευθείας σε ένα από αυτά τα μηχανήματα</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Δεν είναι δυνατός ο εντοπισμός της τρέχουσας καρτέλας</string>
+    <string name="target_location">Τοποθεσία:</string>
+    <string name="target_location_error">Επιλέχτηκε λάθος τοποθεσία</string>
+    <string name="target_location_device">Συσκευή</string>
+    <string name="target_location_warning_remote_to_webdav">Τα αντίγραφα ασφαλείας από μια απομακρυσμένη πηγή σε διακομιστή WebDav απαιτούν τη δημιουργία προσωρινών ενδιάμεσων αρχείων στη συσκευή σας</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Επιλέξτε φάκελο</string>
+    <string name="target_local_information_timezone">Το σύστημα αρχείων FAT, που χρησιμοποιείται συνήθως σε εξωτερικούς αποθηκευτικούς χώρους, δεν μπορεί να χειριστεί ζώνες ώρας και αποθηκεύει ημερομηνίες με βάση την τοπική ώρα της συσκευής. Επομένως, μπορεί να προκύψει πλήρες αντίγραφο ασφαλείας των αρχείων σας μετά από αλλαγή ζώνης ώρας</string>
+    <string name="target_local_warning_android_10">Η Google αποφάσισε να ανακαλέσει την άδεια των εφαρμογών για εγγραφή σε εξωτερικό αποθηκευτικό χώρο εκτός του ιδιωτικού τους φακέλου στο Android 10.\n\nΘέλετε να μετακινήσετε το φάκελο προορισμού σας στο φάκελο Mirror;\n\nΠροσέξτε, το Android θα το διαγράψει όταν απεγκαταστήσετε αυτήν την εφαρμογή!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Διακομιστής:</string>
+    <string name="target_common_server_hint">Όνομα τομέα ή IP</string>
+    <string name="target_common_path">Φάκελος:</string>
+    <string name="target_common_path_hint">Φάκελος/υποφάκελος</string>
+    <string name="target_common_login">Χρήστης:</string>
+    <string name="target_common_login_hint">Όνομα_χρήστη</string>
+    <string name="target_common_password">Κωδικός πρόσβασης χρήστη:</string>
+    <string name="target_common_password_hint">Πάσο_χρήστη</string>
+    <string name="target_common_port">θύρας:</string>
+    <string name="target_common_share">Κοινή χρήση:</string>
+    <string name="target_common_search">Αναζήτηση</string>
+    <string name="target_common_autofill">Αυτόματη συμπλήρωση</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Αναγνωριστικό χρήστη:</string>
+    <string name="target_nfs_uid_hint">UID (προαιρετικό)</string>
+    <string name="target_nfs_gid">Αναγνωριστικό ομάδας:</string>
+    <string name="target_nfs_gid_hint">GID (προαιρετικό)</string>
+    <string name="target_nfs_share_hint">Διαδρομή του ριζικού κοινόχρηστου φακέλου</string>
+    <string name="target_nfs_non_root_mount_warning">Το Android απαιτεί άδεια τοποθέτησης χωρίς root στον διακομιστή σας</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Όνομα ή IP</string>
+    <string name="target_smb_domain">Τομέας:</string>
+    <string name="target_smb_domain_hint">(προαιρετικά)</string>
+    <string name="target_smb_share_hint">Όνομα του ριζικού κοινόχρηστου φακέλου</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Χρήση SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Το Android δεν επιτρέπει τη χρήση SSL/TLS με διακομιστές που χρησιμοποιούν την επιλογή επαναφοράς συνόδου TLS στη σύνδεση δεδομένων</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Κλειδί κεντρικού υπολογιστή:</string>
+    <string name="target_sftp_hostkey_hint">Πατήστε για ανάκτηση κλειδιού κεντρικού υπολογιστή</string>
+    <string name="target_sftp_hostkey_load">Ανάκτηση κλειδιού κεντρικού υπολογιστή…</string>
+    <string name="target_sftp_hostkey_confirmation">Εμπιστεύεστε αυτόν τον διακομιστή;</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Χρήση SSL</string>
+    <string name="target_webdav_ssl_warning">Τα αυτο-υπογεγραμμένα πιστοποιητικά συνήθως δεν επαρκούν και ενδέχεται να απορριφθούν κατά τους ελέγχους ασφαλείας</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Ασφάλεια</string>
+    <string name="backup_protect">Η δημοσίευση απαιτεί βιομετρικό έλεγχο ταυτότητας</string>
+    <string name="backup_protect_warning">Ο βιομετρικός έλεγχος ταυτότητας δεν έχει ρυθμιστεί σε αυτή τη συσκευή</string>
+
+    <string name="backup_opt">Δημιουργία αντιγράφων ασφαλείας</string>
+    <string name="backup_recursive">Χειρισμός υποφακέλων</string>
+    <string name="backup_retry_corrupted">Επανάληψη της αντιγραφής όταν εντοπιστεί κατεστραμμένο αρχείο</string>
+    <string name="backup_date_comparison_auto">Αυτόματη λειτουργία σύγκρισης ημερομηνιών αρχείου</string>
+    <string name="backup_date_comparison_mode">Λειτουργία σύγκρισης ημερομηνιών αρχείου:</string>
+    <string name="backup_wifi">Δημιουργία αντιγράφων ασφαλείας μόνο μέσω WiFi</string>
+    <string name="backup_nomedia">Απόκρυψη προορισμού στη γκαλερί (.nomedia)</string>
+
+    <string name="orphans_opt">Ορφανά αρχεία</string>
+    <string name="orphans_action">Εάν ένα αρχείο υπάρχει μόνο στον Προορισμό:</string>
+    <string name="orphans_folder">Σε αυτό το αρχείο:</string>
+    <string name="orphans_folder_name">Ορφανά</string>
+    <string name="orphans_invalid_folder">Μη έγκυρο όνομα φακέλου</string>
+
+    <string name="filters_opt">Φίλτρα</string>
+    <string name="filter_images">Εικόνες</string>
+    <string name="filter_audio">Ήχος</string>
+    <string name="filter_videos">Βίντεο</string>
+    <string name="filter_documents">Έγγραφα</string>
+    <string name="filter_others">Άλλα</string>
+    <string name="filter_min_size">Αγνοήστε αρχεία μικρότερα από:</string>
+    <string name="filter_max_size">Αγνοήστε αρχεία μεγαλύτερα από:</string>
+    <string name="filter_black_list">Λίστα εξαιρέσεων (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob μοτίβο</a>):</string>
+    <string name="filter_black_list_hint">/Φάκελος/υποφάκελος/**\n.trashed*</string>
+
+    <string name="schedule_opt">Σχεδιασμός</string>
+    <string name="schedule_auto">Εκτέλεση αυτόματων αντιγράφων ασφαλείας</string>
+    <string name="schedule_charging">Μόνο όταν η συσκευή φορτώνει</string>
+    <string name="schedule_idle">Μόνο όταν η συσκευή βρίσκεται σε κατάσταση αναμονής</string>
+    <string name="schedule_idle_warning">Μπορεί να μην λειτουργεί: ορισμένες συσκευές δεν σηματοδοτούν σωστά την κατάσταση αναμονής</string>
+    <string name="schedule_interval">Κάθε:</string>
+    <string name="schedule_time">στο</string>
+
+    <string name="options_low_interval_alert">Μια μικρή καθυστέρηση θα μειώσει την αυτονομία σας</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Εμφάνιση</string>
+    <string name="backup_color_background">Φόντο:</string>
+    <string name="backup_color_border">Σύνορα:</string>
+    <string name="backup_color_icons">Εικονίδια:</string>
+    <string name="backup_color_progressbar">Γραμμή προόδου:</string>
+    <string name="backup_appearance_preview">Προεπισκόπηση</string>
+    <string name="backup_appearance_load_theme">Πατήστε για να φορτώσετε ένα θέμα</string>
+    <string name="backup_appearance_theme_custom">Προσαρμοσμένο #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Αυτόματη συμπλήρωση</string>
+    <string name="autofill_authentication_message">Επιβεβαιώστε την ταυτότητά σας</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Λίστα διαπιστευτηρίων</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Εισαγάγετε τη διεύθυνση του διακομιστή και τα διαπιστευτήριά σας</string>
+    <string name="folder_explorer_missing_address">Πληκτρολογήστε τη διεύθυνση του διακομιστή σας</string>
+    <string name="folder_explorer_missing_share">Εισαγάγετε ένα κοινόχρηστο στοιχείο για αναζήτηση</string>
+    <string name="folder_explorer_unable_connect">Αποτυχημένη σύνδεση</string>
+    <string name="folder_explorer_unable_list">Δεν είναι δυνατή η ανάγνωση του περιεχομένου αυτού του φακέλου</string>
+    <string name="folder_explorer_error_details">Μήνυμα λάθους:</string>
+    <string name="folder_explorer_error_protocol">Το πρωτόκολλο επικοινωνίας δεν βρέθηκε</string>
+    <string name="folder_explorer_recycler_hint">Περιεχόμενο απομακρυσμένου διακομιστή</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Πηγή</string>
+    <string name="log_destination">Προορισμός</string>
+
+    <string name="log_error">ΣΦΑΛΜΑ</string>
+    <string name="log_warning">ALERT</string>
+    <string name="log_note">ΣΗΜΕΙΩΣΗ</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Έναρξη δημιουργίας αντιγράφων ασφαλείας</string>
+    <string name="log_backup_start_scheduled">Έναρξη αυτόματης δημιουργίας αντιγράφων ασφαλείας</string>
+    <string name="log_backup_initialisation">Αρχικοποίηση …</string>
+    <string name="log_folder_destination_create">Δημιουργία του φακέλου προορισμού που λείπει</string>
+    <string name="log_searching_files">Αναζήτηση αρχείων …</string>
+    <string name="log_found">Βρέθηκαν αρχεία:</string>
+    <string name="log_excluding">Φιλτράρισμα αρχείων …</string>
+    <string name="log_remaining">Αρχεία που απομένουν:</string>
+    <string name="log_checking_backup">Έλεγχος αρχείων για δημιουργία αντιγράφων ασφαλείας …</string>
+    <string name="log_flexible_mode">(ευέλικτη λειτουργία) …</string>
+    <string name="log_to_backup">Αρχεία προς αντιγραφή:</string>
+    <string name="log_orphans_keep">Ορφανά να κρατήσουν:</string>
+    <string name="log_orphans_move">Ορφανά για μετακόμιση:</string>
+    <string name="log_orphans_delete">Ορφανά προς διαγραφή:</string>
+    <string name="log_obsolete">Παρωχημένα ορφανά προς διαγραφή:</string>
+    <string name="log_orphans_after_backup">(i) Ορφανά στον προορισμό:</string>
+
+    <string name="error_wifi">Το απαιτούμενο WiFi δεν είναι συνδεδεμένο</string>
+    <string name="error_target">Λάθος στόχος αντιγράφων ασφαλείας</string>
+    <string name="error_blacklist">Σφάλμα σύνταξης στη λίστα εξαιρέσεων</string>
+
+    <string name="error_server_reach">Αδυναμία πρόσβασης σε αυτόν τον διακομιστή</string>
+    <string name="error_server_connect">Αδυναμία σύνδεσης σε αυτόν τον διακομιστή</string>
+    <string name="error_share_connect">Δεν είναι δυνατή η σύνδεση σε αυτό το κοινόχρηστο στοιχείο</string>
+    <string name="error_ssl_connect">Δεν μπορεί να χρησιμοποιήσει SSL/TLS</string>
+    <string name="error_ssl_certificate">Μη έγκυρο/ελλειπές πιστοποιητικό SSL/TLS</string>
+    <string name="error_ftp_filetype">Δεν είναι δυνατή η μετάβαση σε δυαδική λειτουργία μεταφοράς</string>
+    <string name="error_server_login">Αδυναμία ελέγχου ταυτότητας</string>
+    <string name="error_server_disconnect">Δεν είναι δυνατή η αποσύνδεση από το διακομιστή</string>
+
+    <string name="error_permission_read">Άδεια ανάγνωσης απορριφθείσα</string>
+    <string name="error_permission_write">Απαγορεύεται η άδεια εγγραφής</string>
+    <string name="error_permission_unknown">Αδυναμία ελέγχου δικαιωμάτων</string>
+
+    <string name="error_space_low">Χαμηλός ελεύθερος χώρος</string>
+    <string name="error_space_critical">Δεν υπάρχει αρκετός ελεύθερος χώρος</string>
+    <string name="error_space_unverifiable">Αδυναμία ελέγχου του ελεύθερου χώρου</string>
+    <string name="error_quota_low">Χαμηλή διαθέσιμη ποσόστωση</string>
+    <string name="error_quota_critical">Μη επαρκής διαθέσιμη ποσόστωση</string>
+    <string name="error_quota_unverifiable">Αδυναμία ελέγχου της διαθέσιμης ποσόστωσης</string>
+
+    <string name="error_folder_existence">Το αρχείο δεν βρέθηκε</string>
+    <string name="error_folder_invalid">Μη έγκυρος φάκελος</string>
+    <string name="error_folder_list">Δεν είναι δυνατή η λίστα αρχείων σε αυτόν το φάκελο</string>
+    <string name="error_folder_delete">Δεν είναι δυνατή η διαγραφή αυτού του φακέλου</string>
+    <string name="error_folder_create">Δεν μπορεί να δημιουργηθεί αυτός ο φάκελος</string>
+    <string name="error_folder_create_tmp">Δεν είναι δυνατή η δημιουργία φακέλου προσωρινών αρχείων</string>
+
+    <string name="error_path_reach">Δεν είναι δυνατή η πρόσβαση σε αυτήν τη διαδρομή</string>
+
+    <string name="error_orphan_folder_not_specified">Ο φάκελος των ορφανών δεν προσδιορίζεται</string>
+    <string name="error_orphan_folder_in_use">Μην χρησιμοποιείτε όνομα φακέλου που υπάρχει στην πηγή για την αποθήκευση ορφανών αρχείων</string>
+
+    <string name="error_setforeground">Δεν είναι δυνατή η εμφάνιση της ειδοποίησης προόδου. Η διάρκεια δημιουργίας αντιγράφων ασφαλείας περιορίζεται στα 10 λεπτά</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Η προστασία αρχίζει …</string>
+    <string name="log_orphans_move_long">Μετακίνηση ορφανών</string>
+    <string name="log_orphans_delete_long">Διαγραφή ορφανών</string>
+    <string name="log_delete_obsolete_orphans">Διαγραφή παρωχημένων ορφανών</string>
+    <string name="log_folders_create">Δημιουργία νέων αρχείων</string>
+    <string name="log_copy">Αντιγραφή</string>
+    <string name="log_move">Κίνηση</string>
+    <string name="log_delete">Διαγραφή</string>
+    <string name="log_nomedia_created">.nomedia αρχείο που δημιουργήθηκε</string>
+    <string name="log_nomedia_removed">Διαγραμμένο αρχείο .nomedia</string>
+    <string name="log_empty_folders_delete">Διαγραφή κενών φακέλων</string>
+
+    <string name="error_file_read">Δεν είναι δυνατή η ανάγνωση αυτού του αρχείου</string>
+    <string name="error_file_read_finish">Δεν είναι δυνατό το κλείσιμο του προγράμματος ανάγνωσης αρχείων</string>
+    <string name="error_file_copy">Αδυναμία αντιγραφής αυτού του αρχείου</string>
+    <string name="error_file_move">Δεν μπορεί να μετακινηθεί αυτό το αρχείο</string>
+    <string name="error_file_delete">Δεν μπορεί να διαγραφεί αυτό το αρχείο</string>
+    <string name="error_file_corrupted">Εντοπίστηκε αλλοίωση αρχείου, επανάληψη …</string>
+    <string name="error_file_corrupted_final">Δεν μπορεί να αντιγραφεί αυτό το αρχείο χωρίς να καταστραφεί. Επανάληψη στο επόμενο αντίγραφο ασφαλείας</string>
+    <string name="error_file_date_modification">Η τροποποίηση ημερομηνίας αρχείου απέτυχε. Μετάβαση σε λειτουργία ευέλικτης σύγκρισης</string>
+    <string name="success_file_date_modification">Επιτυχία τροποποίησης ημερομηνίας αρχείου. Μετάβαση σε λειτουργία αυστηρής σύγκρισης</string>
+    <string name="error_file_tmp_space">Ανεπαρκής ελεύθερος χώρος στην εσωτερική μνήμη της συσκευής για τη δημιουργία προσωρινού αρχείου</string>
+    <string name="error_file_tmp_skipped">Παράβλεψη αρχείου</string>
+    <string name="error_file_tmp">Δεν είναι δυνατή η δημιουργία προσωρινού αρχείου</string>
+    <string name="error_nomedia_create">Αδυναμία δημιουργίας του αρχείου .nomedia</string>
+    <string name="error_nomedia_remove">Δεν είναι δυνατή η διαγραφή του αρχείου .nomedia</string>
+    <string name="error_ftp_mlst">Η εντολή MLST, που απαιτείται για την ανάκτηση του μεγέθους του αρχείου και της ακριβούς χρονικής σφραγίδας, δεν φαίνεται να υποστηρίζεται από αυτόν τον διακομιστή</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Επιτυχημένο αντίγραφο ασφαλείας</string>
+    <string name="log_backup_warning">Επιτυχημένο αντίγραφο ασφαλείας με ειδοποιήσεις</string>
+    <string name="log_backup_canceled">Ακύρωση αντιγράφων ασφαλείας</string>
+    <string name="error_backup_failed">Η δημιουργία αντιγράφων ασφαλείας απέτυχε</string>
+
+    <string name="log_next_schedule_success">Επόμενο προγραμματισμένο αντίγραφο ασφαλείας:</string>
+    <string name="log_next_schedule_failed">Επόμενη προγραμματισμένη προσπάθεια:</string>
+
+    <string name="log_backup_duration">Διάρκεια αντιγράφων ασφαλείας:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Ο φάκελος καταγραφής δεν βρέθηκε</string>
+    <string name="logs_file_not_found">Δεν υπάρχει διαθέσιμο αρχείο καταγραφής για αυτό το αντίγραφο ασφαλείας</string>
+    <string name="logs_file_read_error">Εμφανίστηκε σφάλμα κατά τη φόρτωση αυτού του αρχείου καταγραφής</string>
+    <string name="logs_navigation_previous">Προηγούμενο</string>
+    <string name="logs_navigation_next">Επόμενο</string>
+    <string name="logs_recycler_hint">Περιεχόμενο αρχείου καταγραφής</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Δημιουργία αντιγράφων ασφαλείας σε εξέλιξη</string>
+    <string name="notification_ongoing_channel_description">Πρόοδος των τρεχόντων αντιγράφων ασφαλείας</string>
+    <string name="notification_result_channel_name">Δημιουργήθηκαν αντίγραφα ασφαλείας</string>
+    <string name="notification_result_channel_description">Αποτελέσματα των προγραμματισμένων αντιγράφων ασφαλείας που πραγματοποιήθηκαν</string>
+    <string name="notification_result">Αποτέλεσμα προγραμματισμένων αντιγράφων ασφαλείας</string>
+    <string name="notification_scheduled">Προγραμματισμένα αντίγραφα ασφαλείας</string>
+    <string name="notification_no_backup">Καμία δεν πραγματοποιήθηκε σήμερα</string>
+    <string name="notification_active">Σε εξέλιξη</string>
+    <string name="notification_files">Αρχεία</string>
+    <string name="notification_no_file">Δεν υπάρχουν νέα ή ορφανά αρχεία</string>
+    <string name="notification_orphans">Ορφανά</string>
+    <string name="notification_success">Επιτυχία</string>
+    <string name="notification_warning">Συναγερμός</string>
+    <string name="notification_failed">Αποτυχία</string>
+    <string name="notification_canceled">Ακύρωση</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Πολύ χαμηλή αυτονομία</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Αδυναμία εκκίνησης αυτού του αντιγράφου ασφαλείας: το αντίγραφο ασφαλείας δεν είναι ανενεργό</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Σύστημα</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Σύστημα</item>
+        <item>Φως</item>
+        <item>Σκούρος</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Κανένα</item>
+        <item>Πολλαπλές - Διαγράψιμο</item>
+        <item>Παγκόσμια - Διαγράψιμο</item>
+        <item>Παγκόσμια - Μόνιμος</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Συσκευή</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Προεπιλογή</item>
+        <item>Κόκκινο</item>
+        <item>Πορτοκαλί</item>
+        <item>Κίτρινο</item>
+        <item>Ασβέστη</item>
+        <item>Πράσινο</item>
+        <item>Μέντα</item>
+        <item>Κυανό</item>
+        <item>Γαλάζιο</item>
+        <item>Μπλε</item>
+        <item>Indigo</item>
+        <item>Ματζέντα</item>
+        <item>Ροζ</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Κανένα</item>
+        <item>Κόκκινο</item>
+        <item>Πορτοκαλί</item>
+        <item>Κίτρινο</item>
+        <item>Ασβέστη</item>
+        <item>Πράσινο</item>
+        <item>Μέντα</item>
+        <item>Κυανό</item>
+        <item>Γαλάζιο</item>
+        <item>Μπλε</item>
+        <item>Indigo</item>
+        <item>Ματζέντα</item>
+        <item>Ροζ</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Αυστηρός (πηγή != προορισμός)</item>
+        <item>Εύκαμπτος (πηγή > προορισμός)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Κρατήστε το</item>
+        <item>Μετακίνηση</item>
+        <item>Διαγραφή</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>ημέρες</item>
+        <item>ώρες</item>
+        <item>λεπτά</item>
+    </string-array>
+
+</resources>

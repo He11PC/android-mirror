@@ -1,0 +1,26 @@
+Mirror, Android için çok protokollü ayna tipi yedekleme uygulamasıdır.
+Senkronizasyon yazılımlarından daha basit ve hafif olacak şekilde tasarlanmıştır ve üçüncü taraf bulut hizmetleri yerine kendi altyapınızı kullanmanıza olanak tanır.
+
+Birden fazla yedeklemeyi şu şekilde yapılandırabilirsiniz:
+
+* Kaynak dizini seçin
+* Hedef dizini seçin
+* Filtreleme seçeneklerini seçin (isteğe bağlı)
+* Otomatik zamanlamayı yapılandırın (isteğe bağlı)
+
+Mirror, her iki dizinin içeriğini analiz edecek, karşılaştıracak ve seçtiğiniz filtreleme seçeneklerine uyarak kaynak dizinin yapısını (alt dizinler ve dosyalar) hedef dizinde yeniden oluşturacaktır.
+
+Kaynak ve hedef şu konumlarda bulunabilir:
+
+* Cihazınızın dahili veya harici depolama alanı
+* Bir NFS paylaşımı
+* Bir SMB paylaşımı
+* Bir FTP veya FTPS sunucusu
+* Bir SFTP sunucusu
+* Bir WebDAV sunucusu
+
+**GÜVENLİK VE GİZLİLİK**
+
+* **Yerel Depolama:** Hassas bilgiler şifrelenir (AES-GCM + Android KeyStore) ve Room veritabanı kullanılarak cihazınızda yerel olarak saklanır.
+* **İzleme Yok:** Bu uygulama herhangi bir analiz aracı, izleyici, reklam veya tescilli yazılım geliştirme kiti (SDK) içermez.
+* **Açık Kaynak:** Mirror bağımsız bir projedir. Şeffaflık ve denetim için kaynak kodu GitHub'da mevcuttur.

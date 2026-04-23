@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/row_autofill_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    android:padding="4dp"
+    android:columnCount="2"
+    android:rowCount="1"
+    android:useDefaultMargins="true"
+    android:background="@drawable/background_card">
+
+    <TextView
+        android:id="@+id/row_autofill_txt_server_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_server"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_server_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_domain_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_smb_domain"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_domain_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_port_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_port"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/row_autofill_lyt_port"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/row_autofill_txt_port_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/row_autofill_txt_ssl_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/autofill_ssl" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/row_autofill_txt_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_login"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_login_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_password_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_password"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_password_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_uid_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_nfs_uid"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_uid_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_gid_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_nfs_gid"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_gid_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_share_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_share"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_share_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_hostkey_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_sftp_hostkey"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/row_autofill_txt_hostkey_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:breakStrategy="simple" />
+
+</GridLayout>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/target_nfs_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragments.Fragment_TargetNFS">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/target_nfs_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="target_nfs_txt_server,target_nfs_txt_uid,target_nfs_txt_gid,target_nfs_txt_path" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_server"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_server"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_nfs_edit_server"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_nfs_edit_server"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_smb_server_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:nextFocusForward="@id/target_nfs_edit_uid"
+        app:layout_constraintEnd_toStartOf="@+id/target_nfs_btn_credentials_fill"
+        app:layout_constraintStart_toEndOf="@+id/target_nfs_barrier"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/target_nfs_btn_credentials_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/target_common_autofill"
+        android:minWidth="32dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_autofill"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/target_nfs_edit_server"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/target_nfs_edit_server" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_nfs_uid"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_nfs_edit_uid"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_nfs_edit_uid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_nfs_uid_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:nextFocusForward="@id/target_nfs_edit_gid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_nfs_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_server"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_gid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_nfs_gid"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_nfs_edit_gid"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_nfs_edit_gid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_nfs_gid_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:nextFocusForward="@id/target_nfs_edit_share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_nfs_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_uid"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_share"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_nfs_edit_share"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_nfs_edit_share"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:hint="@string/target_nfs_share_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:nextFocusForward="@id/target_nfs_edit_path"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_nfs_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_gid"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_path"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_nfs_edit_path"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_nfs_edit_path"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:hint="@string/target_common_path_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:nextFocusForward="@id/target_nfs_btn_path_search"
+        app:layout_constraintEnd_toStartOf="@+id/target_nfs_btn_path_search"
+        app:layout_constraintStart_toEndOf="@+id/target_nfs_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_share"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/target_nfs_btn_path_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/target_common_search"
+        android:minWidth="32dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/target_nfs_edit_path"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_share" />
+
+    <TextView
+        android:id="@+id/target_nfs_txt_warning_non_root_mount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="10dp"
+        android:text="@string/target_nfs_non_root_mount_warning"
+        android:textColor="@color/orange"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:drawableLeftCompat="@drawable/ic_warning"
+        app:drawableTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target_nfs_edit_path"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

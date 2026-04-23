@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row_main_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="16dp"
+    app:contentPadding="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="3dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row_main_top_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:longClickable="true"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/row_main_top_img_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/edit_source"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_phone"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/edit_destination"
+                app:layout_constraintStart_toStartOf="@+id/row_main_top_img_source"
+                app:layout_constraintTop_toBottomOf="@+id/row_main_top_txt_source_protocol"
+                app:srcCompat="@drawable/ic_sd_card"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/row_main_top_txt_source_protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:text="@string/target_location_device"
+                android:textColor="@color/gray"
+                android:textSize="8sp"
+                android:textStyle="bold|italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/row_main_top_img_source"
+                app:layout_constraintStart_toStartOf="@+id/row_main_top_img_source"
+                app:layout_constraintTop_toBottomOf="@+id/row_main_top_img_source"
+                tools:ignore="SmallSp,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/row_main_top_txt_destination_protocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:text="@string/target_location_device"
+                android:textColor="@color/gray"
+                android:textSize="8sp"
+                android:textStyle="bold|italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/row_main_top_img_destination"
+                app:layout_constraintStart_toStartOf="@+id/row_main_top_img_destination"
+                app:layout_constraintTop_toBottomOf="@+id/row_main_top_img_destination"
+                tools:ignore="SmallSp,TextContrastCheck" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/row_main_top_barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="row_main_top_img_source,row_main_top_img_destination,row_main_top_txt_source_protocol,row_main_top_txt_destination_protocol" />
+
+            <TextView
+                android:id="@+id/row_main_top_txt_source_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="Source/Folder"
+                app:layout_constraintBottom_toBottomOf="@+id/row_main_top_txt_source_protocol"
+                app:layout_constraintEnd_toStartOf="@+id/row_main_top_flow_icons"
+                app:layout_constraintStart_toEndOf="@+id/row_main_top_barrier"
+                app:layout_constraintTop_toTopOf="@+id/row_main_top_img_source"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/row_main_top_txt_destination_path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="Destination/Folder"
+                app:layout_constraintBottom_toBottomOf="@+id/row_main_top_txt_destination_protocol"
+                app:layout_constraintEnd_toEndOf="@+id/row_main_top_txt_source_path"
+                app:layout_constraintStart_toEndOf="@+id/row_main_top_barrier"
+                app:layout_constraintTop_toTopOf="@+id/row_main_top_img_destination"
+                tools:ignore="HardcodedText" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/row_main_top_flow_icons"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:constraint_referenced_ids="row_main_top_img_wifi,row_main_top_img_schedule,row_main_top_img_charging,row_main_top_img_idle,row_main_top_img_drag"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_wifi"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/backup_wifi"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_wifi"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_schedule"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/schedule_auto"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_schedule"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_charging"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/schedule_charging"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_battery_charging"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_idle"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/schedule_charging"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_idle"
+                app:tint="@color/gray" />
+
+            <ImageView
+                android:id="@+id/row_main_top_img_drag"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/backup_card_move"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_drag"
+                app:tint="@color/gray" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/row_main_bar"
+            style="@style/AppTheme.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="4dp"
+            android:progress="100" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row_main_bottom_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/row_main_bottom_btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/edit_title"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_edit" />
+
+            <ImageButton
+                android:id="@+id/row_main_bottom_btn_backup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/backup_launch"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_sync" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/row_main_bottom_flow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                app:constraint_referenced_ids="row_main_bottom_img_enqueued,row_main_bottom_txt_detail_1,row_main_bottom_txt_detail_2,row_main_bottom_txt_detail_3"
+                app:flow_maxElementsWrap="1"
+                app:flow_verticalBias="0.5"
+                app:flow_verticalGap="3dp"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/row_main_bottom_img_enqueued"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/backup_enqueued"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_wait"
+                app:tint="@color/gray" />
+
+            <TextView
+                android:id="@+id/row_main_bottom_txt_detail_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/row_main_bottom_txt_detail_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/row_main_bottom_txt_detail_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                tools:ignore="SmallSp" />
+
+            <ImageButton
+                android:id="@+id/row_main_bottom_btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/backup_delete"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_delete" />
+
+            <ImageButton
+                android:id="@+id/row_main_bottom_btn_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/backup_info"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_info" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

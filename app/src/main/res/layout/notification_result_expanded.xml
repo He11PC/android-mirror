@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/notification_result_expanded_info"
+        style="@style/TextAppearance.Compat.Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Info"
+        android:textColor="@color/text_notifications"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/notification_result_expanded_source_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notification_result_expanded_info"
+        android:paddingBottom="6dp"
+        android:src="@drawable/ic_phone"
+        android:tint="@color/gray"
+        tools:ignore="ContentDescription,UseAppTint" />
+
+    <TextView
+        android:id="@+id/notification_result_expanded_source_protocol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/notification_result_expanded_source_img"
+        android:layout_alignEnd="@id/notification_result_expanded_source_img"
+        android:layout_alignBottom="@+id/notification_result_expanded_source_img"
+        android:layout_centerVertical="false"
+        android:gravity="center_horizontal"
+        android:text="@string/target_location_device"
+        android:textColor="@color/gray"
+        android:textSize="8sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"
+        tools:ignore="SmallSp,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/notification_result_expanded_source"
+        style="@style/TextAppearance.Compat.Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/notification_result_expanded_source_img"
+        android:layout_alignBottom="@+id/notification_result_expanded_source_img"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/notification_result_expanded_source_img"
+        android:ellipsize="middle"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:text="Folder/SubFolder"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/notification_result_expanded_destination_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notification_result_expanded_source_img"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="6dp"
+        android:src="@drawable/ic_cloud"
+        android:tint="@color/gray"
+        tools:ignore="ContentDescription,UseAppTint" />
+
+    <TextView
+        android:id="@+id/notification_result_expanded_destination_protocol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/notification_result_expanded_destination_img"
+        android:layout_alignEnd="@id/notification_result_expanded_destination_img"
+        android:layout_alignBottom="@+id/notification_result_expanded_destination_img"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:text="@string/target_location_device"
+        android:textColor="@color/gray"
+        android:textSize="8sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"
+        tools:ignore="SmallSp,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/notification_result_expanded_destination"
+        style="@style/TextAppearance.Compat.Notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/notification_result_expanded_destination_img"
+        android:layout_alignBottom="@+id/notification_result_expanded_destination_img"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/notification_result_expanded_destination_img"
+        android:ellipsize="middle"
+        android:gravity="center_vertical"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:text="Folder/SubFolder"
+        tools:ignore="HardcodedText" />
+
+</RelativeLayout>

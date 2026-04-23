@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_launch_all"
+        android:icon="@drawable/ic_sync"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_backup_all"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menu_cancel_all"
+        android:icon="@drawable/ic_close"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_cancel_all"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menu_add_new"
+        android:icon="@drawable/ic_add"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_backup_new"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_settings"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_settings"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_permissions"
+        android:icon="@drawable/ic_assignment"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_permissions"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_about"
+        android:icon="@drawable/ic_question"
+        app:iconTint="#FFFFFF"
+        android:title="@string/menu_about"
+        app:showAsAction="never" />
+</menu>

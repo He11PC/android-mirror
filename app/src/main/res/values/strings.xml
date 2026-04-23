@@ -1,0 +1,595 @@
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- ENGLISH -->
+
+    <!--Activity - Main-->
+    <string name="application_name" translatable="false">Mirror</string>
+    <string name="application_description">Open-source multiprotocol backup application (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi required</string>
+    <string name="wifi_required_text">The WiFi option was selected but no connexion is actually active.\nPlease connect to a wireless network to process backup</string>
+    <string name="tooltip_new_backup">Use the + button above to set up a new backup</string>
+    <string name="tooltip_edit_mode">The top half of your backup cards is interactive:\n- Tap to switch between backup and edit buttons\n- Long press to disable/enable your backups</string>
+    <string name="tooltip_group_launch">The top \"sync\" button has two functions:\n- Tap to launch all your backups at once\n- You can group backups by color theme. If you have multiple groups, long press this button to select one and launch its backups</string>
+    <string name="main_recycler_hint">Backups list</string>
+    <string name="main_color_theme_group">Group #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Start all backups</string>
+    <string name="menu_cancel_all">Cancel all backups</string>
+    <string name="menu_backup_new">New backup</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_permissions">Permissions</string>
+    <string name="menu_about">About</string>
+
+    <!--Global-->
+    <string name="global_information">Information</string>
+    <string name="global_confirmation">Confirmation</string>
+    <string name="global_warning">Warning</string>
+    <string name="global_error">Error</string>
+    <string name="global_yes">Yes</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">No</string>
+    <string name="global_cancel">Cancel</string>
+    <string name="global_always">Always</string>
+    <string name="global_understood">Understood</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Settings</string>
+    <string name="settings_interface_title">Interface</string>
+    <string name="settings_language_text">Language:</string>
+    <string name="settings_theme_text">Theme:</string>
+    <string name="settings_logs_title">Logs</string>
+    <string name="settings_logs_text">Number of logs to keep per backup:</string>
+    <string name="settings_logs_errors">Keep original raw error messages instead of their simplified version</string>
+    <string name="settings_logs_warning_setforeground">Record a warning when progress notification fails</string>
+    <string name="settings_logs_preserve_scroll_position">Preserve scroll position when changing log file</string>
+    <string name="settings_notifications_title">Notifications</string>
+    <string name="settings_notifications_theme">Apply the configured color theme</string>
+    <string name="settings_notifications_type">Scheduled backups result:</string>
+    <string name="settings_notifications_tip">- Multiple: one notification per backup\n- Global: single notification, daily summary of all backups\n\n- Discardable: can be removed\n- Permanent: always visible\n\nPermanent notification can prevent scheduled backups issues</string>
+    <string name="settings_notifications_warning">Please allow notifications permission to change this setting</string>
+
+    <!--Activity - Permissions-->
+    <string name="permission_title">Permissions</string>
+    <string name="permission_locked_title">Permission locked</string>
+
+    <string name="permission_files_title">Allow files access (required)</string>
+    <string name="permission_files_text">Backups are impossible without having access to your files and folders</string>
+    <string name="permission_files_locked_text">Android locked this permission making the app is non functional.\n\nPlease ensure that Mirror will never collect any information about you or your data.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
+
+    <string name="permission_notifications_title">Allow notifications (highly recommended)</string>
+    <string name="permission_notifications_text">Notifications are used to display ongoing backups progression and scheduled backups result</string>
+    <string name="permission_notifications_locked_text">Android locked this permission.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
+
+    <string name="permission_battery_title">Disable battery optimization (recommended)</string>
+    <string name="permission_battery_text">Android battery optimization can be too aggressive and interfere with scheduled backups</string>
+
+    <string name="permission_permanent_title">Disable permission revocation (recommended)</string>
+    <string name="permission_permanent_text">Permissions can be automatically removed by Android which can lead to malfunctions</string>
+
+    <string name="permission_auto_startup_title">Enable automatic startup (recommended)</string>
+    <string name="permission_auto_startup_text">Without this permission scheduled backups may stop working after a device reboot</string>
+    <string name="permission_auto_startup_try">Each manufacturer handle this feature their own way and Mirror can only try to open the corresponding settings page.\n\nIn case of failure this will require a manual set-up accordingly to your device</string>
+    <string name="permission_auto_startup_manual">Each manufacturer handle this feature their own way which requires a manual set-up accordingly to your device</string>
+    <string name="permission_auto_startup_open">Open</string>
+
+    <!--Activity - About-->
+    <string name="about_title">About</string>
+    <string name="about_app_title">Application</string>
+    <string name="about_app_author">Created by <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">License: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Credits and Third-Party Licenses</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 client - Licensed under Apache-2.0 by EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 client - Licensed under Apache-2.0 by hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP client - Licensed under Apache-2.0 by the Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP client - Licensed under BSD-style by mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV client - Licensed under Apache-2.0 by thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Digest authentication for WebDAV - Licensed under Apache-2.0 by rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: Opens the autostart permission manager - Licensed under MIT by judemanutd</string>
+    <string name="about_libraries_thanks">Thank you for your hard work, Mirror could not exist without you :)</string>
+    <string name="about_support_title">Support</string>
+    <string name="about_support_intro">Mirror is a free and open-source application, distributed without advertising or tracking.\n\nIf you find it useful and would like to support my work, a small donation would be greatly appreciated.</string>
+    <string name="about_support_coffee_hint" translatable="false">Buy me a coffee</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Delete backup</string>
+    <string name="backup_delete_warning_message">Do you want to remove this backup ?</string>
+    <string name="backup_info">Backup information</string>
+    <string name="backup_launch">Launch backup</string>
+    <string name="backup_enqueued">Backup enqueued</string>
+    <string name="backup_last_date">Last backup:</string>
+    <string name="backup_card_move">Move backup card</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Unlock edition</string>
+    <string name="edit_authentication_message">This backup requires biometric authentication</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Edition</string>
+    <string name="edit_title_new">Creation</string>
+    <string name="edit_save">Save</string>
+    <string name="edit_cancel">Cancel</string>
+    <string name="edit_source">Source</string>
+    <string name="edit_destination">Destination</string>
+
+    <string name="edit_exit_alert">Repeat to exit without saving</string>
+    <string name="edit_invalid_alert">Please give valid source and destination</string>
+    <string name="edit_invalid_credentials_alert">Please give valid credentials (login/password)</string>
+    <string name="edit_invalid_hostkey_alert">Please retrieve your SFTP server host key for security reasons</string>
+    <string name="edit_remote_alert_message">Doing backups between two remote servers through your device is not the most efficient.\n\nIf you can, it would be better to setup your backup directly on one of those machines</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Unable to detect current tab</string>
+    <string name="target_location">Location:</string>
+    <string name="target_location_error">Wrong location selected</string>
+    <string name="target_location_device">Device</string>
+    <string name="target_location_warning_remote_to_webdav">Backups from a remote source to a WebDav server require the creation of temporary intermediate files on your device</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Select folder</string>
+    <string name="target_local_information_timezone">The FAT file system, commonly used on external storages, can\'t manage time zones and stores dates based on the device local time. As consequence, a complete backup of your files may occur after changing time zone</string>
+    <string name="target_local_warning_android_10">Google decided to revoke applications\' permission to write on external storage outside their private folder on Android 10.\n\nDo you want to move your destination folder inside Mirror folder ?\n\nBe careful, Android will delete it when you uninstall this app !</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Server:</string>
+    <string name="target_common_server_hint">Domain name or IP</string>
+    <string name="target_common_path">Path:</string>
+    <string name="target_common_path_hint">Folder/SubFolder</string>
+    <string name="target_common_login">Login:</string>
+    <string name="target_common_login_hint">User_login</string>
+    <string name="target_common_password">Password:</string>
+    <string name="target_common_password_hint">User_password</string>
+    <string name="target_common_port">Port:</string>
+    <string name="target_common_share">Share:</string>
+    <string name="target_common_search">Search</string>
+    <string name="target_common_autofill">Autofill</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">User ID:</string>
+    <string name="target_nfs_uid_hint">UID (facultative)</string>
+    <string name="target_nfs_gid">Group ID:</string>
+    <string name="target_nfs_gid_hint">GID (facultative)</string>
+    <string name="target_nfs_share_hint">Path of the root shared folder</string>
+    <string name="target_nfs_non_root_mount_warning">Android requires non-root mounting permission on your server</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Name or IP</string>
+    <string name="target_smb_domain">Domain:</string>
+    <string name="target_smb_domain_hint">(facultative)</string>
+    <string name="target_smb_share_hint">Name of the root shared folder</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_port_hint" translatable="false">21</string>
+    <string name="target_ftp_ssl">Use SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Android prevents usage of SSL/TLS with servers using TLS session resumption on data connection</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_port_hint" translatable="false">22</string>
+    <string name="target_sftp_hostkey">Host key:</string>
+    <string name="target_sftp_hostkey_hint">Tap to retrieve server host key</string>
+    <string name="target_sftp_hostkey_load">Retrieving host key …</string>
+    <string name="target_sftp_hostkey_confirmation">Do you trust this server ?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_port_hint" translatable="false">80</string>
+    <string name="target_webdav_port_ssl_hint" translatable="false">443</string>
+    <string name="target_webdav_ssl">Use SSL</string>
+    <string name="target_webdav_ssl_warning">Self-signed certificates are usually not sufficient and may be rejected during security checks</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Security</string>
+    <string name="backup_protect">Edition requires biometric authentication</string>
+    <string name="backup_protect_warning">Biometric authentication is not configured on this device</string>
+
+    <string name="backup_opt">Backup</string>
+    <string name="backup_recursive">Process subfolders</string>
+    <string name="backup_retry_corrupted">Retry copy when a corrupted file is detected</string>
+    <string name="backup_date_comparison_auto">Automatic file date comparison mode</string>
+    <string name="backup_date_comparison_mode">File date comparison mode:</string>
+    <string name="backup_wifi">Backup on WiFi only</string>
+    <string name="backup_nomedia">Hide Destination folder from gallery (.nomedia)</string>
+
+    <string name="orphans_opt">Orphan files</string>
+    <string name="orphans_action">When a file exists only in Destination:</string>
+    <string name="orphans_folder">To this folder:</string>
+    <string name="orphans_folder_name">Orphans</string>
+    <string name="orphans_invalid_folder">Invalid folder name</string>
+
+    <string name="filters_opt">Filters</string>
+    <string name="filter_images">Images</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Videos</string>
+    <string name="filter_documents">Documents</string>
+    <string name="filter_others">Others</string>
+    <string name="filter_min_size">Ignore files smaller than:</string>
+    <string name="filter_max_size">Ignore files bigger than:</string>
+    <string name="filter_black_list">Exclusion list (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob pattern</a>):</string>
+    <string name="filter_black_list_hint">/Folder/SubFolder/**\n.trashed*</string>
+
+    <string name="schedule_opt">Schedule</string>
+    <string name="schedule_auto">Perform automatic backups</string>
+    <string name="schedule_charging">Only when charging the battery</string>
+    <string name="schedule_idle">Only when the device is sleeping</string>
+    <string name="schedule_idle_warning">May not work: some devices report sleep status inconsistently</string>
+    <string name="schedule_interval">Every:</string>
+    <string name="schedule_time">at</string>
+
+    <string name="options_low_interval_alert">Short delay will drain your battery</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Appearance</string>
+    <string name="backup_color_background">Background:</string>
+    <string name="backup_color_border">Borders:</string>
+    <string name="backup_color_icons">Icons:</string>
+    <string name="backup_color_progressbar">Progressbar:</string>
+    <string name="backup_appearance_preview">Preview</string>
+    <string name="backup_appearance_load_theme">Tap to load a theme</string>
+    <string name="backup_appearance_theme_custom">Custom #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Autofill</string>
+    <string name="autofill_authentication_message">Please confirm your identity</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Credentials list</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Please enter your server address and credentials</string>
+    <string name="folder_explorer_missing_address">Please enter your server address</string>
+    <string name="folder_explorer_missing_share">Please enter a share to search in</string>
+    <string name="folder_explorer_unable_connect">Connexion failed</string>
+    <string name="folder_explorer_unable_list">Unable to read this folder content</string>
+    <string name="folder_explorer_error_details">Error message:</string>
+    <string name="folder_explorer_error_protocol">Communication protocol not found</string>
+    <string name="folder_explorer_recycler_hint">Remote server content</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Source</string>
+    <string name="log_destination">Destination</string>
+
+    <string name="log_error">ERROR</string>
+    <string name="log_warning">WARNING</string>
+    <string name="log_note">NOTE</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Backup launched</string>
+    <string name="log_backup_start_scheduled">Scheduled backup launched</string>
+    <string name="log_backup_initialisation">Initialisation …</string>
+    <string name="log_folder_destination_create">Creating missing Destination folder</string>
+    <string name="log_searching_files">Searching files …</string>
+    <string name="log_found">Files found:</string>
+    <string name="log_excluding">Filtering files …</string>
+    <string name="log_remaining">Remaining files:</string>
+    <string name="log_checking_backup">Checking files to backup …</string>
+    <string name="log_flexible_mode">(flexible mode) …</string>
+    <string name="log_to_backup">Files to copy:</string>
+    <string name="log_orphans_keep">Orphans to keep:</string>
+    <string name="log_orphans_move">Orphans to move:</string>
+    <string name="log_orphans_delete">Orphans to delete:</string>
+    <string name="log_obsolete">Obsolete orphans to delete:</string>
+    <string name="log_orphans_after_backup">(i) Orphans in Destination:</string>
+
+    <string name="error_wifi">Required WiFi is not connected</string>
+    <string name="error_target">Wrong backup target</string>
+    <string name="error_blacklist">Syntax error in exclusion list</string>
+
+    <string name="error_server_reach">Unable to reach this server</string>
+    <string name="error_server_connect">Unable to connect to this server</string>
+    <string name="error_share_connect">Unable to connect to this share</string>
+    <string name="error_ssl_connect">Unable to use SSL/TLS</string>
+    <string name="error_ssl_certificate">SSL certificate invalid/missing</string>
+    <string name="error_ftp_filetype">Unable to set binary file transfer mode</string>
+    <string name="error_server_login">Unable to login</string>
+    <string name="error_server_disconnect">Unable to disconnect from this server</string>
+
+    <string name="error_permission_read">Read permissions not allowed</string>
+    <string name="error_permission_write">Write permissions not allowed</string>
+    <string name="error_permission_unknown">Unable to check permissions</string>
+
+    <string name="error_space_low">Free space is low</string>
+    <string name="error_space_critical">Not enough free space</string>
+    <string name="error_space_unverifiable">Unable to verify free space</string>
+    <string name="error_quota_low">Available quota is low</string>
+    <string name="error_quota_critical">Not enough available quota</string>
+    <string name="error_quota_unverifiable">Unable to verify available quota</string>
+
+    <string name="error_folder_existence">Folder not found</string>
+    <string name="error_folder_invalid">Invalid folder</string>
+    <string name="error_folder_list">Unable to list files in this folder</string>
+    <string name="error_folder_delete">Unable to delete this folder</string>
+    <string name="error_folder_create">Unable to create this folder</string>
+    <string name="error_folder_create_tmp">Unable to create temporary files folder</string>
+
+    <string name="error_path_reach">Unable to reach this path</string>
+
+    <string name="error_orphan_folder_not_specified">Orphans folder not specified</string>
+    <string name="error_orphan_folder_in_use">Do not use a folder name present in source to store orphan files</string>
+
+    <string name="error_setforeground">Unable to display progress notification. Backup duration is limited to 10 minutes</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Backup begins …</string>
+    <string name="log_orphans_move_long">Moving orphan files</string>
+    <string name="log_orphans_delete_long">Deleting orphan files</string>
+    <string name="log_delete_obsolete_orphans">Deleting obsolete orphans</string>
+    <string name="log_folders_create">Creating new folders</string>
+    <string name="log_copy">Copying</string>
+    <string name="log_move">Moving</string>
+    <string name="log_delete">Deleting</string>
+    <string name="log_nomedia_created">.nomedia file created</string>
+    <string name="log_nomedia_removed">.nomedia file removed</string>
+    <string name="log_empty_folders_delete">Deleting empty folders</string>
+
+    <string name="error_file_read">Unable to read this file</string>
+    <string name="error_file_read_finish">Unable to close file reader</string>
+    <string name="error_file_copy">Unable to copy this file</string>
+    <string name="error_file_move">Unable to move this file</string>
+    <string name="error_file_delete">Unable to delete this file</string>
+    <string name="error_file_corrupted">File corruption detected, retrying …</string>
+    <string name="error_file_corrupted_final">Unable to copy this file without corruption. New tentative during next backup</string>
+    <string name="error_file_date_modification">File date modification failed. Switching to flexible comparison mode</string>
+    <string name="success_file_date_modification">File date modification success. Switching to strict comparison mode</string>
+    <string name="error_file_tmp_space">Insufficient free space on device internal memory to create temporary file</string>
+    <string name="error_file_tmp_skipped">File skipped</string>
+    <string name="error_file_tmp">Unable to create temporary file</string>
+    <string name="error_nomedia_create">Unable to create .nomedia file</string>
+    <string name="error_nomedia_remove">Unable to remove .nomedia file</string>
+    <string name="error_ftp_mlst">The MLST command, required to retrieve the file size and precise timestamp, does not appear to be supported by this server</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Backup success</string>
+    <string name="log_backup_warning">Backup success with warnings</string>
+    <string name="log_backup_canceled">Backup canceled</string>
+    <string name="error_backup_failed">Backup failed</string>
+
+    <string name="log_next_schedule_success">Next scheduled backup:</string>
+    <string name="log_next_schedule_failed">Next scheduled retry:</string>
+
+    <string name="log_backup_duration">Backup duration:</string>
+    <string name="log_minutes" translatable="false">min</string>
+    <string name="log_seconds" translatable="false">s</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Log folder not found</string>
+    <string name="logs_file_not_found">No log file available for this backup</string>
+    <string name="logs_file_read_error">An error occurred while loading this log file</string>
+    <string name="logs_navigation_previous">Previous</string>
+    <string name="logs_navigation_next">Next</string>
+    <string name="logs_recycler_hint">Log file content</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Ongoing backups</string>
+    <string name="notification_ongoing_channel_description">Progression details during backups</string>
+    <string name="notification_result_channel_name">Finished backups</string>
+    <string name="notification_result_channel_description">Results of completed scheduled backups</string>
+    <string name="notification_result">Scheduled backups result</string>
+    <string name="notification_scheduled">Scheduled backups</string>
+    <string name="notification_no_backup">None done today</string>
+    <string name="notification_active">Ongoing</string>
+    <string name="notification_files">Files</string>
+    <string name="notification_no_file">No new file or orphan</string>
+    <string name="notification_orphans">Orphans</string>
+    <string name="notification_success">Success</string>
+    <string name="notification_warning">Warning</string>
+    <string name="notification_failed">Failed</string>
+    <string name="notification_canceled">Canceled</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Not enough battery</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Unable to launch this backup: backup is not idle</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>System</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="locales_id" translatable="false">
+        <item>bn</item> <!-- Bengali -->
+        <item>cs</item> <!-- Czech -->
+        <item>de</item> <!-- German -->
+        <item>el</item> <!-- Greek -->
+        <item>en</item> <!-- English -->
+        <item>es</item> <!-- Spanish -->
+        <item>fr</item> <!-- French -->
+        <item>hi</item> <!-- Hindi -->
+        <item>hu</item> <!-- Hungarian -->
+        <item>in</item> <!-- Indonesian -->
+        <item>it</item> <!-- Italian -->
+        <item>ja</item> <!-- Japanese -->
+        <item>ko</item> <!-- Korean -->
+        <item>nl</item> <!-- Dutch -->
+        <item>pl</item> <!-- Polish -->
+        <item>pt</item> <!-- Portuguese -->
+        <item>ro</item> <!-- Romanian -->
+        <item>ru</item> <!-- Russian -->
+        <item>sv</item> <!-- Swedish -->
+        <item>tr</item> <!-- Turkish -->
+        <item>uk</item> <!-- Ukrainian -->
+        <item>zh</item> <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>System</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>None</item>
+        <item>Multiple - Discardable</item>
+        <item>Global - Discardable</item>
+        <item>Global - Permanent</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Device</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="protocol_id" translatable="false">
+        <item>LOCAL</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Default</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Lime</item>
+        <item>Green</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Blue</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Pink</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>None</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Lime</item>
+        <item>Green</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Blue</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Pink</item>
+    </string-array>
+
+    <integer-array name="color_value_background">
+        <item>@color/backup_background_default</item>
+        <item>@color/backup_background_red</item>
+        <item>@color/backup_background_orange</item>
+        <item>@color/backup_background_yellow</item>
+        <item>@color/backup_background_chartreuse</item>
+        <item>@color/backup_background_green</item>
+        <item>@color/backup_background_spring_green</item>
+        <item>@color/backup_background_cyan</item>
+        <item>@color/backup_background_dodger_blue</item>
+        <item>@color/backup_background_blue</item>
+        <item>@color/backup_background_indigo</item>
+        <item>@color/backup_background_magenta</item>
+        <item>@color/backup_background_pink</item>
+    </integer-array>
+
+    <integer-array name="color_value_borders">
+        <item>-1</item>
+        <item>@color/backup_border_red</item>
+        <item>@color/backup_border_orange</item>
+        <item>@color/backup_border_yellow</item>
+        <item>@color/backup_border_chartreuse</item>
+        <item>@color/backup_border_green</item>
+        <item>@color/backup_border_spring_green</item>
+        <item>@color/backup_border_cyan</item>
+        <item>@color/backup_border_dodger_blue</item>
+        <item>@color/backup_border_blue</item>
+        <item>@color/backup_border_indigo</item>
+        <item>@color/backup_border_magenta</item>
+        <item>@color/backup_border_pink</item>
+    </integer-array>
+
+    <integer-array name="color_value_icons">
+        <item>@color/backup_icon_default</item>
+        <item>@color/backup_icon_red</item>
+        <item>@color/backup_icon_orange</item>
+        <item>@color/backup_icon_yellow</item>
+        <item>@color/backup_icon_chartreuse</item>
+        <item>@color/backup_icon_green</item>
+        <item>@color/backup_icon_spring_green</item>
+        <item>@color/backup_icon_cyan</item>
+        <item>@color/backup_icon_dodger_blue</item>
+        <item>@color/backup_icon_blue</item>
+        <item>@color/backup_icon_indigo</item>
+        <item>@color/backup_icon_magenta</item>
+        <item>@color/backup_icon_pink</item>
+    </integer-array>
+
+    <integer-array name="color_value_progressbar_secondary">
+        <item>@color/progressbar_secondary_default</item>
+        <item>@color/progressbar_secondary_red</item>
+        <item>@color/progressbar_secondary_orange</item>
+        <item>@color/progressbar_secondary_yellow</item>
+        <item>@color/progressbar_secondary_chartreuse</item>
+        <item>@color/progressbar_secondary_green</item>
+        <item>@color/progressbar_secondary_spring_green</item>
+        <item>@color/progressbar_secondary_cyan</item>
+        <item>@color/progressbar_secondary_dodger_blue</item>
+        <item>@color/progressbar_secondary_blue</item>
+        <item>@color/progressbar_secondary_indigo</item>
+        <item>@color/progressbar_secondary_magenta</item>
+        <item>@color/progressbar_secondary_pink</item>
+    </integer-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Strict (source != destination)</item>
+        <item>Flexible (source > destination)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Keep</item>
+        <item>Move</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string-array name="file_size_unit" translatable="false">
+        <item>KiB</item>
+        <item>MiB</item>
+        <item>GiB</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>days</item>
+        <item>hours</item>
+        <item>minutes</item>
+    </string-array>
+
+</resources>

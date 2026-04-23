@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- DUTCH (Nederlands) -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Open-source multiprotocol back-uptoepassing (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi vereist</string>
+    <string name="wifi_required_text">De WiFi optie is geselecteerd maar er is momenteel geen verbinding actief.\nMaak verbinding met een WiFi-netwerk om de back-up uit te voeren</string>
+    <string name="tooltip_new_backup">Gebruik de + knop hierboven om een nieuwe back-up in te stellen</string>
+    <string name="tooltip_edit_mode">De bovenste helft van uw reservekaarten is interactief:\n- Tik om te schakelen tussen back-up- en bewerkingsknoppen\n- Lang indrukken om uw back-ups in of uit te schakelen</string>
+    <string name="tooltip_group_launch">De bovenste \"sync\"-knop heeft twee functies:\n- Tik om al uw back-ups in één keer te starten\n- U kunt back-ups groeperen op kleurenthema. Als u meerdere groepen hebt, drukt u lang op deze knop om er een te selecteren en de back-ups te starten</string>
+    <string name="main_recycler_hint">Back-uplijst</string>
+    <string name="main_color_theme_group">Groepsnummer #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Start alle back-ups</string>
+    <string name="menu_cancel_all">Annuleer alle back-ups</string>
+    <string name="menu_backup_new">Nieuwe back-up</string>
+    <string name="menu_settings">Instellingen</string>
+    <string name="menu_permissions">Machtigingen</string>
+    <string name="menu_about">Over</string>
+
+    <!--Global-->
+    <string name="global_information">Informatie</string>
+    <string name="global_confirmation">Bevestiging</string>
+    <string name="global_warning">Waarschuwing</string>
+    <string name="global_error">Fout</string>
+    <string name="global_yes">Ja</string>
+    <string name="global_ok">Oké</string>
+    <string name="global_no">Nee</string>
+    <string name="global_cancel">Annuleren</string>
+    <string name="global_always">Altijd</string>
+    <string name="global_understood">Begrepen</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_interface_title">Interface</string>
+    <string name="settings_language_text">Taal:</string>
+    <string name="settings_theme_text">Thema:</string>
+    <string name="settings_logs_title">Logboeken</string>
+    <string name="settings_logs_text">Aantal te bewaren logboeken per back-up:</string>
+    <string name="settings_logs_errors">Bewaar originele onbewerkte foutmeldingen in plaats van hun vereenvoudigde versie</string>
+    <string name="settings_logs_warning_setforeground">Waarschuwing opnemen wanneer voortgangsmelding mislukt</string>
+    <string name="settings_logs_preserve_scroll_position">Scrollpositie behouden bij wijzigen logbestand</string>
+    <string name="settings_notifications_title">Meldingen</string>
+    <string name="settings_notifications_theme">Het geconfigureerde kleurenthema toepassen</string>
+    <string name="settings_notifications_type">Resultaat geplande back-ups:</string>
+    <string name="settings_notifications_tip">- Meerdere: één melding per back-up\n- Globaal: enkele melding, dagelijks overzicht van alle back-ups\n\n- Wegwerpbaar: kan worden verwijderd\n- Permanent: altijd zichtbaar\n\nPermanente melding kan problemen met geplande back-ups voorkomen</string>
+    <string name="settings_notifications_warning">Geef toestemming voor meldingen om deze instelling te wijzigen</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Machtigingen</string>
+    <string name="permission_locked_title">Toestemming vergrendeld</string>
+
+    <string name="permission_files_title">Toegang tot bestanden toestaan (verplicht)</string>
+    <string name="permission_files_text">Back-ups zijn onmogelijk zonder toegang tot uw bestanden en mappen</string>
+    <string name="permission_files_locked_text">Android heeft deze toestemming geblokkeerd waardoor de applicatie niet meer functioneert.\n\nZorg ervoor dat Mirror nooit informatie over u of uw gegevens zal verzamelen.\n\nWilt u de instellingen van de toepassing openen en deze handmatig autoriseren?</string>
+
+    <string name="permission_notifications_title">Meldingen toestaan (sterk aanbevolen)</string>
+    <string name="permission_notifications_text">Meldingen worden gebruikt om de voortgang van lopende back-ups en het resultaat van geplande back-ups weer te geven</string>
+    <string name="permission_notifications_locked_text">Android heeft deze machtiging vergrendeld.\n\nWilt u de instellingen van de toepassing openen en deze handmatig toestaan?</string>
+
+    <string name="permission_battery_title">Batterij-optimalisatie uitschakelen (aanbevolen)</string>
+    <string name="permission_battery_text">De batterij-optimalisatie van Android kan te agressief zijn en de geplande back-ups verstoren</string>
+
+    <string name="permission_permanent_title">Toestemmingsherroeping uitschakelen (aanbevolen)</string>
+    <string name="permission_permanent_text">Toestemmingen kunnen automatisch door Android worden verwijderd, wat tot storingen kan leiden</string>
+
+    <string name="permission_auto_startup_title">Automatische start inschakelen (aanbevolen)</string>
+    <string name="permission_auto_startup_text">Zonder deze toestemming kunnen geplande back-ups stoppen met werken na een herstart van het apparaat</string>
+    <string name="permission_auto_startup_try">Elke fabrikant behandelt deze functie op zijn eigen manier en Mirror kan alleen proberen de corresponderende instellingenpagina te openen.\n\nAls dit niet lukt, moet u het handmatig configureren voor uw toestel</string>
+    <string name="permission_auto_startup_manual">Elke fabrikant beheert deze functionaliteit op zijn eigen manier, hetgeen een handmatige configuratie vereist die aan uw toestel is aangepast</string>
+    <string name="permission_auto_startup_open">Open</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Over</string>
+    <string name="about_app_title">Toepassing</string>
+    <string name="about_app_author">Gemaakt door <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Licentie: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Credits en licenties van derden</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3-client - gelicentieerd onder Apache-2.0 door EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3-client - gelicentieerd onder Apache-2.0 door hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP-client - Gelicentieerd onder Apache-2.0 door de Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP-client - Gelicentieerd onder BSD-stijl door mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV-client - gelicentieerd onder Apache-2.0 door thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Digest-authenticatie voor WebDAV - Gelicentieerd onder Apache-2.0 door rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: Opent de autostart-toestemmingsmanager - Gelicentieerd onder MIT door judemanutd</string>
+    <string name="about_libraries_thanks">Bedankt voor uw harde werk, Mirror zou niet zonder u kunnen bestaan :)</string>
+    <string name="about_support_title">Ondersteuning</string>
+    <string name="about_support_intro">Mirror is een gratis en open-source applicatie, die zonder reclame of tracking wordt verspreid.\n\nAls je de applicatie nuttig vindt en mijn werk wilt steunen, wordt een kleine donatie zeer op prijs gesteld.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Verwijder deze backup</string>
+    <string name="backup_delete_warning_message">Wilt u deze back-up verwijderen?</string>
+    <string name="backup_info">Informatie over deze back-up</string>
+    <string name="backup_launch">Start de back-up</string>
+    <string name="backup_enqueued">Back-up in afwachting</string>
+    <string name="backup_last_date">Laatste back-up:</string>
+    <string name="backup_card_move">Backupkaart verplaatsen</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Ontgrendel editie</string>
+    <string name="edit_authentication_message">Voor deze back-up is biometrische authenticatie vereist</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Editie</string>
+    <string name="edit_title_new">Aanmaken</string>
+    <string name="edit_save">Opslaan</string>
+    <string name="edit_cancel">Annuleren</string>
+    <string name="edit_source">Bron</string>
+    <string name="edit_destination">Bestemming</string>
+
+    <string name="edit_exit_alert">Herhaal om af te sluiten zonder op te slaan</string>
+    <string name="edit_invalid_alert">Geef een geldige bron en bestemming op</string>
+    <string name="edit_invalid_credentials_alert">Geef geldige inloggegevens (gebruikersnaam/wachtwoord)</string>
+    <string name="edit_invalid_hostkey_alert">Haal uw SFTP-serverhostsleutel op om veiligheidsredenen</string>
+    <string name="edit_remote_alert_message">Back-ups maken tussen twee externe servers via uw apparaat is niet het meest efficiënt.\n\nAls u kunt, is het beter om uw back-up rechtstreeks op een van die machines in te stellen</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Kan huidige tabblad niet detecteren</string>
+    <string name="target_location">Locatie:</string>
+    <string name="target_location_error">Verkeerde locatie geselecteerd</string>
+    <string name="target_location_device">Apparaat</string>
+    <string name="target_location_warning_remote_to_webdav">Back-ups van een externe bron naar een WebDav-server vereisen het maken van tijdelijke tussenliggende bestanden op uw apparaat</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Selecteer map</string>
+    <string name="target_local_information_timezone">Het FAT-bestandssysteem, dat vaak wordt gebruikt voor externe opslag, kan geen tijdzones beheren en slaat datums op op basis van de lokale tijd van het apparaat. Als gevolg hiervan kan een volledige back-up van uw bestanden plaatsvinden na het wijzigen van de tijdzone</string>
+    <string name="target_local_warning_android_10">Google besloot de toestemming van applicaties om op externe opslag te schrijven buiten hun privémap op Android 10 in te trekken.\n\nWilt u uw doelmap naar de Mirror-map verplaatsen?\n\nWees voorzichtig, Android zal het verwijderen wanneer u deze app verwijdert!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Server:</string>
+    <string name="target_common_server_hint">Domeinnaam of IP</string>
+    <string name="target_common_path">Map:</string>
+    <string name="target_common_path_hint">Map/Submap</string>
+    <string name="target_common_login">Gebruiker:</string>
+    <string name="target_common_login_hint">Naam_gebruiker</string>
+    <string name="target_common_password">Gebruikerswachtwoord:</string>
+    <string name="target_common_password_hint">Wachtwoord_gebruiker</string>
+    <string name="target_common_port">Poortnummer:</string>
+    <string name="target_common_share">Delen:</string>
+    <string name="target_common_search">Zoekopdracht</string>
+    <string name="target_common_autofill">Automatisch aanvullen</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Gebruikers-ID:</string>
+    <string name="target_nfs_uid_hint">UID (facultatief)</string>
+    <string name="target_nfs_gid">Groeps-ID:</string>
+    <string name="target_nfs_gid_hint">GID (facultatief)</string>
+    <string name="target_nfs_share_hint">Pad van de gedeelde rootmap</string>
+    <string name="target_nfs_non_root_mount_warning">Android vereist niet-root-mountingmachtigingen op uw server</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Naam of IP</string>
+    <string name="target_smb_domain">Domein:</string>
+    <string name="target_smb_domain_hint">(facultatief)</string>
+    <string name="target_smb_share_hint">Naam van de gedeelde rootmap</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLS gebruiken</string>
+    <string name="target_ftp_ssl_warning">Android staat het gebruik van SSL/TLS niet toe met servers die de TLS-sessiehervattingsoptie op de gegevensverbinding gebruiken</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Hostsleutel:</string>
+    <string name="target_sftp_hostkey_hint">Tik om serverhostsleutel op te halen</string>
+    <string name="target_sftp_hostkey_load">Hostsleutel ophalen …</string>
+    <string name="target_sftp_hostkey_confirmation">Vertrouwt u deze server?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSL gebruiken</string>
+    <string name="target_webdav_ssl_warning">Zelfondertekende certificaten zijn meestal niet voldoende en kunnen worden afgewezen tijdens beveiligingscontroles</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Beveiliging</string>
+    <string name="backup_protect">Bewerken vereist biometrische verificatie</string>
+    <string name="backup_protect_warning">Biometrische verificatie niet geconfigureerd op dit apparaat</string>
+
+    <string name="backup_opt">Backup</string>
+    <string name="backup_recursive">Behandel submappen</string>
+    <string name="backup_retry_corrupted">Kopie opnieuw proberen wanneer een corrupt bestand wordt gedetecteerd</string>
+    <string name="backup_date_comparison_auto">Automatische bestandsdatumvergelijkingsmodus</string>
+    <string name="backup_date_comparison_mode">Bestandsdatumvergelijkingsmodus:</string>
+    <string name="backup_wifi">Back-up alleen via WiFi</string>
+    <string name="backup_nomedia">Verberg bestemming in galerij (.nomedia)</string>
+
+    <string name="orphans_opt">Verweesde bestanden</string>
+    <string name="orphans_action">Als een bestand alleen bestaat in Bestemming:</string>
+    <string name="orphans_folder">Naar deze map:</string>
+    <string name="orphans_folder_name">Weeskinderen</string>
+    <string name="orphans_invalid_folder">Ongeldige mapnaam</string>
+
+    <string name="filters_opt">Filters</string>
+    <string name="filter_images">Afbeeldingen</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Videos</string>
+    <string name="filter_documents">Documenten</string>
+    <string name="filter_others">Andere</string>
+    <string name="filter_min_size">Negeer bestanden kleiner dan:</string>
+    <string name="filter_max_size">Bestanden groter dan negeren: </string>
+    <string name="filter_black_list">Uitsluitingslijst (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">globpatroon</a>):</string>
+    <string name="filter_black_list_hint">/Map/SubMap/**\n.trashed*</string>
+
+    <string name="schedule_opt">Planning</string>
+    <string name="schedule_auto">Automatische back-ups uitvoeren</string>
+    <string name="schedule_charging">Alleen als het apparaat wordt opgeladen</string>
+    <string name="schedule_idle">Alleen wanneer het apparaat in stand-by staat</string>
+    <string name="schedule_idle_warning">Werkt mogelijk niet: sommige apparaten geven de stand-by status niet goed aan</string>
+    <string name="schedule_interval">Alle apparaten:</string>
+    <string name="schedule_time">bij</string>
+
+    <string name="options_low_interval_alert">Een korte vertraging zal je autonomie verminderen</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Uiterlijk</string>
+    <string name="backup_color_background">Achtergrond:</string>
+    <string name="backup_color_border">Randen:</string>
+    <string name="backup_color_icons">Pictogrammen:</string>
+    <string name="backup_color_progressbar">Voortgangsbalk:</string>
+    <string name="backup_appearance_preview">Voorbeeld</string>
+    <string name="backup_appearance_load_theme">Tik om een thema te laden</string>
+    <string name="backup_appearance_theme_custom">Aangepast #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Automatisch invullen</string>
+    <string name="autofill_authentication_message">Bevestig uw identiteit</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Lijst met referenties</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Voer uw serveradres en referenties in</string>
+    <string name="folder_explorer_missing_address">Voer uw serveradres in</string>
+    <string name="folder_explorer_missing_share">Voer een share in om in te zoeken</string>
+    <string name="folder_explorer_unable_connect">Verbinding mislukt</string>
+    <string name="folder_explorer_unable_list">Kan de inhoud van deze map niet lezen</string>
+    <string name="folder_explorer_error_details">Foutmelding:</string>
+    <string name="folder_explorer_error_protocol">Communicatieprotocol niet gevonden</string>
+    <string name="folder_explorer_recycler_hint">Inhoud van externe server</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Bron</string>
+    <string name="log_destination">Bestemming</string>
+
+    <string name="log_error">ERROR</string>
+    <string name="log_warning">ALERT</string>
+    <string name="log_note">OPMERKING</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Backup gestart</string>
+    <string name="log_backup_start_scheduled">Automatische back-up gestart</string>
+    <string name="log_backup_initialisation">Initialisatie …</string>
+    <string name="log_folder_destination_create">De ontbrekende doelmap maken</string>
+    <string name="log_searching_files">Bestanden zoeken …</string>
+    <string name="log_found">Bestanden gevonden:</string>
+    <string name="log_excluding">Bestanden filteren …</string>
+    <string name="log_remaining">Resterende bestanden:</string>
+    <string name="log_checking_backup">Bestanden controleren om een back-up van te maken …</string>
+    <string name="log_flexible_mode">(flexibele modus) …</string>
+    <string name="log_to_backup">Te kopiëren bestanden:</string>
+    <string name="log_orphans_keep">Weeskinderen die gehouden moeten worden:</string>
+    <string name="log_orphans_move">Weeskinderen om te verhuizen:</string>
+    <string name="log_orphans_delete">Weeskinderen die verwijderd moeten worden:</string>
+    <string name="log_obsolete">Verouderde wezen worden geschrapt:</string>
+    <string name="log_orphans_after_backup">(i) Wezen in bestemmingsmap:</string>
+
+    <string name="error_wifi">Vereiste WiFi is niet verbonden</string>
+    <string name="error_target">Verkeerde back-up doel</string>
+    <string name="error_blacklist">Syntaxisfout in de uitsluitingslijst</string>
+
+    <string name="error_server_reach">Kan deze server niet bereiken</string>
+    <string name="error_server_connect">Kan geen verbinding maken met deze server</string>
+    <string name="error_share_connect">Kan geen verbinding maken met deze share</string>
+    <string name="error_ssl_connect">Kan SSL/TLS niet gebruiken</string>
+    <string name="error_ssl_certificate">Ongeldig/mislukt SSL/TLS-certificaat</string>
+    <string name="error_ftp_filetype">Kan niet overschakelen naar binaire overdrachtsmodus</string>
+    <string name="error_server_login">Kan niet authentiseren</string>
+    <string name="error_server_disconnect">Kan de verbinding met de server niet verbreken</string>
+
+    <string name="error_permission_read">Leesrechten geweigerd</string>
+    <string name="error_permission_write">Schrijfrechten geweigerd</string>
+    <string name="error_permission_unknown">Kan machtigingen niet controleren</string>
+
+    <string name="error_space_low">Weinig vrije ruimte</string>
+    <string name="error_space_critical">Niet genoeg vrije ruimte</string>
+    <string name="error_space_unverifiable">Kan vrije ruimte niet controleren</string>
+    <string name="error_quota_low">Laag beschikbaar quotum</string>
+    <string name="error_quota_critical">Niet genoeg quota beschikbaar</string>
+    <string name="error_quota_unverifiable">Kan beschikbare quota niet controleren</string>
+
+    <string name="error_folder_existence">Bestand niet gevonden</string>
+    <string name="error_folder_invalid">Ongeldige map</string>
+    <string name="error_folder_list">Kan bestanden in deze map niet weergeven</string>
+    <string name="error_folder_delete">Kan deze map niet verwijderen</string>
+    <string name="error_folder_create">Kan deze map niet aanmaken</string>
+    <string name="error_folder_create_tmp">Kan geen map met tijdelijke bestanden maken</string>
+
+    <string name="error_path_reach">Kan dit pad niet bereiken</string>
+
+    <string name="error_orphan_folder_not_specified">Wezen map niet gespecificeerd</string>
+    <string name="error_orphan_folder_in_use">Gebruik geen mapnaam die aanwezig is in de bron om verweesde bestanden op te slaan</string>
+
+    <string name="error_setforeground">Kan geen voortgangsmelding weergeven. De back-upduur is beperkt tot 10 minuten</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Vrijwaring begint …</string>
+    <string name="log_orphans_move_long">Verhuizing van wezen</string>
+    <string name="log_orphans_delete_long">Weeskinderen verwijderen</string>
+    <string name="log_delete_obsolete_orphans">Verouderde wezen verwijderen</string>
+    <string name="log_folders_create">Nieuwe bestanden aanmaken</string>
+    <string name="log_copy">Kopiëren</string>
+    <string name="log_move">In beweging</string>
+    <string name="log_delete">Verwijderen</string>
+    <string name="log_nomedia_created">.nomedia bestand gemaakt</string>
+    <string name="log_nomedia_removed">Verwijderde .nomedia bestand</string>
+    <string name="log_empty_folders_delete">Lege mappen verwijderen</string>
+
+    <string name="error_file_read">Kan dit bestand niet lezen</string>
+    <string name="error_file_read_finish">Kan de bestandslezer niet sluiten</string>
+    <string name="error_file_copy">Kan dit bestand niet kopiëren</string>
+    <string name="error_file_move">Kan dit bestand niet verplaatsen</string>
+    <string name="error_file_delete">Kan dit bestand niet verwijderen</string>
+    <string name="error_file_corrupted">Bestandsbeschadiging ontdekt, opnieuw proberen …</string>
+    <string name="error_file_corrupted_final">Kan dit bestand niet kopiëren zonder corruptie. Opnieuw proberen bij volgende backup</string>
+    <string name="error_file_date_modification">Bestandsdatumwijziging mislukt. Overschakelen naar flexibele vergelijkingsmodus</string>
+    <string name="success_file_date_modification">Bestandsdatumwijziging succesvol. Overschakelen naar strikte vergelijkingsmodus</string>
+    <string name="error_file_tmp_space">Onvoldoende vrije ruimte op het interne geheugen van het apparaat om een tijdelijk bestand te maken</string>
+    <string name="error_file_tmp_skipped">Bestand overgeslagen</string>
+    <string name="error_file_tmp">Kan tijdelijk bestand niet maken</string>
+    <string name="error_nomedia_create">Kan geen .nomedia bestand maken</string>
+    <string name="error_nomedia_remove">Kan .nomedia bestand niet verwijderen</string>
+    <string name="error_ftp_mlst">De MLST-opdracht, die nodig is om de bestandsgrootte en het precieze tijdstempel op te halen, wordt blijkbaar niet ondersteund door deze server</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Succesvolle back-up</string>
+    <string name="log_backup_warning">Geslaagde back-up met waarschuwingen</string>
+    <string name="log_backup_canceled">Back-up geannuleerd</string>
+    <string name="error_backup_failed">Back-up mislukt</string>
+
+    <string name="log_next_schedule_success">Volgende geplande back-up:</string>
+    <string name="log_next_schedule_failed">Volgende geplande poging:</string>
+
+    <string name="log_backup_duration">Duur van de back-up:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Logmap niet gevonden</string>
+    <string name="logs_file_not_found">Er is geen logbestand beschikbaar voor deze back-up</string>
+    <string name="logs_file_read_error">Er is een fout opgetreden bij het laden van dit logbestand</string>
+    <string name="logs_navigation_previous">Vorige</string>
+    <string name="logs_navigation_next">Volgende</string>
+    <string name="logs_recycler_hint">Inhoud van logbestand</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Lopende back-ups</string>
+    <string name="notification_ongoing_channel_description">Voortgangsdetails tijdens back-ups</string>
+    <string name="notification_result_channel_name">Voltooide back-ups</string>
+    <string name="notification_result_channel_description">Resultaten van voltooide geplande back-ups</string>
+    <string name="notification_result">Resultaat geplande back-ups</string>
+    <string name="notification_scheduled">Geplande back-ups</string>
+    <string name="notification_no_backup">Geen uitgevoerd vandaag</string>
+    <string name="notification_active">In uitvoering</string>
+    <string name="notification_files">Bestanden</string>
+    <string name="notification_no_file">Geen nieuwe of verweesde bestanden</string>
+    <string name="notification_orphans">Weeskinderen</string>
+    <string name="notification_success">Succes</string>
+    <string name="notification_warning">Waarschuwing</string>
+    <string name="notification_failed">Mislukt</string>
+    <string name="notification_canceled">Geannuleerd</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Autonomie te laag</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Kan deze backup niet uitvoeren: de backup is niet inactief</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Systeem</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Systeem</item>
+        <item>Licht</item>
+        <item>Donker</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Niemand</item>
+        <item>Meerdere - Wegwerpbaar</item>
+        <item>Globaal - Wegwerpbaar</item>
+        <item>Globaal - Permanent</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Apparaat</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Standaard</item>
+        <item>Rood</item>
+        <item>Oranje</item>
+        <item>Geel</item>
+        <item>Limoen</item>
+        <item>Groen</item>
+        <item>Mint</item>
+        <item>Cyaan</item>
+        <item>Azuurblauw</item>
+        <item>Blauw</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Roze</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Geen</item>
+        <item>Rood</item>
+        <item>Oranje</item>
+        <item>Geel</item>
+        <item>Limoen</item>
+        <item>Groen</item>
+        <item>Mint</item>
+        <item>Cyaan</item>
+        <item>Azuurblauw</item>
+        <item>Blauw</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Roze</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Strikt (bron != bestemming)</item>
+        <item>Flexibel (bron > bestemming)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Houd</item>
+        <item>Verplaats</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>dagen</item>
+        <item>uren</item>
+        <item>minuten</item>
+    </string-array>
+
+</resources>

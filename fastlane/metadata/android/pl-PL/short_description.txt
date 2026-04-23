@@ -1,0 +1,1 @@
+Aplikacja do tworzenia kopii zapasowych wieloprotokołowych (NFS, SMB, FTP, SFTP, WebDAV)

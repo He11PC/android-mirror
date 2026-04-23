@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- HUNGARIAN -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Nyílt forráskódú többprotokollos biztonsági mentési alkalmazás (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi szükséges</string>
+    <string name="wifi_required_text">A WiFi opciót kiválasztotta, de jelenleg nincs aktív kapcsolat.\nA biztonsági mentés elvégzéséhez csatlakozzon egy WiFi hálózathoz</string>
+    <string name="tooltip_new_backup">Használja a fenti + gombot egy új biztonsági mentés beállításához</string>
+    <string name="tooltip_edit_mode">A tartalék kártyák felső fele interaktív:\n- Érintse meg a biztonsági mentés és a szerkesztés gombok közötti váltáshoz\n- Hosszan nyomja meg a biztonsági mentések letiltásához/engedélyezéséhez</string>
+    <string name="tooltip_group_launch">A legfelső \"szinkronizálás\" gombnak két funkciója van:\n- Koppintson az összes biztonsági mentés egyszerre történő elindításához.\n- A biztonsági mentéseket színtéma szerint csoportosíthatja. Ha több csoportja van, nyomja meg hosszan ezt a gombot, hogy kiválasszon egyet, és elindítsa a biztonsági mentéseket</string>
+    <string name="main_recycler_hint">Biztonsági másolatok listája</string>
+    <string name="main_color_theme_group">Csoport #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Indítsa el az összes biztonsági mentést</string>
+    <string name="menu_cancel_all">Törölje az összes biztonsági mentést</string>
+    <string name="menu_backup_new">Új biztonsági mentés</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="menu_permissions">Engedélyek</string>
+    <string name="menu_about">Körülbelül</string>
+
+    <!--Global-->
+    <string name="global_information">Információ</string>
+    <string name="global_confirmation">Megerősítés</string>
+    <string name="global_warning">Figyelem</string>
+    <string name="global_error">Hiba</string>
+    <string name="global_yes">Igen</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">Nem</string>
+    <string name="global_cancel">Megszünteti</string>
+    <string name="global_always">Mindig</string>
+    <string name="global_understood">Megértve</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Beállítások</string>
+    <string name="settings_interface_title">Interfész</string>
+    <string name="settings_language_text">Nyelv:</string>
+    <string name="settings_theme_text">Téma:</string>
+    <string name="settings_logs_title">Naplók</string>
+    <string name="settings_logs_text">Biztonsági mentésenként megőrizendő naplók száma:</string>
+    <string name="settings_logs_errors">Őrizze meg az eredeti nyers hibaüzeneteket az egyszerűsített verzió helyett</string>
+    <string name="settings_logs_warning_setforeground">Figyelmeztetés rögzítése, ha a folyamatról szóló értesítés sikertelen</string>
+    <string name="settings_logs_preserve_scroll_position">Görgetési pozíció megőrzése a naplófájl módosításakor</string>
+    <string name="settings_notifications_title">Értesítések</string>
+    <string name="settings_notifications_theme">A beállított színtéma alkalmazása</string>
+    <string name="settings_notifications_type">Ütemezett biztonsági mentés eredménye:</string>
+    <string name="settings_notifications_tip">- Több: biztonsági mentésenként egy értesítés\n- Globális: egyetlen értesítés, az összes biztonsági mentés napi összefoglalója\n\n- Eldobható: eltávolítható\n- Állandó: mindig látható\n\nAz állandó értesítés megakadályozhatja az ütemezett biztonsági mentésekkel kapcsolatos problémákat</string>
+    <string name="settings_notifications_warning">Kérjük, engedélyezze az értesítések engedélyét a beállítás módosításához</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Engedélyek</string>
+    <string name="permission_locked_title">Zárolt engedély</string>
+
+    <string name="permission_files_title">Hozzáférés engedélyezése a fájlokhoz (kötelező)</string>
+    <string name="permission_files_text">A biztonsági mentés lehetetlen a fájlok és mappák elérése nélkül</string>
+    <string name="permission_files_locked_text">Az Android letiltotta ezt az engedélyt, így az alkalmazás nem működik.\n\nKérjük, győződjön meg arról, hogy a Mirror soha nem gyűjt adatokat Önről vagy az Ön adatairól.\n\nSzeretné megnyitni az alkalmazás beállításait és manuálisan engedélyezni azt?</string>
+
+    <string name="permission_notifications_title">Értesítések engedélyezése (nagyon ajánlott)</string>
+    <string name="permission_notifications_text">Az értesítések a folyamatban lévő biztonsági mentések folyamatának és az ütemezett biztonsági mentések eredményének megjelenítésére szolgálnak</string>
+    <string name="permission_notifications_locked_text">Az Android zárolta ezt az engedélyt.\n\nMeg akarja nyitni az alkalmazás beállításait, és manuálisan engedélyezni szeretné?</string>
+
+    <string name="permission_battery_title">Az akkumulátor optimalizálásának kikapcsolása (ajánlott)</string>
+    <string name="permission_battery_text">Az Android akkumulátor-optimalizálása túl agresszív lehet, és zavarhatja az ütemezett biztonsági mentéseket</string>
+
+    <string name="permission_permanent_title">Engedélyek visszavonásának letiltása (ajánlott)</string>
+    <string name="permission_permanent_text">Az engedélyeket az Android automatikusan eltávolíthatja, ami működési zavarokhoz vezethet</string>
+
+    <string name="permission_auto_startup_title">Automatikus indítás engedélyezése (ajánlott)</string>
+    <string name="permission_auto_startup_text">Engedély nélkül az ütemezett biztonsági mentések a készülék újraindítása után leállhatnak</string>
+    <string name="permission_auto_startup_try">Minden gyártó a maga módján kezeli ezt a funkciót, és az Mirror csak a megfelelő beállítási oldalt próbálja megnyitni.\n\nHa ez nem sikerül, akkor manuálisan kell beállítania a készülékét</string>
+    <string name="permission_auto_startup_manual">Minden gyártó a maga módján kezeli ezt a funkciót, ami az Ön készülékéhez igazított kézi konfigurációt igényel</string>
+    <string name="permission_auto_startup_open">Nyisd ki</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Körülbelül</string>
+    <string name="about_app_title">Alkalmazás</string>
+    <string name="about_app_author">Készítette <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Engedély: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Jóváírások és harmadik felek licencei</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 kliens – Apache-2.0 licenc alatt az EMCECS-től</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 kliens – Apache-2.0 licenc alatt a hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP-kliens – Apache-2.0 licenc alatt az Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP-kliens – BSD-stílusban licencelte az mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV-kliens – Apache-2.0 licenc alatt a thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Kivonat hitelesítés a WebDAV számára – Az rburgst által Apache-2.0 alatt licencelt</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Automatikus indítás</a>: Megnyitja az automatikus indítási engedélykezelőt – a judemanutd által MIT szerint licencelt</string>
+    <string name="about_libraries_thanks">Köszönjük fáradozását, az Mirror nem létezhetne nélküled :)</string>
+    <string name="about_support_title">Támogatás</string>
+    <string name="about_support_intro">A Mirror egy ingyenes és nyílt forráskódú alkalmazás, amely reklám és követés nélkül kerül terjesztésre.\n\nHa hasznosnak találod, és szeretnéd támogatni a munkámat, egy kis adományt nagyra értékelnék.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">A biztonsági mentés törlése</string>
+    <string name="backup_delete_warning_message">Szeretné törölni ezt a biztonsági másolatot?</string>
+    <string name="backup_info">Információk erről a biztonsági mentésről</string>
+    <string name="backup_launch">A biztonsági mentés elindítása</string>
+    <string name="backup_enqueued">Biztonsági mentés folyamatban</string>
+    <string name="backup_last_date">Utolsó biztonsági mentés:</string>
+    <string name="backup_card_move">Tartalékkártya áthelyezése</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Szerkesztés feloldása</string>
+    <string name="edit_authentication_message">Ez a biztonsági mentés biometrikus hitelesítést igényel</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Kiadás</string>
+    <string name="edit_title_new">Létrehozás</string>
+    <string name="edit_save">Megment</string>
+    <string name="edit_cancel">Megszünteti</string>
+    <string name="edit_source">Forrás</string>
+    <string name="edit_destination">Úti cél</string>
+
+    <string name="edit_exit_alert">Ismételje meg a mentés nélküli kilépéshez</string>
+    <string name="edit_invalid_alert">Kérjük, adjon meg érvényes forrást és célállomást</string>
+    <string name="edit_invalid_credentials_alert">Kérjük, adja meg érvényes bejelentkezési adatait (felhasználónév/jelszó)</string>
+    <string name="edit_invalid_hostkey_alert">Biztonsági okokból kérje le SFTP-kiszolgáló gazdagépkulcsát</string>
+    <string name="edit_remote_alert_message">A két távoli szerver közötti biztonsági mentés az eszközön keresztül nem a leghatékonyabb.\n\nHa teheti, jobb, ha közvetlenül az egyik gépen állítja be a biztonsági másolatot</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Az aktuális lap nem észlelhető</string>
+    <string name="target_location">Helyszín:</string>
+    <string name="target_location_error">Rossz hely van kiválasztva</string>
+    <string name="target_location_device">Eszköz</string>
+    <string name="target_location_warning_remote_to_webdav">A távoli forrásról a WebDav-kiszolgálóra történő biztonsági mentéshez ideiglenes köztes fájlokat kell létrehozni az eszközön</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Mappa kiválasztása</string>
+    <string name="target_local_information_timezone">A külső tárolókon általánosan használt FAT fájlrendszer nem tudja kezelni az időzónákat, és az eszköz helyi ideje alapján tárolja a dátumokat. Ennek következtében előfordulhat, hogy az időzóna megváltoztatása után teljes biztonsági másolat készülhet a fájlokról</string>
+    <string name="target_local_warning_android_10">A Google úgy döntött, hogy visszavonja az alkalmazások engedélyét, hogy a saját mappájukon kívüli külső tárhelyre írjanak Android 10 rendszeren.\n\nSzeretné áthelyezni a célmappát az Mirror mappába?\n\nLegyen óvatos, az Android törli, amikor eltávolítja ezt az alkalmazást!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Szerver:</string>
+    <string name="target_common_server_hint">Domainnév vagy IP</string>
+    <string name="target_common_path">Mappa:</string>
+    <string name="target_common_path_hint">Mappa/alamappa</string>
+    <string name="target_common_login">Felhasználó:</string>
+    <string name="target_common_login_hint">Felhasználó_neve</string>
+    <string name="target_common_password">Jelszó:</string>
+    <string name="target_common_password_hint">Felhasználói_jelszó</string>
+    <string name="target_common_port">Portszám:</string>
+    <string name="target_common_share">Megosztás:</string>
+    <string name="target_common_search">Keresés</string>
+    <string name="target_common_autofill">Automatikus kitöltés</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Felhasználói azonosító:</string>
+    <string name="target_nfs_uid_hint">UID (fakultatív)</string>
+    <string name="target_nfs_gid">Csoportazonosító:</string>
+    <string name="target_nfs_gid_hint">GID (fakultatív)</string>
+    <string name="target_nfs_share_hint">A megosztott gyökérmappa elérési útja</string>
+    <string name="target_nfs_non_root_mount_warning">Az Android nem root beépítési engedélyt igényel a szerveren</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Név vagy IP</string>
+    <string name="target_smb_domain">Tartomány:</string>
+    <string name="target_smb_domain_hint">(opcionális)</string>
+    <string name="target_smb_share_hint">A megosztott gyökérmappa neve</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLS használata</string>
+    <string name="target_ftp_ssl_warning">Az Android nem engedélyezi az SSL/TLS használatát a TLS munkamenet újraindítása opciót használó kiszolgálókkal az adatkapcsolaton</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Gazdagép kulcsa:</string>
+    <string name="target_sftp_hostkey_hint">Koppintson a szerver gazdagép kulcsának lekéréséhez</string>
+    <string name="target_sftp_hostkey_load">Hosztkulcs lekérése…</string>
+    <string name="target_sftp_hostkey_confirmation">Bízik ebben a szerverben?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSL használata</string>
+    <string name="target_webdav_ssl_warning">Az önaláírt tanúsítványok általában nem elegendőek, és a biztonsági ellenőrzések során elutasíthatják őket</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Biztonság</string>
+    <string name="backup_protect">A szerkesztéshez biometrikus hitelesítés szükséges</string>
+    <string name="backup_protect_warning">A biometrikus hitelesítés nincs konfigurálva ezen az eszközön</string>
+
+    <string name="backup_opt">Biztonsági mentés</string>
+    <string name="backup_recursive">Almappák kezelése</string>
+    <string name="backup_retry_corrupted">Ismételje meg a másolást, ha sérült fájlt észlel</string>
+    <string name="backup_date_comparison_auto">Automatikus fájldátum-összehasonlítási mód</string>
+    <string name="backup_date_comparison_mode">Fájldátum-összehasonlítási mód:</string>
+    <string name="backup_wifi">Biztonsági mentés csak WiFi-n keresztül</string>
+    <string name="backup_nomedia">Célpont elrejtése a galériában (.nomedia)</string>
+
+    <string name="orphans_opt">Árva fájlok</string>
+    <string name="orphans_action">Ha egy fájl csak a Célban létezik:</string>
+    <string name="orphans_folder">Ebbe a mappába:</string>
+    <string name="orphans_folder_name">Árvák</string>
+    <string name="orphans_invalid_folder">Érvénytelen mappanév</string>
+
+    <string name="filters_opt">Szűrők</string>
+    <string name="filter_images">Képek</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Videók</string>
+    <string name="filter_documents">Dokumentumok</string>
+    <string name="filter_others">Egyéb</string>
+    <string name="filter_min_size">A következőnél kisebb fájlok figyelmen kívül hagyása:</string>
+    <string name="filter_max_size">A következőnél nagyobb fájlok figyelmen kívül hagyása:</string>
+    <string name="filter_black_list">Kizárási lista (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob minta</a>):</string>
+    <string name="filter_black_list_hint">/Mappa/AlaMappa/**\n.trashed*</string>
+
+    <string name="schedule_opt">Ütemezés</string>
+    <string name="schedule_auto">Automatikus biztonsági mentések végrehajtása</string>
+    <string name="schedule_charging">Csak akkor, ha a készülék töltődik</string>
+    <string name="schedule_idle">Csak ha a készülék készenléti állapotban van</string>
+    <string name="schedule_idle_warning">Lehet, hogy nem működik: egyes eszközök nem jelzik megfelelően a készenléti állapotot</string>
+    <string name="schedule_interval">Minden eszköz:</string>
+    <string name="schedule_time">nál</string>
+
+    <string name="options_low_interval_alert">A rövid késedelem csökkenti az önállóságot</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Megjelenés</string>
+    <string name="backup_color_background">Háttér:</string>
+    <string name="backup_color_border">Szegélyek:</string>
+    <string name="backup_color_icons">Ikonok:</string>
+    <string name="backup_color_progressbar">Progressbar:</string>
+    <string name="backup_appearance_preview">Előnézet</string>
+    <string name="backup_appearance_load_theme">Koppintson a téma betöltéséhez</string>
+    <string name="backup_appearance_theme_custom">Egyéni #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Automatikus kitöltés</string>
+    <string name="autofill_authentication_message">Kérjük, erősítse meg személyazonosságát</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Hitelesítési adatok listája</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Kérjük, adja meg a szerver címét és hitelesítő adatait</string>
+    <string name="folder_explorer_missing_address">Kérjük, adja meg a szerver címét</string>
+    <string name="folder_explorer_missing_share">Kérjük, adjon meg egy megosztást a kereséshez</string>
+    <string name="folder_explorer_unable_connect">Kapcsolat nem sikerült</string>
+    <string name="folder_explorer_unable_list">A mappa tartalma nem olvasható</string>
+    <string name="folder_explorer_error_details">Hiba üzenet:</string>
+    <string name="folder_explorer_error_protocol">A kommunikációs protokoll nem található</string>
+    <string name="folder_explorer_recycler_hint">Távoli szervertartalom</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Forrás</string>
+    <string name="log_destination">Úti cél</string>
+
+    <string name="log_error">HIBA</string>
+    <string name="log_warning">ÉBER</string>
+    <string name="log_note">MEGJEGYZÉS</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">A biztonsági mentés elindult</string>
+    <string name="log_backup_start_scheduled">Automatikus biztonsági mentés indult</string>
+    <string name="log_backup_initialisation">Inicializálás …</string>
+    <string name="log_folder_destination_create">A hiányzó célmappa létrehozása</string>
+    <string name="log_searching_files">Fájlok keresése …</string>
+    <string name="log_found">Fájlok megtalálva:</string>
+    <string name="log_excluding">Fájlok szűrése …</string>
+    <string name="log_remaining">Fennmaradó fájlok:</string>
+    <string name="log_checking_backup">Fájlok ellenőrzése a biztonsági mentéshez …</string>
+    <string name="log_flexible_mode">(rugalmas mód) …</string>
+    <string name="log_to_backup">Másolandó fájlok:</string>
+    <string name="log_orphans_keep">Megtartandó árvák:</string>
+    <string name="log_orphans_move">Költözendő árvák:</string>
+    <string name="log_orphans_delete">Törölendő árvák:</string>
+    <string name="log_obsolete">Az elavult árvákat törölni kell:</string>
+    <string name="log_orphans_after_backup">(i) Árvák a rendeltetési helyen:</string>
+
+    <string name="error_wifi">A szükséges WiFi nincs csatlakoztatva</string>
+    <string name="error_target">Rossz mentési célpont</string>
+    <string name="error_blacklist">Szintaktikai hiba a kizárási listában</string>
+
+    <string name="error_server_reach">Nem érhető el ez a szerver</string>
+    <string name="error_server_connect">Nem sikerült csatlakozni ehhez a kiszolgálóhoz</string>
+    <string name="error_share_connect">Nem lehet csatlakozni ehhez a megosztáshoz</string>
+    <string name="error_ssl_connect">Nem használható SSL/TLS</string>
+    <string name="error_ssl_certificate">Érvénytelen/hiányzó SSL/TLS tanúsítvány</string>
+    <string name="error_ftp_filetype">Nem tud bináris átviteli módra váltani</string>
+    <string name="error_server_login">Nem sikerült a hitelesítés</string>
+    <string name="error_server_disconnect">Nem lehet leválasztani a kapcsolatot a kiszolgálóról</string>
+
+    <string name="error_permission_read">Olvasási engedély megtagadva</string>
+    <string name="error_permission_write">Írási engedély megtagadva</string>
+    <string name="error_permission_unknown">Nem lehet ellenőrizni az engedélyeket</string>
+
+    <string name="error_space_low">Kevés szabad hely</string>
+    <string name="error_space_critical">Nincs elég szabad hely</string>
+    <string name="error_space_unverifiable">Nem lehet ellenőrizni a szabad helyet</string>
+    <string name="error_quota_low">Alacsony rendelkezésre álló kvóta</string>
+    <string name="error_quota_critical">Nem áll rendelkezésre elegendő kontingens</string>
+    <string name="error_quota_unverifiable">Nem lehet ellenőrizni a rendelkezésre álló kvótát</string>
+
+    <string name="error_folder_existence">Fájl nem található</string>
+    <string name="error_folder_invalid">Érvénytelen mappa</string>
+    <string name="error_folder_list">Ebben a mappában lévő fájlok listázása nem lehetséges</string>
+    <string name="error_folder_delete">Nem lehet törölni ezt a mappát</string>
+    <string name="error_folder_create">Nem lehet létrehozni ezt a mappát</string>
+    <string name="error_folder_create_tmp">Nem sikerült létrehozni az ideiglenes fájlok mappáját</string>
+
+    <string name="error_path_reach">Nem lehet elérni ezt az útvonalat</string>
+
+    <string name="error_orphan_folder_not_specified">Árvák mappája nincs megadva</string>
+    <string name="error_orphan_folder_in_use">Az árva fájlok tárolásához használjon más mappanevet, mint a forrásban</string>
+
+    <string name="error_setforeground">Nem lehet megjeleníteni a folyamatról szóló értesítést. A biztonsági mentés időtartama legfeljebb 10 perc</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Az őrzés megkezdődik …</string>
+    <string name="log_orphans_move_long">Árvák mozgatása</string>
+    <string name="log_orphans_delete_long">Árvák törlése</string>
+    <string name="log_delete_obsolete_orphans">Elavult árvák törlése</string>
+    <string name="log_folders_create">Új fájlok létrehozása</string>
+    <string name="log_copy">Másolás</string>
+    <string name="log_move">Mozgó</string>
+    <string name="log_delete">Törlés</string>
+    <string name="log_nomedia_created">.nomedia fájl létrehozása</string>
+    <string name="log_nomedia_removed">Törölt .nomedia fájl</string>
+    <string name="log_empty_folders_delete">Üres mappák törlése</string>
+
+    <string name="error_file_read">A fájl nem olvasható</string>
+    <string name="error_file_read_finish">Nem lehet bezárni a fájlolvasót</string>
+    <string name="error_file_copy">Nem lehet másolni ezt a fájlt</string>
+    <string name="error_file_move">Nem lehet áthelyezni ezt a fájlt</string>
+    <string name="error_file_delete">Nem lehet törölni ezt a fájlt</string>
+    <string name="error_file_corrupted">Fájlrongálást észleltek, próbálja újra …</string>
+    <string name="error_file_corrupted_final">Ezt a fájlt nem lehet sérülés nélkül másolni. Újrapróbálkozás a következő biztonsági mentésnél</string>
+    <string name="error_file_date_modification">A fájl dátumának módosítása nem sikerült. Váltás rugalmas összehasonlító módra</string>
+    <string name="success_file_date_modification">A fájl dátumának módosítása sikerült. Váltás szigorú összehasonlító módra</string>
+    <string name="error_file_tmp_space">Nincs elég szabad hely az eszköz belső memóriájában az ideiglenes fájl létrehozásához</string>
+    <string name="error_file_tmp_skipped">A fájl kimaradt</string>
+    <string name="error_file_tmp">Nem lehet ideiglenes fájlt létrehozni</string>
+    <string name="error_nomedia_create">.nomedia fájl létrehozása nem lehetséges</string>
+    <string name="error_nomedia_remove">Nem lehet törölni a .nomedia fájlt</string>
+    <string name="error_ftp_mlst">A fájlméret és a pontos időbélyeg lekéréséhez szükséges MLST parancsot a jelek szerint ez a szerver nem támogatja</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Sikeres mentés</string>
+    <string name="log_backup_warning">Sikeres biztonsági mentés riasztásokkal</string>
+    <string name="log_backup_canceled">A biztonsági mentés megszakítva</string>
+    <string name="error_backup_failed">A biztonsági mentés sikertelen</string>
+
+    <string name="log_next_schedule_success">Következő tervezett biztonsági mentés:</string>
+    <string name="log_next_schedule_failed">Következő tervezett kísérlet:</string>
+
+    <string name="log_backup_duration">A biztonsági mentés időtartama:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">A naplómappa nem található</string>
+    <string name="logs_file_not_found">Nem érhető el naplófájl ehhez a biztonsági mentéshez</string>
+    <string name="logs_file_read_error">Hiba történt a naplófájl betöltése közben</string>
+    <string name="logs_navigation_previous">Előző</string>
+    <string name="logs_navigation_next">Következő</string>
+    <string name="logs_recycler_hint">A naplófájl tartalma</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Folyamatos biztonsági mentések</string>
+    <string name="notification_ongoing_channel_description">Az előrehaladás részletei a biztonsági mentés során</string>
+    <string name="notification_result_channel_name">Kész a biztonsági mentés</string>
+    <string name="notification_result_channel_description">A befejezett ütemezett biztonsági mentések eredményei</string>
+    <string name="notification_result">Ütemezett biztonsági mentés eredménye</string>
+    <string name="notification_scheduled">Ütemezett mentések</string>
+    <string name="notification_no_backup">Ma nem végeztek</string>
+    <string name="notification_active">Folyamatban</string>
+    <string name="notification_files">Fájlok</string>
+    <string name="notification_no_file">Nincsenek új vagy árva fájlok</string>
+    <string name="notification_orphans">Árvák</string>
+    <string name="notification_success">Siker</string>
+    <string name="notification_warning">Figyelem</string>
+    <string name="notification_failed">Sikertelen</string>
+    <string name="notification_canceled">Törölt</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Túl alacsony autonómia</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Nem lehet futtatni ezt a biztonsági másolatot: a biztonsági másolat nem inaktív</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>System</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>System</item>
+        <item>Könnyű</item>
+        <item>Sötét</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Semmi</item>
+        <item>Több – Eldobható</item>
+        <item>Globális – Eldobható</item>
+        <item>Globális – Állandó</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Eszköz</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Alapértelmezett</item>
+        <item>Piros</item>
+        <item>Narancs</item>
+        <item>Sárga</item>
+        <item>Lime</item>
+        <item>Zöld</item>
+        <item>Menta</item>
+        <item>Cián</item>
+        <item>Azure</item>
+        <item>Kék</item>
+        <item>Indigó</item>
+        <item>Magenta</item>
+        <item>Rózsaszín</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Nincs</item>
+        <item>Piros</item>
+        <item>Narancs</item>
+        <item>Sárga</item>
+        <item>Lime</item>
+        <item>Zöld</item>
+        <item>Menta</item>
+        <item>Cián</item>
+        <item>Azure</item>
+        <item>Kék</item>
+        <item>Indigó</item>
+        <item>Magenta</item>
+        <item>Rózsaszín</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Szigorú (forrás != cél)</item>
+        <item>Rugalmas (forrás > cél)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Tart</item>
+        <item>Mozog</item>
+        <item>Töröl</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>napok</item>
+        <item>órák</item>
+        <item>percek</item>
+    </string-array>
+
+</resources>

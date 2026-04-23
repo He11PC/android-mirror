@@ -1,0 +1,218 @@
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.Fragment_Appearance">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="@integer/grid_column_count"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            android:id="@+id/appearance_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_columnWeight="1">
+
+            <TextView
+                android:id="@+id/appearance_txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/backup_appearance"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/appearance_div"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/appearance_div" >
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/appearance_flow_background"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="appearance_txt_background,appearance_spn_background"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/appearance_txt_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/backup_color_background" />
+
+                <Spinner
+                    android:id="@+id/appearance_spn_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/appearance_flow_borders"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="appearance_txt_borders,appearance_spn_borders"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appearance_flow_background" />
+
+                <TextView
+                    android:id="@+id/appearance_txt_borders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/backup_color_border" />
+
+                <Spinner
+                    android:id="@+id/appearance_spn_borders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/appearance_flow_icons"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="appearance_txt_icons,appearance_spn_icons"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appearance_flow_borders" />
+
+                <TextView
+                    android:id="@+id/appearance_txt_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/backup_color_icons" />
+
+                <Spinner
+                    android:id="@+id/appearance_spn_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/appearance_flow_progressbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="appearance_txt_progressbar,appearance_spn_progressbar"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appearance_flow_icons" />
+
+                <TextView
+                    android:id="@+id/appearance_txt_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/backup_color_progressbar" />
+
+                <Spinner
+                    android:id="@+id/appearance_spn_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <fr.hellpc.mirror.ui.customviews.Custom_ReSpinner
+                android:id="@+id/appearance_spn_theme"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/preview_lyt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="vertical"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/preview_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/backup_appearance_preview"
+                android:drawablePadding="16dp"
+                app:drawableLeftCompat="@drawable/ic_color"
+                app:drawableTint="@color/gray"
+                tools:ignore="RtlSymmetry" />
+
+            <ProgressBar
+                android:id="@+id/preview_progressbar"
+                style="@style/AppTheme.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_margin ="8dp"
+                android:progress="40"
+                android:secondaryProgress="66" />
+
+            <TextView
+                android:id="@+id/preview_txt_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/backup_appearance_load_theme"
+                android:drawablePadding="16dp"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:drawableLeftCompat="@drawable/ic_info"
+                app:drawableTint="@color/gray"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</ScrollView>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- CHINESE -->
+
+    <!--Activity - Main-->
+    <string name="application_description">开源多协议备份应用程序（NFS、SMB、FTP、SFTP、WebDAV）</string>
+    <string name="wifi_required_title">需要WiFi</string>
+    <string name="wifi_required_text">已经选择了WiFi选项，但目前没有连接处于活动状态。\n请连接到一个WiFi网络来执行备份</string>
+    <string name="tooltip_new_backup">使用上面的 + 按钮设置新备份</string>
+    <string name="tooltip_edit_mode">备用卡片的上半部分是交互式的\n- 点击以在备份和编辑按钮之间切换\n- 长按禁用/启用您的备份</string>
+    <string name="tooltip_group_launch">顶部的“同步”按钮有两个功能：\n- 点击可同时启动所有备份\n- 您可以按颜色主题对备份进行分组。如果您有多个组，长按此按钮选择一个并启动其备份</string>
+    <string name="main_recycler_hint">备份列表</string>
+    <string name="main_color_theme_group">群组#</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">开始所有备份</string>
+    <string name="menu_cancel_all">取消所有备份</string>
+    <string name="menu_backup_new">新备份</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_permissions">权限</string>
+    <string name="menu_about">关于</string>
+
+    <!--Global-->
+    <string name="global_information">信息</string>
+    <string name="global_confirmation">确认书</string>
+    <string name="global_warning">警告性的</string>
+    <string name="global_error">错误</string>
+    <string name="global_yes">是的</string>
+    <string name="global_ok">好的</string>
+    <string name="global_no">没有</string>
+    <string name="global_cancel">取消</string>
+    <string name="global_always">总是</string>
+    <string name="global_understood">明白了</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">设置</string>
+    <string name="settings_interface_title">界面</string>
+    <string name="settings_language_text">语：</string>
+    <string name="settings_theme_text">主题：</string>
+    <string name="settings_logs_title">日志</string>
+    <string name="settings_logs_text">每个备份保留的日志数：</string>
+    <string name="settings_logs_errors">保留原始原始错误消息而不是简化版本</string>
+    <string name="settings_logs_warning_setforeground">进度通知失败时记录警告</string>
+    <string name="settings_logs_preserve_scroll_position">更改日志文件时保留滚动位置</string>
+    <string name="settings_notifications_title">通知</string>
+    <string name="settings_notifications_theme">应用配置的颜色主题</string>
+    <string name="settings_notifications_type">计划备份结果：</string>
+    <string name="settings_notifications_tip">- 多个：每个备份一个通知\n- 全局：单个通知，所有备份的每日摘要\n\n- 可丢弃：可以移除\n- 永久：始终可见\n\n永久通知可以防止计划备份问题</string>
+    <string name="settings_notifications_warning">请授予通知权限以更改此设置</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">权限</string>
+    <string name="permission_locked_title">权限锁定</string>
+
+    <string name="permission_files_title">允许对文件的访问（必填）</string>
+    <string name="permission_files_text">如果不能访问你的文件和文件夹，就不可能进行备份</string>
+    <string name="permission_files_locked_text">安卓系统已经阻止了这一权限，使该应用程序无法运行。\n\n请确保Mirror永远不会收集关于你或你的数据的信息。\n\n你想打开应用程序的设置并手动授权吗？</string>
+
+    <string name="permission_notifications_title">允许通知（强烈推荐）</string>
+    <string name="permission_notifications_text">通知用于显示正在进行的备份进度和计划的备份结果</string>
+    <string name="permission_notifications_locked_text">安卓锁定了这个权限。\n\n您要打开应用程序的设置并手动允许吗？</string>
+
+    <string name="permission_battery_title">禁用电池优化（建议）</string>
+    <string name="permission_battery_text">Android 电池优化可能过于激进并会干扰计划的备份</string>
+
+    <string name="permission_permanent_title">禁用许可撤销（推荐）</string>
+    <string name="permission_permanent_text">权限可以被安卓系统自动删除，这可能导致故障</string>
+
+    <string name="permission_auto_startup_title">启用自动启动（建议）</string>
+    <string name="permission_auto_startup_text">如果没有这个许可，计划的备份可能在设备重启后停止工作</string>
+    <string name="permission_auto_startup_try">每个制造商都以自己的方式管理这个功能，Mirror只能尝试打开相应的设置页面。\n\n如果失败了，你将不得不为你的设备手动配置它</string>
+    <string name="permission_auto_startup_manual">每个制造商都以自己的方式管理这一功能，这需要根据你的设备进行手动配置</string>
+    <string name="permission_auto_startup_open">开放式</string>
+
+    <!--Activity - About-->
+    <string name="about_title">关于</string>
+    <string name="about_app_title">应用程序</string>
+    <string name="about_app_author">创建者 <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">许可证： <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">积分和第三方许可证</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>：NFS v3 客户端 - 由 EMCECS 在 Apache-2.0 下获得许可</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>：SMB2/SMB3 客户端 - 由 hierynomus 在 Apache-2.0 下获得许可</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>：FTP 客户端 - 由 Apache 软件基金会在 Apache-2.0 下授权</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>：SFTP 客户端 - 由 mwiede 在 BSD 风格下获得许可</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>：WebDAV 客户端 - 由 thegrizzlylabs 在 Apache-2.0 下获得许可</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>：WebDAV 摘要式身份验证 - 由 rburgst 在 Apache-2.0 下授权</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>：打开自动启动权限管理器 - 由 judemanutd 获得 MIT 许可</string>
+    <string name="about_libraries_thanks">感谢您的辛勤工作，没有您，Mirror 就不可能存在 :)</string>
+    <string name="about_support_title">支持</string>
+    <string name="about_support_intro">Mirror 是一款免费开源应用，分发时不包含任何广告或追踪信息。\n\n如果您觉得它有用，并希望支持我的工作，非常感谢您的小额捐赠。</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">删除该备份</string>
+    <string name="backup_delete_warning_message">你想删除这个备份吗？</string>
+    <string name="backup_info">有关该备份的信息</string>
+    <string name="backup_launch">开始备份</string>
+    <string name="backup_enqueued">备份待定</string>
+    <string name="backup_last_date">最后保存：</string>
+    <string name="backup_card_move">移动备份卡</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">解锁版本</string>
+    <string name="edit_authentication_message">此备份需要生物识别身份验证</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">版次</string>
+    <string name="edit_title_new">创建</string>
+    <string name="edit_save">节省</string>
+    <string name="edit_cancel">取消</string>
+    <string name="edit_source">来源</string>
+    <string name="edit_destination">目的地</string>
+
+    <string name="edit_exit_alert">重复，不保存就退出</string>
+    <string name="edit_invalid_alert">请提供一个有效的来源和目的地</string>
+    <string name="edit_invalid_credentials_alert">请提供有效的登录信息（用户名/密码）</string>
+    <string name="edit_invalid_hostkey_alert">出于安全原因，请检索您的 SFTP 服务器主机密钥</string>
+    <string name="edit_remote_alert_message">通过您的设备在两个远程服务器之间进行备份并不是最有效的。\n\n如果可以，最好直接在其中一台机器上设置备份</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">无法检测当前标签</string>
+    <string name="target_location">位置：</string>
+    <string name="target_location_error">选择了错误的位置</string>
+    <string name="target_location_device">器材</string>
+    <string name="target_location_warning_remote_to_webdav">从远程源备份到 WebDav 服务器需要在您的设备上创建临时中间文件</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">选择文件夹</string>
+    <string name="target_local_information_timezone">FAT 文件系统通常用于外部存储，无法管理时区并根据设备本地时间存储日期。 因此，更改时区后可能会完整备份您的文件</string>
+    <string name="target_local_warning_android_10">谷歌决定撤销应用程序在 Android 10 的私人文件夹外的外部存储上写入的权限。\n\n您想将目标文件夹移动到 Mirror 文件夹中吗？\n\n小心，Android 会在您卸载此应用时将其删除！</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">服务器：</string>
+    <string name="target_common_server_hint">域名或IP</string>
+    <string name="target_common_path">文件夹：</string>
+    <string name="target_common_path_hint">文件夹/子文件夹</string>
+    <string name="target_common_login">用户：</string>
+    <string name="target_common_login_hint">用户名称</string>
+    <string name="target_common_password">密码：</string>
+    <string name="target_common_password_hint">用户密码</string>
+    <string name="target_common_port">端口：</string>
+    <string name="target_common_share">共享：</string>
+    <string name="target_common_search">搜索</string>
+    <string name="target_common_autofill">自动填充</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">用户 ID：</string>
+    <string name="target_nfs_uid_hint">UID（可选）</string>
+    <string name="target_nfs_gid">组 ID：</string>
+    <string name="target_nfs_gid_hint">GID（可选）</string>
+    <string name="target_nfs_share_hint">根共享文件夹的路径</string>
+    <string name="target_nfs_non_root_mount_warning">Android 需要您服务器上的非 root 安装权限</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">名称或IP</string>
+    <string name="target_smb_domain">领域：</string>
+    <string name="target_smb_domain_hint">(可选)</string>
+    <string name="target_smb_share_hint">根共享文件夹的名称</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">使用SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">安卓不允许在数据连接上使用TLS会话恢复选项的服务器使用SSL/TLS</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">主机密钥：</string>
+    <string name="target_sftp_hostkey_hint">点击检索服务器主机密钥</string>
+    <string name="target_sftp_hostkey_load">正在检索主机密钥…</string>
+    <string name="target_sftp_hostkey_confirmation">您信任此服务器吗？</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">使用SSL</string>
+    <string name="target_webdav_ssl_warning">自签名证书通常不够用，可能会在安全检查期间被拒绝</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">安全问题</string>
+    <string name="backup_protect">出版需要生物识别认证</string>
+    <string name="backup_protect_warning">此设备未配置生物识别认证</string>
+
+    <string name="backup_opt">备份</string>
+    <string name="backup_recursive">处理子文件夹</string>
+    <string name="backup_retry_corrupted">检测到损坏的文件时重试复制</string>
+    <string name="backup_date_comparison_auto">自动文件日期比较模式</string>
+    <string name="backup_date_comparison_mode">文件日期比较模式：</string>
+    <string name="backup_wifi">仅通过WiFi进行备份</string>
+    <string name="backup_nomedia">隐藏画廊中的目的地（.nomedia）</string>
+
+    <string name="orphans_opt">孤立文件</string>
+    <string name="orphans_action">如果一个文件只存在于目的地：</string>
+    <string name="orphans_folder">到这个文件夹：</string>
+    <string name="orphans_folder_name">孤儿</string>
+    <string name="orphans_invalid_folder">文件夹名称无效</string>
+
+    <string name="filters_opt">过滤器</string>
+    <string name="filter_images">图片</string>
+    <string name="filter_audio">音频</string>
+    <string name="filter_videos">视频</string>
+    <string name="filter_documents">文件</string>
+    <string name="filter_others">其他</string>
+    <string name="filter_min_size">忽略小于的文件：</string>
+    <string name="filter_max_size">忽略大于的文件：</string>
+    <string name="filter_black_list">排除列表（<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob 模式</a>）：</string>
+    <string name="filter_black_list_hint">/文件夹/子文件夹/**\n.trashed*</string>
+
+    <string name="schedule_opt">规划</string>
+    <string name="schedule_auto">执行自动备份</string>
+    <string name="schedule_charging">只有当设备正在加载时</string>
+    <string name="schedule_idle">只有当设备处于待机状态时</string>
+    <string name="schedule_idle_warning">可能无法工作：一些设备不能正确发出待机状态信号</string>
+    <string name="schedule_interval">所有设备：</string>
+    <string name="schedule_time">在</string>
+
+    <string name="options_low_interval_alert">短暂的延迟会降低你的自主性</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">外观</string>
+    <string name="backup_color_background">背景：</string>
+    <string name="backup_color_border">边框：</string>
+    <string name="backup_color_icons">图标：</string>
+    <string name="backup_color_progressbar">进度条：</string>
+    <string name="backup_appearance_preview">预览</string>
+    <string name="backup_appearance_load_theme">点击加载主题</string>
+    <string name="backup_appearance_theme_custom">自定义 #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">自动填充</string>
+    <string name="autofill_authentication_message">请确认您的身份</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">凭证列表</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">请输入您的服务器地址和凭据</string>
+    <string name="folder_explorer_missing_address">请输入您的服务器地址</string>
+    <string name="folder_explorer_missing_share">请输入要搜索的共享</string>
+    <string name="folder_explorer_unable_connect">连接失败</string>
+    <string name="folder_explorer_unable_list">无法读取此文件夹内容</string>
+    <string name="folder_explorer_error_details">错误信息：</string>
+    <string name="folder_explorer_error_protocol">未找到通信协议</string>
+    <string name="folder_explorer_recycler_hint">远程服务器内容</string>
+
+    <!--Worker Log -->
+    <string name="log_source">来源</string>
+    <string name="log_destination">目的地</string>
+
+    <string name="log_error">错误</string>
+    <string name="log_warning">警报</string>
+    <string name="log_note">注意事项</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">推出的备份</string>
+    <string name="log_backup_start_scheduled">自动备份开始</string>
+    <string name="log_backup_initialisation">初始化 …</string>
+    <string name="log_folder_destination_create">创建丢失的目标文件夹</string>
+    <string name="log_searching_files">正在搜索文件 …</string>
+    <string name="log_found">找到的文件：</string>
+    <string name="log_excluding">正在过滤文件 …</string>
+    <string name="log_remaining">剩余文件：</string>
+    <string name="log_checking_backup">正在检查要备份的文件 …</string>
+    <string name="log_flexible_mode">（弹性模式）…</string>
+    <string name="log_to_backup">要复制的文件：</string>
+    <string name="log_orphans_keep">需要保留的孤儿：</string>
+    <string name="log_orphans_move">孤儿搬家：</string>
+    <string name="log_orphans_delete">要删除的孤儿：</string>
+    <string name="log_obsolete">拟删除的过时的孤儿：</string>
+    <string name="log_orphans_after_backup">(i) 目标文件夹中的孤儿：</string>
+
+    <string name="error_wifi">所需的WiFi没有连接</string>
+    <string name="error_target">错误的备份目标</string>
+    <string name="error_blacklist">排除列表中存在语法错误</string>
+
+    <string name="error_server_reach">无法到达该服务器</string>
+    <string name="error_server_connect">无法连接到该服务器</string>
+    <string name="error_share_connect">无法连接到此共享</string>
+    <string name="error_ssl_connect">不能使用SSL/TLS</string>
+    <string name="error_ssl_certificate">无效/缺失的SSL/TLS证书</string>
+    <string name="error_ftp_filetype">不能切换到二进制传输模式</string>
+    <string name="error_server_login">无法认证</string>
+    <string name="error_server_disconnect">无法与服务器断开连接</string>
+
+    <string name="error_permission_read">拒绝授权阅读</string>
+    <string name="error_permission_write">拒绝写入许可</string>
+    <string name="error_permission_unknown">无法检查权限</string>
+
+    <string name="error_space_low">自由空间小</string>
+    <string name="error_space_critical">没有足够的自由空间</string>
+    <string name="error_space_unverifiable">无法检查自由空间</string>
+    <string name="error_quota_low">可用配额低</string>
+    <string name="error_quota_critical">没有足够的可用配额</string>
+    <string name="error_quota_unverifiable">无法检查可用配额</string>
+
+    <string name="error_folder_existence">未找到文件</string>
+    <string name="error_folder_invalid">无效的文件夹</string>
+    <string name="error_folder_list">无法列出此文件夹中的文件</string>
+    <string name="error_folder_delete">无法删除此文件夹</string>
+    <string name="error_folder_create">无法创建此文件夹</string>
+    <string name="error_folder_create_tmp">无法创建临时文件夹</string>
+
+    <string name="error_path_reach">无法到达此路径</string>
+
+    <string name="error_orphan_folder_not_specified">未说明的孤儿文件夹</string>
+    <string name="error_orphan_folder_in_use">不要使用源中存在的文件夹名称来存储孤立文件</string>
+
+    <string name="error_setforeground">无法显示进度通知。备份时长限制为 10 分钟</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">备份开始 …</string>
+    <string name="log_orphans_move_long">感动孤儿</string>
+    <string name="log_orphans_delete_long">删除孤儿</string>
+    <string name="log_delete_obsolete_orphans">删除过时的孤儿</string>
+    <string name="log_folders_create">创建新文件</string>
+    <string name="log_copy">复印</string>
+    <string name="log_move">移动</string>
+    <string name="log_delete">删除</string>
+    <string name="log_nomedia_created">创建的.nomedia文件</string>
+    <string name="log_nomedia_removed">删除的.nomedia文件</string>
+    <string name="log_empty_folders_delete">删除空文件夹</string>
+
+    <string name="error_file_read">无法读取该文件</string>
+    <string name="error_file_read_finish">无法关闭文件阅读器</string>
+    <string name="error_file_copy">无法复制此文件</string>
+    <string name="error_file_move">不能移动这个文件</string>
+    <string name="error_file_delete">不能删除该文件</string>
+    <string name="error_file_corrupted">检测到文件损坏，重试 …</string>
+    <string name="error_file_corrupted_final">无法复制该文件而不损坏。在下次备份时重试</string>
+    <string name="error_file_date_modification">文件日期修改失败。切换到灵活比较模式</string>
+    <string name="success_file_date_modification">文件日期修改成功。切换到严格比较模式</string>
+    <string name="error_file_tmp_space">设备内存可用空间不足，无法创建临时文件</string>
+    <string name="error_file_tmp_skipped">文件已跳过</string>
+    <string name="error_file_tmp">无法创建临时文件</string>
+    <string name="error_nomedia_create">无法创建.nomedia文件</string>
+    <string name="error_nomedia_remove">无法删除.nomedia文件</string>
+    <string name="error_ftp_mlst">该服务器似乎不支持检索文件大小和精确时间戳所需的 MLST 命令</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">成功备份</string>
+    <string name="log_backup_warning">成功的备份与警报</string>
+    <string name="log_backup_canceled">备份被取消</string>
+    <string name="error_backup_failed">备份失败</string>
+
+    <string name="log_next_schedule_success">下一次预定的备份：</string>
+    <string name="log_next_schedule_failed">下一次预定的尝试：</string>
+
+    <string name="log_backup_duration">备份的时间：</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">未找到日志文件夹</string>
+    <string name="logs_file_not_found">没有可用于此备份的日志文件</string>
+    <string name="logs_file_read_error">在加载此日志文件时发生了一个错误</string>
+    <string name="logs_navigation_previous">上一篇</string>
+    <string name="logs_navigation_next">下一页</string>
+    <string name="logs_recycler_hint">日志文件内容</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">正在进行的备份</string>
+    <string name="notification_ongoing_channel_description">备份期间的进度详细信息</string>
+    <string name="notification_result_channel_name">完成备份</string>
+    <string name="notification_result_channel_description">已完成计划备份的结果</string>
+    <string name="notification_result">计划备份结果</string>
+    <string name="notification_scheduled">计划备份</string>
+    <string name="notification_no_backup">今天没有执行</string>
+    <string name="notification_active">正在进行中</string>
+    <string name="notification_files">文件</string>
+    <string name="notification_no_file">没有新的或无主的文件</string>
+    <string name="notification_orphans">孤儿</string>
+    <string name="notification_success">成功</string>
+    <string name="notification_warning">警告</string>
+    <string name="notification_failed">失败</string>
+    <string name="notification_canceled">取消</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">自主性太低</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">无法运行此备份：备份不是不活动的</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>系统</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>系统</item>
+        <item>光</item>
+        <item>暗</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>无</item>
+        <item>多个 - 可丢弃</item>
+        <item>全局 - 可丢弃</item>
+        <item>全局 - 永久</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>器材</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>默认</item>
+        <item>红色</item>
+        <item>橙色</item>
+        <item>黄色</item>
+        <item>黄绿色</item>
+        <item>绿色</item>
+        <item>薄荷色</item>
+        <item>青色</item>
+        <item>天蓝色</item>
+        <item>蓝色</item>
+        <item>靛蓝</item>
+        <item>洋红色</item>
+        <item>粉红色</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>无</item>
+        <item>红色</item>
+        <item>橙色</item>
+        <item>黄色</item>
+        <item>黄绿色</item>
+        <item>绿色</item>
+        <item>薄荷色</item>
+        <item>青色</item>
+        <item>天蓝色</item>
+        <item>蓝色</item>
+        <item>靛蓝</item>
+        <item>洋红色</item>
+        <item>粉红色</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>严格（源 != 目标）</item>
+        <item>灵活（源 > 目标）</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>保持</item>
+        <item>移动</item>
+        <item>删除</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>天</item>
+        <item>小时</item>
+        <item>分钟</item>
+    </string-array>
+
+</resources>

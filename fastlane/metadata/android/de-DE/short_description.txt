@@ -1,0 +1,1 @@
+Multiprotokoll-Backup-Anwendung (NFS, SMB, FTP, SFTP, WebDAV)

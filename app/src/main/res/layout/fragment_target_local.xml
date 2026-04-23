@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/target_local_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragments.Fragment_TargetLocal">
+
+    <TextView
+        android:id="@+id/target_local_txt_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/target_local_edit_path_select"
+        android:text="@string/target_common_path" />
+
+    <EditText
+        android:id="@+id/target_local_edit_path_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:layout_toEndOf="@id/target_local_txt_path"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:hint="@string/target_local_select"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine|textNoSuggestions"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_local_txt_info_timezone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/target_local_edit_path_select"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="10dp"
+        android:text="@string/target_local_information_timezone"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_info"
+        app:drawableTint="@color/gray" />
+
+</RelativeLayout>

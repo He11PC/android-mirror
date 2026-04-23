@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logs_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    tools:context=".ui.activities.Activity_Logs"
+    android:fitsSystemWindows="true"
+    android:background="@color/primary_dark">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logs_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/logs_navigation_lyt"
+        android:background="@color/background_card"
+        android:clipToPadding="false"
+        android:contentDescription="@string/logs_recycler_hint"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row_recycler_logs" />
+
+    <TextView
+        android:id="@+id/logs_txt_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@string/logs_file_not_found"
+        android:textAppearance="@style/AppTheme.AlertDialogStyle.Title"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_warning"
+        app:drawableTint="@color/red" />
+
+    <TextView
+        android:id="@+id/logs_navigation_txt_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/background_card"
+        android:backgroundTint="@color/primary"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="1/10"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        tools:ignore="HardcodedText" />
+
+    <RelativeLayout
+        android:id="@+id/logs_navigation_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/primary">
+
+        <ImageButton
+            android:id="@+id/logs_navigation_btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/logs_navigation_previous"
+            android:minWidth="32dp"
+            android:minHeight="32dp"
+            app:srcCompat="@drawable/ic_arrow_left"
+            app:tint="@android:color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <SeekBar
+            android:id="@+id/logs_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_toStartOf="@+id/logs_navigation_btn_next"
+            android:layout_toEndOf="@+id/logs_navigation_btn_previous"
+            android:min="1"
+            android:progressBackgroundTint="@color/primary_dark"
+            android:progressBackgroundTintMode="src_over"
+            android:progressTint="@color/secondary"
+            android:progressTintMode="src_over"
+            android:thumbTint="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/logs_navigation_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/logs_navigation_next"
+            android:minWidth="32dp"
+            android:minHeight="32dp"
+            app:srcCompat="@drawable/ic_arrow_right"
+            app:tint="@android:color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

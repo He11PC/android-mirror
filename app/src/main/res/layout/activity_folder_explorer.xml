@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/folderExplorer_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activities.Activity_FolderExplorer">
+
+    <RelativeLayout
+        android:id="@+id/folderExplorer_lyt_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/folderExplorer_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/global_cancel"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_close"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/folderExplorer_txt_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/folderExplorer_btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/global_ok"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"
+            app:tint="#FFFFFF" />
+
+        <ProgressBar
+            android:id="@+id/folderExplorer_progress_loading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#FFFFFF" />
+
+    </RelativeLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/folderExplorer_swipe_refresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/background_app"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/folderExplorer_lyt_top">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/folderExplorer_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:contentDescription="@string/folder_explorer_recycler_hint"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:scrollbars="vertical"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/row_recycler_folder_explorer" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/folderExplorer_txt_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@string/folder_explorer_unable_connect"
+        android:textAppearance="@style/AppTheme.AlertDialogStyle.Title"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_warning"
+        app:drawableTint="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/folderExplorer_swipe_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

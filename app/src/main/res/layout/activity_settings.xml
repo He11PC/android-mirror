@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".ui.activities.Activity_Settings"
+    android:fitsSystemWindows="true"
+    android:background="@color/primary_dark">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/settings_appbar_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/settings_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="#FFFFFF"
+            app:title="@string/settings_title"
+            app:titleCentered="true"
+            app:titleTextColor="@color/design_default_color_on_primary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_app">
+
+        <GridLayout
+            android:id="@+id/settings_content_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="@integer/grid_column_count"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp"
+            tools:ignore="RtlSymmetry">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_interface_lyt"
+                style="@style/AppTheme.Layout_CardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill">
+
+                <TextView
+                    android:id="@+id/settings_interface_txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_interface_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/settings_interface_lyt" />
+
+                <View
+                    android:id="@+id/settings_interface_div"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_interface_txt_title" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/settings_interface_flow_language"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="settings_interface_txt_language,settings_interface_spn_language"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_interface_div" />
+
+                <TextView
+                    android:id="@+id/settings_interface_txt_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_language_text" />
+
+                <Spinner
+                    android:id="@+id/settings_interface_spn_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:dropDownWidth="150sp"
+                    android:entries="@array/locales"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/settings_interface_flow_theme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="settings_interface_txt_theme,settings_interface_spn_theme"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_interface_flow_language" />
+
+                <TextView
+                    android:id="@+id/settings_interface_txt_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_theme_text" />
+
+                <Spinner
+                    android:id="@+id/settings_interface_spn_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/theme" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_logs_lyt"
+                style="@style/AppTheme.Layout_CardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill">
+
+                <TextView
+                    android:id="@+id/settings_logs_txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_logs_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/settings_logs_lyt" />
+
+                <View
+                    android:id="@+id/settings_logs_div"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_logs_txt_title" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/settings_logs_flow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="settings_logs_txt_retention,settings_logs_edit_retention"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_logs_div" />
+
+                <TextView
+                    android:id="@+id/settings_logs_txt_retention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_logs_text" />
+
+                <EditText
+                    android:id="@+id/settings_logs_edit_retention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="3"
+                    android:hint="15"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:labelFor="@id/settings_logs_txt_retention"
+                    android:textAlignment="center"
+                    tools:ignore="HardcodedText,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                <CheckBox
+                    android:id="@+id/settings_logs_chk_errors"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_logs_errors"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_logs_flow" />
+
+                <CheckBox
+                    android:id="@+id/settings_logs_chk_warning_setforeground"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_logs_warning_setforeground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_logs_chk_errors" />
+
+                <CheckBox
+                    android:id="@+id/settings_logs_chk_preserve_scroll_position"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_logs_preserve_scroll_position"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_logs_chk_warning_setforeground" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_notifications_lyt"
+                style="@style/AppTheme.Layout_CardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill">
+
+                <TextView
+                    android:id="@+id/settings_notifications_txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_notifications_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/settings_notifications_div"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_notifications_txt_title" />
+
+                <CheckBox
+                    android:id="@+id/settings_notifications_chk_theme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/settings_notifications_theme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_notifications_div" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/settings_notifications_flow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    app:constraint_referenced_ids="settings_notifications_txt_scheduled,settings_notifications_spn_scheduled,settings_notifications_btn_scheduled_info"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_notifications_chk_theme" />
+
+                <TextView
+                    android:id="@+id/settings_notifications_txt_scheduled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_notifications_type" />
+
+                <Spinner
+                    android:id="@+id/settings_notifications_spn_scheduled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/scheduled_backup_notifications" />
+
+                <ImageButton
+                    android:id="@+id/settings_notifications_btn_scheduled_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/global_information"
+                    android:minWidth="32dp"
+                    android:minHeight="48dp"
+                    app:srcCompat="@drawable/ic_info" />
+
+                <TextView
+                    android:id="@+id/settings_notifications_txt_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingBottom="10dp"
+                    android:drawablePadding="16dp"
+                    android:visibility="gone"
+                    android:text="@string/settings_notifications_tip"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:drawableLeftCompat="@drawable/ic_info"
+                    app:drawableTint="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_notifications_spn_scheduled" />
+
+                <TextView
+                    android:id="@+id/settings_notifications_txt_warning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingBottom="10dp"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_notifications_warning"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    app:drawableLeftCompat="@drawable/ic_warning"
+                    app:drawableTint="@color/orange"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settings_notifications_spn_scheduled" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="bn"/> <!-- Bengali -->
+    <locale android:name="cs"/> <!-- Czech -->
+    <locale android:name="de"/> <!-- German -->
+    <locale android:name="el"/> <!-- Greek -->
+    <locale android:name="en"/> <!-- English -->
+    <locale android:name="es"/> <!-- Spanish -->
+    <locale android:name="fr"/> <!-- French -->
+    <locale android:name="hi"/> <!-- Hindi -->
+    <locale android:name="hu"/> <!-- Hungarian -->
+    <locale android:name="in"/> <!-- Indonesian -->
+    <locale android:name="it"/> <!-- Italian -->
+    <locale android:name="ja"/> <!-- Japanese -->
+    <locale android:name="ko"/> <!-- Korean -->
+    <locale android:name="nl"/> <!-- Dutch -->
+    <locale android:name="pl"/> <!-- Polish -->
+    <locale android:name="pt"/> <!-- Portuguese -->
+    <locale android:name="ro"/> <!-- Romanian -->
+    <locale android:name="ru"/> <!-- Russian -->
+    <locale android:name="sv"/> <!-- Swedish -->
+    <locale android:name="tr"/> <!-- Turkish -->
+    <locale android:name="uk"/> <!-- Ukrainian -->
+    <locale android:name="zh"/> <!-- Chinese -->
+</locale-config>

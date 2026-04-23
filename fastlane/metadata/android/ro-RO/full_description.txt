@@ -1,0 +1,26 @@
+Mirror este o aplicație de backup de tip mirror multi-protocol pentru Android.
+Concepută pentru a fi mai simplă și mai ușoară decât software-ul de sincronizare, aceasta vă permite să utilizați propria infrastructură în loc de servicii cloud terțe.
+
+Puteți configura mai multe backup-uri după cum urmează:
+
+* Selectați un director sursă
+* Selectați un director destinație
+* Alegeți opțiunile de filtrare (opțional)
+* Configurați programarea automată (opțional)
+
+Mirror va analiza conținutul ambelor directoare, le va compara și va reproduce structura directorului sursă (subdirectoare și fișiere) în directorul destinație, respectând opțiunile de filtrare alese.
+
+Sursa și destinația pot fi localizate pe:
+
+* Stocarea internă sau externă a dispozitivului dvs.
+* O partajare NFS
+* O partajare SMB
+* Un server FTP sau FTPS
+* Un server SFTP
+* Un server WebDAV
+
+**SECURITATE ȘI CONFIDENȚIALITATE**
+
+* **Stocare locală:** Informațiile sensibile sunt criptate (AES-GCM + Android KeyStore) și stocate local pe dispozitivul dvs. folosind o bază de date Room.
+* **Fără urmărire:** Această aplicație nu conține analize, instrumente de urmărire, reclame sau kituri de dezvoltare software (SDK) proprietare.
+* **Open Source:** Mirror este un proiect independent. Codul sursă este disponibil pe GitHub pentru transparență și audit.

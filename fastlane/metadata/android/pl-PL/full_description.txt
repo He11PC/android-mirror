@@ -1,0 +1,26 @@
+Mirror to wieloprotokołowa aplikacja do tworzenia kopii zapasowych typu mirror dla systemu Android.
+Zaprojektowana z myślą o prostszym i lżejszym działaniu niż oprogramowanie do synchronizacji, pozwala na korzystanie z własnej infrastruktury zamiast zewnętrznych usług chmurowych.
+
+Można skonfigurować wiele kopii zapasowych w następujący sposób:
+
+* Wybierz katalog źródłowy
+* Wybierz katalog docelowy
+* Wybierz opcje filtrowania (opcjonalnie)
+* Skonfiguruj automatyczne planowanie (opcjonalnie)
+
+Mirror przeanalizuje zawartość obu katalogów, porówna je i odtworzy strukturę katalogu źródłowego (podkatalogi i pliki) w katalogu docelowym, uwzględniając wybrane opcje filtrowania.
+
+Źródło i miejsce docelowe mogą znajdować się w:
+
+* wewnętrznej lub zewnętrznej pamięci urządzenia
+* udziale NFS
+* udziale SMB
+* serwerze FTP lub FTPS
+* serwerze SFTP
+* serwerze WebDAV
+
+**BEZPIECZEŃSTWO I PRYWATNOŚĆ**
+
+* **Pamięć lokalna:** Informacje wrażliwe są szyfrowane (AES-GCM + Android KeyStore) i przechowywane lokalnie na Twoim urządzeniu za pomocą bazy danych Room.
+* **Brak śledzenia:** Ta aplikacja nie zawiera żadnych narzędzi analitycznych, modułów śledzących, reklam ani zastrzeżonych zestawów narzędzi programistycznych (SDK).
+* **Open Source:** Mirror to niezależny projekt. Kod źródłowy jest dostępny na GitHubie w celu zapewnienia przejrzystości i kontroli.

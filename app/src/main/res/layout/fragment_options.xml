@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.Fragment_Options">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="@integer/grid_column_count"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            android:id="@+id/options_security_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill">
+
+            <TextView
+                android:id="@+id/options_security_txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/backup_security"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/options_security_div"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue" />
+
+            <CheckBox
+                android:id="@+id/options_security_chk_protect_edition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/backup_protect"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/options_security_txt_protect_edition_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:paddingVertical="4dp"
+                android:text="@string/backup_protect_warning"
+                android:textColor="@color/orange"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:drawableLeftCompat="@drawable/ic_warning"
+                app:drawableTint="@color/orange"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/options_backup_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill">
+
+            <TextView
+                android:id="@+id/options_backup_txt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/backup_opt"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/options_backup_lyt" />
+
+            <View
+                android:id="@+id/options_backup_div"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_txt_title" />
+
+            <CheckBox
+                android:id="@+id/options_backup_chk_recursive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="@string/backup_recursive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_div"
+                tools:ignore="TextContrastCheck" />
+
+            <CheckBox
+                android:id="@+id/options_backup_chk_retry_corrupted"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="@string/backup_retry_corrupted"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_chk_recursive" />
+
+            <CheckBox
+                android:id="@+id/options_backup_chk_date_comparison_auto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="@string/backup_date_comparison_auto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_chk_retry_corrupted" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_backup_flow_date_comparison"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="options_backup_txt_date_comparison_mode,options_backup_spn_date_comparison_mode"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:flow_verticalAlign="baseline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_chk_date_comparison_auto" />
+
+            <TextView
+                android:id="@+id/options_backup_txt_date_comparison_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="14dp"
+                android:text="@string/backup_date_comparison_mode" />
+
+            <Spinner
+                android:id="@+id/options_backup_spn_date_comparison_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/date_comparison_mode" />
+
+            <CheckBox
+                android:id="@+id/options_backup_chk_wifi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/backup_wifi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_flow_date_comparison" />
+
+            <CheckBox
+                android:id="@+id/options_backup_chk_nomedia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/backup_nomedia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_backup_chk_wifi" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/options_orphans_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill">
+
+            <TextView
+                android:id="@+id/options_orphans_txt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/orphans_opt"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/options_orphans_lyt" />
+
+            <View
+                android:id="@+id/options_orphans_div"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_orphans_txt_title" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_orphans_flow_choice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:constraint_referenced_ids="options_orphans_txt_action,options_orphans_spn_action"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:flow_verticalAlign="baseline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_orphans_div" />
+
+            <TextView
+                android:id="@+id/options_orphans_txt_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="14dp"
+                android:text="@string/orphans_action" />
+
+            <Spinner
+                android:id="@+id/options_orphans_spn_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/orphan_options" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_orphans_flow_folder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="options_orphans_txt_folder,options_orphans_edit_folder,options_orphans_txt_folder_invalid"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:flow_verticalAlign="baseline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_orphans_flow_choice" />
+
+            <TextView
+                android:id="@+id/options_orphans_txt_folder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="14dp"
+                android:text="@string/orphans_folder" />
+
+            <EditText
+                android:id="@+id/options_orphans_edit_folder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/orphans_folder_name"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
+                android:minEms="8"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/options_orphans_txt_folder_invalid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orphans_invalid_folder"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/options_filters_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill">
+
+            <TextView
+                android:id="@+id/options_filters_txt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/filters_opt"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/options_filters_lyt" />
+
+            <View
+                android:id="@+id/options_filters_div"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_filters_txt_title" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_filters_flow_check"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:constraint_referenced_ids="options_filters_chk_images,options_filters_chk_videos,options_filters_chk_audio,options_filters_chk_documents,options_filters_chk_others"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/options_filters_div" />
+
+            <CheckBox
+                android:id="@+id/options_filters_chk_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_images"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:ignore="TextContrastCheck" />
+
+            <CheckBox
+                android:id="@+id/options_filters_chk_videos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_videos"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:ignore="TextContrastCheck" />
+
+            <CheckBox
+                android:id="@+id/options_filters_chk_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_audio"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:ignore="TextContrastCheck" />
+
+            <CheckBox
+                android:id="@+id/options_filters_chk_documents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_documents"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:ignore="TextContrastCheck" />
+
+            <CheckBox
+                android:id="@+id/options_filters_chk_others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/filter_others"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:ignore="TextContrastCheck" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_filters_flow_min_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:constraint_referenced_ids="options_filters_txt_min_size, options_filters_lyt_min_size"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_filters_chk_others" />
+
+            <TextView
+                android:id="@+id/options_filters_txt_min_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_min_size"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/options_filters_lyt_min_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                tools:ignore="MissingConstraints">
+
+                <EditText
+                    android:id="@+id/options_filters_edit_min_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:hint="100"
+                    android:importantForAutofill="no"
+                    android:inputType="number|numberDecimal"
+                    android:textAlignment="center"
+                    tools:ignore="HardcodedText,TextContrastCheck" />
+
+                <Spinner
+                    android:id="@+id/options_filters_spn_min_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:entries="@array/file_size_unit"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/options_filters_flow_max_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="options_filters_txt_max_size, options_filters_lyt_max_size"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="chain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_filters_flow_min_size" />
+
+            <TextView
+                android:id="@+id/options_filters_txt_max_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_max_size" />
+
+            <LinearLayout
+                android:id="@+id/options_filters_lyt_max_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                tools:ignore="MissingConstraints">
+
+                <EditText
+                    android:id="@+id/options_filters_edit_max_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:hint="1"
+                    android:importantForAutofill="no"
+                    android:inputType="number|numberDecimal"
+                    android:textAlignment="center"
+                    tools:ignore="HardcodedText,TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+                <Spinner
+                    android:id="@+id/options_filters_spn_max_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:entries="@array/file_size_unit" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/options_filters_txt_black_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColorLink="@color/blue"
+                android:text="@string/filter_black_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_filters_flow_max_size" />
+
+            <EditText
+                android:id="@+id/options_filters_edit_black_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="14dp"
+                android:gravity="top"
+                android:hint="@string/filter_black_list_hint"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:lineSpacingMultiplier="1.2"
+                android:minLines="2"
+                android:paddingBottom="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_filters_txt_black_list"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/options_schedule_lyt"
+            style="@style/AppTheme.Layout_CardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill">
+
+            <TextView
+                android:id="@+id/options_schedule_txt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule_opt"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/options_schedule_lyt" />
+
+            <View
+                android:id="@+id/options_schedule_div"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_schedule_txt_title" />
+
+            <CheckBox
+                android:id="@+id/options_schedule_chk_enable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/schedule_auto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_schedule_div" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/options_schedule_details_lyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/options_schedule_chk_enable">
+
+                <CheckBox
+                    android:id="@+id/options_schedule_chk_charging"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_charging"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/options_schedule_chk_idle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/schedule_idle"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/options_schedule_chk_charging" />
+
+                <TextView
+                    android:id="@+id/options_schedule_txt_warning_idle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:text="@string/schedule_idle_warning"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    app:drawableLeftCompat="@drawable/ic_warning"
+                    app:drawableTint="@color/orange"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/options_schedule_chk_idle"
+                    tools:ignore="TextContrastCheck" />
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/options_schedule_flow_interval"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:constraint_referenced_ids="options_schedule_lyt_interval,options_schedule_lyt_time,options_schedule_txt_warning_short_delay"
+                    app:flow_horizontalBias="0"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/options_schedule_txt_warning_idle" />
+
+                <LinearLayout
+                    android:id="@+id/options_schedule_lyt_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/options_schedule_txt_interval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schedule_interval"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    <EditText
+                        android:id="@+id/options_schedule_edit_interval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:ems="3"
+                        android:hint="1"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:text="1"
+                        android:textAlignment="center"
+                        tools:ignore="HardcodedText,TextContrastCheck" />
+
+                    <Spinner
+                        android:id="@+id/options_schedule_spn_interval_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:entries="@array/interval_unit" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/options_schedule_lyt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/options_schedule_txt_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schedule_time"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    <EditText
+                        android:id="@+id/options_schedule_edit_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:importantForAutofill="no"
+                        android:inputType="time"
+                        tools:ignore="TextContrastCheck" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/options_schedule_txt_warning_short_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/options_low_interval_alert"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    app:drawableLeftCompat="@drawable/ic_warning"
+                    app:drawableTint="@color/orange"
+                    tools:ignore="TextContrastCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </GridLayout>
+
+</ScrollView>

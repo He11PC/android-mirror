@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="Copyright (c) &amp;#36;originalComment.match(&quot;Copyright \(c\) (\d+)&quot;, 1, &quot;-&quot;, &quot;&amp;#36;today.year&quot;)&amp;#36;today.year HellPC (https://github.com/He11PC).&#10;This file is part of Mirror, multiprotocol backup application.&#10;&#10;Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&#10;&#10;See AGENTS.md for AI usage policy.&#10;&#10;This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&#10;See the GNU Affero General Public License for more details &lt;https://www.gnu.org/licenses/&gt;." />
+    <option name="myName" value="AGPL-3.0" />
+  </copyright>
+</component>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- POLISH -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Wieloprotokołowa aplikacja do tworzenia kopii zapasowych typu open source (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">Wymagane WiFi</string>
+    <string name="wifi_required_text">Wybrano opcję WiFi, ale połączenie nie jest aktualnie aktywne.\nAby wykonać kopię zapasową, należy połączyć się z siecią WiFi</string>
+    <string name="tooltip_new_backup">Użyj przycisku + powyżej, aby skonfigurować nową kopię zapasową</string>
+    <string name="tooltip_edit_mode">Górna połowa kart zapasowych jest interaktywna:\n- Stuknij, aby przełączać się między przyciskami kopii zapasowej i edycji\n- Długie naciśnięcie wyłącza/włącza kopie zapasowe</string>
+    <string name="tooltip_group_launch">Górny przycisk „sync” ma dwie funkcje:\n- Stuknij, aby uruchomić wszystkie kopie zapasowe jednocześnie\n- Możesz grupować kopie zapasowe według motywu kolorystycznego. Jeśli masz wiele grup, naciśnij i przytrzymaj ten przycisk, aby wybrać jedną i uruchomić jej kopie zapasowe</string>
+    <string name="main_recycler_hint">Lista kopii zapasowych</string>
+    <string name="main_color_theme_group">Grupa #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Uruchom wszystkie kopie zapasowe</string>
+    <string name="menu_cancel_all">Anuluj wszystkie kopie zapasowe</string>
+    <string name="menu_backup_new">Nowa kopia zapasowa</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="menu_permissions">Autoryzacje</string>
+    <string name="menu_about">Około</string>
+
+    <!--Global-->
+    <string name="global_information">Informacja</string>
+    <string name="global_confirmation">Potwierdzenie</string>
+    <string name="global_warning">Ostrzeżenie</string>
+    <string name="global_error">Błąd</string>
+    <string name="global_yes">TAk</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">Nie</string>
+    <string name="global_cancel">Anulować</string>
+    <string name="global_always">Zawsze</string>
+    <string name="global_understood">Zrozumiany</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_interface_title">Interfejs</string>
+    <string name="settings_language_text">Mowa:</string>
+    <string name="settings_theme_text">Motyw:</string>
+    <string name="settings_logs_title">Logi</string>
+    <string name="settings_logs_text">Liczba dzienników do przechowywania na kopię zapasową:</string>
+    <string name="settings_logs_errors">Zachowaj oryginalne nieprzetworzone komunikaty o błędach zamiast ich uproszczonej wersji</string>
+    <string name="settings_logs_warning_setforeground">Nagraj ostrzeżenie, gdy powiadomienie o postępie się nie powiedzie</string>
+    <string name="settings_logs_preserve_scroll_position">Zachowaj pozycję przewijania podczas zmiany pliku dziennika</string>
+    <string name="settings_notifications_title">Powiadomienia</string>
+    <string name="settings_notifications_theme">Zastosuj skonfigurowany motyw kolorów</string>
+    <string name="settings_notifications_type">Wynik zaplanowanych kopii zapasowych:</string>
+    <string name="settings_notifications_tip">- Wiele: jedno powiadomienie na kopię zapasową\n- Globalnie: pojedyncze powiadomienie, dzienne podsumowanie wszystkich kopii zapasowych\n\n- Odrzucić: można usunąć\n- Stałe: zawsze widoczne\n\nStałe powiadomienia mogą zapobiec problemom z zaplanowanymi kopiami zapasowymi</string>
+    <string name="settings_notifications_warning">Zezwól na powiadomienia, aby zmienić to ustawienie</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Autoryzacje</string>
+    <string name="permission_locked_title">Autoryzacja zablokowana</string>
+
+    <string name="permission_files_title">Zezwalaj na dostęp do plików (wymagane)</string>
+    <string name="permission_files_text">Tworzenie kopii zapasowych jest niemożliwe bez dostępu do plików i folderów</string>
+    <string name="permission_files_locked_text">System Android zablokował to uprawnienie, co uniemożliwiło działanie aplikacji.\n\nNależy pamiętać, że Mirror nigdy nie będzie gromadził informacji o Tobie ani Twoich danych.\n\nCzy chcesz otworzyć ustawienia aplikacji i zezwolić na to ręcznie?</string>
+
+    <string name="permission_notifications_title">Zezwalaj na powiadomienia (bardzo zalecane)</string>
+    <string name="permission_notifications_text">Powiadomienia służą do wyświetlania postępów w bieżących kopiach zapasowych i wyników zaplanowanych kopii zapasowych</string>
+    <string name="permission_notifications_locked_text">Android zablokował to uprawnienie.\n\nCzy chcesz otworzyć ustawienia aplikacji i zezwolić na to ręcznie?</string>
+
+    <string name="permission_battery_title">Wyłączenie optymalizacji baterii (zalecane)</string>
+    <string name="permission_battery_text">Optymalizacja baterii w systemie Android może być zbyt agresywna i kolidować z zaplanowanymi kopiami zapasowymi</string>
+
+    <string name="permission_permanent_title">Wyłączenie cofania uprawnień (zalecane)</string>
+    <string name="permission_permanent_text">Uprawnienia mogą być automatycznie usuwane przez system Android, co może prowadzić do nieprawidłowego działania</string>
+
+    <string name="permission_auto_startup_title">Włącz automatyczne uruchamianie (zalecane)</string>
+    <string name="permission_auto_startup_text">Bez tego uprawnienia zaplanowane kopie zapasowe mogą przestać działać po ponownym uruchomieniu urządzenia</string>
+    <string name="permission_auto_startup_try">Każdy producent zarządza tą funkcją na swój sposób, a program Mirror może jedynie próbować otworzyć odpowiednią stronę z ustawieniami.\n\nJeśli to nie zadziała, należy skonfigurować ją ręcznie dla danego urządzenia</string>
+    <string name="permission_auto_startup_manual">Każdy producent obsługuje tę funkcję na swój własny sposób, co wymaga ręcznej konfiguracji urządzenia</string>
+    <string name="permission_auto_startup_open">Otwórz</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Około</string>
+    <string name="about_app_title">Aplikacja</string>
+    <string name="about_app_author">Utworzone przez <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Licencja: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Kredyty i licencje stron trzecich</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: klient NFS v3 — licencjonowany na platformie Apache-2.0 przez EMECCS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: klient SMB2/SMB3 — licencjonowany na platformie Apache-2.0 przez hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: klient FTP — licencjonowany na podstawie Apache-2.0 przez Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: klient SFTP - licencjonowany w stylu BSD przez mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: klient WebDAV — licencjonowany na platformie Apache-2.0 przez thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Uwierzytelnianie szyfrowane dla WebDAV — na licencji Apache-2.0 firmy rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: Otwiera menedżera uprawnień autostartu — licencja na licencji MIT autorstwa judemanutd</string>
+    <string name="about_libraries_thanks">Dziękuję za ciężką pracę, Mirror nie mógłby istnieć bez Ciebie :)</string>
+    <string name="about_support_title">Wsparcie</string>
+    <string name="about_support_intro">Mirror to darmowa i otwartoźródłowa aplikacja, rozpowszechniana bez reklam i śledzenia.\n\nJeśli uważasz ją za przydatną i chcesz wesprzeć moją pracę, niewielka darowizna będzie bardzo mile widziana.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Usuń tę kopię zapasową</string>
+    <string name="backup_delete_warning_message">Czy chcesz usunąć tę kopię zapasową?</string>
+    <string name="backup_info">Informacje o tej kopii zapasowej</string>
+    <string name="backup_launch">Rozpocznij tworzenie kopii zapasowej</string>
+    <string name="backup_enqueued">Kopia zapasowa w toku</string>
+    <string name="backup_last_date">Ostatnia kopia zapasowa:</string>
+    <string name="backup_card_move">Przenieś kartę zapasową</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Odblokuj edycję</string>
+    <string name="edit_authentication_message">Ta kopia zapasowa wymaga uwierzytelnienia biometrycznego</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Edycja</string>
+    <string name="edit_title_new">Tworzenie</string>
+    <string name="edit_save">Zapisz</string>
+    <string name="edit_cancel">Anuluj</string>
+    <string name="edit_source">Źródło</string>
+    <string name="edit_destination">Miejsce docelowe</string>
+
+    <string name="edit_exit_alert">Powtórz, aby wyjść bez zapisywania</string>
+    <string name="edit_invalid_alert">Należy podać prawidłowe źródło i miejsce docelowe</string>
+    <string name="edit_invalid_credentials_alert">Podaj poprawne dane logowania (nazwa użytkownika/hasło)</string>
+    <string name="edit_invalid_hostkey_alert">Ze względów bezpieczeństwa pobierz klucz hosta serwera SFTP</string>
+    <string name="edit_remote_alert_message">Tworzenie kopii zapasowych między dwoma zdalnymi serwerami za pośrednictwem urządzenia nie jest najbardziej wydajne.\n\nJeśli możesz, lepiej byłoby skonfigurować kopię zapasową bezpośrednio na jednym z tych komputerów</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Nie można wykryć bieżącej karty</string>
+    <string name="target_location">Lokalizacja:</string>
+    <string name="target_location_error">Wybrano nieprawidłową lokalizację</string>
+    <string name="target_location_device">Urządzenie</string>
+    <string name="target_location_warning_remote_to_webdav">Kopie zapasowe ze zdalnego źródła na serwer WebDav wymagają utworzenia tymczasowych plików pośrednich na Twoim urządzeniu</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Wybierz katalog</string>
+    <string name="target_local_information_timezone">System plików FAT, powszechnie używany w zewnętrznych magazynach, nie może zarządzać strefami czasowymi i przechowuje daty na podstawie czasu lokalnego urządzenia. W konsekwencji po zmianie strefy czasowej może nastąpić utworzenie kompletnej kopii zapasowej Twoich plików</string>
+    <string name="target_local_warning_android_10">Google zdecydowało się cofnąć pozwolenie aplikacji na zapis w pamięci zewnętrznej poza ich prywatnym folderem w systemie Android 10.\n\nCzy chcesz przenieść folder docelowy do folderu Mirror?\n\nUważaj, Android usunie go, gdy odinstalujesz tę aplikację!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Serwer:</string>
+    <string name="target_common_server_hint">Nazwa domeny lub adres IP</string>
+    <string name="target_common_path">Folder:</string>
+    <string name="target_common_path_hint">Folder/podfolder</string>
+    <string name="target_common_login">Użytkownik:</string>
+    <string name="target_common_login_hint">Nazwa_użytkownika</string>
+    <string name="target_common_password">Hasło użytkownika:</string>
+    <string name="target_common_password_hint">Przepustka_użytkownika</string>
+    <string name="target_common_port">Port:</string>
+    <string name="target_common_share">Udostępnianie:</string>
+    <string name="target_common_search">Szukaj</string>
+    <string name="target_common_autofill">Automatyczne wypełnianie</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Identyfikator użytkownika:</string>
+    <string name="target_nfs_uid_hint">UID (fakultatywny)</string>
+    <string name="target_nfs_gid">Identyfikator grupy:</string>
+    <string name="target_nfs_gid_hint">GID (fakultatywny)</string>
+    <string name="target_nfs_share_hint">Ścieżka głównego folderu współdzielonego</string>
+    <string name="target_nfs_non_root_mount_warning">Android wymaga uprawnień montowania użytkownika innego niż root na Twoim serwerze</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Nazwa lub adres IP</string>
+    <string name="target_smb_domain">Domena:</string>
+    <string name="target_smb_domain_hint">(opcjonalnie)</string>
+    <string name="target_smb_share_hint">Nazwa głównego folderu współdzielonego</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Użyj SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">System Android nie pozwala na używanie protokołu SSL/TLS z serwerami korzystającymi z opcji wznawiania sesji TLS w połączeniu transmisji danych</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Klucz hosta:</string>
+    <string name="target_sftp_hostkey_hint">Dotknij, aby pobrać klucz hosta serwera</string>
+    <string name="target_sftp_hostkey_load">Pobieranie klucza hosta …</string>
+    <string name="target_sftp_hostkey_confirmation">Czy ufasz temu serwerowi?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Użyj protokołu SSL</string>
+    <string name="target_webdav_ssl_warning">Certyfikaty podpisane przez siebie zwykle nie są wystarczające i mogą zostać odrzucone podczas kontroli bezpieczeństwa</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Bezpieczeństwo</string>
+    <string name="backup_protect">Edycja wymaga uwierzytelnienia biometrycznego</string>
+    <string name="backup_protect_warning">Uwierzytelnianie biometryczne nie jest skonfigurowane w tym urządzeniu</string>
+
+    <string name="backup_opt">Kopia zapasowa</string>
+    <string name="backup_recursive">Obsługa podfolderów</string>
+    <string name="backup_retry_corrupted">Ponów próbę kopiowania po wykryciu uszkodzonego pliku</string>
+    <string name="backup_date_comparison_auto">Automatyczny tryb porównywania dat plików</string>
+    <string name="backup_date_comparison_mode">Tryb porównywania dat plików:</string>
+    <string name="backup_wifi">Kopia zapasowa tylko przez WiFi</string>
+    <string name="backup_nomedia">Ukryj miejsce docelowe w galerii (.nomedia)</string>
+
+    <string name="orphans_opt">Osierocone pliki</string>
+    <string name="orphans_action">Jeśli plik istnieje tylko w lokalizacji docelowej:</string>
+    <string name="orphans_folder">Do tego folderu:</string>
+    <string name="orphans_folder_name">Sieroty</string>
+    <string name="orphans_invalid_folder">Nieprawidłowa nazwa folderu</string>
+
+    <string name="filters_opt">Filtry</string>
+    <string name="filter_images">Zdjęcia</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Filmy wideo</string>
+    <string name="filter_documents">Dokumenty</string>
+    <string name="filter_others">Inne</string>
+    <string name="filter_min_size">Ignoruj pliki mniejsze niż:</string>
+    <string name="filter_max_size">Ignoruj pliki większe niż:</string>
+    <string name="filter_black_list">Lista wykluczeń (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">wzorzec glob</a>):</string>
+    <string name="filter_black_list_hint">/Folder/PodFolder/**\n.trashed*</string>
+
+    <string name="schedule_opt">Planowanie</string>
+    <string name="schedule_auto">Wykonuj automatyczne kopie zapasowe</string>
+    <string name="schedule_charging">Tylko podczas ładowania urządzenia</string>
+    <string name="schedule_idle">Tylko gdy urządzenie jest w trybie gotowości</string>
+    <string name="schedule_idle_warning">Może nie działać: niektóre urządzenia nie zgłaszają poprawnie stanu czuwania</string>
+    <string name="schedule_interval">Każdy:</string>
+    <string name="schedule_time">w</string>
+
+    <string name="options_low_interval_alert">Krótkie opóźnienie ograniczy autonomię użytkownika</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Wygląd</string>
+    <string name="backup_color_background">Tło:</string>
+    <string name="backup_color_border">Obramowanie:</string>
+    <string name="backup_color_icons">Ikony:</string>
+    <string name="backup_color_progressbar">Pasek postępu:</string>
+    <string name="backup_appearance_preview">Podgląd</string>
+    <string name="backup_appearance_load_theme">Dotknij, aby załadować motyw</string>
+    <string name="backup_appearance_theme_custom">Niestandardowy #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Automatyczne wypełnianie</string>
+    <string name="autofill_authentication_message">Potwierdź swoją tożsamość</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Lista poświadczeń</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Wprowadź adres serwera i dane uwierzytelniające</string>
+    <string name="folder_explorer_missing_address">Wprowadź adres serwera</string>
+    <string name="folder_explorer_missing_share">Wprowadź udział, w którym chcesz przeprowadzić wyszukiwanie</string>
+    <string name="folder_explorer_unable_connect">Nieudane połączenie</string>
+    <string name="folder_explorer_unable_list">Nie można odczytać zawartości tego folderu</string>
+    <string name="folder_explorer_error_details">Komunikat o błędzie:</string>
+    <string name="folder_explorer_error_protocol">Nie znaleziono protokołu komunikacyjnego</string>
+    <string name="folder_explorer_recycler_hint">Zawartość serwera zdalnego</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Źródło</string>
+    <string name="log_destination">Miejsce docelowe</string>
+
+    <string name="log_error">ERROR</string>
+    <string name="log_warning">ALERT</string>
+    <string name="log_note">UWAGA</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Rozpoczęto tworzenie kopii zapasowej</string>
+    <string name="log_backup_start_scheduled">Rozpoczęto tworzenie automatycznej kopii zapasowej</string>
+    <string name="log_backup_initialisation">Inicjalizacja …</string>
+    <string name="log_folder_destination_create">Utwórz brakujący folder docelowy</string>
+    <string name="log_searching_files">Wyszukiwanie plików …</string>
+    <string name="log_found">Pliki znalezione:</string>
+    <string name="log_excluding">Filtrowanie plików …</string>
+    <string name="log_remaining">Pozostały plik:</string>
+    <string name="log_checking_backup">Sprawdzam pliki do kopii zapasowej …</string>
+    <string name="log_flexible_mode">(tryb elastyczny) …</string>
+    <string name="log_to_backup">Pliki do skopiowania:</string>
+    <string name="log_orphans_keep">Sieroty do zatrzymania:</string>
+    <string name="log_orphans_move">Sieroty do przeniesienia:</string>
+    <string name="log_orphans_delete">Sieroty do usunięcia:</string>
+    <string name="log_obsolete">Nieaktualne sieroty do usunięcia:</string>
+    <string name="log_orphans_after_backup">(i) Sieroty w folderze docelowym:</string>
+
+    <string name="error_wifi">Wymagane WiFi nie jest połączone</string>
+    <string name="error_target">Nieprawidłowe miejsce docelowe kopii zapasowej</string>
+    <string name="error_blacklist">Błąd składni na liście wykluczeń</string>
+
+    <string name="error_server_reach">Nie można się połączyć z tym serwerem</string>
+    <string name="error_server_connect">Nie można się połączyć z tym serwerem</string>
+    <string name="error_share_connect">Nie można połączyć się z tym udziałem</string>
+    <string name="error_ssl_connect">Nie można używać protokołu SSL/TLS</string>
+    <string name="error_ssl_certificate">Nieprawidłowy/brakujący certyfikat SSL/TLS</string>
+    <string name="error_ftp_filetype">Nie można przełączyć się do trybu przesyłania danych binarnych</string>
+    <string name="error_server_login">Nie można się uwierzytelnić</string>
+    <string name="error_server_disconnect">Nie można rozłączyć się z serwerem</string>
+
+    <string name="error_permission_read">Odmowa zezwolenia na odczyt</string>
+    <string name="error_permission_write">Odmowa zezwolenia na zapis</string>
+    <string name="error_permission_unknown">Nie można sprawdzić uprawnień</string>
+
+    <string name="error_space_low">Mała ilość wolnego miejsca</string>
+    <string name="error_space_critical">Za mało wolnego miejsca</string>
+    <string name="error_space_unverifiable">Nie można sprawdzić wolnego miejsca</string>
+    <string name="error_quota_low">Niski dostępny kontyngent</string>
+    <string name="error_quota_critical">Niewystarczająca ilość dostępnego kontyngentu</string>
+    <string name="error_quota_unverifiable">Nie można sprawdzić dostępnej kwoty</string>
+
+    <string name="error_folder_existence">Nie znaleziono pliku</string>
+    <string name="error_folder_invalid">Nieprawidłowy folder</string>
+    <string name="error_folder_list">Nie można wyświetlić listy plików w tym folderze</string>
+    <string name="error_folder_delete">Nie można usunąć tego folderu</string>
+    <string name="error_folder_create">Nie można utworzyć tego folderu</string>
+    <string name="error_folder_create_tmp">Nie można utworzyć folderu plików tymczasowych</string>
+
+    <string name="error_path_reach">Nie można dotrzeć do tej ścieżki</string>
+
+    <string name="error_orphan_folder_not_specified">Folder dla sierot nieokreślony</string>
+    <string name="error_orphan_folder_in_use">Użyj innej nazwy folderu niż te w źródle do przechowywania plików osieroconych</string>
+
+    <string name="error_setforeground">Nie można wyświetlić powiadomienia o postępie. Czas trwania kopii zapasowej jest ograniczony do 10 minut</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Ochrona zaczyna się …</string>
+    <string name="log_orphans_move_long">Przemieszczanie sierot</string>
+    <string name="log_orphans_delete_long">Usuń sieroty</string>
+    <string name="log_delete_obsolete_orphans">Usuń nieaktualne sieroty</string>
+    <string name="log_folders_create">Tworzenie nowych plików</string>
+    <string name="log_copy">Kopia</string>
+    <string name="log_move">Przesuń</string>
+    <string name="log_delete">Usuń</string>
+    <string name="log_nomedia_created">utworzony plik .nomedia</string>
+    <string name="log_nomedia_removed">Usunięty plik .nomedia</string>
+    <string name="log_empty_folders_delete">Usuwanie pustych folderów</string>
+
+    <string name="error_file_read">Nie można odczytać tego pliku</string>
+    <string name="error_file_read_finish">Nie można zamknąć czytnika plików</string>
+    <string name="error_file_copy">Nie można skopiować tego pliku</string>
+    <string name="error_file_move">Nie można przenieść tego pliku</string>
+    <string name="error_file_delete">Nie można usunąć tego pliku</string>
+    <string name="error_file_corrupted">Wykryto uszkodzenie pliku, ponów próbę …</string>
+    <string name="error_file_corrupted_final">Nie można skopiować tego pliku bez uszkodzenia. Ponów próbę przy następnej kopii zapasowej</string>
+    <string name="error_file_date_modification">Nieudana modyfikacja daty pliku. Przełączanie na elastyczny tryb porównywania</string>
+    <string name="success_file_date_modification">Powodzenie modyfikacji daty pliku. Przełączanie na ścisły tryb porównywania</string>
+    <string name="error_file_tmp_space">Niewystarczająca ilość wolnego miejsca w pamięci wewnętrznej urządzenia, aby utworzyć plik tymczasowy</string>
+    <string name="error_file_tmp_skipped">Plik pominięty</string>
+    <string name="error_file_tmp">Nie można utworzyć pliku tymczasowego</string>
+    <string name="error_nomedia_create">Nie można utworzyć pliku .nomedia</string>
+    <string name="error_nomedia_remove">Nie można usunąć pliku .nomedia</string>
+    <string name="error_ftp_mlst">Polecenie MLST, wymagane do pobrania rozmiaru pliku i dokładnego znacznika czasu, najwyraźniej nie jest obsługiwane przez ten serwer</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Pomyślne utworzenie kopii zapasowej</string>
+    <string name="log_backup_warning">Pomyślne utworzenie kopii zapasowej z alertami</string>
+    <string name="log_backup_canceled">Kopia zapasowa anulowana</string>
+    <string name="error_backup_failed">Nie udało się utworzyć kopii zapasowej</string>
+
+    <string name="log_next_schedule_success">Następna zaplanowana kopia zapasowa:</string>
+    <string name="log_next_schedule_failed">Następna zaplanowana próba:</string>
+
+    <string name="log_backup_duration">Czas trwania kopii zapasowej:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Nie znaleziono folderu dziennika</string>
+    <string name="logs_file_not_found">Brak pliku dziennika dla tej kopii zapasowej</string>
+    <string name="logs_file_read_error">Wystąpił błąd podczas ładowania tego pliku dziennika</string>
+    <string name="logs_navigation_previous">Poprzedni</string>
+    <string name="logs_navigation_next">Następny</string>
+    <string name="logs_recycler_hint">Zawartość pliku dziennika</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Bieżące tworzenie kopii zapasowych</string>
+    <string name="notification_ongoing_channel_description">Szczegóły postępu podczas tworzenia kopii zapasowych</string>
+    <string name="notification_result_channel_name">Kopie zapasowe zakończone</string>
+    <string name="notification_result_channel_description">Wyniki wykonanych zaplanowanych kopii zapasowych</string>
+    <string name="notification_result">Wynik zaplanowanych kopii zapasowych</string>
+    <string name="notification_scheduled">Zaplanowane kopie zapasowe</string>
+    <string name="notification_no_backup">Dzisiaj nie przeprowadzono żadnej operacji</string>
+    <string name="notification_active">W trakcie realizacji</string>
+    <string name="notification_files">Pliki</string>
+    <string name="notification_no_file">Brak nowych lub osieroconych plików</string>
+    <string name="notification_orphans">Sieroty</string>
+    <string name="notification_success">Sukces</string>
+    <string name="notification_warning">Ostrzeżenie</string>
+    <string name="notification_failed">Nieudane</string>
+    <string name="notification_canceled">Anulowany</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Zbyt mała autonomia</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Nie można uruchomić tej kopii zapasowej: kopia zapasowa nie jest nieaktywna</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>System</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>System</item>
+        <item>Światło</item>
+        <item>Ciemny</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Nikt</item>
+        <item>Wiele — Odrzucić</item>
+        <item>Globalnie — Odrzucić</item>
+        <item>Globalnie — Stałe</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Urządzenie</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Domyślny</item>
+        <item>Czerwony</item>
+        <item>Pomarańczowy</item>
+        <item>Żółty</item>
+        <item>Limonkowy</item>
+        <item>Zielony</item>
+        <item>Miętowy</item>
+        <item>Błękitny</item>
+        <item>Lazurowy</item>
+        <item>Niebieski</item>
+        <item>Indygo</item>
+        <item>Magenta</item>
+        <item>Różowy</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Brak</item>
+        <item>Czerwony</item>
+        <item>Pomarańczowy</item>
+        <item>Żółty</item>
+        <item>Limonkowy</item>
+        <item>Zielony</item>
+        <item>Miętowy</item>
+        <item>Błękitny</item>
+        <item>Lazurowy</item>
+        <item>Niebieski</item>
+        <item>Indygo</item>
+        <item>Magenta</item>
+        <item>Różowy</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Ścisły (źródło != miejsce docelowe)</item>
+        <item>Elastyczny (źródło > miejsce docelowe)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Zachowaj</item>
+        <item>Przesuń</item>
+        <item>Usuń</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>dni</item>
+        <item>godziny</item>
+        <item>minuty</item>
+    </string-array>
+
+</resources>

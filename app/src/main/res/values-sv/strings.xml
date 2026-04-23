@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- SWEDISH -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Öppen källkod för säkerhetskopiering av flera protokoll (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi krävs</string>
+    <string name="wifi_required_text">WiFi-alternativet har valts men ingen anslutning är för närvarande aktiv.\nAnslut till ett WiFi-nätverk för att utföra säkerhetskopieringen</string>
+    <string name="tooltip_new_backup">Använd +-knappen ovan för att ställa in en ny säkerhetskopia</string>
+    <string name="tooltip_edit_mode">Den övre halvan av dina reservkort är interaktiv:\n- Tryck för att växla mellan knapparna för säkerhetskopiering och redigering\n- Långt tryck för att inaktivera/aktivera dina säkerhetskopior</string>
+    <string name="tooltip_group_launch">Den översta \"synk\"-knappen har två funktioner:\n- Tryck för att starta alla dina säkerhetskopior på en gång\n- Du kan gruppera säkerhetskopior efter färgtema. Om du har flera grupper, tryck länge på den här knappen för att välja en och starta dess säkerhetskopior</string>
+    <string name="main_recycler_hint">Säkerhetskopieringslista</string>
+    <string name="main_color_theme_group">Grupp #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Starta alla säkerhetskopieringar</string>
+    <string name="menu_cancel_all">Avbryt alla säkerhetskopior</string>
+    <string name="menu_backup_new">Ny backup</string>
+    <string name="menu_settings">Inställningar</string>
+    <string name="menu_permissions">Behörigheter</string>
+    <string name="menu_about">Omkring</string>
+
+    <!--Global-->
+    <string name="global_information">Information</string>
+    <string name="global_confirmation">Bekräftelse</string>
+    <string name="global_warning">Varning</string>
+    <string name="global_error">Fel</string>
+    <string name="global_yes">Ja</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">Nej</string>
+    <string name="global_cancel">Avbryt</string>
+    <string name="global_always">Alltid</string>
+    <string name="global_understood">Förstått</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Inställningar</string>
+    <string name="settings_interface_title">Gränssnitt</string>
+    <string name="settings_language_text">Språk:</string>
+    <string name="settings_theme_text">Tema:</string>
+    <string name="settings_logs_title">Loggar</string>
+    <string name="settings_logs_text">Antal loggar att behålla per säkerhetskopia:</string>
+    <string name="settings_logs_errors">Behåll ursprungliga råfelmeddelanden istället för deras förenklade version</string>
+    <string name="settings_logs_warning_setforeground">Spela in en varning när förloppsmeddelande misslyckas</string>
+    <string name="settings_logs_preserve_scroll_position">Bevara rullningsposition när du ändrar loggfil</string>
+    <string name="settings_notifications_title">Aviseringar</string>
+    <string name="settings_notifications_theme">Använd det konfigurerade färgtemat</string>
+    <string name="settings_notifications_type">Resultat av schemalagda säkerhetskopieringar:</string>
+    <string name="settings_notifications_tip">- Flera: ett meddelande per säkerhetskopia\n- Global: enstaka meddelande, daglig sammanfattning av alla säkerhetskopior\n\n- Slängbar: kan tas bort\n- Permanent: alltid synlig\n\nPermanent meddelande kan förhindra problem med schemalagda säkerhetskopieringar</string>
+    <string name="settings_notifications_warning">Tillåt aviseringsbehörighet att ändra den här inställningen</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Behörigheter</string>
+    <string name="permission_locked_title">Tillstånd låst</string>
+
+    <string name="permission_files_title">Tillåt åtkomst till filer (krävs)</string>
+    <string name="permission_files_text">Säkerhetskopieringar är omöjliga utan tillgång till dina filer och mappar</string>
+    <string name="permission_files_locked_text">Android har blockerat denna behörighet, vilket gör att programmet inte fungerar.\n\nMirror kommer aldrig att samla in information om dig eller dina uppgifter.\n\nVill du öppna programmets inställningar och godkänna det manuellt?</string>
+
+    <string name="permission_notifications_title">Tillåt aviseringar (rekommenderas starkt)</string>
+    <string name="permission_notifications_text">Meddelanden används för att visa pågående säkerhetskopieringsprogress och schemalagda säkerhetskopieringsresultat</string>
+    <string name="permission_notifications_locked_text">Android låste denna behörighet.\n\nVill du öppna programmets inställningar och tillåta det manuellt?</string>
+
+    <string name="permission_battery_title">Inaktivera batterioptimering (rekommenderas)</string>
+    <string name="permission_battery_text">Android-batterioptimering kan vara för aggressiv och störa schemalagda säkerhetskopieringar</string>
+
+    <string name="permission_permanent_title">Inaktivera återkallande av behörigheter (rekommenderas)</string>
+    <string name="permission_permanent_text">Behörigheter kan tas bort automatiskt av Android, vilket kan leda till funktionsstörningar</string>
+
+    <string name="permission_auto_startup_title">Aktivera automatisk start (rekommenderas)</string>
+    <string name="permission_auto_startup_text">Utan detta tillstånd kan schemalagda säkerhetskopior sluta fungera efter en omstart av enheten</string>
+    <string name="permission_auto_startup_try">Varje tillverkare hanterar denna funktion på sitt eget sätt och Mirror kan bara försöka öppna motsvarande inställningssida.\n\nOm detta misslyckas måste du konfigurera den manuellt för din enhet</string>
+    <string name="permission_auto_startup_manual">Varje tillverkare hanterar den här funktionen på sitt eget sätt, vilket kräver en manuell konfiguration som är anpassad till din enhet</string>
+    <string name="permission_auto_startup_open">Öppna</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Omkring</string>
+    <string name="about_app_title">Ansökan</string>
+    <string name="about_app_author">Skapad av <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Licens: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Krediter och tredje parts licenser</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3-klient – Licensierad under Apache-2.0 av EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3-klient – Licensierad under Apache-2.0 av hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP-klient – licensierad under Apache-2.0 av Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP-klient – Licensierad under BSD-stil av mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV-klient – Licensierad under Apache-2.0 av thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Sammanfattningsautentisering för WebDAV – Licensierad under Apache-2.0 av rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: Öppnar behörighetshanteraren för autostart - Licensierad under MIT av judemanutd</string>
+    <string name="about_libraries_thanks">Tack för ditt hårda arbete, Mirror kunde inte existera utan dig :)</string>
+    <string name="about_support_title">Stöd</string>
+    <string name="about_support_intro">Mirror är en gratis och öppen källkodsapplikation som distribueras utan reklam eller spårning.\n\nOm du tycker att den är användbar och vill stödja mitt arbete skulle en liten donation uppskattas mycket.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Ta bort den här säkerhetskopian</string>
+    <string name="backup_delete_warning_message">Vill du ta bort den här säkerhetskopian?</string>
+    <string name="backup_info">Information om den här säkerhetskopian</string>
+    <string name="backup_launch">Starta säkerhetskopieringen</string>
+    <string name="backup_enqueued">Säkerhetskopiering väntar</string>
+    <string name="backup_last_date">Senaste backup:</string>
+    <string name="backup_card_move">Flytta reservkort</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Lås upp utgåvan</string>
+    <string name="edit_authentication_message">Denna säkerhetskopia kräver biometrisk autentisering</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Utgåva</string>
+    <string name="edit_title_new">Skapande</string>
+    <string name="edit_save">Spara</string>
+    <string name="edit_cancel">Avbryt</string>
+    <string name="edit_source">Källa</string>
+    <string name="edit_destination">Destination</string>
+
+    <string name="edit_exit_alert">Upprepa för att avsluta utan att spara</string>
+    <string name="edit_invalid_alert">Ange en giltig källa och en giltig destination</string>
+    <string name="edit_invalid_credentials_alert">Ange giltiga inloggningsuppgifter (användarnamn/lösenord)</string>
+    <string name="edit_invalid_hostkey_alert">Hämta din SFTP-servervärdnyckel av säkerhetsskäl</string>
+    <string name="edit_remote_alert_message">Att göra säkerhetskopior mellan två fjärrservrar via din enhet är inte det mest effektiva.\n\nOm du kan, skulle det vara bättre att ställa in din säkerhetskopia direkt på en av dessa datorer</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Kan inte upptäcka aktuell flik</string>
+    <string name="target_location">Plats:</string>
+    <string name="target_location_error">Fel plats vald</string>
+    <string name="target_location_device">Enhet</string>
+    <string name="target_location_warning_remote_to_webdav">Säkerhetskopiering från en fjärrkälla till en WebDav-server kräver att man skapar tillfälliga mellanliggande filer på din enhet</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Välj mapp</string>
+    <string name="target_local_information_timezone">FAT-filsystemet, som vanligtvis används på externa lagringar, kan inte hantera tidszoner och lagrar datum baserat på enhetens lokal tid. Som en konsekvens kan en fullständig säkerhetskopiering av dina filer ske efter att du har ändrat tidszon</string>
+    <string name="target_local_warning_android_10">Google beslutade att återkalla appars tillåtelse att skriva på extern lagring utanför deras privata mapp på Android 10.\n\nVill du flytta din målmapp in i Mirror-mappen?\n\nVar försiktig, Android tar bort den när du avinstallerar den här appen!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Server:</string>
+    <string name="target_common_server_hint">Domännamn eller IP</string>
+    <string name="target_common_path">Mapp:</string>
+    <string name="target_common_path_hint">Mapp/undermapp</string>
+    <string name="target_common_login">Användare:</string>
+    <string name="target_common_login_hint">Användarnamn</string>
+    <string name="target_common_password">Användarens lösenord:</string>
+    <string name="target_common_password_hint">Användarens_lösenord</string>
+    <string name="target_common_port">Port:</string>
+    <string name="target_common_share">Dela:</string>
+    <string name="target_common_search">Sök</string>
+    <string name="target_common_autofill">Autofyll</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Användar-ID:</string>
+    <string name="target_nfs_uid_hint">UID (fakultativ)</string>
+    <string name="target_nfs_gid">Grupp-ID:</string>
+    <string name="target_nfs_gid_hint">GID (fakultativ)</string>
+    <string name="target_nfs_share_hint">Sökväg till den delade rotmappen</string>
+    <string name="target_nfs_non_root_mount_warning">Android kräver tillstånd för icke-rootmontering på din server</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Namn eller IP</string>
+    <string name="target_smb_domain">Domän:</string>
+    <string name="target_smb_domain_hint">(valfritt)</string>
+    <string name="target_smb_share_hint">Namnet på den delade rotmappen</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Använd SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Android tillåter inte användning av SSL/TLS med servrar som använder alternativet TLS-sessionsåterupptagande på dataanslutningen</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Värdnyckel:</string>
+    <string name="target_sftp_hostkey_hint">Knacka för att hämta serverns värdnyckel</string>
+    <string name="target_sftp_hostkey_load">Hämtar värdnyckel …</string>
+    <string name="target_sftp_hostkey_confirmation">Litar du på den här servern?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Använd SSL</string>
+    <string name="target_webdav_ssl_warning">Självsignerade certifikat är vanligtvis inte tillräckliga och kan avvisas under säkerhetskontroller</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Säkerhet</string>
+    <string name="backup_protect">Redigering kräver biometrisk autentisering</string>
+    <string name="backup_protect_warning">Biometrisk autentisering är inte konfigurerad på den här enheten</string>
+
+    <string name="backup_opt">Säkerhetskopiering</string>
+    <string name="backup_recursive">Hantera undermappar</string>
+    <string name="backup_retry_corrupted">Försök kopiera igen när en skadad fil upptäcks</string>
+    <string name="backup_date_comparison_auto">Automatiskt läge för jämförelse av fildatum</string>
+    <string name="backup_date_comparison_mode">Jämförelseläge för fildatum:</string>
+    <string name="backup_wifi">Säkerhetskopiering endast via WiFi</string>
+    <string name="backup_nomedia">Dölja destinationen i galleriet (.nomedia)</string>
+
+    <string name="orphans_opt">Föräldralösa filer</string>
+    <string name="orphans_action">Om en fil endast finns i Destination:</string>
+    <string name="orphans_folder">Till denna mapp:</string>
+    <string name="orphans_folder_name">Föräldralösa barn</string>
+    <string name="orphans_invalid_folder">Ogiltigt mappnamn</string>
+
+    <string name="filters_opt">Filter</string>
+    <string name="filter_images">Bilder</string>
+    <string name="filter_audio">Ljud</string>
+    <string name="filter_videos">Videor</string>
+    <string name="filter_documents">Dokument</string>
+    <string name="filter_others">Övriga</string>
+    <string name="filter_min_size">Ignorera filer som är mindre än:</string>
+    <string name="filter_max_size">Ignorera filer som är större än:</string>
+    <string name="filter_black_list">Uteslutningslista (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">globmönster</a>):</string>
+    <string name="filter_black_list_hint">/Mapp/UnderMapp/**\n.trashed*</string>
+
+    <string name="schedule_opt">Schemaläggning</string>
+    <string name="schedule_auto">Utföra automatiska säkerhetskopior</string>
+    <string name="schedule_charging">Endast när enheten laddas</string>
+    <string name="schedule_idle">Endast när enheten är i standby-läge</string>
+    <string name="schedule_idle_warning">Fungerar kanske inte: vissa enheter signalerar inte standby-status på rätt sätt</string>
+    <string name="schedule_interval">Alla enheter:</string>
+    <string name="schedule_time">på</string>
+
+    <string name="options_low_interval_alert">En kort fördröjning minskar din autonomi</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Utseende</string>
+    <string name="backup_color_background">Bakgrund:</string>
+    <string name="backup_color_border">Kanter:</string>
+    <string name="backup_color_icons">Ikoner:</string>
+    <string name="backup_color_progressbar">Förloppsindikator:</string>
+    <string name="backup_appearance_preview">Förhandsgranska</string>
+    <string name="backup_appearance_load_theme">Knacka för att ladda ett tema</string>
+    <string name="backup_appearance_theme_custom">Anpassat #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Autofyll</string>
+    <string name="autofill_authentication_message">Bekräfta din identitet</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Autentiseringslista</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Ange adressen till din server och dina autentiseringsuppgifter</string>
+    <string name="folder_explorer_missing_address">Ange din serveradress</string>
+    <string name="folder_explorer_missing_share">Ange en resurs att söka i</string>
+    <string name="folder_explorer_unable_connect">Anslutning misslyckades</string>
+    <string name="folder_explorer_unable_list">Det går inte att läsa innehållet i den här mappen</string>
+    <string name="folder_explorer_error_details">Felmeddelande:</string>
+    <string name="folder_explorer_error_protocol">Kommunikationsprotokoll hittades inte</string>
+    <string name="folder_explorer_recycler_hint">Fjärrserverinnehåll</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Källa</string>
+    <string name="log_destination">Destination</string>
+
+    <string name="log_error">FEL</string>
+    <string name="log_warning">ALERT</string>
+    <string name="log_note">NOTERA</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Säkerhetskopiering påbörjad</string>
+    <string name="log_backup_start_scheduled">Automatisk säkerhetskopiering påbörjad</string>
+    <string name="log_backup_initialisation">Initialisering …</string>
+    <string name="log_folder_destination_create">Skapa den saknade destinationsmappen</string>
+    <string name="log_searching_files">Söker efter filer …</string>
+    <string name="log_found">Filer hittade:</string>
+    <string name="log_excluding">Filtrerar filer …</string>
+    <string name="log_remaining">Återstående filer:</string>
+    <string name="log_checking_backup">Kontrollerar filer som ska säkerhetskopieras …</string>
+    <string name="log_flexible_mode">(flexibelt läge) …</string>
+    <string name="log_to_backup">Filer som ska kopieras:</string>
+    <string name="log_orphans_keep">Föräldralösa barn att behålla:</string>
+    <string name="log_orphans_move">Föräldralösa barn att flytta:</string>
+    <string name="log_orphans_delete">Föräldralösa barn att radera:</string>
+    <string name="log_obsolete">Föråldrade föräldralösa barn som ska strykas:</string>
+    <string name="log_orphans_after_backup">(i) Föräldralösa barn i destinationsmappen:</string>
+
+    <string name="error_wifi">Det nödvändiga WiFi är inte anslutet</string>
+    <string name="error_target">Fel mål för säkerhetskopiering</string>
+    <string name="error_blacklist">Syntaxfel i undantagslistan</string>
+
+    <string name="error_server_reach">Det går inte att nå den här servern</string>
+    <string name="error_server_connect">Det går inte att ansluta till den här servern</string>
+    <string name="error_share_connect">Det går inte att ansluta till den här resursen</string>
+    <string name="error_ssl_connect">Kan inte använda SSL/TLS</string>
+    <string name="error_ssl_certificate">Ogiltigt/bristande SSL/TLS-certifikat</string>
+    <string name="error_ftp_filetype">Kan inte byta till binärt överföringsläge</string>
+    <string name="error_server_login">Det går inte att autentisera</string>
+    <string name="error_server_disconnect">Kan inte koppla bort från servern</string>
+
+    <string name="error_permission_read">Läsbehörighet nekad</string>
+    <string name="error_permission_write">Skrivbehörighet nekad</string>
+    <string name="error_permission_unknown">Det går inte att kontrollera behörigheter</string>
+
+    <string name="error_space_low">Lågt ledigt utrymme</string>
+    <string name="error_space_critical">Inte tillräckligt med ledigt utrymme</string>
+    <string name="error_space_unverifiable">Det går inte att kontrollera ledigt utrymme</string>
+    <string name="error_quota_low">Låg tillgänglig kvot</string>
+    <string name="error_quota_critical">Inte tillräckligt med tillgängliga kvoter</string>
+    <string name="error_quota_unverifiable">Det går inte att kontrollera tillgänglig kvot</string>
+
+    <string name="error_folder_existence">Filen har inte hittats</string>
+    <string name="error_folder_invalid">Ogiltig mapp</string>
+    <string name="error_folder_list">Kan inte lista filer i den här mappen</string>
+    <string name="error_folder_delete">Det går inte att ta bort den här mappen</string>
+    <string name="error_folder_create">Kan inte skapa den här mappen</string>
+    <string name="error_folder_create_tmp">Det gick inte att skapa en temporär filmapp</string>
+
+    <string name="error_path_reach">Det går inte att nå denna sökväg</string>
+
+    <string name="error_orphan_folder_not_specified">Föräldralösa mapp ej specificerad</string>
+    <string name="error_orphan_folder_in_use">Använd inte ett mappnamn som finns i källan för att lagra föräldralösa filer</string>
+
+    <string name="error_setforeground">Det går inte att visa förloppsmeddelande. Säkerhetskopieringen är begränsad till 10 minuter</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Skydd börjar …</string>
+    <string name="log_orphans_move_long">Flyttning av föräldralösa barn</string>
+    <string name="log_orphans_delete_long">Radera föräldralösa barn</string>
+    <string name="log_delete_obsolete_orphans">Ta bort föråldrade föräldralösa barn</string>
+    <string name="log_folders_create">Skapa nya filer</string>
+    <string name="log_copy">Kopiering</string>
+    <string name="log_move">Rör på sig</string>
+    <string name="log_delete">Tar bort</string>
+    <string name="log_nomedia_created">.nomedia-fil skapad</string>
+    <string name="log_nomedia_removed">Borttagen .nomedia-fil</string>
+    <string name="log_empty_folders_delete">Ta bort tomma mappar</string>
+
+    <string name="error_file_read">Det går inte att läsa den här filen</string>
+    <string name="error_file_read_finish">Det går inte att stänga filläsaren</string>
+    <string name="error_file_copy">Kan inte kopiera den här filen</string>
+    <string name="error_file_move">Kan inte flytta den här filen</string>
+    <string name="error_file_delete">Kan inte radera den här filen</string>
+    <string name="error_file_corrupted">Filkorruption upptäckt, försök igen …</string>
+    <string name="error_file_corrupted_final">Det går inte att kopiera denna fil utan att den skadas. Försök igen vid nästa säkerhetskopiering</string>
+    <string name="error_file_date_modification">Ändring av fildatum misslyckades. Byter till flexibelt jämförelseläge</string>
+    <string name="success_file_date_modification">Ändring av fildatum lyckades. Byter till strikt jämförelseläge</string>
+    <string name="error_file_tmp_space">Otillräckligt ledigt utrymme på enhetens internminne för att skapa en tillfällig fil</string>
+    <string name="error_file_tmp_skipped">Filen hoppades över</string>
+    <string name="error_file_tmp">Det gick inte att skapa en tillfällig fil</string>
+    <string name="error_nomedia_create">Det går inte att skapa .nomedia-filen</string>
+    <string name="error_nomedia_remove">Det går inte att ta bort .nomedia-filen</string>
+    <string name="error_ftp_mlst">MLST-kommandot, som krävs för att hämta filstorleken och den exakta tidsstämpeln, verkar inte stödjas av denna server</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Framgångsrik säkerhetskopiering</string>
+    <string name="log_backup_warning">Framgångsrik säkerhetskopiering med varningar</string>
+    <string name="log_backup_canceled">Säkerhetskopiering avbruten</string>
+    <string name="error_backup_failed">Säkerhetskopiering misslyckades</string>
+
+    <string name="log_next_schedule_success">Nästa schemalagda säkerhetskopiering:</string>
+    <string name="log_next_schedule_failed">Nästa planerade försök:</string>
+
+    <string name="log_backup_duration">Säkerhetskopieringens varaktighet:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Loggmappen hittades inte</string>
+    <string name="logs_file_not_found">Ingen loggfil tillgänglig för denna säkerhetskopia</string>
+    <string name="logs_file_read_error">Ett fel inträffade när den här loggfilen laddades</string>
+    <string name="logs_navigation_previous">Föregående</string>
+    <string name="logs_navigation_next">Nästa</string>
+    <string name="logs_recycler_hint">Loggfilens innehåll</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Pågående backuper</string>
+    <string name="notification_ongoing_channel_description">Förloppsinformation under säkerhetskopiering</string>
+    <string name="notification_result_channel_name">Säkerhetskopieringar gjorda</string>
+    <string name="notification_result_channel_description">Resultat av genomförda schemalagda säkerhetskopieringar</string>
+    <string name="notification_result">Resultat av schemalagda säkerhetskopieringar</string>
+    <string name="notification_scheduled">Schemalagda backuper</string>
+    <string name="notification_no_backup">Ingen har utförts i dag</string>
+    <string name="notification_active">På gång</string>
+    <string name="notification_files">Filer</string>
+    <string name="notification_no_file">Inga nya föräldralösa filer</string>
+    <string name="notification_orphans">Föräldralösa</string>
+    <string name="notification_success">Framgång</string>
+    <string name="notification_warning">Varning</string>
+    <string name="notification_failed">Misslyckades</string>
+    <string name="notification_canceled">Inställt</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">För låg autonomi</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Det går inte att köra den här säkerhetskopian: säkerhetskopian är inte inaktiv</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Systemet</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Systemet</item>
+        <item>Ljus</item>
+        <item>Mörk</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Ingen</item>
+        <item>Flera - Slängbar</item>
+        <item>Global - Slängbar</item>
+        <item>Global - Permanent</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Enhet</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Standard</item>
+        <item>Röd</item>
+        <item>Orange</item>
+        <item>Gul</item>
+        <item>Lime</item>
+        <item>Grön</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Blå</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Rosa</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Ingen</item>
+        <item>Röd</item>
+        <item>Orange</item>
+        <item>Gul</item>
+        <item>Lime</item>
+        <item>Grön</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Blå</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Rosa</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Sträng (källa != destination)</item>
+        <item>Flexibel (källa > destination)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Håll</item>
+        <item>Flytta</item>
+        <item>Ta bort</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>dagar</item>
+        <item>timmar</item>
+        <item>minuter</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,1 @@
+マルチプロトコル対応バックアップアプリケーション（NFS、SMB、FTP、SFTP、WebDAV）

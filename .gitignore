@@ -1,0 +1,45 @@
+# --- Android Studio & IntelliJ ---
+.idea/*
+!.idea/copyright/
+!.idea/scopes/
+*.iml
+*.ipr
+*.iws
+.externalNativeBuild
+.cxx
+local.properties
+captures/
+.navigation/
+
+# --- Build Output ---
+**/build/
+**/release/
+
+# --- Gradle ---
+.gradle/
+gradle-daemon-jvm.properties
+
+# --- Kotlin & KSP ---
+**/generated/
+.kotlin/
+
+# --- Secrets & Signatures ---
+*.jks
+*.jks.gpg
+*.keystore
+*.pk8
+*.p12
+google-services.json
+gradle-local.properties
+secrets.properties
+
+# --- Crashlytics / Firebase ---
+**/crashlytics-build.properties
+**/fabric.properties
+
+# --- OS / Divers ---
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.stackdump

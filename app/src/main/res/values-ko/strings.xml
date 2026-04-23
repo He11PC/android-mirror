@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- KOREAN -->
+
+    <!--Activity - Main-->
+    <string name="application_description">오픈 소스 멀티 프로토콜 백업 애플리케이션(NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi가 필요합니다</string>
+    <string name="wifi_required_text">WiFi 옵션을 선택했지만 현재 연결이 활성화되어 있지 않습니다.\n백업을 만들려면 WiFi 네트워크에 연결하십시오</string>
+    <string name="tooltip_new_backup">위의 + 버튼을 사용하여 새 백업을 설정하십시오</string>
+    <string name="tooltip_edit_mode">백업 카드의 상단 절반은 대화식입니다.\n- 탭하여 백업과 편집 버튼 간 전환\n- 백업을 비활성화/활성화하려면 길게 누르십시오</string>
+    <string name="tooltip_group_launch">위의 \"동기화\" 버튼에는 두 가지 기능이 있습니다.\n- 탭하여 모든 백업을 한 번에 시작합니다.\n- 색상 테마별로 백업을 그룹화할 수 있습니다. 그룹이 여러 개인 경우 이 버튼을 길게 눌러 하나를 선택하고 백업을 시작합니다.</string>
+    <string name="main_recycler_hint">백업 목록</string>
+    <string name="main_color_theme_group">그룹 #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">모든 백업 시작</string>
+    <string name="menu_cancel_all">모든 백업 취소</string>
+    <string name="menu_backup_new">새 백업</string>
+    <string name="menu_settings">세팅</string>
+    <string name="menu_permissions">사용 권한</string>
+    <string name="menu_about">에 대한</string>
+
+    <!--Global-->
+    <string name="global_information">정보</string>
+    <string name="global_confirmation">확인</string>
+    <string name="global_warning">경고</string>
+    <string name="global_error">오류</string>
+    <string name="global_yes">예</string>
+    <string name="global_ok">승인</string>
+    <string name="global_no">아니</string>
+    <string name="global_cancel">취소</string>
+    <string name="global_always">언제나</string>
+    <string name="global_understood">이해했다</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">세팅</string>
+    <string name="settings_interface_title">인터페이스</string>
+    <string name="settings_language_text">언어:</string>
+    <string name="settings_theme_text">테마:</string>
+    <string name="settings_logs_title">로그</string>
+    <string name="settings_logs_text">백업당 보관할 로그 수:</string>
+    <string name="settings_logs_errors">단순화된 버전 대신 원본 원시 오류 메시지 유지</string>
+    <string name="settings_logs_warning_setforeground">진행 알림이 실패할 때 경고를 기록합니다</string>
+    <string name="settings_logs_preserve_scroll_position">로그 파일을 변경할 때 스크롤 위치 유지</string>
+    <string name="settings_notifications_title">알림</string>
+    <string name="settings_notifications_theme">구성된 색상 테마 적용</string>
+    <string name="settings_notifications_type">예약된 백업 결과:</string>
+    <string name="settings_notifications_tip">- 다중: 백업당 하나의 알림\n- 글로벌: 단일 알림, 모든 백업의 일일 요약\n\n- 폐기 가능: 제거 가능\n- 영구: 항상 표시\n\n영구 알림을 통해 예약된 백업 문제를 방지할 수 있습니다</string>
+    <string name="settings_notifications_warning">이 설정을 변경하려면 알림 권한을 허용하세요</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">사용 권한</string>
+    <string name="permission_locked_title">권한 잠김</string>
+
+    <string name="permission_files_title">파일 액세스 허용(필수)</string>
+    <string name="permission_files_text">파일 및 폴더에 액세스하지 않으면 백업을 수행할 수 없습니다</string>
+    <string name="permission_files_locked_text">Android가 이 권한을 차단해 앱이 작동하지 않습니다.\n\nMirror이 귀하 또는 귀하의 데이터에 대한 정보를 수집하지 않도록 하십시오.\n\n응용 프로그램 설정을 열고 수동으로 허용하시겠습니까?</string>
+
+    <string name="permission_notifications_title">알림 허용(적극 권장)</string>
+    <string name="permission_notifications_text">알림은 진행 중인 백업 진행 및 예약된 백업 결과를 표시하는 데 사용됩니다</string>
+    <string name="permission_notifications_locked_text">Android는 이 권한을 잠갔습니다.\n\n애플리케이션 설정을 열고 수동으로 허용하시겠습니까?</string>
+
+    <string name="permission_battery_title">배터리 최적화 비활성화(권장)</string>
+    <string name="permission_battery_text">Android 배터리 최적화가 너무 공격적일 수 있으며 예약된 백업을 방해할 수 있습니다</string>
+
+    <string name="permission_permanent_title">사용 권한 취소 사용 안 함(권장)</string>
+    <string name="permission_permanent_text">Android에서 권한을 자동으로 삭제할 수 있으며, 이로 인해 오작동이 발생할 수 있습니다</string>
+
+    <string name="permission_auto_startup_title">자동 시작 사용(권장)</string>
+    <string name="permission_auto_startup_text">이 권한이 없으면 예약된 백업이 장치 재부팅 후 작동을 중지할 수 있습니다</string>
+    <string name="permission_auto_startup_try">각 제조업체는 고유한 방식으로 이 기능을 처리하며 Mirror은 해당 설정 페이지만 열 수 있습니다.\n\n오류가 발생할 경우 장치에 맞게 수동 구성을 수행해야 합니다</string>
+    <string name="permission_auto_startup_manual">각 제조업체는 고유한 방식으로 이 기능을 관리하므로 장치에 맞게 수동으로 구성해야 합니다</string>
+    <string name="permission_auto_startup_open">를 엽니다</string>
+
+    <!--Activity - About-->
+    <string name="about_title">에 대한</string>
+    <string name="about_app_title">응용 프로그램</string>
+    <string name="about_app_author">작성자 <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">라이선스: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">크레딧 및 제3자 라이선스</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 클라이언트 - EMCECS가 Apache-2.0에 따라 라이센스를 부여함</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 클라이언트 - hierynomus가 Apache-2.0에 따라 라이센스를 부여함</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP 클라이언트 - Apache Software Foundation에서 Apache-2.0에 따라 라이선스 부여</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP 클라이언트 - mwiede의 BSD 스타일 라이선스</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV 클라이언트 - thegrizzlylabs에서 Apache-2.0에 따라 라이선스 부여</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: WebDAV에 대한 다이제스트 인증 - rburgst가 Apache-2.0에 따라 라이선스를 부여함</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">자동 시작</a>: 자동 시작 권한 관리자를 엽니다 - judemanutd에 의해 MIT에 따라 라이센스가 부여되었습니다</string>
+    <string name="about_libraries_thanks">수고하셨습니다. Mirror은 여러분 없이는 존재할 수 없습니다 :)</string>
+    <string name="about_support_title">지원</string>
+    <string name="about_support_intro">Mirror는 광고나 추적 기능 없이 배포되는 무료 오픈 소스 애플리케이션입니다.\n\n유용하다고 생각되시고 제 작업을 지원하고 싶으시다면, 소액 기부도 큰 도움이 될 것입니다.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">이 백업을 삭제합니다</string>
+    <string name="backup_delete_warning_message">이 백업을 삭제하시겠습니까?</string>
+    <string name="backup_info">이 백업에 대한 정보입니다</string>
+    <string name="backup_launch">백업을 실행합니다</string>
+    <string name="backup_enqueued">백업 보류 중입니다</string>
+    <string name="backup_last_date">마지막 백업:</string>
+    <string name="backup_card_move">백업 카드 이동</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">수정 잠금해제</string>
+    <string name="edit_authentication_message">이 백업에는 생체 인증이 필요합니다</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">총서</string>
+    <string name="edit_title_new">생성</string>
+    <string name="edit_save">저장</string>
+    <string name="edit_cancel">취소</string>
+    <string name="edit_source">소스</string>
+    <string name="edit_destination">대상</string>
+
+    <string name="edit_exit_alert">저장하지 않고 종료하려면 반복합니다</string>
+    <string name="edit_invalid_alert">올바른 원본 및 대상을 입력하십시오</string>
+    <string name="edit_invalid_credentials_alert">유효한 자격 증명(사용자 이름/암호)을 입력하십시오</string>
+    <string name="edit_invalid_hostkey_alert">보안상의 이유로 SFTP 서버 호스트 키를 검색하세요</string>
+    <string name="edit_remote_alert_message">장치를 통해 두 원격 서버 간에 백업을 수행하는 것이 가장 효율적이지 않습니다.\n\n가능하다면 해당 시스템 중 하나에서 직접 백업을 설정하는 것이 좋습니다</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">현재 탭을 감지할 수 없습니다</string>
+    <string name="target_location">위치:</string>
+    <string name="target_location_error">잘못된 위치가 선택되었습니다</string>
+    <string name="target_location_device">장치</string>
+    <string name="target_location_warning_remote_to_webdav">원격 소스에서 WebDav 서버로 백업하려면 기기에 임시 중간 파일을 생성해야 합니다</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">폴더 선택</string>
+    <string name="target_local_information_timezone">일반적으로 외부 저장소에서 사용되는 FAT 파일 시스템은 시간대를 관리할 수 없으며 장치 현지 시간을 기준으로 날짜를 저장합니다. 결과적으로 시간대를 변경한 후 파일의 전체 백업이 발생할 수 있습니다</string>
+    <string name="target_local_warning_android_10">Google은 Android 10에서 개인 폴더 외부의 외부 저장소에 쓸 수 있는 애플리케이션의 권한을 취소하기로 결정했습니다.\n\nMirror 폴더 내에서 대상 폴더를 이동하시겠습니까?\n\n이 앱을 제거하면 Android가 삭제하므로 주의하세요!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">서버:</string>
+    <string name="target_common_server_hint">도메인 이름 또는 IP입니다</string>
+    <string name="target_common_path">폴더:</string>
+    <string name="target_common_path_hint">폴더/하위 폴더</string>
+    <string name="target_common_login">사용자:</string>
+    <string name="target_common_login_hint">사용자_이름</string>
+    <string name="target_common_password">암호:</string>
+    <string name="target_common_password_hint">사용자_패스</string>
+    <string name="target_common_port">포트:</string>
+    <string name="target_common_share">공유:</string>
+    <string name="target_common_search">찾다</string>
+    <string name="target_common_autofill">자동 채우기</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">사용자 ID:</string>
+    <string name="target_nfs_uid_hint">UID(임의)</string>
+    <string name="target_nfs_gid">그룹 ID:</string>
+    <string name="target_nfs_gid_hint">GID(임의)</string>
+    <string name="target_nfs_share_hint">루트 공유 폴더의 경로</string>
+    <string name="target_nfs_non_root_mount_warning">Android에서 서버에 루트가 아닌 마운팅 권한이 필요합니다</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">이름 또는 IP</string>
+    <string name="target_smb_domain">영역:</string>
+    <string name="target_smb_domain_hint">(선택 사항)</string>
+    <string name="target_smb_share_hint">루트 공유 폴더의 이름</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLS를 사용합니다</string>
+    <string name="target_ftp_ssl_warning">Android에서는 데이터 연결 시 TLS 세션 재개 옵션을 사용하는 서버에서 SSL/TLS를 사용할 수 없습니다</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">호스트 키:</string>
+    <string name="target_sftp_hostkey_hint">탭하여 서버 호스트 키 검색</string>
+    <string name="target_sftp_hostkey_load">호스트 키 검색 중…</string>
+    <string name="target_sftp_hostkey_confirmation">이 서버를 신뢰하십니까?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSL을 사용합니다</string>
+    <string name="target_webdav_ssl_warning">자체 서명 인증서는 일반적으로 충분하지 않으며 보안 검사 중에 거부될 수 있습니다.</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">보안</string>
+    <string name="backup_protect">편집하려면 생체 인식 인증이 필요합니다</string>
+    <string name="backup_protect_warning">이 장치에 생체 인증이 구성되지 않았습니다</string>
+
+    <string name="backup_opt">백업</string>
+    <string name="backup_recursive">하위 폴더 처리</string>
+    <string name="backup_retry_corrupted">손상된 파일이 감지되면 복사를 다시 시도하십시오</string>
+    <string name="backup_date_comparison_auto">자동 파일 날짜 비교 모드</string>
+    <string name="backup_date_comparison_mode">파일 날짜 비교 모드:</string>
+    <string name="backup_wifi">WiFi를 통한 백업만 가능합니다</string>
+    <string name="backup_nomedia">갤러리에서 목적지 숨기기(.nomedia)</string>
+
+    <string name="orphans_opt">분리된 파일</string>
+    <string name="orphans_action">파일이 대상에만 있는 경우:</string>
+    <string name="orphans_folder">이 폴더로:</string>
+    <string name="orphans_folder_name">고아</string>
+    <string name="orphans_invalid_folder">잘못된 폴더 이름</string>
+
+    <string name="filters_opt">필터</string>
+    <string name="filter_images">이미지</string>
+    <string name="filter_audio">오디오</string>
+    <string name="filter_videos">비디오</string>
+    <string name="filter_documents">문서</string>
+    <string name="filter_others">기타</string>
+    <string name="filter_min_size">다음 보다 작은 파일 무시:</string>
+    <string name="filter_max_size">다음보다 큰 파일 무시:</string>
+    <string name="filter_black_list">제외 목록(<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob 패턴</a>):</string>
+    <string name="filter_black_list_hint">/파일/하위 파일/**\n.trashed*</string>
+
+    <string name="schedule_opt">계획</string>
+    <string name="schedule_auto">자동 백업을 수행합니다</string>
+    <string name="schedule_charging">장치가 충전 중일 때만 가능합니다</string>
+    <string name="schedule_idle">장치가 절전 모드일 때만 사용할 수 있습니다</string>
+    <string name="schedule_idle_warning">작동하지 않을 수 있습니다. 일부 장치는 대기 상태를 올바르게 보고하지 않습니다</string>
+    <string name="schedule_interval">모든:</string>
+    <string name="schedule_time">~에</string>
+
+    <string name="options_low_interval_alert">짧은 지연은 자율성을 감소시킵니다</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">모양</string>
+    <string name="backup_color_background">배경:</string>
+    <string name="backup_color_border">테두리:</string>
+    <string name="backup_color_icons">아이콘:</string>
+    <string name="backup_color_progressbar">진행률 막대:</string>
+    <string name="backup_appearance_preview">미리보기</string>
+    <string name="backup_appearance_load_theme">테마를 로드하려면 탭하세요</string>
+    <string name="backup_appearance_theme_custom">사용자 지정 #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">자동 채우기</string>
+    <string name="autofill_authentication_message">본인을 확인해 주세요</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">자격 증명 목록</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">서버 주소와 자격 증명을 입력하세요</string>
+    <string name="folder_explorer_missing_address">서버 주소를 입력하세요</string>
+    <string name="folder_explorer_missing_share">검색할 공유 항목을 입력하세요</string>
+    <string name="folder_explorer_unable_connect">연결에 실패</string>
+    <string name="folder_explorer_unable_list">이 폴더 내용을 읽을 수 없습니다</string>
+    <string name="folder_explorer_error_details">에러 메시지:</string>
+    <string name="folder_explorer_error_protocol">통신 프로토콜을 찾을 수 없습니다</string>
+    <string name="folder_explorer_recycler_hint">원격 서버 콘텐츠</string>
+
+    <!--Worker Log -->
+    <string name="log_source">소스</string>
+    <string name="log_destination">대상</string>
+
+    <string name="log_error">오류</string>
+    <string name="log_warning">경고</string>
+    <string name="log_note">참고</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">백업이 시작되었습니다</string>
+    <string name="log_backup_start_scheduled">자동 저장 시작됨</string>
+    <string name="log_backup_initialisation">초기화 …</string>
+    <string name="log_folder_destination_create">누락된 대상 폴더 생성</string>
+    <string name="log_searching_files">파일 검색 중 …</string>
+    <string name="log_found">찾은 파일:</string>
+    <string name="log_excluding">파일 필터링 중 …</string>
+    <string name="log_remaining">남은 파일:</string>
+    <string name="log_checking_backup">백업할 파일 확인 중 …</string>
+    <string name="log_flexible_mode">(유연한 모드) …</string>
+    <string name="log_to_backup">복사할 파일:</string>
+    <string name="log_orphans_keep">간직해야 할 고아:</string>
+    <string name="log_orphans_move">이동할 고아:</string>
+    <string name="log_orphans_delete">삭제할 고아:</string>
+    <string name="log_obsolete">삭제될 사용되지 않는 고아:</string>
+    <string name="log_orphans_after_backup">(i) 대상 폴더의 고아:</string>
+
+    <string name="error_wifi">필요한 WiFi가 연결되어 있지 않습니다</string>
+    <string name="error_target">백업 대상이 잘못되었습니다</string>
+    <string name="error_blacklist">제외 목록의 구문 오류</string>
+
+    <string name="error_server_reach">이 서버에 연결할 수 없습니다</string>
+    <string name="error_server_connect">이 서버에 연결할 수 없습니다</string>
+    <string name="error_share_connect">이 공유에 연결할 수 없습니다.</string>
+    <string name="error_ssl_connect">SSL/TLS를 사용할 수 없습니다</string>
+    <string name="error_ssl_certificate">SSL/TLS 인증서가 잘못되었거나 누락되었습니다</string>
+    <string name="error_ftp_filetype">바이너리 전송 모드로 전환할 수 없습니다</string>
+    <string name="error_server_login">인증할 수 없습니다</string>
+    <string name="error_server_disconnect">연결을 끊을 수 없습니다 서버에서</string>
+
+    <string name="error_permission_read">읽기 권한이 거부되었습니다</string>
+    <string name="error_permission_write">쓰기 권한이 거부되었습니다</string>
+    <string name="error_permission_unknown">권한을 확인할 수 없습니다</string>
+
+    <string name="error_space_low">사용 가능한 공간이 부족합니다</string>
+    <string name="error_space_critical">여유 공간이 부족합니다</string>
+    <string name="error_space_unverifiable">여유값을 확인할 수 없습니다</string>
+    <string name="error_quota_low">사용 가능한 할당량이 낮습니다</string>
+    <string name="error_quota_critical">사용 가능한 할당량이 충분하지 않습니다</string>
+    <string name="error_quota_unverifiable">Impossible de vérifier le quota disponible</string>
+
+    <string name="error_folder_existence">할 수 없습니다 사용 가능한 할당량을 확인하십시오</string>
+    <string name="error_folder_invalid">잘못된 파일입니다</string>
+    <string name="error_folder_list">이 폴더의 파일을 나열할 수 없습니다</string>
+    <string name="error_folder_delete">이 폴더를 삭제할 수 없습니다</string>
+    <string name="error_folder_create">사용할 수 없습니다 이 폴더를 만듭니다</string>
+    <string name="error_folder_create_tmp">임시 파일 폴더를 생성할 수 없습니다</string>
+
+    <string name="error_path_reach">이 경로에 도달할 수 없습니다</string>
+
+    <string name="error_orphan_folder_not_specified">분리된 폴더가 지정되지 않았습니다</string>
+    <string name="error_orphan_folder_in_use">고아 파일을 저장하기 위해 소스에 있는 폴더 이름을 사용하지 마십시오</string>
+
+    <string name="error_setforeground">진행 알림을 표시할 수 없습니다. 백업 기간은 10분으로 제한됩니다</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">백업이 시작됩니다 …</string>
+    <string name="log_orphans_move_long">고아 이주</string>
+    <string name="log_orphans_delete_long">고아 제거</string>
+    <string name="log_delete_obsolete_orphans">사용되지 않는 고아의 제거</string>
+    <string name="log_folders_create">새 파일 생성</string>
+    <string name="log_copy">사자</string>
+    <string name="log_move">움직이는</string>
+    <string name="log_delete">삭제 중</string>
+    <string name="log_nomedia_created">.nomedia 파일이 생성되었습니다</string>
+    <string name="log_nomedia_removed">.nomedia 파일이 삭제되었습니다</string>
+    <string name="log_empty_folders_delete">빈 폴더를 삭제하는 중입니다</string>
+
+    <string name="error_file_read">이 파일을 읽을 수 없습니다</string>
+    <string name="error_file_read_finish">파일 판독기를 닫을 수 없습니다</string>
+    <string name="error_file_copy">이 파일을 복사할 수 없습니다</string>
+    <string name="error_file_move">이 파일을 이동할 수 없습니다</string>
+    <string name="error_file_delete">이 파일을 삭제할 수 없습니다</string>
+    <string name="error_file_corrupted">파일 손상이 감지되었습니다. 다시 시도하십시오 …</string>
+    <string name="error_file_corrupted_final">이 파일을 손상없이 복사할 수 없습니다. 다음 백업 시 다시 시도하십시오</string>
+    <string name="error_file_date_modification">파일 날짜 수정에 실패했습니다. 유연한 비교 모드로 전환</string>
+    <string name="success_file_date_modification">파일 날짜 수정에 성공했습니다. 엄격한 비교 모드로 전환</string>
+    <string name="error_file_tmp_space">임시 파일을 만들기 위한 기기 내부 메모리의 여유 공간이 부족합니다</string>
+    <string name="error_file_tmp_skipped">파일 건너뜀</string>
+    <string name="error_file_tmp">임시 파일을 만들 수 없습니다</string>
+    <string name="error_nomedia_create">.nomedia 파일을 생성할 수 없습니다</string>
+    <string name="error_nomedia_remove">.nomedia 파일을 삭제할 수 없습니다</string>
+    <string name="error_ftp_mlst">파일 크기와 정확한 타임스탬프를 검색하는 데 필요한 MLST 명령은 이 서버에서 지원되지 않는 것으로 보입니다</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">성공적으로 저장되었습니다</string>
+    <string name="log_backup_warning">경고와 함께 저장되었습니다</string>
+    <string name="log_backup_canceled">백업이 취소되었습니다</string>
+    <string name="error_backup_failed">백업에 실패했습니다</string>
+
+    <string name="log_next_schedule_success">예약된 다음 백업:</string>
+    <string name="log_next_schedule_failed">예정된 다음 시도:</string>
+
+    <string name="log_backup_duration">백업 기간:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">로그 폴더를 찾을 수 없습니다</string>
+    <string name="logs_file_not_found">이 백업에 사용할 수 있는 로그 파일이 없습니다</string>
+    <string name="logs_file_read_error">이 로그 파일을 로드하는 동안 오류가 발생했습니다</string>
+    <string name="logs_navigation_previous">이전</string>
+    <string name="logs_navigation_next">있습니다</string>
+    <string name="logs_recycler_hint">로그 파일 내용</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">진행 중인 백업</string>
+    <string name="notification_ongoing_channel_description">백업 중 진행 세부 정보</string>
+    <string name="notification_result_channel_name">완료된 백업</string>
+    <string name="notification_result_channel_description">예약 백업 완료 결과</string>
+    <string name="notification_result">예약된 백업 결과</string>
+    <string name="notification_scheduled">예약된 백업</string>
+    <string name="notification_no_backup">오늘 완료된 항목이 없습니다</string>
+    <string name="notification_active">진행 중</string>
+    <string name="notification_files">파일</string>
+    <string name="notification_no_file">새 파일 또는 분리된 파일이 없습니다</string>
+    <string name="notification_orphans">고아</string>
+    <string name="notification_success">성공</string>
+    <string name="notification_warning">경고</string>
+    <string name="notification_failed">실패</string>
+    <string name="notification_canceled">취소됨</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">자율성이 너무 낮습니다</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">이 백업을 시작할 수 없습니다. 백업이 비활성 상태가 아닙니다</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>체계</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>체계</item>
+        <item>빛</item>
+        <item>어두운</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>아무도</item>
+        <item>다중 - 폐기 가능</item>
+        <item>글로벌 - 폐기 가능</item>
+        <item>글로벌 - 영구</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>장치</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>기본값</item>
+        <item>레드</item>
+        <item>오렌지</item>
+        <item>옐로우</item>
+        <item>라임</item>
+        <item>그린</item>
+        <item>민트</item>
+        <item>시안</item>
+        <item>아주르</item>
+        <item>블루</item>
+        <item>인디고</item>
+        <item>마젠타</item>
+        <item>핑크</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>없음</item>
+        <item>레드</item>
+        <item>오렌지</item>
+        <item>옐로우</item>
+        <item>라임</item>
+        <item>그린</item>
+        <item>민트</item>
+        <item>시안</item>
+        <item>아주르</item>
+        <item>블루</item>
+        <item>인디고</item>
+        <item>마젠타</item>
+        <item>핑크</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>엄격(소스 != 목적지)</item>
+        <item>유연(소스 > 목적지)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>유지하다</item>
+        <item>이동하다</item>
+        <item>지우는 것</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>날</item>
+        <item>시각</item>
+        <item>분</item>
+    </string-array>
+
+</resources>

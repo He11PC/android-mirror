@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    tools:context=".ui.activities.Activity_Main"
+    android:fitsSystemWindows="true"
+    android:background="@color/primary_dark">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_appbar_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="@string/application_name"
+            app:titleTextColor="@color/design_default_color_on_primary" />
+
+        <fr.hellpc.mirror.ui.customviews.Custom_ReSpinner
+            android:id="@+id/main_spn_theme"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:spinnerMode="dialog" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/main_tooltip_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_appbar_lyt"
+        android:background="@color/background_app"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/main_tooltip_btn_group_launch"
+            style="@style/AppTheme.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/background_card"
+            android:contentDescription="@string/global_understood"
+            android:elevation="2dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="@string/tooltip_group_launch"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/AppTheme.EditText"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:icon="@drawable/ic_info"
+            app:iconPadding="16dp"
+            app:iconTint="@color/gray"
+            android:visibility="gone"
+            app:tint="@color/gray" />
+
+        <Button
+            android:id="@+id/main_tooltip_btn_edit_mode"
+            style="@style/AppTheme.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/background_card"
+            android:contentDescription="@string/global_understood"
+            android:elevation="2dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="@string/tooltip_edit_mode"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/AppTheme.EditText"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:icon="@drawable/ic_info"
+            app:iconPadding="16dp"
+            app:iconTint="@color/gray"
+            android:visibility="gone"
+            app:tint="@color/gray" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_tooltip_lyt"
+        android:background="@color/background_app"
+        android:clipToPadding="false"
+        android:contentDescription="@string/main_recycler_hint"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:scrollbars="vertical"
+        tools:ignore="RtlSymmetry"
+        tools:listitem="@layout/row_recycler_main" />
+
+    <TextView
+        android:id="@+id/main_tooltip_add_txt"
+        style="@style/AppTheme.Layout_CardView_NoMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_appbar_lyt"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:drawablePadding="16dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@string/tooltip_new_backup"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_info"
+        app:drawableTint="@color/gray" />
+
+</RelativeLayout>

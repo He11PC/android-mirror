@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- ROMANIAN -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Aplicație de backup multiprotocol open-source (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi necesar</string>
+    <string name="wifi_required_text">Opțiunea WiFi a fost selectată, dar în prezent nu este activă nicio conexiune.\nVă rugăm să vă conectați la o rețea WiFi pentru a efectua copia de rezervă</string>
+    <string name="tooltip_new_backup">Utilizați butonul + de mai sus pentru a configura o nouă copie de rezervă</string>
+    <string name="tooltip_edit_mode">Jumătatea superioară a cardurilor de rezervă este interactivă:\n- Atingeți pentru a comuta între butoanele de backup și de editare\n- Apăsați lung pentru a dezactiva/activa backup-urile</string>
+    <string name="tooltip_group_launch">Butonul de sus \"sincronizare\" are două funcții:\n- Atingeți pentru a lansa toate copiile de rezervă simultan\n- Puteți grupa copiile de rezervă după tema de culoare. Dacă aveți mai multe grupuri, apăsați lung pe acest buton pentru a selecta unul și a lansa copiile de rezervă</string>
+    <string name="main_recycler_hint">Lista de copii de rezervă</string>
+    <string name="main_color_theme_group">Grupul #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Porniți toate copiile de rezervă</string>
+    <string name="menu_cancel_all">Anulați toate copiile de rezervă</string>
+    <string name="menu_backup_new">Backup nou</string>
+    <string name="menu_settings">Setări</string>
+    <string name="menu_permissions">Permisiuni</string>
+    <string name="menu_about">Despre</string>
+
+    <!--Global-->
+    <string name="global_information">Informație</string>
+    <string name="global_confirmation">Confirmare</string>
+    <string name="global_warning">Avertizare</string>
+    <string name="global_error">Eroare</string>
+    <string name="global_yes">da</string>
+    <string name="global_ok">O.K</string>
+    <string name="global_no">Nu</string>
+    <string name="global_cancel">Anulare</string>
+    <string name="global_always">Mereu</string>
+    <string name="global_understood">Înțeles</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Setări</string>
+    <string name="settings_interface_title">Interfață</string>
+    <string name="settings_language_text">Limba:</string>
+    <string name="settings_theme_text">Temă:</string>
+    <string name="settings_logs_title">Bușteni</string>
+    <string name="settings_logs_text">Numărul de jurnale de păstrat per copie de rezervă:</string>
+    <string name="settings_logs_errors">Păstrați mesajele de eroare brute originale în loc de versiunea lor simplificată</string>
+    <string name="settings_logs_warning_setforeground">Înregistrați un avertisment când notificarea progresului eșuează</string>
+    <string name="settings_logs_preserve_scroll_position">Păstrează poziția derulării la schimbarea fișierului jurnal</string>
+    <string name="settings_notifications_title">Notificări</string>
+    <string name="settings_notifications_theme">Aplicați tema de culoare configurată</string>
+    <string name="settings_notifications_type">Rezultatul backup-urilor programate:</string>
+    <string name="settings_notifications_tip">- Multiple: o notificare per backup\n- Global: notificare unică, rezumat zilnic al tuturor copiilor de rezervă\n\n- Aruncabil: poate fi eliminat\n- Permanent: întotdeauna vizibil\n\nNotificarea permanentă poate preveni problemele de backup programate</string>
+    <string name="settings_notifications_warning">Vă rugăm să acordați permisiunea notificărilor pentru a schimba această setare</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Permisiuni</string>
+    <string name="permission_locked_title">Permisiune blocată</string>
+
+    <string name="permission_files_title">Permiteți accesul la fișiere (obligatoriu)</string>
+    <string name="permission_files_text">Copiile de rezervă sunt imposibile fără acces la fișierele și folderele dvs</string>
+    <string name="permission_files_locked_text">Android a blocat această permisiune, făcând aplicația nefuncțională.\n\nVă rugăm să vă asigurați că Mirror nu va colecta niciodată informații despre dumneavoastră sau despre datele dumneavoastră.\n\nDoriți să deschideți setările aplicației și să o autorizați manual?</string>
+
+    <string name="permission_notifications_title">Permite notificări (foarte recomandat)</string>
+    <string name="permission_notifications_text">Notificările sunt folosite pentru a afișa progresul backup-urilor în curs și rezultatul backup-urilor programate</string>
+    <string name="permission_notifications_locked_text">Android a blocat această permisiune.\n\nDoriți să deschideți setările aplicației și să o permiteți manual?</string>
+
+    <string name="permission_battery_title">Dezactivați optimizarea bateriei (recomandat)</string>
+    <string name="permission_battery_text">Optimizarea bateriei Android poate fi prea agresivă și poate interfera cu backup-urile programate</string>
+
+    <string name="permission_permanent_title">Dezactivați revocarea permisiunilor (recomandat)</string>
+    <string name="permission_permanent_text">Permisiunile pot fi eliminate automat de Android, ceea ce poate duce la disfuncționalități</string>
+
+    <string name="permission_auto_startup_title">Activați pornirea automată (recomandat)</string>
+    <string name="permission_auto_startup_text">Fără această permisiune, copiile de rezervă programate pot înceta să funcționeze după repornirea dispozitivului</string>
+    <string name="permission_auto_startup_try">Fiecare producător gestionează această funcție în felul său, iar Mirror poate încerca doar să deschidă pagina de setări corespunzătoare.\n\nDacă acest lucru nu reușește, va trebui să îl configurați manual pentru dispozitivul dvs</string>
+    <string name="permission_auto_startup_manual">Fiecare producător gestionează această funcționalitate în felul său propriu, ceea ce necesită o configurare manuală adaptată dispozitivului dumneavoastră</string>
+    <string name="permission_auto_startup_open">Deschideți</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Despre</string>
+    <string name="about_app_title">Aplicație</string>
+    <string name="about_app_author">Creat de <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Licenţă: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Credite și licențe terțe</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: client NFS v3 - Licențiat sub Apache-2.0 de EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: client SMB2/SMB3 - Licențiat sub Apache-2.0 de hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: client FTP - Licențiat sub Apache-2.0 de Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: client SFTP - Licențiat în stil BSD de mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: client WebDAV - Licențiat sub Apache-2.0 de către thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: autentificare Digest pentru WebDAV - Licențiat sub Apache-2.0 de rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: deschide managerul de permisiuni de pornire automată - Licențiat sub MIT de judemanutd</string>
+    <string name="about_libraries_thanks">Vă mulțumim pentru munca depusă, Mirror nu ar putea exista fără tine :)</string>
+    <string name="about_support_title">Sprijin</string>
+    <string name="about_support_intro">Mirror este o aplicație gratuită și open-source, distribuită fără reclame sau urmărire.\n\nDacă o considerați utilă și doriți să-mi susțineți munca, o mică donație ar fi foarte apreciată.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Ștergeți această copie de rezervă</string>
+    <string name="backup_delete_warning_message">Doriți să ștergeți această copie de rezervă?</string>
+    <string name="backup_info">Informații despre această copie de rezervă</string>
+    <string name="backup_launch">Începeți backup-ul</string>
+    <string name="backup_enqueued">Backup în așteptare</string>
+    <string name="backup_last_date">Ultima backup:</string>
+    <string name="backup_card_move">Mutați cardul de rezervă</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Deblocați ediția</string>
+    <string name="edit_authentication_message">Această copie de rezervă necesită autentificare biometrică</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Ediție</string>
+    <string name="edit_title_new">Crearea</string>
+    <string name="edit_save">Salvați</string>
+    <string name="edit_cancel">Anulează</string>
+    <string name="edit_source">Sursă</string>
+    <string name="edit_destination">Destinație</string>
+
+    <string name="edit_exit_alert">Repetați pentru a ieși fără a salva</string>
+    <string name="edit_invalid_alert">Vă rugăm să furnizați o sursă și o destinație valide</string>
+    <string name="edit_invalid_credentials_alert">Vă rugăm să furnizați detalii de autentificare valide (nume de utilizator/parolă)</string>
+    <string name="edit_invalid_hostkey_alert">Vă rugăm să preluați cheia de gazdă a serverului SFTP din motive de securitate</string>
+    <string name="edit_remote_alert_message">Efectuarea de copii de siguranță între două servere la distanță prin intermediul dispozitivului dvs. nu este cea mai eficientă.\n\nDacă puteți, ar fi mai bine să configurați backup-ul direct pe una dintre acele mașini</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Imposibil de detectat fila curentă</string>
+    <string name="target_location">Locație:</string>
+    <string name="target_location_error">Locație greșită selectată</string>
+    <string name="target_location_device">Dispozitiv</string>
+    <string name="target_location_warning_remote_to_webdav">Backup-urile de la o sursă la distanță pe un server WebDav necesită crearea de fișiere intermediare temporare pe dispozitivul dvs</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Selectați folderul</string>
+    <string name="target_local_information_timezone">Sistemul de fișiere FAT, utilizat în mod obișnuit pe stocările externe, nu poate gestiona fusurile orare și stochează datele în funcție de ora locală a dispozitivului. În consecință, după schimbarea fusului orar poate apărea o copie de rezervă completă a fișierelor dvs</string>
+    <string name="target_local_warning_android_10">Google a decis să revoce permisiunea aplicațiilor de a scrie pe stocarea externă în afara folderului lor privat pe Android 10.\n\nDoriți să vă mutați folderul de destinație în folderul Mirror?\n\nFiți atenți, Android îl va șterge atunci când dezinstalați această aplicație!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Server:</string>
+    <string name="target_common_server_hint">Nume de domeniu sau IP</string>
+    <string name="target_common_path">Dosar:</string>
+    <string name="target_common_path_hint">Dosar/Subdosar</string>
+    <string name="target_common_login">Utilizator:</string>
+    <string name="target_common_login_hint">Numele_utilizatorului</string>
+    <string name="target_common_password">Parola utilizatorului:</string>
+    <string name="target_common_password_hint">Parola_utilizatorului</string>
+    <string name="target_common_port">Port:</string>
+    <string name="target_common_share">Distribuie:</string>
+    <string name="target_common_search">Căutare</string>
+    <string name="target_common_autofill">Completare automată</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">ID utilizator:</string>
+    <string name="target_nfs_uid_hint">UID (facultativ)</string>
+    <string name="target_nfs_gid">ID grup:</string>
+    <string name="target_nfs_gid_hint">GID (facultativ)</string>
+    <string name="target_nfs_share_hint">Calea folderului partajat rădăcină</string>
+    <string name="target_nfs_non_root_mount_warning">Android necesită permisiunea de montare non-root pe serverul dvs</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Nume sau IP</string>
+    <string name="target_smb_domain">Domeniu:</string>
+    <string name="target_smb_domain_hint">(opțional)</string>
+    <string name="target_smb_share_hint">Numele folderului partajat rădăcină</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Utilizați SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Android nu permite utilizarea SSL/TLS cu serverele care utilizează opțiunea de reluare a sesiunii TLS pe conexiunea de date</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Cheie gazdă:</string>
+    <string name="target_sftp_hostkey_hint">Atingeți pentru a prelua cheia de gazdă a serverului</string>
+    <string name="target_sftp_hostkey_load">Se preia cheia gazdei…</string>
+    <string name="target_sftp_hostkey_confirmation">Aveți încredere în acest server?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Utilizați SSL</string>
+    <string name="target_webdav_ssl_warning">Certificatele autosemnate nu sunt de obicei suficiente și pot fi respinse în timpul verificărilor de securitate</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Securitate</string>
+    <string name="backup_protect">Editarea necesită autentificare biometrică</string>
+    <string name="backup_protect_warning">Autentificarea biometrică nu este configurată pe acest dispozitiv</string>
+
+    <string name="backup_opt">Backup</string>
+    <string name="backup_recursive">Gestionarea subfolderelor</string>
+    <string name="backup_retry_corrupted">Reîncercarea copierii atunci când este detectat un fișier corupt</string>
+    <string name="backup_date_comparison_auto">Modul automat de comparare a datei fișierului</string>
+    <string name="backup_date_comparison_mode">Modul de comparare a datei fișierului:</string>
+    <string name="backup_wifi">Copie de rezervă numai prin WiFi</string>
+    <string name="backup_nomedia">Ascundeți destinația în galerie (.nomedia)</string>
+
+    <string name="orphans_opt">Fișiere orfane</string>
+    <string name="orphans_action">În cazul în care un fișier există numai în Destination:</string>
+    <string name="orphans_folder">În acest folder:</string>
+    <string name="orphans_folder_name">Orfani</string>
+    <string name="orphans_invalid_folder">Nume de folder nevalid</string>
+
+    <string name="filters_opt">Filtre</string>
+    <string name="filter_images">Imagini</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Videoclipuri</string>
+    <string name="filter_documents">Documente</string>
+    <string name="filter_others">Altele</string>
+    <string name="filter_min_size">Ignorați fișierele mai mici de:</string>
+    <string name="filter_max_size">Ignorați fișierele mai mari de:</string>
+    <string name="filter_black_list">Lista de excludere (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">model glob</a>):</string>
+    <string name="filter_black_list_hint">/Dosar/SubDosar/**\n.trashed*</string>
+
+    <string name="schedule_opt">Programarea</string>
+    <string name="schedule_auto">Efectuați copii de rezervă automate</string>
+    <string name="schedule_charging">Numai atunci când dispozitivul se încarcă</string>
+    <string name="schedule_idle">Numai atunci când dispozitivul este în modul de așteptare</string>
+    <string name="schedule_idle_warning">Este posibil să nu funcționeze: unele dispozitive nu semnalizează în mod corespunzător starea de așteptare</string>
+    <string name="schedule_interval">Toate dispozitivele:</string>
+    <string name="schedule_time">la</string>
+
+    <string name="options_low_interval_alert">O scurtă întârziere vă va reduce autonomia</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Aspect</string>
+    <string name="backup_color_background">Background:</string>
+    <string name="backup_color_border">Chenaruri:</string>
+    <string name="backup_color_icons">pictograme:</string>
+    <string name="backup_color_progressbar">Bara de progres:</string>
+    <string name="backup_appearance_preview">Previzualizare</string>
+    <string name="backup_appearance_load_theme">Atingeți pentru a încărca o temă</string>
+    <string name="backup_appearance_theme_custom">Personalizat #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Completare automată</string>
+    <string name="autofill_authentication_message">Vă rugăm să vă confirmați identitatea</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Lista de acreditări</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Introduceți adresa serverului și datele de autentificare</string>
+    <string name="folder_explorer_missing_address">Vă rugăm să introduceți adresa serverului dvs</string>
+    <string name="folder_explorer_missing_share">Vă rugăm să introduceți o distribuire în care să căutați</string>
+    <string name="folder_explorer_unable_connect">Conexiunea a eșuat</string>
+    <string name="folder_explorer_unable_list">Nu se poate citi conținutul acestui folder</string>
+    <string name="folder_explorer_error_details">Mesaj de eroare:</string>
+    <string name="folder_explorer_error_protocol">Protocolul de comunicare nu a fost găsit</string>
+    <string name="folder_explorer_recycler_hint">Conținutul serverului de la distanță</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Sursă</string>
+    <string name="log_destination">Destinație</string>
+
+    <string name="log_error">ERROR</string>
+    <string name="log_warning">ALERTĂ</string>
+    <string name="log_note">NOTĂ</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Backup-ul a început</string>
+    <string name="log_backup_start_scheduled">A început backup-ul automat</string>
+    <string name="log_backup_initialisation">Inițializare …</string>
+    <string name="log_folder_destination_create">Crearea folderului de destinație lipsă</string>
+    <string name="log_searching_files">Se caută fișiere …</string>
+    <string name="log_found">Fișiere găsite:</string>
+    <string name="log_excluding">Se filtrează fișierele …</string>
+    <string name="log_remaining">Fișiere rămase:</string>
+    <string name="log_checking_backup">Se verifică fișierele pentru backup …</string>
+    <string name="log_flexible_mode">(modul flexibil) …</string>
+    <string name="log_to_backup">Fișiere de copiat:</string>
+    <string name="log_orphans_keep">Orfani de păstrat:</string>
+    <string name="log_orphans_move">Orfani de mutat:</string>
+    <string name="log_orphans_delete">Orfani de șters:</string>
+    <string name="log_obsolete">Orfani învechiți care urmează să fie eliminați:</string>
+    <string name="log_orphans_after_backup">(i) Orfani în dosarul de destinație:</string>
+
+    <string name="error_wifi">WiFi necesar nu este conectat</string>
+    <string name="error_target">Țintă de backup greșită</string>
+    <string name="error_blacklist">Eroare de sintaxă în lista de excludere</string>
+
+    <string name="error_server_reach">Nu se poate ajunge la acest server</string>
+    <string name="error_server_connect">Nu se poate conecta la acest server</string>
+    <string name="error_share_connect">Nu se poate conecta la această partajare</string>
+    <string name="error_ssl_connect">Nu se poate utiliza SSL/TLS</string>
+    <string name="error_ssl_certificate">Certificat SSL/TLS invalid/lipsește</string>
+    <string name="error_ftp_filetype">Nu se poate trece la modul de transfer binar</string>
+    <string name="error_server_login">Nu se poate autentifica</string>
+    <string name="error_server_disconnect">Nu se poate deconecta de la server</string>
+
+    <string name="error_permission_read">Permisiune de citire refuzată</string>
+    <string name="error_permission_write">Permisiune de scriere refuzată</string>
+    <string name="error_permission_unknown">Nu se poate verifica permisiunile</string>
+
+    <string name="error_space_low">Spațiu liber redus</string>
+    <string name="error_space_critical">Nu este suficient spațiu liber</string>
+    <string name="error_space_unverifiable">Nu se poate verifica spațiul liber</string>
+    <string name="error_quota_low">Cotă disponibilă redusă</string>
+    <string name="error_quota_critical">Nu sunt suficiente cote disponibile</string>
+    <string name="error_quota_unverifiable">Nu se poate verifica cota disponibilă</string>
+
+    <string name="error_folder_existence">Fișier nedescoperit</string>
+    <string name="error_folder_invalid">Dosar invalid</string>
+    <string name="error_folder_list">Nu se pot lista fișierele din acest dosar</string>
+    <string name="error_folder_delete">Nu se poate șterge acest dosar</string>
+    <string name="error_folder_create">Nu se poate crea acest folder</string>
+    <string name="error_folder_create_tmp">Nu se poate crea folderul pentru fișierele temporare</string>
+
+    <string name="error_path_reach">Nu se poate ajunge la această cale</string>
+
+    <string name="error_orphan_folder_not_specified">Dosar orfani nespecificat</string>
+    <string name="error_orphan_folder_in_use">Nu utilizați un nume de folder prezent în sursă pentru a stoca fișiere orfane</string>
+
+    <string name="error_setforeground">Nu se poate afișa notificarea de progres. Durata copiei de rezervă este limitată la 10 minute</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Începe salvgardarea …</string>
+    <string name="log_orphans_move_long">Mutarea orfanilor</string>
+    <string name="log_orphans_delete_long">Ștergeți orfanii</string>
+    <string name="log_delete_obsolete_orphans">Ștergeți orfanii învechiți</string>
+    <string name="log_folders_create">Creați fișiere noi</string>
+    <string name="log_copy">Copierea</string>
+    <string name="log_move">In miscare</string>
+    <string name="log_delete">Ștergerea</string>
+    <string name="log_nomedia_created">.nomedia fișier creat</string>
+    <string name="log_nomedia_removed">Fișier .nomedia șters</string>
+    <string name="log_empty_folders_delete">Ștergeți folderele goale</string>
+
+    <string name="error_file_read">Nu se poate citi acest fișier</string>
+    <string name="error_file_read_finish">Nu se poate închide cititorul de fișiere</string>
+    <string name="error_file_copy">Nu se poate copia acest fișier</string>
+    <string name="error_file_move">Nu se poate muta acest fișier</string>
+    <string name="error_file_delete">Nu se poate șterge acest fișier</string>
+    <string name="error_file_corrupted">A fost detectată o corupție a fișierului, încercați din nou …</string>
+    <string name="error_file_corrupted_final">Nu se poate copia acest fișier fără să fie corupt. Reîncercare la următoarea copie de rezervă</string>
+    <string name="error_file_date_modification">Modificarea datei fișierului a eșuat. Trecerea la modul de comparare flexibil</string>
+    <string name="success_file_date_modification">Modificarea datei fișierului cu succes. Trecerea la modul de comparare strictă</string>
+    <string name="error_file_tmp_space">Spațiu liber insuficient în memoria internă a dispozitivului pentru a crea fișiere temporare</string>
+    <string name="error_file_tmp_skipped">Fișier a fost sărit</string>
+    <string name="error_file_tmp">Nu se poate crea fișierul temporar</string>
+    <string name="error_nomedia_create">Nu se poate crea fișierul .nomedia</string>
+    <string name="error_nomedia_remove">Nu se poate șterge fișierul .nomedia</string>
+    <string name="error_ftp_mlst">Comanda MLST, necesară pentru a prelua dimensiunea fișierului și marcajul temporal precis, nu pare să fie acceptată de acest server</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Copie de rezervă reușită</string>
+    <string name="log_backup_warning">Backup de succes cu alerte</string>
+    <string name="log_backup_canceled">Backup anulat</string>
+    <string name="error_backup_failed">Backup eșuat</string>
+
+    <string name="log_next_schedule_success">Următoarea copie de rezervă programată:</string>
+    <string name="log_next_schedule_failed">Următoarea încercare programată:</string>
+
+    <string name="log_backup_duration">Durata backup-ului:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Dosarul de jurnal nu a fost găsit</string>
+    <string name="logs_file_not_found">Niciun fișier jurnal disponibil pentru această copie de rezervă</string>
+    <string name="logs_file_read_error">A apărut o eroare la încărcarea acestui fișier jurnal</string>
+    <string name="logs_navigation_previous">Anterior</string>
+    <string name="logs_navigation_next">Următorul</string>
+    <string name="logs_recycler_hint">Conținutul fișierului jurnal</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Backup-uri în curs</string>
+    <string name="notification_ongoing_channel_description">Detalii de progres în timpul backup-urilor</string>
+    <string name="notification_result_channel_name">Backup-uri terminate</string>
+    <string name="notification_result_channel_description">Rezultatele backup-urilor programate finalizate</string>
+    <string name="notification_result">Rezultatul backup-urilor programate</string>
+    <string name="notification_scheduled">Backup-uri programate</string>
+    <string name="notification_no_backup">Niciuna efectuată astăzi</string>
+    <string name="notification_active">În curs de desfășurare</string>
+    <string name="notification_files">Fișiere</string>
+    <string name="notification_no_file">Nu există fișiere noi sau orfane</string>
+    <string name="notification_orphans">Orfani</string>
+    <string name="notification_success">Succes</string>
+    <string name="notification_warning">Avertizare</string>
+    <string name="notification_failed">A eșuat</string>
+    <string name="notification_canceled">Anulat</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Autonomie prea scăzută</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Nu se poate executa această copie de rezervă: copia de rezervă nu este inactivă</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Sistem</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Sistem</item>
+        <item>Ușoară</item>
+        <item>Întuneric</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Niciuna</item>
+        <item>Multiple - Aruncabil</item>
+        <item>Global - Aruncabil</item>
+        <item>Global - Permanent</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Dispozitiv</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Implicit</item>
+        <item>Roșu</item>
+        <item>Portocaliu</item>
+        <item>Galben</item>
+        <item>Tei</item>
+        <item>Verde</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Albastru</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Roz</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Niciuna</item>
+        <item>Roșu</item>
+        <item>Portocaliu</item>
+        <item>Galben</item>
+        <item>Tei</item>
+        <item>Verde</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Azure</item>
+        <item>Albastru</item>
+        <item>Indigo</item>
+        <item>Magenta</item>
+        <item>Roz</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Strict (sursă != destinatie)</item>
+        <item>Flexibil (sursă > destinație)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Păstrați</item>
+        <item>Mutarea</item>
+        <item>Ștergeți</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>zile</item>
+        <item>ore</item>
+        <item>minute</item>
+    </string-array>
+
+</resources>

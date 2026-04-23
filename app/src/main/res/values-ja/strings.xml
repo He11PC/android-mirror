@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- JAPANESE -->
+
+    <!--Activity - Main-->
+    <string name="application_description">オープンソースのマルチプロトコル バックアップ アプリケーション (NFS、SMB、FTP、SFTP、WebDAV)</string>
+    <string name="wifi_required_title">WiFiが必要</string>
+    <string name="wifi_required_text">WiFiオプションが選択されていますが、現在接続が有効ではありません。\nバックアップを行う際は、WiFiネットワークに接続してください</string>
+    <string name="tooltip_new_backup">上の + ボタンを使用して、新しいバックアップを設定します</string>
+    <string name="tooltip_edit_mode">バックアップ カードの上半分はインタラクティブです。\n- タップしてバックアップと編集ボタンを切り替えます\n- 長押ししてバックアップを無効/有効にします</string>
+    <string name="tooltip_group_launch">上部の「同期」ボタンには 2 つの機能があります:\n- タップすると、すべてのバックアップが一度に起動します\n- バックアップをカラー テーマ別にグループ化できます。複数のグループがある場合は、このボタンを長押しして 1 つを選択し、そのバックアップを起動します</string>
+    <string name="main_recycler_hint">バックアップ リスト</string>
+    <string name="main_color_theme_group">グループ #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">すべてのバックアップを開始</string>
+    <string name="menu_cancel_all">すべてのバックアップをキャンセル</string>
+    <string name="menu_backup_new">新しいバックアップ</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_permissions">パーミッション</string>
+    <string name="menu_about">について</string>
+
+    <!--Global-->
+    <string name="global_information">情報</string>
+    <string name="global_confirmation">確認</string>
+    <string name="global_warning">警告</string>
+    <string name="global_error">エラー</string>
+    <string name="global_yes">はい</string>
+    <string name="global_ok">OK</string>
+    <string name="global_no">いいえ</string>
+    <string name="global_cancel">キャンセル</string>
+    <string name="global_always">いつも</string>
+    <string name="global_understood">了解した</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">設定</string>
+    <string name="settings_interface_title">インターフェース</string>
+    <string name="settings_language_text">言語：</string>
+    <string name="settings_theme_text">テーマ：</string>
+    <string name="settings_logs_title">ログ</string>
+    <string name="settings_logs_text">バックアップごとに保持するログの数:</string>
+    <string name="settings_logs_errors">簡略化されたバージョンではなく、元の生のエラー メッセージを保持する</string>
+    <string name="settings_logs_warning_setforeground">進行状況の通知が失敗したときに警告を記録する</string>
+    <string name="settings_logs_preserve_scroll_position">ログ ファイルを変更するときにスクロール位置を保持する</string>
+    <string name="settings_notifications_title">通知</string>
+    <string name="settings_notifications_theme">設定されたカラーテーマを適用する</string>
+    <string name="settings_notifications_type">スケジュールされたバックアップの結果:</string>
+    <string name="settings_notifications_tip">- 複数: バックアップごとに 1 つの通知\n- グローバル: 単一の通知、すべてのバックアップの毎日の概要\n\n- 破棄可能: 削除可能\n- 常設: 常に表示\n\n永続的な通知により、スケジュールされたバックアップの問題を防ぐことができます</string>
+    <string name="settings_notifications_warning">この設定を変更するには、通知権限を許可してください</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">パーミッション</string>
+    <string name="permission_locked_title">パーミッションがロックされています</string>
+
+    <string name="permission_files_title">ファイルへのアクセスを許可する（必須）</string>
+    <string name="permission_files_text">ファイルやフォルダーにアクセスできなければ、バックアップは不可能です</string>
+    <string name="permission_files_locked_text">Androidはこの権限をブロックし、アプリケーションを機能させないようにしています。\n\nMirrorがあなたやあなたのデータに関する情報を収集することは決してありませんので、ご安心ください。\n\nアプリケーションの設定を開いて、手動で認証しますか？</string>
+
+    <string name="permission_notifications_title">通知を許可する (強く推奨)</string>
+    <string name="permission_notifications_text">通知は、進行中のバックアップの進行状況とスケジュールされたバックアップの結果を表示するために使用されます</string>
+    <string name="permission_notifications_locked_text">Android はこの許可をロックしました。\n\nアプリケーションの設定を開いて手動で許可しますか?</string>
+
+    <string name="permission_battery_title">バッテリー最適化を無効にする（推奨）</string>
+    <string name="permission_battery_text">Android のバッテリー最適化が強すぎると、スケジュールされたバックアップに干渉する可能性があります</string>
+
+    <string name="permission_permanent_title">権限剥奪を無効にする（推奨）</string>
+    <string name="permission_permanent_text">パーミッションは、Androidによって自動的に削除されることがあり、誤動作につながる可能性があります</string>
+
+    <string name="permission_auto_startup_title">自動起動を有効にする（推奨）</string>
+    <string name="permission_auto_startup_text">この権限がない場合、デバイスの再起動後にスケジュールバックアップが機能しなくなる可能性があります</string>
+    <string name="permission_auto_startup_try">この機能は各メーカー独自の方法で処理されており、Mirrorは対応する設定ページを開こうとするのみです。\n\n失敗した場合は、お使いの端末に手動で設定する必要があります</string>
+    <string name="permission_auto_startup_manual">この機能は各メーカーが独自に管理しているため、お使いの機器に合わせた手動設定が必要です</string>
+    <string name="permission_auto_startup_open">オープン</string>
+
+    <!--Activity - About-->
+    <string name="about_title">について</string>
+    <string name="about_app_title">アプリケーション</string>
+    <string name="about_app_author">作成者 <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">ライセンス: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">クレジットとサードパーティのライセンス</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 クライアント - EMCECS によって Apache-2.0 に基づいてライセンスされています</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 クライアント - hierynomus によって Apache-2.0 に基づいてライセンスされています</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP クライアント - Apache Software Foundation によって Apache-2.0 に基づいてライセンスされています</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP クライアント - mwiede により BSD スタイルでライセンスされています</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV クライアント - thegrizzlylabs によって Apache-2.0 に基づいてライセンスされています</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: WebDAV のダイジェスト認証 - rburgst によって Apache-2.0 に基づいてライセンスされています</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: 自動起動権限マネージャーを開きます - judemanutd によって MIT に基づいてライセンスされています</string>
+    <string name="about_libraries_thanks">ご尽力に感謝いたします。あなたなしでは Mirror は存在できませんでした :)</string>
+    <string name="about_support_title">サポート</string>
+    <string name="about_support_intro">Mirrorは無料のオープンソースアプリケーションで、広告やトラッキングなしで配布されています。\n\nもしこのアプリが役に立ち、私の活動を支援したいと思われたら、少額の寄付をいただければ幸いです。</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">このバックアップを削除する</string>
+    <string name="backup_delete_warning_message">このバックアップを削除しますか？</string>
+    <string name="backup_info">このバックアップに関する情報</string>
+    <string name="backup_launch">バックアップを開始する</string>
+    <string name="backup_enqueued">バックアップは保留</string>
+    <string name="backup_last_date">最後のバックアップ：</string>
+    <string name="backup_card_move">バックアップ カードを移動</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">編集のロックを解除する</string>
+    <string name="edit_authentication_message">このバックアップには生体認証が必要です</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">エディション</string>
+    <string name="edit_title_new">作成</string>
+    <string name="edit_save">セーブ</string>
+    <string name="edit_cancel">キャンセル</string>
+    <string name="edit_source">ソース</string>
+    <string name="edit_destination">目的地</string>
+
+    <string name="edit_exit_alert">保存せずに終了する場合は、繰り返します</string>
+    <string name="edit_invalid_alert">有効なソースとデスティネーションを入力してください</string>
+    <string name="edit_invalid_credentials_alert">有効なログイン情報（ユーザー名/パスワード）を入力してください</string>
+    <string name="edit_invalid_hostkey_alert">セキュリティ上の理由から、SFTP サーバーのホスト キーを取得してください</string>
+    <string name="edit_remote_alert_message">デバイスを介して 2 つのリモート サーバー間でバックアップを行うことは、最も効率的ではありません。\n\n可能であれば、これらのマシンのいずれかにバックアップを直接セットアップすることをお勧めします</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">現在のタブを検出できません</string>
+    <string name="target_location">場所：</string>
+    <string name="target_location_error">間違った場所が選択されました</string>
+    <string name="target_location_device">デバイス</string>
+    <string name="target_location_warning_remote_to_webdav">リモート ソースから WebDav サーバーへのバックアップには、デバイス上に一時的な中間ファイルを作成する必要があります</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">フォルダーを選択</string>
+    <string name="target_local_information_timezone">外部ストレージで一般的に使用される FAT ファイル システムは、タイム ゾーンを管理できず、デバイスのローカル時間に基づいて日付を保存します。 その結果、タイム ゾーンの変更後にファイルの完全なバックアップが行われる場合があります</string>
+    <string name="target_local_warning_android_10">Google は、Android 10 のプライベート フォルダー外の外部ストレージへのアプリケーションの書き込み許可を取り消すことを決定しました。\n\n宛先フォルダーを Mirror フォルダー内に移動しますか?\n\nこのアプリをアンインストールすると、Android によって削除されますのでご注意ください</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">サーバーです：</string>
+    <string name="target_common_server_hint">ドメイン名またはIP</string>
+    <string name="target_common_path">フォルダー：</string>
+    <string name="target_common_path_hint">フォルダ/サブフォルダ</string>
+    <string name="target_common_login">ユーザーです：</string>
+    <string name="target_common_login_hint">ユーザー名</string>
+    <string name="target_common_password">ユーザーパスワードです：</string>
+    <string name="target_common_password_hint">ユーザーパスワード</string>
+    <string name="target_common_port">ポート：</string>
+    <string name="target_common_share">共有:</string>
+    <string name="target_common_search">検索</string>
+    <string name="target_common_autofill">自動入力</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">ユーザー ID:</string>
+    <string name="target_nfs_uid_hint">UID (任意)</string>
+    <string name="target_nfs_gid">グループ ID:</string>
+    <string name="target_nfs_gid_hint">GID (任意)</string>
+    <string name="target_nfs_share_hint">ルート共有フォルダのパス</string>
+    <string name="target_nfs_non_root_mount_warning">Android ではサーバー上で非ルート マウント権限が必要です</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">名前またはIP</string>
+    <string name="target_smb_domain">ドメインです：</string>
+    <string name="target_smb_domain_hint">(オプション)</string>
+    <string name="target_smb_share_hint">ルート共有フォルダの名前</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLSを使用する</string>
+    <string name="target_ftp_ssl_warning">Androidでは、データ接続でTLSセッション再開オプションを使用しているサーバーでSSL/TLSを使用することができません</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">ホスト キー:</string>
+    <string name="target_sftp_hostkey_hint">タップしてサーバー ホスト キーを取得</string>
+    <string name="target_sftp_hostkey_load">ホスト キーを取得しています…</string>
+    <string name="target_sftp_hostkey_confirmation">このサーバーを信頼しますか?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSLを使用する</string>
+    <string name="target_webdav_ssl_warning">自己署名証明書は通常は不十分であり、セキュリティ チェック中に拒否される可能性があります</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">セキュリティ</string>
+    <string name="backup_protect">編集には生体認証が必要</string>
+    <string name="backup_protect_warning">このデバイスでは生体認証が設定されていません</string>
+
+    <string name="backup_opt">バックアップ</string>
+    <string name="backup_recursive">サブフォルダーの扱い</string>
+    <string name="backup_retry_corrupted">破損ファイル検出時のコピーの再試行</string>
+    <string name="backup_date_comparison_auto">自動ファイル日付比較モード</string>
+    <string name="backup_date_comparison_mode">ファイル日付比較モード:</string>
+    <string name="backup_wifi">WiFi経由のバックアップのみ</string>
+    <string name="backup_nomedia">ギャラリー(.nomedia)での保存先の非表示</string>
+
+    <string name="orphans_opt">孤児のファイル</string>
+    <string name="orphans_action">ファイルが宛先にのみ存在する場合：</string>
+    <string name="orphans_folder">このフォルダに:</string>
+    <string name="orphans_folder_name">オーファン</string>
+    <string name="orphans_invalid_folder">無効なフォルダ名</string>
+
+    <string name="filters_opt">フィルター</string>
+    <string name="filter_images">画像</string>
+    <string name="filter_audio">オーディオ</string>
+    <string name="filter_videos">動画</string>
+    <string name="filter_documents">ドキュメント</string>
+    <string name="filter_others">その他</string>
+    <string name="filter_min_size">より小さいファイルは無視する：</string>
+    <string name="filter_max_size">より大きいファイルを無視する：</string>
+    <string name="filter_black_list">除外リスト (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">グロブ パターン</a>):</string>
+    <string name="filter_black_list_hint">/フォルダ/サブフォルダ/**\n.trashed*</string>
+
+    <string name="schedule_opt">スケジューリング</string>
+    <string name="schedule_auto">自動バックアップの実行</string>
+    <string name="schedule_charging">充電中のみ</string>
+    <string name="schedule_idle">スタンバイ時のみ</string>
+    <string name="schedule_idle_warning">動作しない場合がある：一部のデバイスでは、スタンバイ状態を正しく通知できないことがある</string>
+    <string name="schedule_interval">すべてのデバイス：</string>
+    <string name="schedule_time">で</string>
+
+    <string name="options_low_interval_alert">短時間の遅延は、自律性を低下させる</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">外観</string>
+    <string name="backup_color_background">背景:</string>
+    <string name="backup_color_border">境界線:</string>
+    <string name="backup_color_icons">アイコン:</string>
+    <string name="backup_color_progressbar">プログレスバー:</string>
+    <string name="backup_appearance_preview">プレビュー</string>
+    <string name="backup_appearance_load_theme">テーマを読み込むにはタップしてください</string>
+    <string name="backup_appearance_theme_custom">カスタム #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">自動入力</string>
+    <string name="autofill_authentication_message">本人確認を行ってください</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">認証情報リスト</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">サーバーアドレスと資格情報を入力してください</string>
+    <string name="folder_explorer_missing_address">サーバー アドレスを入力してください</string>
+    <string name="folder_explorer_missing_share">検索する共有を入力してください</string>
+    <string name="folder_explorer_unable_connect">接続に失敗しました</string>
+    <string name="folder_explorer_unable_list">このフォルダーの内容を読み取ることができません</string>
+    <string name="folder_explorer_error_details">エラーメッセージ：</string>
+    <string name="folder_explorer_error_protocol">通信プロトコルが見つかりません</string>
+    <string name="folder_explorer_recycler_hint">リモート サーバーのコンテンツ</string>
+
+    <!--Worker Log -->
+    <string name="log_source">ソース</string>
+    <string name="log_destination">目的地</string>
+
+    <string name="log_error">エラー</string>
+    <string name="log_warning">アラート</string>
+    <string name="log_note">注</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">バックアップ開始</string>
+    <string name="log_backup_start_scheduled">自動バックアップ開始</string>
+    <string name="log_backup_initialisation">初期設定 …</string>
+    <string name="log_folder_destination_create">不足している宛先フォルダーの作成</string>
+    <string name="log_searching_files">ファイルを検索中 …</string>
+    <string name="log_found">発見されたファイル：</string>
+    <string name="log_excluding">ファイルをフィルタリング中 …</string>
+    <string name="log_remaining">残りのファイル：</string>
+    <string name="log_checking_backup">バックアップするファイルを確認中 …</string>
+    <string name="log_flexible_mode">(フレキシブルモード) …</string>
+    <string name="log_to_backup">コピーするファイル：</string>
+    <string name="log_orphans_keep">引き留めるべき孤児：</string>
+    <string name="log_orphans_move">移動する孤児：</string>
+    <string name="log_orphans_delete">削除する孤立者：</string>
+    <string name="log_obsolete">削除される予定の旧型孤児：</string>
+    <string name="log_orphans_after_backup">(i) 宛先フォルダー内のオーファン：</string>
+
+    <string name="error_wifi">必要なWiFiが接続されていない</string>
+    <string name="error_target">バックアップ先が違う</string>
+    <string name="error_blacklist">除外リスト内の構文エラー</string>
+
+    <string name="error_server_reach">このサーバーに到達できない</string>
+    <string name="error_server_connect">このサーバーに接続できない</string>
+    <string name="error_share_connect">この共有に接続できません</string>
+    <string name="error_ssl_connect">SSL/TLSを使用できない</string>
+    <string name="error_ssl_certificate">SSL/TLS証明書が無効/欠落している</string>
+    <string name="error_ftp_filetype">バイナリ転送モードへの切り替えができない</string>
+    <string name="error_server_login">認証ができない</string>
+    <string name="error_server_disconnect">サーバーとの接続を切断できない</string>
+
+    <string name="error_permission_read">読み取り許可拒否</string>
+    <string name="error_permission_write">書き込み権限がない</string>
+    <string name="error_permission_unknown">パーミッションの確認ができない</string>
+
+    <string name="error_space_low">空き容量が少ない</string>
+    <string name="error_space_critical">空き容量が足りない</string>
+    <string name="error_space_unverifiable">空き容量が確認できない</string>
+    <string name="error_quota_low">利用可能枠が少ない</string>
+    <string name="error_quota_critical">割当数が足りない</string>
+    <string name="error_quota_unverifiable">使用可能なクォータを確認できない</string>
+
+    <string name="error_folder_existence">ファイルが見つかりません</string>
+    <string name="error_folder_invalid">無効なフォルダー</string>
+    <string name="error_folder_list">このフォルダのファイルを一覧表示できない</string>
+    <string name="error_folder_delete">このフォルダを削除することはできません</string>
+    <string name="error_folder_create">このフォルダを作成することができません</string>
+    <string name="error_folder_create_tmp">一時ファイルフォルダを作成できません</string>
+
+    <string name="error_path_reach">このパスにアクセスできません</string>
+
+    <string name="error_orphan_folder_not_specified">孤児用フォルダ指定なし</string>
+    <string name="error_orphan_folder_in_use">孤立したファイルを保存するために、ソースに存在するフォルダー名を使用しないでください</string>
+
+    <string name="error_setforeground">進行状況通知を表示できません。バックアップ時間は 10 分に制限されています</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">セーフガード開始 …</string>
+    <string name="log_orphans_move_long">孤児の移動</string>
+    <string name="log_orphans_delete_long">孤児を削除する</string>
+    <string name="log_delete_obsolete_orphans">時代遅れの孤児を削除する</string>
+    <string name="log_folders_create">新規ファイルの作成</string>
+    <string name="log_copy">コピー</string>
+    <string name="log_move">引っ越し</string>
+    <string name="log_delete">削除</string>
+    <string name="log_nomedia_created">.nomediaファイル作成</string>
+    <string name="log_nomedia_removed">削除された.nomediaファイル</string>
+    <string name="log_empty_folders_delete">空のフォルダーを削除する</string>
+
+    <string name="error_file_read">このファイルを読み取れません</string>
+    <string name="error_file_read_finish">ファイルリーダーを閉じることができません</string>
+    <string name="error_file_copy">このファイルはコピーできません</string>
+    <string name="error_file_move">このファイルは移動できません</string>
+    <string name="error_file_delete">このファイルを削除することはできません</string>
+    <string name="error_file_corrupted">ファイル破損を検出、再試行 …</string>
+    <string name="error_file_corrupted_final">このファイルを破損せずにコピーすることができません。次回のバックアップで再試行</string>
+    <string name="error_file_date_modification">ファイル日付の変更に失敗しました。柔軟な比較モードに切り替えます</string>
+    <string name="success_file_date_modification">ファイル日付の変更に成功しました。厳密な比較モードに切り替えます</string>
+    <string name="error_file_tmp_space">デバイスの内部メモリに一時ファイルを作成するための空き容量が不足しています</string>
+    <string name="error_file_tmp_skipped">ファイルはスキップされました</string>
+    <string name="error_file_tmp">一時ファイルを作成できません</string>
+    <string name="error_nomedia_create">.nomedia ファイルを作成できない</string>
+    <string name="error_nomedia_remove">.nomedia ファイルを削除できない</string>
+    <string name="error_ftp_mlst">ファイルサイズと正確なタイムスタンプを取得するために必要な MLST コマンドは、このサーバーではサポートされていないようです</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">バックアップに成功</string>
+    <string name="log_backup_warning">アラートでバックアップに成功</string>
+    <string name="log_backup_canceled">バックアップの取り消し</string>
+    <string name="error_backup_failed">バックアップに失敗</string>
+
+    <string name="log_next_schedule_success">次のバックアップの予定です：</string>
+    <string name="log_next_schedule_failed">次回の挑戦予定：</string>
+
+    <string name="log_backup_duration">バックアップの期間：</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">ログフォルダが見つかりません</string>
+    <string name="logs_file_not_found">このバックアップに使用できるログ ファイルはありません</string>
+    <string name="logs_file_read_error">このログファイルの読み込み中にエラーが発生しました</string>
+    <string name="logs_navigation_previous">前</string>
+    <string name="logs_navigation_next">次</string>
+    <string name="logs_recycler_hint">ログファイルの内容</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">進行中のバックアップ</string>
+    <string name="notification_ongoing_channel_description">バックアップ中の進行状況の詳細</string>
+    <string name="notification_result_channel_name">完了したバックアップ</string>
+    <string name="notification_result_channel_description">スケジュールされたバックアップの完了結果</string>
+    <string name="notification_result">スケジュールされたバックアップの結果</string>
+    <string name="notification_scheduled">定期バックアップ</string>
+    <string name="notification_no_backup">本日、実施したものはありません</string>
+    <string name="notification_active">進行中</string>
+    <string name="notification_files">ファイル</string>
+    <string name="notification_no_file">新規ファイルや孤児となったファイルがない</string>
+    <string name="notification_orphans">オーファン</string>
+    <string name="notification_success">成功</string>
+    <string name="notification_warning">警告</string>
+    <string name="notification_failed">失敗</string>
+    <string name="notification_canceled">キャンセル</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">オートノミーが低すぎる</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">このバックアップを実行できません：バックアップは非アクティブではありません</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>システム</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>システム</item>
+        <item>光</item>
+        <item>暗い</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>なし</item>
+        <item>複数 - 破棄可能</item>
+        <item>グローバル - 破棄可能</item>
+        <item>グローバル - 常設</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>デバイス</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>デフォルト</item>
+        <item>赤</item>
+        <item>オレンジ</item>
+        <item>黄色</item>
+        <item>ライム</item>
+        <item>緑</item>
+        <item>ミント</item>
+        <item>シアン</item>
+        <item>アズール</item>
+        <item>青</item>
+        <item>インディゴ</item>
+        <item>マゼンタ</item>
+        <item>ピンク</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>なし</item>
+        <item>赤</item>
+        <item>オレンジ</item>
+        <item>黄色</item>
+        <item>ライム</item>
+        <item>緑</item>
+        <item>ミント</item>
+        <item>シアン</item>
+        <item>アズール</item>
+        <item>青</item>
+        <item>インディゴ</item>
+        <item>マゼンタ</item>
+        <item>ピンク</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>厳密 (ソース != 宛先)</item>
+        <item>柔軟 (ソース > 宛先)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>キープ</item>
+        <item>移動</item>
+        <item>削除</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>日間</item>
+        <item>時間</item>
+        <item>議事録</item>
+    </string-array>
+
+</resources>

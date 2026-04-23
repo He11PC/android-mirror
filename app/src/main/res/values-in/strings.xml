@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- INDONESIAN -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Aplikasi pencadangan multiprotokol sumber terbuka (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">Wi-Fi diperlukan</string>
+    <string name="wifi_required_text">Opsi WiFi telah dipilih tetapi tidak ada koneksi yang aktif saat ini.\nHarap sambungkan ke jaringan WiFi untuk melakukan pencadangan</string>
+    <string name="tooltip_new_backup">Gunakan tombol + di atas untuk menyiapkan cadangan baru</string>
+    <string name="tooltip_edit_mode">Separuh atas kartu cadangan Anda bersifat interaktif:\n- Ketuk untuk beralih antara tombol cadangan dan edit\n- Tekan lama untuk menonaktifkan/mengaktifkan cadangan Anda</string>
+    <string name="tooltip_group_launch">Tombol \"sinkronisasi\" di bagian atas memiliki dua fungsi:\n- Ketuk untuk meluncurkan semua cadangan Anda sekaligus\n- Anda dapat mengelompokkan cadangan menurut tema warna. Jika Anda memiliki beberapa grup, tekan lama tombol ini untuk memilih satu dan meluncurkan cadangannya</string>
+    <string name="main_recycler_hint">Daftar cadangan</string>
+    <string name="main_color_theme_group">Grup #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Mulai semua pencadangan</string>
+    <string name="menu_cancel_all">Batalkan semua cadangan</string>
+    <string name="menu_backup_new">Cadangan baru</string>
+    <string name="menu_settings">Setting</string>
+    <string name="menu_permissions">Izin</string>
+    <string name="menu_about">Tentang</string>
+
+    <!--Global-->
+    <string name="global_information">Informasi</string>
+    <string name="global_confirmation">Konfirmasi</string>
+    <string name="global_warning">Peringatan</string>
+    <string name="global_error">Kesalahan</string>
+    <string name="global_yes">Ya</string>
+    <string name="global_ok">Oke</string>
+    <string name="global_no">No</string>
+    <string name="global_cancel">Membatalkan</string>
+    <string name="global_always">Selalu</string>
+    <string name="global_understood">Dipahami</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Setting</string>
+    <string name="settings_interface_title">Antarmuka</string>
+    <string name="settings_language_text">Bahasa:</string>
+    <string name="settings_theme_text">Tema:</string>
+    <string name="settings_logs_title">Log</string>
+    <string name="settings_logs_text">Jumlah log untuk disimpan per cadangan:</string>
+    <string name="settings_logs_errors">Simpan pesan kesalahan mentah asli alih-alih versi sederhananya</string>
+    <string name="settings_logs_warning_setforeground">Merekam peringatan saat pemberitahuan kemajuan gagal</string>
+    <string name="settings_logs_preserve_scroll_position">Pertahankan posisi gulir saat mengubah berkas log</string>
+    <string name="settings_notifications_title">Notifikasi</string>
+    <string name="settings_notifications_theme">Terapkan tema warna yang dikonfigurasi</string>
+    <string name="settings_notifications_type">Hasil pencadangan terjadwal:</string>
+    <string name="settings_notifications_tip">- Banyak: satu notifikasi per cadangan\n- Global: pemberitahuan tunggal, ringkasan harian dari semua cadangan\n\n- Dibuang: dapat dihapus\n- Permanen: selalu terlihat\n\nPemberitahuan permanen dapat mencegah masalah pencadangan terjadwal</string>
+    <string name="settings_notifications_warning">Izinkan izin notifikasi untuk mengubah setelan ini</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">Izin</string>
+    <string name="permission_locked_title">Izin dikunci</string>
+
+    <string name="permission_files_title">Izinkan akses file (wajib)</string>
+    <string name="permission_files_text">Pencadangan tidak mungkin dilakukan tanpa memiliki akses ke file dan folder Anda</string>
+    <string name="permission_files_locked_text">Android memblokir izin ini sehingga aplikasi tidak berfungsi.\n\nHarap pastikan bahwa Mirror tidak akan pernah mengumpulkan informasi apa pun tentang Anda atau data Anda.\n\nApakah Anda ingin membuka pengaturan aplikasi dan mengizinkannya secara manual?</string>
+
+    <string name="permission_notifications_title">Izinkan notifikasi (sangat disarankan)</string>
+    <string name="permission_notifications_text">Notifikasi digunakan untuk menampilkan kemajuan pencadangan yang sedang berlangsung dan hasil pencadangan terjadwal</string>
+    <string name="permission_notifications_locked_text">Android mengunci izin ini.\n\nApakah Anda ingin membuka pengaturan aplikasi dan mengizinkannya secara manual?</string>
+
+    <string name="permission_battery_title">Nonaktifkan pengoptimalan baterai (disarankan)</string>
+    <string name="permission_battery_text">Pengoptimalan baterai Android bisa terlalu agresif dan mengganggu pencadangan terjadwal</string>
+
+    <string name="permission_permanent_title">Nonaktifkan pencabutan izin (disarankan)</string>
+    <string name="permission_permanent_text">Izin dapat dihapus secara otomatis oleh Android, yang dapat menyebabkan malfungsi</string>
+
+    <string name="permission_auto_startup_title">Aktifkan mulai otomatis (disarankan)</string>
+    <string name="permission_auto_startup_text">Tanpa izin ini, pencadangan terjadwal mungkin berhenti berfungsi setelah perangkat dimulai ulang</string>
+    <string name="permission_auto_startup_try">Setiap pabrikan menangani fitur ini dengan caranya sendiri, dan Mirror hanya dapat mencoba membuka halaman pengaturan yang sesuai.\n\nJika terjadi kegagalan, Anda harus melanjutkan ke konfigurasi manual yang disesuaikan dengan perangkat Anda</string>
+    <string name="permission_auto_startup_manual">Setiap pabrikan menangani fitur ini dengan caranya sendiri, yang memerlukan konfigurasi manual yang sesuai dengan perangkat Anda</string>
+    <string name="permission_auto_startup_open">Membuka</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Tentang</string>
+    <string name="about_app_title">Aplikasi</string>
+    <string name="about_app_author">Dibuat oleh <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Lisensi: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Kredit dan Lisensi Pihak Ketiga</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: Klien NFS v3 - Berlisensi di bawah Apache-2.0 oleh EMCECS</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: Klien SMB2/SMB3 - Dilisensikan pada Apache-2.0 oleh hierynomus</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: Klien FTP - Dilisensikan di bawah Apache-2.0 oleh Apache Software Foundation</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: Klien SFTP - Dilisensikan dengan gaya BSD oleh mwiede</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: Klien WebDAV - Dilisensikan pada Apache-2.0 oleh thegrizzlylabs</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: Otentikasi intisari untuk WebDAV - Berlisensi di bawah Apache-2.0 oleh rburgst</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Autostarter</a>: Membuka pengelola izin autostart - Berlisensi di bawah MIT oleh judemanutd</string>
+    <string name="about_libraries_thanks">Terima kasih atas kerja keras Anda, Mirror tidak akan ada tanpa Anda :)</string>
+    <string name="about_support_title">Dukungan</string>
+    <string name="about_support_intro">Mirror adalah aplikasi gratis dan sumber terbuka, didistribusikan tanpa iklan atau pelacakan.\n\nJika Anda merasa aplikasi ini bermanfaat dan ingin mendukung pekerjaan saya, donasi kecil akan sangat dihargai.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Hapus cadangan ini</string>
+    <string name="backup_delete_warning_message">Apakah Anda ingin menghapus cadangan ini?</string>
+    <string name="backup_info">Informasi tentang cadangan ini</string>
+    <string name="backup_launch">Mulai Pencadangan</string>
+    <string name="backup_enqueued">Pencadangan tertunda</string>
+    <string name="backup_last_date">Simpanan terakhir:</string>
+    <string name="backup_card_move">Pindahkan kartu cadangan</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Buka kunci pengeditan</string>
+    <string name="edit_authentication_message">Pencadangan ini memerlukan otentikasi biometrik</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Edisi</string>
+    <string name="edit_title_new">Pembuatan</string>
+    <string name="edit_save">Menyimpan</string>
+    <string name="edit_cancel">Membatalkan</string>
+    <string name="edit_source">Sumber</string>
+    <string name="edit_destination">Tujuan</string>
+
+    <string name="edit_exit_alert">Ulangi untuk keluar tanpa menyimpan</string>
+    <string name="edit_invalid_alert">Harap berikan Sumber dan Tujuan yang valid</string>
+    <string name="edit_invalid_credentials_alert">Harap berikan kredensial yang valid (nama pengguna/kata sandi)</string>
+    <string name="edit_invalid_hostkey_alert">Silakan ambil kunci host server SFTP Anda demi alasan keamanan</string>
+    <string name="edit_remote_alert_message">Melakukan pencadangan antara dua server jarak jauh melalui perangkat Anda bukanlah cara yang paling efisien.\n\nJika bisa, akan lebih baik menyiapkan cadangan Anda langsung di salah satu mesin tersebut</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Tidak dapat mendeteksi tab saat ini</string>
+    <string name="target_location">Lokasi:</string>
+    <string name="target_location_error">Lokasi yang dipilih salah</string>
+    <string name="target_location_device">Perangkat</string>
+    <string name="target_location_warning_remote_to_webdav">Pencadangan dari sumber jarak jauh ke server WebDav memerlukan pembuatan file perantara sementara di perangkat Anda</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Pilih folder</string>
+    <string name="target_local_information_timezone">Sistem file FAT, yang biasa digunakan pada penyimpanan eksternal, tidak dapat mengelola zona waktu dan menyimpan tanggal berdasarkan waktu lokal perangkat. Akibatnya, cadangan lengkap file Anda dapat terjadi setelah mengubah zona waktu</string>
+    <string name="target_local_warning_android_10">Google memutuskan untuk mencabut izin aplikasi untuk menulis di penyimpanan eksternal di luar folder pribadi mereka di Android 10.\n\nApakah Anda ingin memindahkan folder tujuan Anda ke dalam folder Mirror ?\n\nHati-hati, Android akan menghapusnya saat Anda menghapus aplikasi ini!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Server:</string>
+    <string name="target_common_server_hint">Nama domain atau IP</string>
+    <string name="target_common_path">Folder:</string>
+    <string name="target_common_path_hint">Folder/Subfolder</string>
+    <string name="target_common_login">Pengguna:</string>
+    <string name="target_common_login_hint">Nama_pengguna</string>
+    <string name="target_common_password">Kata sandi:</string>
+    <string name="target_common_password_hint">Kata_sandi_pengguna</string>
+    <string name="target_common_port">Port:</string>
+    <string name="target_common_share">Bagikan:</string>
+    <string name="target_common_search">Mencari</string>
+    <string name="target_common_autofill">IsiOtomatis</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">ID Pengguna:</string>
+    <string name="target_nfs_uid_hint">UID (fakultatif)</string>
+    <string name="target_nfs_gid">ID Grup:</string>
+    <string name="target_nfs_gid_hint">GID (fakultatif)</string>
+    <string name="target_nfs_share_hint">Jalur folder berbagi root</string>
+    <string name="target_nfs_non_root_mount_warning">Android memerlukan izin pemasangan non-root pada server Anda</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Nama atau IP</string>
+    <string name="target_smb_domain">Domain:</string>
+    <string name="target_smb_domain_hint">(opsional)</string>
+    <string name="target_smb_share_hint">Nama folder berbagi root</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">Gunakan SSL/TLS</string>
+    <string name="target_ftp_ssl_warning">Android tidak mengizinkan penggunaan SSL/TLS dengan server yang menggunakan opsi resume sesi TLS pada koneksi data</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Kunci host:</string>
+    <string name="target_sftp_hostkey_hint">Ketuk untuk mengambil kunci host server</string>
+    <string name="target_sftp_hostkey_load">Mengambil kunci host …</string>
+    <string name="target_sftp_hostkey_confirmation">Apakah Anda memercayai server ini?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">Gunakan SSL</string>
+    <string name="target_webdav_ssl_warning">Sertifikat yang ditandatangani sendiri biasanya tidak memadai dan dapat ditolak selama pemeriksaan keamanan</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Keamanan</string>
+    <string name="backup_protect">Pengeditan memerlukan otentikasi biometrik</string>
+    <string name="backup_protect_warning">Otentikasi biometrik tidak dikonfigurasi pada perangkat ini</string>
+
+    <string name="backup_opt">Cadangan</string>
+    <string name="backup_recursive">Subfolder proses</string>
+    <string name="backup_retry_corrupted">Coba lagi menyalin ketika file yang rusak terdeteksi</string>
+    <string name="backup_date_comparison_auto">Mode perbandingan tanggal berkas otomatis</string>
+    <string name="backup_date_comparison_mode">Mode perbandingan tanggal berkas:</string>
+    <string name="backup_wifi">Cadangkan hanya melalui WiFi</string>
+    <string name="backup_nomedia">Sembunyikan Tujuan di galeri (.nomedia)</string>
+
+    <string name="orphans_opt">File yatim piatu</string>
+    <string name="orphans_action">Jika file hanya ada di tujuan:</string>
+    <string name="orphans_folder">Ke folder ini:</string>
+    <string name="orphans_folder_name">Anak yatim</string>
+    <string name="orphans_invalid_folder">Nama folder tidak valid</string>
+
+    <string name="filters_opt">Filter</string>
+    <string name="filter_images">Gambar</string>
+    <string name="filter_audio">Audio</string>
+    <string name="filter_videos">Video</string>
+    <string name="filter_documents">Dokumen</string>
+    <string name="filter_others">Lainnya</string>
+    <string name="filter_min_size">Abaikan file yang lebih kecil dari:</string>
+    <string name="filter_max_size">Abaikan file yang lebih besar dari:</string>
+    <string name="filter_black_list">Daftar pengecualian (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">pola glob</a>):</string>
+    <string name="filter_black_list_hint">/Folder/SubFolder/**\n.trashed*</string>
+
+    <string name="schedule_opt">Perencanaan</string>
+    <string name="schedule_auto">Lakukan pencadangan otomatis</string>
+    <string name="schedule_charging">Hanya saat perangkat sedang diisi daya</string>
+    <string name="schedule_idle">Hanya ketika perangkat dalam keadaan siaga</string>
+    <string name="schedule_idle_warning">Mungkin tidak berfungsi: Beberapa perangkat tidak melaporkan status tidur dengan benar</string>
+    <string name="schedule_interval">Setiap:</string>
+    <string name="schedule_time">kapan</string>
+
+    <string name="options_low_interval_alert">Penundaan singkat akan mengurangi otonomi Anda</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Tampilan</string>
+    <string name="backup_color_background">Latar Belakang:</string>
+    <string name="backup_color_border">Perbatasan:</string>
+    <string name="backup_color_icons">Ikon:</string>
+    <string name="backup_color_progressbar">Bilah Kemajuan:</string>
+    <string name="backup_appearance_preview">Pratinjau</string>
+    <string name="backup_appearance_load_theme">Ketuk untuk memuat tema</string>
+    <string name="backup_appearance_theme_custom">Kustom #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">IsiOtomatis</string>
+    <string name="autofill_authentication_message">Harap konfirmasikan identitas Anda</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Daftar kredensial</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Silakan masukkan alamat server dan kredensial Anda</string>
+    <string name="folder_explorer_missing_address">Silakan masukkan alamat server Anda</string>
+    <string name="folder_explorer_missing_share">Silakan masukkan share yang ingin dicari</string>
+    <string name="folder_explorer_unable_connect">Koneksi gagal</string>
+    <string name="folder_explorer_unable_list">Tidak dapat membaca konten folder ini</string>
+    <string name="folder_explorer_error_details">Pesan eror:</string>
+    <string name="folder_explorer_error_protocol">Protokol komunikasi tidak ditemukan</string>
+    <string name="folder_explorer_recycler_hint">Konten server jarak jauh</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Sumber</string>
+    <string name="log_destination">Tujuan</string>
+
+    <string name="log_error">KESALAHAN</string>
+    <string name="log_warning">PERINGATAN</string>
+    <string name="log_note">CATATAN</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Pencadangan dimulai</string>
+    <string name="log_backup_start_scheduled">Simpan otomatis dimulai</string>
+    <string name="log_backup_initialisation">Inisialisasi …</string>
+    <string name="log_folder_destination_create">Membuat folder tujuan yang hilang</string>
+    <string name="log_searching_files">Mencari file …</string>
+    <string name="log_found">File ditemukan:</string>
+    <string name="log_excluding">Memfilter file …</string>
+    <string name="log_remaining">File yang tersisa:</string>
+    <string name="log_checking_backup">Memeriksa file yang akan dicadangkan …</string>
+    <string name="log_flexible_mode">(mode fleksibel) …</string>
+    <string name="log_to_backup">File untuk disalin:</string>
+    <string name="log_orphans_keep">Anak yatim yang harus dipelihara:</string>
+    <string name="log_orphans_move">Anak yatim piatu yang harus dipindahkan:</string>
+    <string name="log_orphans_delete">Anak yatim yang harus dihapus:</string>
+    <string name="log_obsolete">Anak yatim piatu untuk disingkirkan:</string>
+    <string name="log_orphans_after_backup">(i) Yatim Piatu di Tempat Tujuan:</string>
+
+    <string name="error_wifi">WiFi yang diperlukan tidak terhubung</string>
+    <string name="error_target">Target simpan salah</string>
+    <string name="error_blacklist">Kesalahan sintaksis dalam daftar pengecualian</string>
+
+    <string name="error_server_reach">Tidak dapat menjangkau server ini</string>
+    <string name="error_server_connect">Tidak dapat terhubung ke server ini</string>
+    <string name="error_share_connect">Tidak dapat terhubung ke share ini</string>
+    <string name="error_ssl_connect">Tidak dapat menggunakan SSL/TLS</string>
+    <string name="error_ssl_certificate">Sertifikat SSL/TLS tidak valid/tidak ada</string>
+    <string name="error_ftp_filetype">Tidak dapat beralih ke mode transfer biner</string>
+    <string name="error_server_login">Tidak dapat mengautentikasi</string>
+    <string name="error_server_disconnect">Tidak dapat memutuskan sambungan dari server</string>
+
+    <string name="error_permission_read">Izin baca ditolak</string>
+    <string name="error_permission_write">Izin menulis ditolak</string>
+    <string name="error_permission_unknown">Tidak dapat memeriksa izin</string>
+
+    <string name="error_space_low">Ruang disk rendah</string>
+    <string name="error_space_critical">Tidak cukup ruang disk kosong</string>
+    <string name="error_space_unverifiable">Tidak dapat memeriksa ruang disk kosong</string>
+    <string name="error_quota_low">Kuota yang tersedia rendah</string>
+    <string name="error_quota_critical">Kuota yang tersedia tidak mencukupi</string>
+    <string name="error_quota_unverifiable">Tidak dapat memeriksa kuota yang tersedia</string>
+
+    <string name="error_folder_existence">Folder tidak ditemukan</string>
+    <string name="error_folder_invalid">Folder tidak valid</string>
+    <string name="error_folder_list">Tidak dapat membuat daftar file di folder ini</string>
+    <string name="error_folder_delete">Tidak dapat menghapus folder ini</string>
+    <string name="error_folder_create">Tidak dapat membuat folder ini</string>
+    <string name="error_folder_create_tmp">Tidak dapat membuat folder file sementara</string>
+
+    <string name="error_path_reach">Tidak dapat mencapai jalur ini</string>
+
+    <string name="error_orphan_folder_not_specified">Folder Yatim tidak ditentukan</string>
+    <string name="error_orphan_folder_in_use">Jangan gunakan nama folder yang ada di sumber untuk menyimpan file anak yatim</string>
+
+    <string name="error_setforeground">Tidak dapat menampilkan pemberitahuan kemajuan. Durasi pencadangan dibatasi hingga 10 menit</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Pencadangan dimulai …</string>
+    <string name="log_orphans_move_long">Pemindahan anak yatim</string>
+    <string name="log_orphans_delete_long">Hapus anak yatim</string>
+    <string name="log_delete_obsolete_orphans">Hapus anak yatim piatu</string>
+    <string name="log_folders_create">Pembuatan folder baru</string>
+    <string name="log_copy">Penyalinan</string>
+    <string name="log_move">Bergerak</string>
+    <string name="log_delete">Menghapus</string>
+    <string name="log_nomedia_created">.nomedia file dibuat</string>
+    <string name="log_nomedia_removed">.nomedia file dihapus</string>
+    <string name="log_empty_folders_delete">Hapus folder kosong</string>
+
+    <string name="error_file_read">Tidak dapat membaca file ini</string>
+    <string name="error_file_read_finish">Tidak dapat menutup pembaca file</string>
+    <string name="error_file_copy">Tidak dapat menyalin file ini</string>
+    <string name="error_file_move">Tidak dapat memindahkan file ini</string>
+    <string name="error_file_delete">Tidak dapat menghapus file ini</string>
+    <string name="error_file_corrupted">Kerusakan file terdeteksi, coba lagi …</string>
+    <string name="error_file_corrupted_final">Tidak dapat menyalin file ini tanpa korupsi. Coba lagi pada penyimpanan berikutnya</string>
+    <string name="error_file_date_modification">Modifikasi tanggal berkas gagal. Beralih ke mode perbandingan fleksibel</string>
+    <string name="success_file_date_modification">Modifikasi tanggal berkas berhasil. Beralih ke mode perbandingan ketat</string>
+    <string name="error_file_tmp_space">Ruang kosong pada memori internal perangkat tidak cukup untuk membuat berkas sementara</string>
+    <string name="error_file_tmp_skipped">Berkas terlewati</string>
+    <string name="error_file_tmp">Tidak dapat membuat berkas sementara</string>
+    <string name="error_nomedia_create">Tidak dapat membuat file .nomedia</string>
+    <string name="error_nomedia_remove">Tidak dapat menghapus file .nomedia</string>
+    <string name="error_ftp_mlst">Perintah MLST, yang diperlukan untuk mengambil ukuran file dan stempel waktu yang tepat, tampaknya tidak didukung oleh server ini</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Pencadangan yang berhasil</string>
+    <string name="log_backup_warning">Pencadangan yang berhasil dengan peringatan</string>
+    <string name="log_backup_canceled">Pencadangan dibatalkan</string>
+    <string name="error_backup_failed">Pencadangan gagal</string>
+
+    <string name="log_next_schedule_success">Pencadangan terjadwal berikutnya:</string>
+    <string name="log_next_schedule_failed">Upaya terjadwal berikutnya:</string>
+
+    <string name="log_backup_duration">Durasi pencadangan:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Folder log tidak ditemukan</string>
+    <string name="logs_file_not_found">Tidak ada file log yang tersedia untuk cadangan ini</string>
+    <string name="logs_file_read_error">Terjadi kesalahan saat memuat file log ini</string>
+    <string name="logs_navigation_previous">Sebelumnya</string>
+    <string name="logs_navigation_next">Berikutnya</string>
+    <string name="logs_recycler_hint">Konten berkas log</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Pencadangan yang sedang berlangsung</string>
+    <string name="notification_ongoing_channel_description">Detail perkembangan selama pencadangan</string>
+    <string name="notification_result_channel_name">Selesai backup</string>
+    <string name="notification_result_channel_description">Hasil pencadangan terjadwal yang telah selesai</string>
+    <string name="notification_result">Hasil pencadangan terjadwal</string>
+    <string name="notification_scheduled">Pencadangan terjadwal</string>
+    <string name="notification_no_backup">Tidak ada yang selesai hari ini</string>
+    <string name="notification_active">Sedang berlangsung</string>
+    <string name="notification_files">File</string>
+    <string name="notification_no_file">Tidak ada file baru atau yatim piatu</string>
+    <string name="notification_orphans">Yatim piatu</string>
+    <string name="notification_success">Kesuksesan</string>
+    <string name="notification_warning">Peringatan</string>
+    <string name="notification_failed">Gagal</string>
+    <string name="notification_canceled">Dibatalkan</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Otonomi terlalu rendah</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Tidak mungkin meluncurkan cadangan ini: pencadangan tidak menganggur</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Sistem</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Sistem</item>
+        <item>Ringan</item>
+        <item>Gelap</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Tidak ada</item>
+        <item>Banyak - Dibuang</item>
+        <item>Global - Dibuang</item>
+        <item>Global - Permanen</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Perangkat</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Bawaan</item>
+        <item>Merah</item>
+        <item>Oranye</item>
+        <item>Kuning</item>
+        <item>Jeruk Nipis</item>
+        <item>Hijau</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Biru Kehijauan</item>
+        <item>Biru</item>
+        <item>Nila</item>
+        <item>Magenta</item>
+        <item>Merah Muda</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Tidak ada</item>
+        <item>Merah</item>
+        <item>Oranye</item>
+        <item>Kuning</item>
+        <item>Jeruk Nipis</item>
+        <item>Hijau</item>
+        <item>Mint</item>
+        <item>Cyan</item>
+        <item>Biru Kehijauan</item>
+        <item>Biru</item>
+        <item>Nila</item>
+        <item>Magenta</item>
+        <item>Merah Muda</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Ketat (sumber != tujuan)</item>
+        <item>Fleksibel (sumber > tujuan)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Menyimpan</item>
+        <item>Pindah</item>
+        <item>Menghapus</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>hari</item>
+        <item>jam</item>
+        <item>menit</item>
+    </string-array>
+
+</resources>

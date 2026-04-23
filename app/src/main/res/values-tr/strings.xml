@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- TURKISH -->
+
+    <!--Activity - Main-->
+    <string name="application_description">Açık kaynaklı çok protokollü yedekleme uygulaması (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">WiFi gerekli</string>
+    <string name="wifi_required_text">WiFi seçeneği seçildi, ancak şu anda etkin bağlantı yok.\nYedeklemeyi yapmak için lütfen bir WiFi ağına bağlanın</string>
+    <string name="tooltip_new_backup">Yeni bir yedekleme ayarlamak için yukarıdaki + düğmesini kullanın</string>
+    <string name="tooltip_edit_mode">Yedek kartlarınızın üst yarısı etkileşimlidir:\n- Yedekleme ve düzenleme düğmeleri arasında geçiş yapmak için dokunun\n- Yedeklerinizi devre dışı bırakmak/etkinleştirmek için uzun basın</string>
+    <string name="tooltip_group_launch">Üstteki \"sync\" düğmesinin iki işlevi vardır:\n- Tüm yedeklemelerinizi aynı anda başlatmak için dokunun\n- Yedeklemeleri renk temasına göre gruplandırabilirsiniz. Birden fazla grubunuz varsa, birini seçmek ve yedeklemelerini başlatmak için bu düğmeye uzun basın</string>
+    <string name="main_recycler_hint">Yedekleme listesi</string>
+    <string name="main_color_theme_group">Grup #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">Tüm yedeklemeleri başlat</string>
+    <string name="menu_cancel_all">Tüm yedeklemeleri iptal et</string>
+    <string name="menu_backup_new">yeni yedekleme</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="menu_permissions">İzinler</string>
+    <string name="menu_about">Hakkında</string>
+
+    <!--Global-->
+    <string name="global_information">Bilgi</string>
+    <string name="global_confirmation">Onayla</string>
+    <string name="global_warning">Uyarı</string>
+    <string name="global_error">Hata</string>
+    <string name="global_yes">Evet</string>
+    <string name="global_ok">TAMAM</string>
+    <string name="global_no">Hayır</string>
+    <string name="global_cancel">İptal</string>
+    <string name="global_always">Hep</string>
+    <string name="global_understood">Anladım</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_interface_title">Arayüz</string>
+    <string name="settings_language_text">Dil:</string>
+    <string name="settings_theme_text">Tema:</string>
+    <string name="settings_logs_title">Kütükler</string>
+    <string name="settings_logs_text">Yedekleme başına tutulacak günlük sayısı:</string>
+    <string name="settings_logs_errors">Basitleştirilmiş sürümleri yerine orijinal ham hata mesajlarını koruyun</string>
+    <string name="settings_logs_warning_setforeground">İlerleme bildirimi başarısız olduğunda bir uyarı kaydet</string>
+    <string name="settings_logs_preserve_scroll_position">Günlük dosyasını değiştirirken kaydırma konumunu koru</string>
+    <string name="settings_notifications_title">Bildirimler</string>
+    <string name="settings_notifications_theme">Yapılandırılan renk temasını uygula</string>
+    <string name="settings_notifications_type">Planlanmış yedeklemeler sonucu:</string>
+    <string name="settings_notifications_tip">- Çoklu: yedekleme başına bir bildirim\n- Küresel: tek bildirim, tüm yedeklemelerin günlük özeti\n\n- Atılabilir: çıkarılabilir\n- Kalıcı: her zaman görünür\n\nKalıcı bildirim, planlanmış yedekleme sorunlarını önleyebilir</string>
+    <string name="settings_notifications_warning">Lütfen bu ayarı değiştirmek için bildirim iznine izin verin</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">İzinler</string>
+    <string name="permission_locked_title">İzin kilitli</string>
+
+    <string name="permission_files_title">Dosyalara erişime izin ver (gerekli)</string>
+    <string name="permission_files_text">Dosyalarınıza ve klasörlerinize erişmeden yedekleme yapmak mümkün değildir</string>
+    <string name="permission_files_locked_text">Android, uygulamayı çalışmaz hale getirmek için bu izni engelledi.\n\nLütfen Mirror\'ın siz veya verileriniz hakkında hiçbir zaman bilgi toplamayacağından emin olun.\n\nUygulama ayarlarını açmak ve manuel olarak izin vermek istiyor musunuz?</string>
+
+    <string name="permission_notifications_title">Bildirimlere izin ver (kesinlikle önerilir)</string>
+    <string name="permission_notifications_text">Bildirimler, devam eden yedekleme ilerlemesini ve planlanmış yedekleme sonuçlarını görüntülemek için kullanılır</string>
+    <string name="permission_notifications_locked_text">Android bu izni kilitledi.\n\nUygulamanın ayarlarını açıp manuel olarak izin vermek istiyor musunuz?</string>
+
+    <string name="permission_battery_title">Pil Optimizasyonunu Devre dışı Bırak (önerilir)</string>
+    <string name="permission_battery_text">Android pil optimizasyonu çok agresif olabilir ve planlanan yedeklemeleri etkileyebilir</string>
+
+    <string name="permission_permanent_title">İzinleri iptal etme özelliğini devre dışı bırak (önerilen)</string>
+    <string name="permission_permanent_text">İzinler Android tarafından otomatik olarak silinebilir, bu da arızaya neden olabilir</string>
+
+    <string name="permission_auto_startup_title">Otomatik başlatmayı etkinleştir (önerilen)</string>
+    <string name="permission_auto_startup_text">Bu izin olmadan, zamanlanmış yedeklemeler aygıt yeniden başlatıldıktan sonra durabilir</string>
+    <string name="permission_auto_startup_try">Her üretici bu işlevi kendi kendine işler ve Mirror yalnızca ilgili ayarlar sayfasını açmayı deneyebilir.\n\nArıza durumunda cihazınıza uyarlanmış bir manuel konfigürasyon gerçekleştirmeniz gerekir</string>
+    <string name="permission_auto_startup_manual">Her üretici bu işlevi kendi kendine yönetir ve bu da cihazınıza uyarlanmış bir manuel konfigürasyon gerektirir</string>
+    <string name="permission_auto_startup_open">Açık</string>
+
+    <!--Activity - About-->
+    <string name="about_title">Hakkında</string>
+    <string name="about_app_title">Uygulama</string>
+    <string name="about_app_author">Oluşturan <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">Lisans: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">Krediler ve Üçüncü Taraf Lisansları</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 istemcisi - EMCECS tarafından Apache-2.0 kapsamında lisanslanmıştır</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 istemcisi - hierynomus tarafından Apache-2.0 kapsamında lisanslanmıştır</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">Commons Net</a>: FTP istemcisi - Apache Software Foundation tarafından Apache-2.0 kapsamında lisanslanmıştır</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP istemcisi - mwiede tarafından BSD stili altında lisanslanmıştır</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV istemcisi - thegrizzlylabs tarafından Apache-2.0 kapsamında lisanslanmıştır</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: WebDAV için özet kimlik doğrulaması - rburgst tarafından Apache-2.0 kapsamında lisanslanmıştır</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">Otomatik Başlatıcı</a>: Otomatik başlatma izin yöneticisini açar - Judemanutd tarafından MIT kapsamında lisanslıdır</string>
+    <string name="about_libraries_thanks">Emekleriniz için teşekkürler, Mirror siz olmadan var olamazdı :)</string>
+    <string name="about_support_title">Destek</string>
+    <string name="about_support_intro">Mirror, reklam veya izleme içermeyen, ücretsiz ve açık kaynaklı bir uygulamadır.\n\nEğer uygulamayı faydalı bulursanız ve çalışmalarımı desteklemek isterseniz, küçük bir bağış çok makbule geçecektir.</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">Bu yedeği sil</string>
+    <string name="backup_delete_warning_message">Bu yedeği silmek istiyor musunuz?</string>
+    <string name="backup_info">Bu yedekleme hakkında bilgiler</string>
+    <string name="backup_launch">Yedeklemeyi çalıştırın</string>
+    <string name="backup_enqueued">Yedeklemede bekleme</string>
+    <string name="backup_last_date">Son yedekleme:</string>
+    <string name="backup_card_move">Yedekleme kartını taşı</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">Sürümün kilidini aç</string>
+    <string name="edit_authentication_message">Bu yedekleme biyometrik kimlik doğrulaması gerektirir</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">Değiştirmek</string>
+    <string name="edit_title_new">Oluşturma</string>
+    <string name="edit_save">Kaydetmek</string>
+    <string name="edit_cancel">İptal</string>
+    <string name="edit_source">Kaynak</string>
+    <string name="edit_destination">Hedef</string>
+
+    <string name="edit_exit_alert">Kaydetmeden çıkmak için tekrarlayın</string>
+    <string name="edit_invalid_alert">Lütfen geçerli bir Kaynak ve Hedef belirtin</string>
+    <string name="edit_invalid_credentials_alert">Lütfen geçerli kimlik bilgileri (kullanıcı adı/parola) girin</string>
+    <string name="edit_invalid_hostkey_alert">Lütfen güvenlik nedeniyle SFTP sunucunuzun ana bilgisayar anahtarınızı alın</string>
+    <string name="edit_remote_alert_message">Cihazınız aracılığıyla iki uzak sunucu arasında yedekleme yapmak en verimli yöntem değildir.\n\nYapabiliyorsanız, yedeklemenizi doğrudan bu makinelerden birine kurmanız daha iyi olur</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">Mevcut sekme algılanamadı</string>
+    <string name="target_location">Konum:</string>
+    <string name="target_location_error">Yanlış konum seçildi</string>
+    <string name="target_location_device">Teçhizatının</string>
+    <string name="target_location_warning_remote_to_webdav">Uzak bir kaynaktan bir WebDav sunucusuna yedeklemeler, cihazınızda geçici ara dosyaların oluşturulmasını gerektirir</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">Dosya Seç</string>
+    <string name="target_local_information_timezone">Genellikle harici depolarda kullanılan FAT dosya sistemi saat dilimlerini yönetemez ve tarihleri aygıtın yerel saatine göre saklar. Sonuç olarak, saat dilimini değiştirdikten sonra dosyalarınızın tam bir yedeği oluşabilir</string>
+    <string name="target_local_warning_android_10">Google, uygulamaların Android 10\'daki özel klasörlerinin dışında harici depolamaya yazma iznini iptal etmeye karar verdi.\n\nHedef klasörünüzü Mirror klasörü içine taşımak istiyor musunuz?\n\nDikkatli olun, bu uygulamayı kaldırdığınızda Android onu silecek!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">Sunucu:</string>
+    <string name="target_common_server_hint">Etki alanı adı veya IP</string>
+    <string name="target_common_path">Klasör:</string>
+    <string name="target_common_path_hint">Klasör/Alt Klasör</string>
+    <string name="target_common_login">Kullanıcı:</string>
+    <string name="target_common_login_hint">Kullanıcı_adı</string>
+    <string name="target_common_password">Parola:</string>
+    <string name="target_common_password_hint">Kullanıcı_geçişi</string>
+    <string name="target_common_port">Bağlantı Noktası:</string>
+    <string name="target_common_share">Paylaşım:</string>
+    <string name="target_common_search">Aramak</string>
+    <string name="target_common_autofill">Otomatik Doldurma</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">Kullanıcı Kimliği:</string>
+    <string name="target_nfs_uid_hint">UID (isteğe bağlı)</string>
+    <string name="target_nfs_gid">Grup Kimliği:</string>
+    <string name="target_nfs_gid_hint">GID (isteğe bağlı)</string>
+    <string name="target_nfs_share_hint">Kök paylaşımlı klasörün yolu</string>
+    <string name="target_nfs_non_root_mount_warning">Android sunucunuzda kök olmayan bağlama izni gerektirir</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">Ad veya IP</string>
+    <string name="target_smb_domain">Alan:</string>
+    <string name="target_smb_domain_hint">(isteğe bağlı)</string>
+    <string name="target_smb_share_hint">Kök paylaşımlı klasörün adı</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLS Kullan</string>
+    <string name="target_ftp_ssl_warning">Android, veri bağlantısında TLS oturumu sürdürme seçeneğini kullanan sunucularla SSL/TLS kullanımına izin vermez</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">Ana bilgisayar anahtarı:</string>
+    <string name="target_sftp_hostkey_hint">Sunucu ana bilgisayar anahtarını almak için dokunun</string>
+    <string name="target_sftp_hostkey_load">Ana bilgisayar anahtarı alınıyor …</string>
+    <string name="target_sftp_hostkey_confirmation">Bu sunucuya güveniyor musunuz?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSL Kullan</string>
+    <string name="target_webdav_ssl_warning">Kendi kendine imzalanmış sertifikalar genellikle yeterli değildir ve güvenlik kontrolleri sırasında reddedilebilir</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">Güvenlik</string>
+    <string name="backup_protect">Düzenleme biyometrik kimlik doğrulama gerektirir</string>
+    <string name="backup_protect_warning">Biyometrik kimlik doğrulama bu cihazda yapılandırılmamış</string>
+
+    <string name="backup_opt">Yedekle</string>
+    <string name="backup_recursive">Alt klasörleri işleme</string>
+    <string name="backup_retry_corrupted">Bozuk bir dosya algılandığında kopyalamayı yeniden deneyin</string>
+    <string name="backup_date_comparison_auto">Otomatik dosya tarihi karşılaştırma modu</string>
+    <string name="backup_date_comparison_mode">Dosya tarihi karşılaştırma modu:</string>
+    <string name="backup_wifi">Yalnızca WiFi ile yedekle</string>
+    <string name="backup_nomedia">Galerideki Hedefi Gizle (.nomedia)</string>
+
+    <string name="orphans_opt">Artık dosyalar</string>
+    <string name="orphans_action">Bir dosya yalnızca Varış Yeri\'nde mevcutsa:</string>
+    <string name="orphans_folder">Bu klasöre:</string>
+    <string name="orphans_folder_name">Yetimlerin</string>
+    <string name="orphans_invalid_folder">Geçersiz klasör adı</string>
+
+    <string name="filters_opt">Filtreler</string>
+    <string name="filter_images">Görüntüler</string>
+    <string name="filter_audio">Ses</string>
+    <string name="filter_videos">Videolar</string>
+    <string name="filter_documents">Belgeler</string>
+    <string name="filter_others">Diğer</string>
+    <string name="filter_min_size">Şu boyuttan küçük dosyaları yoksay:</string>
+    <string name="filter_max_size">Şu boyuttan büyük dosyaları yoksay:</string>
+    <string name="filter_black_list">Hariç tutma listesi (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob modeli</a>):</string>
+    <string name="filter_black_list_hint">/Dosya/Alt Dosya/**\n.trashed*</string>
+
+    <string name="schedule_opt">Planlama</string>
+    <string name="schedule_auto">Otomatik yedeklemeler yapma</string>
+    <string name="schedule_charging">Sadece cihaz şarj olurken</string>
+    <string name="schedule_idle">Yalnızca aygıt uyku modundayken</string>
+    <string name="schedule_idle_warning">Çalışmayabilir: Bazı cihazlar bekleme durumunu doğru şekilde bildirmez</string>
+    <string name="schedule_interval">Her:</string>
+    <string name="schedule_time">de</string>
+
+    <string name="options_low_interval_alert">Kısa bir gecikme, otonomuzun azalmasına neden olur</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">Görünüm</string>
+    <string name="backup_color_background">Arka Plan:</string>
+    <string name="backup_color_border">Kenarlıklar:</string>
+    <string name="backup_color_icons">Simgeler:</string>
+    <string name="backup_color_progressbar">İlerleme Çubuğu:</string>
+    <string name="backup_appearance_preview">Önizleme</string>
+    <string name="backup_appearance_load_theme">Bir temayı yüklemek için dokunun</string>
+    <string name="backup_appearance_theme_custom">Özel #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">Otomatik doldurma</string>
+    <string name="autofill_authentication_message">Lütfen kimliğinizi doğrulayın</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">Kimlik bilgileri listesi</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">Lütfen sunucu adresinizi ve kimlik bilgilerinizi girin</string>
+    <string name="folder_explorer_missing_address">Lütfen sunucu adresinizi girin</string>
+    <string name="folder_explorer_missing_share">Lütfen arama yapmak için bir paylaşım girin</string>
+    <string name="folder_explorer_unable_connect">Bağlantı başarısız oldu</string>
+    <string name="folder_explorer_unable_list">Bu klasör içeriği okunamıyor</string>
+    <string name="folder_explorer_error_details">Hata mesajı:</string>
+    <string name="folder_explorer_error_protocol">İletişim protokolü bulunamadı</string>
+    <string name="folder_explorer_recycler_hint">Uzak sunucu içeriği</string>
+
+    <!--Worker Log -->
+    <string name="log_source">Kaynak</string>
+    <string name="log_destination">Hedef</string>
+
+    <string name="log_error">HATA</string>
+    <string name="log_warning">UYARI</string>
+    <string name="log_note">NOT</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">Yedekleme başlatıldı</string>
+    <string name="log_backup_start_scheduled">Otomatik Kaydetme başladı</string>
+    <string name="log_backup_initialisation">Başlatma …</string>
+    <string name="log_folder_destination_create">Eksik hedef klasörü oluşturma</string>
+    <string name="log_searching_files">Dosyalar aranıyor …</string>
+    <string name="log_found">Dosyalar bulundu:</string>
+    <string name="log_excluding">Dosyalar filtreleniyor …</string>
+    <string name="log_remaining">Kalan dosyalar:</string>
+    <string name="log_checking_backup">Yedeklenecek dosyalar kontrol ediliyor …</string>
+    <string name="log_flexible_mode">(esnek mod) …</string>
+    <string name="log_to_backup">Kopyalanacak dosyalar:</string>
+    <string name="log_orphans_keep">Saklanacak yetimler:</string>
+    <string name="log_orphans_move">Taşınacak yetimler:</string>
+    <string name="log_orphans_delete">Silinecek yetimler:</string>
+    <string name="log_obsolete">Silinecek hükümsüz yetimler:</string>
+    <string name="log_orphans_after_backup">(i) Hedef klasöründeki yetimler:</string>
+
+    <string name="error_wifi">Gerekli WiFi bağlı değil</string>
+    <string name="error_target">Yanlış yedekleme hedefi</string>
+    <string name="error_blacklist">Hariç tutma listesinde sözdizimi hatası</string>
+
+    <string name="error_server_reach">Bu sunucuya erişilemiyor</string>
+    <string name="error_server_connect">Bu sunucuya bağlanılamıyor</string>
+    <string name="error_share_connect">Bu paylaşıma bağlanılamıyor</string>
+    <string name="error_ssl_connect">SSL/TLS kullanılamıyor</string>
+    <string name="error_ssl_certificate">Geçersiz/eksik SSL/TLS sertifikası</string>
+    <string name="error_ftp_filetype">İkili aktarım moduna geçemiyor</string>
+    <string name="error_server_login">Kimlik doğrulanamıyor</string>
+    <string name="error_server_disconnect">Bağlantı kesilemiyor sunucudan</string>
+
+    <string name="error_permission_read">Okuma izni reddedildi</string>
+    <string name="error_permission_write">Yazma izni Reddedildi</string>
+    <string name="error_permission_unknown">İzinler doğrulanamıyor</string>
+
+    <string name="error_space_low">Az boş alan</string>
+    <string name="error_space_critical">Yeterli boş alan yok</string>
+    <string name="error_space_unverifiable">Boşluk kontrol edilemiyor</string>
+    <string name="error_quota_low">Mevcut kota düşük</string>
+    <string name="error_quota_critical">Yeterli kota yok</string>
+    <string name="error_quota_unverifiable">Yapılamıyor mevcut kotayı doğrula</string>
+
+    <string name="error_folder_existence">Klasör bulunamadı</string>
+    <string name="error_folder_invalid">Geçersiz dosya</string>
+    <string name="error_folder_list">Bu klasördeki dosyalar listelenemiyor</string>
+    <string name="error_folder_delete">Bu klasör silinemiyor</string>
+    <string name="error_folder_create">Mümkün bu klasörü oluşturmak için</string>
+    <string name="error_folder_create_tmp">Geçici dosyalar klasörü oluşturulamıyor</string>
+
+    <string name="error_path_reach">Bu yola ulaşılamıyor</string>
+
+    <string name="error_orphan_folder_not_specified">Yetimler klasörü belirtilmedi</string>
+    <string name="error_orphan_folder_in_use">Sahipsiz dosyaları depolamak için kaynakta bulunan bir klasör adını kullanmayın</string>
+
+    <string name="error_setforeground">İlerleme bildirimi görüntülenemiyor. Yedekleme süresi 10 dakikayla sınırlıdır</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">Yedekleme başlar …</string>
+    <string name="log_orphans_move_long">Yetimlerin yer değiştirmesi</string>
+    <string name="log_orphans_delete_long">Yetim çıkarma</string>
+    <string name="log_delete_obsolete_orphans">Eski yetimlerin kaldırılması</string>
+    <string name="log_folders_create">Yeni dosyaların oluşturulması</string>
+    <string name="log_copy">Kopyalama</string>
+    <string name="log_move">Hareketli</string>
+    <string name="log_delete">Siliniyor</string>
+    <string name="log_nomedia_created">.nomedia dosyası oluşturuldu</string>
+    <string name="log_nomedia_removed">.nomedia dosyası silindi</string>
+    <string name="log_empty_folders_delete">Boş klasörler siliniyor</string>
+
+    <string name="error_file_read">Bu dosya okunamıyor</string>
+    <string name="error_file_read_finish">Dosya okuyucu kapatılamıyor</string>
+    <string name="error_file_copy">Bu dosya kopyalanamadı</string>
+    <string name="error_file_move">Bu dosya taşınamadı</string>
+    <string name="error_file_delete">Bu dosya silinemiyor</string>
+    <string name="error_file_corrupted">Dosya bozulması algılandı, tekrar deneyin …</string>
+    <string name="error_file_corrupted_final">Bu dosya bozulmadan kopyalanamadı. Sonraki yedeklemede tekrar dene</string>
+    <string name="error_file_date_modification">Dosya tarihi değişikliği başarısız oldu. Esnek karşılaştırma moduna geçiliyor</string>
+    <string name="success_file_date_modification">Dosya tarihi değişikliği başarılı. Sıkı karşılaştırma moduna geçiliyor</string>
+    <string name="error_file_tmp_space">Geçici dosya oluşturmak için cihazın dahili belleğinde yeterli boş alan yok</string>
+    <string name="error_file_tmp_skipped">Dosya atlandı</string>
+    <string name="error_file_tmp">Geçici dosya oluşturulamıyor</string>
+    <string name="error_nomedia_create">.nomedia dosyası oluşturulamıyor</string>
+    <string name="error_nomedia_remove">.nomedia dosyası silinemiyor</string>
+    <string name="error_ftp_mlst">Dosya boyutunu ve kesin zaman damgasını almak için gereken MLST komutu bu sunucu tarafından desteklenmiyor gibi görünüyor</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">Başarıyla kaydedildi</string>
+    <string name="log_backup_warning">Uyarılarla başarıyla kaydedildi</string>
+    <string name="log_backup_canceled">Yedekleme iptal edildi</string>
+    <string name="error_backup_failed">Yedekleme başarısız</string>
+
+    <string name="log_next_schedule_success">Sonraki planlı yedekleme:</string>
+    <string name="log_next_schedule_failed">Bir sonraki planlanan deneme:</string>
+
+    <string name="log_backup_duration">Yedekleme süresi:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">Günlük klasörü bulunamadı</string>
+    <string name="logs_file_not_found">Bu yedekleme için kullanılabilir günlük dosyası yok</string>
+    <string name="logs_file_read_error">Bu günlük dosyası yüklenirken hata oluştu</string>
+    <string name="logs_navigation_previous">Önceki</string>
+    <string name="logs_navigation_next">Takip eden</string>
+    <string name="logs_recycler_hint">Günlük dosyası içeriği</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">Devam eden yedeklemeler</string>
+    <string name="notification_ongoing_channel_description">Yedeklemeler sırasında ilerleme ayrıntıları</string>
+    <string name="notification_result_channel_name">Tamamlanan yedeklemeler</string>
+    <string name="notification_result_channel_description">Tamamlanan zamanlanmış yedeklemelerin sonuçları</string>
+    <string name="notification_result">Planlanmış yedekleme sonucu</string>
+    <string name="notification_scheduled">Planlı yedeklemeler</string>
+    <string name="notification_no_backup">Bugün Tamamlanan Yok</string>
+    <string name="notification_active">Devam ediyor</string>
+    <string name="notification_files">Dosyalar</string>
+    <string name="notification_no_file">Yeni dosya veya yetimler yok</string>
+    <string name="notification_orphans">Yetimlerin</string>
+    <string name="notification_success">Başarı</string>
+    <string name="notification_warning">Uyarı</string>
+    <string name="notification_failed">Arızalı</string>
+    <string name="notification_canceled">İptal edildi</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">Otonomi çok düşük</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">Bu yedekleme başlatılamadi: Yedekleme etkin değil</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>Sistem</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>Sistem</item>
+        <item>Işık</item>
+        <item>Karanlık</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>Hiçbiri</item>
+        <item>Çoklu - Atılabilir</item>
+        <item>Küresel - Atılabilir</item>
+        <item>Küresel - Kalıcı</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>Cihaz</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>Varsayılan</item>
+        <item>Kırmızı</item>
+        <item>Turuncu</item>
+        <item>Sarı</item>
+        <item>Limon</item>
+        <item>Yeşil</item>
+        <item>Nane</item>
+        <item>Camgöbeği</item>
+        <item>Gök mavisi</item>
+        <item>Mavi</item>
+        <item>Çivit Mavisi</item>
+        <item>Macenta</item>
+        <item>Pembe</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>Hiçbiri</item>
+        <item>Kırmızı</item>
+        <item>Turuncu</item>
+        <item>Sarı</item>
+        <item>Limon</item>
+        <item>Yeşil</item>
+        <item>Nane</item>
+        <item>Camgöbeği</item>
+        <item>Gök mavisi</item>
+        <item>Mavi</item>
+        <item>Çivit Mavisi</item>
+        <item>Macenta</item>
+        <item>Pembe</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>Sıkı (kaynak != hedef)</item>
+        <item>Esnek (kaynak > hedef)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>Kale</item>
+        <item>Taşınmak</item>
+        <item>Silmek</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>günler</item>
+        <item>zaman</item>
+        <item>dakika</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,26 @@
+Mirror är en spegelbaserad säkerhetskopieringsapplikation för Android med flera protokoll.
+Den är utformad för att vara enklare och lättare än synkroniseringsprogramvara och låter dig använda din egen infrastruktur istället för tredjepartsmolntjänster.
+
+Du kan konfigurera flera säkerhetskopior enligt följande:
+
+* Välj en källkatalog
+* Välj en destinationskatalog
+* Välj filtreringsalternativ (valfritt)
+* Konfigurera automatisk schemaläggning (valfritt)
+
+Mirror analyserar innehållet i båda katalogerna, jämför dem och återger strukturen för källkatalogen (underkataloger och filer) i destinationskatalogen, med hänsyn till de filtreringsalternativ du har valt.
+
+Källan och destinationen kan finnas på:
+
+* Din enhets interna eller externa lagring
+* En NFS-resurs
+* En SMB-resurs
+* En FTP- eller FTPS-server
+* En SFTP-server
+* En WebDAV-server
+
+**SÄKERHET OCH INTEGRITET**
+
+* **Lokal lagring:** Känslig information krypteras (AES-GCM + Android KeyStore) och lagras lokalt på din enhet med hjälp av en Room-databas.
+* **Ingen spårning:** Den här applikationen innehåller ingen analys, spårning, reklam eller proprietära programvaruutvecklingskit (SDK).
+* **Öppen källkod:** Mirror är ett oberoende projekt. Källkoden finns tillgänglig på GitHub för transparens och granskning.

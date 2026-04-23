@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026 HellPC (https://github.com/He11PC).
+  ~ This file is part of Mirror, multiprotocol backup application.
+  ~
+  ~ Mirror is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~
+  ~ See AGENTS.md for AI usage policy.
+  ~
+  ~ This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <!-- BENGALI -->
+
+    <!--Activity - Main-->
+    <string name="application_description">ওপেন সোর্স মাল্টিপ্রটোকল ব্যাকআপ অ্যাপ্লিকেশন (NFS, SMB, FTP, SFTP, WebDAV)</string>
+    <string name="wifi_required_title">Wi-Fi প্রয়োজন</string>
+    <string name="wifi_required_text">ওয়াইফাই বিকল্পটি নির্বাচন করা হয়েছে কিন্তু বর্তমানে কোনো সংযোগ সক্রিয় নেই।\nব্যাকআপ সঞ্চালন করতে একটি ওয়াইফাই নেটওয়ার্কের সাথে সংযোগ করুন</string>
+    <string name="tooltip_new_backup">একটি নতুন ব্যাকআপ সেট আপ করতে উপরের + বোতামটি ব্যবহার করুন৷</string>
+    <string name="tooltip_edit_mode">আপনার ব্যাকআপ কার্ডগুলির উপরের অর্ধেকটি ইন্টারেক্টিভ:\n- ব্যাকআপ এবং সম্পাদনা বোতামগুলির মধ্যে স্যুইচ করতে আলতো চাপুন৷\n- আপনার ব্যাকআপ নিষ্ক্রিয়/সক্ষম করতে দীর্ঘক্ষণ প্রেস করুন</string>
+    <string name="tooltip_group_launch">উপরের \"সিঙ্ক\" বোতামটির দুটি ফাংশন রয়েছে:\n- আপনার সমস্ত ব্যাকআপ একসাথে চালু করতে ট্যাপ করুন\n- আপনি রঙের থিম অনুসারে ব্যাকআপগুলিকে গ্রুপ করতে পারেন। যদি আপনার একাধিক গ্রুপ থাকে, তাহলে একটি নির্বাচন করতে এবং এর ব্যাকআপগুলি চালু করতে এই বোতামটি দীর্ঘক্ষণ টিপুন</string>
+    <string name="main_recycler_hint">ব্যাকআপ তালিকা</string>
+    <string name="main_color_theme_group">গ্রুপ #</string>
+
+    <!--Menu-->
+    <string name="menu_backup_all">সমস্ত ব্যাকআপ শুরু করুন</string>
+    <string name="menu_cancel_all">সমস্ত ব্যাকআপ বাতিল করুন</string>
+    <string name="menu_backup_new">নতুন সংরক্ষণ</string>
+    <string name="menu_settings">সেটিংস</string>
+    <string name="menu_permissions">অনুমতি</string>
+    <string name="menu_about">সম্পর্কে</string>
+
+    <!--Global-->
+    <string name="global_information">তথ্য</string>
+    <string name="global_confirmation">নিশ্চিতকরণ</string>
+    <string name="global_warning">মনোযোগ</string>
+    <string name="global_error">ত্রুটি</string>
+    <string name="global_yes">হ্যাঁ</string>
+    <string name="global_ok">ঠিক আছে</string>
+    <string name="global_no">না</string>
+    <string name="global_cancel">বাতিল করা</string>
+    <string name="global_always">এখনও</string>
+    <string name="global_understood">বোঝা গেল</string>
+
+    <!--Activity - Settings-->
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_interface_title">ইন্টারফেস</string>
+    <string name="settings_language_text">ভাষা :</string>
+    <string name="settings_theme_text">থিম:</string>
+    <string name="settings_logs_title">লগ</string>
+    <string name="settings_logs_text">প্রতি ব্যাকআপ রাখার জন্য লগের সংখ্যা:</string>
+    <string name="settings_logs_errors">তাদের সরলীকৃত সংস্করণের পরিবর্তে মূল কাঁচা ত্রুটি বার্তা রাখুন</string>
+    <string name="settings_logs_warning_setforeground">অগ্রগতির বিজ্ঞপ্তি ব্যর্থ হলে একটি সতর্কতা রেকর্ড করুন</string>
+    <string name="settings_logs_preserve_scroll_position">লগ ফাইল পরিবর্তন করার সময় স্ক্রোল অবস্থান সংরক্ষণ করুন</string>
+    <string name="settings_notifications_title">বিজ্ঞপ্তি</string>
+    <string name="settings_notifications_theme">কনফিগার করা রঙের থিম প্রয়োগ করুন</string>
+    <string name="settings_notifications_type">নির্ধারিত ব্যাকআপের ফলাফল:</string>
+    <string name="settings_notifications_tip">- একাধিক: সংরক্ষণ প্রতি একটি বিজ্ঞপ্তি\n- গ্লোবাল: একক বিজ্ঞপ্তি, সমস্ত ব্যাকআপের দৈনিক সারাংশ\n\n- ইরেজেবল: অপসারণ করা যেতে পারে\n- স্থায়ী: সর্বদা দৃশ্যমান\n\nস্থায়ী বিজ্ঞপ্তি নির্ধারিত ব্যাকআপ সমস্যা প্রতিরোধ করতে পারে</string>
+    <string name="settings_notifications_warning">দয়া করে এই সেটিং পরিবর্তন করতে বিজ্ঞপ্তিগুলিকে অনুমতি দিন৷</string>
+
+    <!--Activity - Permissions -->
+    <string name="permission_title">অনুমতি</string>
+    <string name="permission_locked_title">অনুমোদন অবরুদ্ধ</string>
+
+    <string name="permission_files_title">ফাইল অ্যাক্সেসের অনুমতি দিন (প্রয়োজনীয়)</string>
+    <string name="permission_files_text">আপনার ফাইল এবং ফোল্ডারগুলিতে অ্যাক্সেস না থাকলে ব্যাকআপগুলি অসম্ভব৷</string>
+    <string name="permission_files_locked_text">অ্যান্ড্রয়েড এই অনুমতিটিকে ব্লক করেছে যা অ্যাপটিকে অ-কার্যকরী করে তুলেছে।\n\nঅনুগ্রহ করে নিশ্চিত করুন যে Mirror কখনই আপনার বা আপনার ডেটা সম্পর্কে কোনো তথ্য সংগ্রহ করবে না।\n\nআপনি কি অ্যাপ সেটিংস খুলতে চান এবং ম্যানুয়ালি অনুমতি দিতে চান?</string>
+
+    <string name="permission_notifications_title">বিজ্ঞপ্তির অনুমতি দিন (দৃঢ়ভাবে প্রস্তাবিত)</string>
+    <string name="permission_notifications_text">বিজ্ঞপ্তিগুলি চলমান ব্যাকআপগুলির অগ্রগতি এবং নির্ধারিত ব্যাকআপগুলির ফলাফল প্রদর্শন করতে ব্যবহৃত হয়</string>
+    <string name="permission_notifications_locked_text">অ্যান্ড্রয়েড এই অনুমতিটি ব্লক করেছে৷\n\nআপনি কি অ্যাপ সেটিংস খুলতে চান এবং ম্যানুয়ালি অনুমতি দিতে চান?</string>
+
+    <string name="permission_battery_title">ব্যাটারি অপ্টিমাইজেশান অক্ষম করুন (প্রস্তাবিত)</string>
+    <string name="permission_battery_text">অ্যান্ড্রয়েড ব্যাটারি অপ্টিমাইজেশন খুব আক্রমণাত্মক হতে পারে এবং নির্ধারিত ব্যাকআপগুলিতে হস্তক্ষেপ করতে পারে</string>
+
+    <string name="permission_permanent_title">প্রত্যাহার করার অনুমতি অক্ষম করুন (প্রস্তাবিত)</string>
+    <string name="permission_permanent_text">অনুমতিগুলি Android দ্বারা স্বয়ংক্রিয়ভাবে সরানো যেতে পারে, যা ত্রুটির কারণ হতে পারে</string>
+
+    <string name="permission_auto_startup_title">অটোস্টার্ট সক্ষম করুন (প্রস্তাবিত)</string>
+    <string name="permission_auto_startup_text">এই অনুমতি ছাড়া, ডিভাইস রিস্টার্ট করার পর নির্ধারিত ব্যাকআপ কাজ করা বন্ধ করে দিতে পারে</string>
+    <string name="permission_auto_startup_try">প্রতিটি নির্মাতা তার নিজস্ব উপায়ে এই বৈশিষ্ট্যটি পরিচালনা করে এবং Mirror শুধুমাত্র সংশ্লিষ্ট সেটিংস পৃষ্ঠাটি খুলতে চেষ্টা করতে পারে।\n\nব্যর্থতার ক্ষেত্রে, আপনাকে আপনার ডিভাইসে অভিযোজিত একটি ম্যানুয়াল কনফিগারেশনে যেতে হবে</string>
+    <string name="permission_auto_startup_manual">প্রতিটি নির্মাতা তাদের নিজস্ব উপায়ে এই বৈশিষ্ট্যটি পরিচালনা করে, যার জন্য আপনার ডিভাইসের জন্য উপযুক্ত ম্যানুয়াল কনফিগারেশন প্রয়োজন</string>
+    <string name="permission_auto_startup_open">খুলতে</string>
+
+    <!--Activity - About-->
+    <string name="about_title">সম্পর্কে</string>
+    <string name="about_app_title">আবেদন</string>
+    <string name="about_app_author">দ্বারা তৈরি <a href="https://github.com/He11PC">HellPC</a></string>
+    <string name="about_app_license">লাইসেন্স: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a></string>
+    <string name="about_libraries_title">ক্রেডিট এবং তৃতীয় পক্ষের লাইসেন্স</string>
+    <string name="about_libraries_nfs"><a href="https://github.com/EMCECS/nfs-client-java">EMC NFS</a>: NFS v3 ক্লায়েন্ট - EMCECS দ্বারা Apache-2.0 এর অধীনে লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_smb"><a href="https://github.com/hierynomus/smbj">SMBJ</a>: SMB2/SMB3 ক্লায়েন্ট - hierynomus দ্বারা Apache-2.0 এর অধীনে লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_ftp"><a href="https://github.com/apache/commons-net">কমন্স নেট</a>: FTP ক্লায়েন্ট - Apache-2.0 এর অধীনে Apache Software Foundation দ্বারা লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_sftp"><a href="https://github.com/mwiede/jsch">JSch</a>: SFTP ক্লায়েন্ট - mwiede দ্বারা BSD-স্টাইলের অধীনে লাইসেন্স করা হয়েছে</string>
+    <string name="about_libraries_webdav"><a href="https://github.com/thegrizzlylabs/sardine-android">Sardine-Android</a>: WebDAV ক্লায়েন্ট - thegrizzlylabs দ্বারা Apache-2.0 এর অধীনে লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_okhttp"><a href="https://github.com/rburgst/okhttp-digest">OkHttp-Digest</a>: WebDAV-এর জন্য ডাইজেস্ট প্রমাণীকরণ - rburgst দ্বারা Apache-2.0 এর অধীনে লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_autostarter"><a href="https://github.com/judemanutd/AutoStarter">অটোস্টার্টার</a>: অটোস্টার্ট অনুমতি ম্যানেজার খোলে - judemanutd দ্বারা MIT-এর অধীনে লাইসেন্সপ্রাপ্ত</string>
+    <string name="about_libraries_thanks">আপনার কঠোর পরিশ্রমের জন্য আপনাকে ধন্যবাদ, Mirror আপনাকে ছাড়া থাকতে পারে না :)</string>
+    <string name="about_support_title">সমর্থন</string>
+    <string name="about_support_intro">Mirror একটি বিনামূল্যের এবং ওপেন-সোর্স অ্যাপ্লিকেশন, বিজ্ঞাপন বা ট্র্যাকিং ছাড়াই বিতরণ করা হয়।\n\nযদি আপনি এটিকে দরকারী মনে করেন এবং আমার কাজকে সমর্থন করতে চান, তাহলে একটি ছোট অনুদান অত্যন্ত প্রশংসিত হবে।</string>
+
+    <!--Row Backup-->
+    <string name="backup_delete">এই ব্যাকআপ মুছুন</string>
+    <string name="backup_delete_warning_message">আপনি এই ব্যাকআপ মুছে দিতে চান?</string>
+    <string name="backup_info">এই ব্যাকআপ সম্পর্কে তথ্য</string>
+    <string name="backup_launch">ব্যাকআপ শুরু করুন</string>
+    <string name="backup_enqueued">ব্যাকআপ মুলতুবি</string>
+    <string name="backup_last_date">শেষ সংরক্ষণ:</string>
+    <string name="backup_card_move">ব্যাকআপ কার্ড সরান</string>
+
+    <!--Biometric authentication-->
+    <string name="edit_authentication_title">সংস্করণ আনলক করুন</string>
+    <string name="edit_authentication_message">এই ব্যাকআপের জন্য বায়োমেট্রিক প্রমাণীকরণ প্রয়োজন</string>
+
+    <!--Activity - Edit backup-->
+    <string name="edit_title">সম্পাদনা</string>
+    <string name="edit_title_new">সৃষ্টি</string>
+    <string name="edit_save">নিবন্ধন করতে</string>
+    <string name="edit_cancel">বাতিল করা</string>
+    <string name="edit_source">উৎস</string>
+    <string name="edit_destination">গন্তব্য</string>
+
+    <string name="edit_exit_alert">সংরক্ষণ না করে প্রস্থান করার জন্য পুনরাবৃত্তি করুন</string>
+    <string name="edit_invalid_alert">একটি বৈধ উৎস এবং গন্তব্য প্রদান করুন</string>
+    <string name="edit_invalid_credentials_alert">অনুগ্রহ করে বৈধ শংসাপত্র প্রদান করুন (ব্যবহারকারীর নাম/পাসওয়ার্ড)</string>
+    <string name="edit_invalid_hostkey_alert">নিরাপত্তার কারণে আপনার SFTP সার্ভার হোস্ট কীটি পুনরুদ্ধার করুন</string>
+    <string name="edit_remote_alert_message">আপনার ডিভাইসের মাধ্যমে দুটি দূরবর্তী সার্ভারের মধ্যে ব্যাকআপ করা সবচেয়ে কার্যকর নয়।\n\nআপনি যদি পারেন, তাহলে এই মেশিনগুলির মধ্যে একটিতে সরাসরি আপনার ব্যাকআপ সেট আপ করা ভাল</string>
+
+    <!-- Fragment - Target-->
+    <string name="target_tab_error">বর্তমান ট্যাব সনাক্ত করতে অক্ষম</string>
+    <string name="target_location">অবস্থান:</string>
+    <string name="target_location_error">ভুল অবস্থান নির্বাচন করা হয়েছে৷</string>
+    <string name="target_location_device">ডিভাইস</string>
+    <string name="target_location_warning_remote_to_webdav">একটি দূরবর্তী উৎস থেকে WebDav সার্ভারে ব্যাকআপ নেওয়ার জন্য আপনার ডিভাইসে অস্থায়ী মধ্যবর্তী ফাইল তৈরি করা প্রয়োজন</string>
+
+    <!--Fragment - Target local-->
+    <string name="target_local_select">ফোল্ডার নির্বাচন করুন</string>
+    <string name="target_local_information_timezone">FAT ফাইল সিস্টেম, সাধারণত বাহ্যিক স্টোরেজগুলিতে ব্যবহৃত হয়, সময় অঞ্চলগুলি পরিচালনা করতে পারে না এবং ডিভাইসের স্থানীয় সময়ের উপর ভিত্তি করে তারিখগুলি সংরক্ষণ করে৷ অতএব, সময় অঞ্চল পরিবর্তনের পরে আপনার ফাইলগুলির একটি সম্পূর্ণ ব্যাকআপ ঘটতে পারে</string>
+    <string name="target_local_warning_android_10">গুগল অ্যান্ড্রয়েড 10 এ তাদের ব্যক্তিগত ফোল্ডারের বাইরে বাহ্যিক স্টোরেজে লেখার জন্য অ্যাপগুলির অনুমতি প্রত্যাহার করার সিদ্ধান্ত নিয়েছে।\n\nআপনি কি আপনার গন্তব্য ফোল্ডারটিকে Mirror ফোল্ডারে সরাতে চান?\n\nসতর্ক থাকুন, আপনি এই অ্যাপটি আনইনস্টল করলে অ্যান্ড্রয়েড এটি মুছে দেবে!</string>
+
+    <!--Fragment - Target common-->
+    <string name="target_common_server">সার্ভার:</string>
+    <string name="target_common_server_hint">ডোমেইন নাম বা আইপি</string>
+    <string name="target_common_path">ফোল্ডার:</string>
+    <string name="target_common_path_hint">ফোল্ডার/সাবফোল্ডার</string>
+    <string name="target_common_login">ব্যবহারকারী:</string>
+    <string name="target_common_login_hint">ব্যবহারকারীর নাম</string>
+    <string name="target_common_password">পাসওয়ার্ড:</string>
+    <string name="target_common_password_hint">ব্যবহারকারী পাসওয়ার্ড</string>
+    <string name="target_common_port">বন্দর:</string>
+    <string name="target_common_share">শেয়ার করুন:</string>
+    <string name="target_common_search">অনুসন্ধান</string>
+    <string name="target_common_autofill">অটোফিল</string>
+
+    <!--Fragment - Target NFS-->
+    <string name="target_nfs_uid">ইউজার আইডি:</string>
+    <string name="target_nfs_uid_hint">UID (অনুষঙ্গিক)</string>
+    <string name="target_nfs_gid">গ্রুপ আইডি:</string>
+    <string name="target_nfs_gid_hint">GID (ফ্যাকল্টেটিভ)</string>
+    <string name="target_nfs_share_hint">রুট শেয়ার করা ফোল্ডারের পথ</string>
+    <string name="target_nfs_non_root_mount_warning">Android-এর আপনার সার্ভারে অ-রুট মাউন্ট করার অনুমতি প্রয়োজন</string>
+
+    <!--Fragment - Target SMB-->
+    <string name="target_smb_server_hint">নাম বা আইপি</string>
+    <string name="target_smb_domain">ডোমেইন:</string>
+    <string name="target_smb_domain_hint">(ঐচ্ছিক)</string>
+    <string name="target_smb_share_hint">রুট শেয়ার করা ফোল্ডারের নাম</string>
+
+    <!--Fragment - Target FTP-->
+    <string name="target_ftp_ssl">SSL/TLS ব্যবহার করুন</string>
+    <string name="target_ftp_ssl_warning">অ্যান্ড্রয়েড ডেটা সংযোগে TLS সেশন রিজিউম বিকল্প ব্যবহার করে সার্ভারের সাথে SSL/TLS ব্যবহারের অনুমতি দেয় না</string>
+
+    <!--Fragment - Target SFTP-->
+    <string name="target_sftp_hostkey">হোস্ট কী:</string>
+    <string name="target_sftp_hostkey_hint">সার্ভার হোস্ট কী পুনরুদ্ধার করতে আলতো চাপুন</string>
+    <string name="target_sftp_hostkey_load">হোস্ট কী পুনরুদ্ধার করা হচ্ছে …</string>
+    <string name="target_sftp_hostkey_confirmation">আপনি কি এই সার্ভারে বিশ্বাস করেন?</string>
+
+    <!--Fragment - Target WebDav-->
+    <string name="target_webdav_ssl">SSL ব্যবহার করুন</string>
+    <string name="target_webdav_ssl_warning">স্ব-স্বাক্ষরিত শংসাপত্রগুলি সাধারণত পর্যাপ্ত নয় এবং সুরক্ষা পরীক্ষার সময় প্রত্যাখ্যাত হতে পারে</string>
+
+    <!--Fragment - Options-->
+    <string name="backup_security">নিরাপত্তা</string>
+    <string name="backup_protect">সম্পাদনার জন্য বায়োমেট্রিক প্রমাণীকরণ প্রয়োজন</string>
+    <string name="backup_protect_warning">এই ডিভাইসে বায়োমেট্রিক প্রমাণীকরণ কনফিগার করা হয়নি</string>
+
+    <string name="backup_opt">ব্যাকআপ</string>
+    <string name="backup_recursive">সাবফোল্ডার প্রক্রিয়া করুন</string>
+    <string name="backup_retry_corrupted">একটি দূষিত ফাইল সনাক্ত করা হলে অনুলিপি পুনরায় চেষ্টা করুন</string>
+    <string name="backup_date_comparison_auto">স্বয়ংক্রিয় ফাইল তারিখ তুলনা মোড</string>
+    <string name="backup_date_comparison_mode">ফাইল তারিখ তুলনা মোড:</string>
+    <string name="backup_wifi">শুধুমাত্র ওয়াইফাই এর মাধ্যমে ব্যাকআপ</string>
+    <string name="backup_nomedia">গ্যালারিতে গন্তব্য লুকান (.nomedia)</string>
+
+    <string name="orphans_opt">এতিম ফাইল</string>
+    <string name="orphans_action">যদি একটি ফাইল শুধুমাত্র গন্তব্যে বিদ্যমান থাকে:</string>
+    <string name="orphans_folder">এই ফাইলে:</string>
+    <string name="orphans_folder_name">অনাথ</string>
+    <string name="orphans_invalid_folder">অবৈধ ফোল্ডারের নাম</string>
+
+    <string name="filters_opt">ফিল্টার</string>
+    <string name="filter_images">ছবিগুলো</string>
+    <string name="filter_audio">অডিও</string>
+    <string name="filter_videos">ভিডিওগুলি</string>
+    <string name="filter_documents">নথিপত্র</string>
+    <string name="filter_others">অন্যান্য</string>
+    <string name="filter_min_size">এর থেকে ছোট ফাইল উপেক্ষা করুন:</string>
+    <string name="filter_max_size">এর চেয়ে বড় ফাইলগুলি উপেক্ষা করুন:</string>
+    <string name="filter_black_list">বর্জনের তালিকা (<a href="https://en.wikipedia.org/wiki/Glob_(programming)#Syntax">glob প্যাটার্ন</a>):</string>
+    <string name="filter_black_list_hint">/ফোল্ডার/সাবফোল্ডার/**\n.trashed*</string>
+
+    <string name="schedule_opt">পরিকল্পনা</string>
+    <string name="schedule_auto">স্বয়ংক্রিয় ব্যাকআপ সঞ্চালন</string>
+    <string name="schedule_charging">শুধুমাত্র যখন ডিভাইস চার্জ করা হয়</string>
+    <string name="schedule_idle">শুধুমাত্র যখন ডিভাইস স্ট্যান্ডবাই থাকে</string>
+    <string name="schedule_idle_warning">কাজ নাও করতে পারে: কিছু ডিভাইস ঘুমের অবস্থা সঠিকভাবে রিপোর্ট করে না</string>
+    <string name="schedule_interval">প্রতিটি:</string>
+    <string name="schedule_time">কখন</string>
+
+    <string name="options_low_interval_alert">একটি ছোট বিলম্ব আপনার স্বায়ত্তশাসন হ্রাস করবে</string>
+
+    <!--Fragment - Appearance-->
+    <string name="backup_appearance">আবির্ভাব</string>
+    <string name="backup_color_background">পটভূমি:</string>
+    <string name="backup_color_border">সীমানা:</string>
+    <string name="backup_color_icons">আইকন:</string>
+    <string name="backup_color_progressbar">প্রগতিবার:</string>
+    <string name="backup_appearance_preview">প্রিভিউ</string>
+    <string name="backup_appearance_load_theme">থিম লোড করতে ট্যাপ করুন</string>
+    <string name="backup_appearance_theme_custom">কাস্টম #</string>
+
+    <!--Activity - Autofill-->
+    <string name="autofill_authentication_title">অটোফিল</string>
+    <string name="autofill_authentication_message">দয়া করে আপনার পরিচয় নিশ্চিত করুন</string>
+    <string name="autofill_ssl">(SSL)</string>
+    <string name="autofill_recycler_hint">শংসাপত্রের তালিকা</string>
+
+    <!--Activity - Folder Explorer-->
+    <string name="folder_explorer_missing_info">আপনার সার্ভার ঠিকানা এবং শংসাপত্র লিখুন দয়া করে</string>
+    <string name="folder_explorer_missing_address">দয়া করে আপনার সার্ভারের ঠিকানা লিখুন</string>
+    <string name="folder_explorer_missing_share">অনুগ্রহ করে অনুসন্ধানের জন্য একটি ভাগ লিখুন</string>
+    <string name="folder_explorer_unable_connect">সংযোগ ব্যর্থ হয়েছে</string>
+    <string name="folder_explorer_unable_list">এই ফোল্ডার বিষয়বস্তু পড়তে অক্ষম</string>
+    <string name="folder_explorer_error_details">ভুল বার্তা:</string>
+    <string name="folder_explorer_error_protocol">যোগাযোগ প্রোটোকল পাওয়া যায়নি</string>
+    <string name="folder_explorer_recycler_hint">দূরবর্তী সার্ভারের সামগ্রী</string>
+
+    <!--Worker Log -->
+    <string name="log_source">উৎস</string>
+    <string name="log_destination">গন্তব্য</string>
+
+    <string name="log_error">ত্রুটি</string>
+    <string name="log_warning">অ্যালার্ট</string>
+    <string name="log_note">নোট</string>
+
+    <!--Worker Log - Initialisation -->
+    <string name="log_backup_start">ব্যাকআপ শুরু হয়েছে</string>
+    <string name="log_backup_start_scheduled">অটোসেভ শুরু হয়েছে</string>
+    <string name="log_backup_initialisation">আরম্ভ …</string>
+    <string name="log_folder_destination_create">অনুপস্থিত গন্তব্য ফোল্ডার তৈরি করা হচ্ছে</string>
+    <string name="log_searching_files">ফাইল অনুসন্ধান করা হচ্ছে …</string>
+    <string name="log_found">ফাইলগুলি পাওয়া গেছে:</string>
+    <string name="log_excluding">ফাইল ফিল্টার করা হচ্ছে …</string>
+    <string name="log_remaining">অবশিষ্ট ফাইল:</string>
+    <string name="log_checking_backup">ব্যাকআপ করার জন্য ফাইল চেক করা হচ্ছে …</string>
+    <string name="log_flexible_mode">(নমনীয় মোড) …</string>
+    <string name="log_to_backup">কপি করার জন্য ফাইল:</string>
+    <string name="log_orphans_keep">এতিমদের রাখা:</string>
+    <string name="log_orphans_move">অনাথ স্থানান্তর:</string>
+    <string name="log_orphans_delete">মুছে ফেলার জন্য এতিম:</string>
+    <string name="log_obsolete">অপ্রচলিত এতিম অপসারণ করা হবে:</string>
+    <string name="log_orphans_after_backup">(i) গন্তব্যে অনাথ:</string>
+
+    <string name="error_wifi">প্রয়োজনীয় ওয়াইফাই সংযুক্ত নেই</string>
+    <string name="error_target">ভুল সংরক্ষণ লক্ষ্য</string>
+    <string name="error_blacklist">বর্জন তালিকায় সিনট্যাক্স ত্রুটি</string>
+
+    <string name="error_server_reach">এই সার্ভারে পৌঁছাতে অক্ষম৷</string>
+    <string name="error_server_connect">এই সার্ভারের সাথে সংযোগ করতে অক্ষম৷</string>
+    <string name="error_share_connect">এই শেয়ারের সাথে সংযোগ করতে অক্ষম</string>
+    <string name="error_ssl_connect">SSL/TLS ব্যবহার করতে অক্ষম</string>
+    <string name="error_ssl_certificate">অবৈধ/অনুপস্থিত SSL/TLS শংসাপত্র</string>
+    <string name="error_ftp_filetype">বাইনারি ট্রান্সফার মোডে স্যুইচ করতে অক্ষম৷</string>
+    <string name="error_server_login">প্রমাণীকরণ করতে অক্ষম</string>
+    <string name="error_server_disconnect">সার্ভার থেকে সংযোগ বিচ্ছিন্ন করতে অক্ষম</string>
+
+    <string name="error_permission_read">পড়ার অনুমতি অস্বীকার করা হয়েছে</string>
+    <string name="error_permission_write">অনুমতি প্রত্যাখ্যান লিখুন</string>
+    <string name="error_permission_unknown">অনুমতি চেক করতে অক্ষম</string>
+
+    <string name="error_space_low">কম ডিস্ক স্থান</string>
+    <string name="error_space_critical">পর্যাপ্ত মুক্ত ডিস্ক স্থান নেই</string>
+    <string name="error_space_unverifiable">বিনামূল্যে ডিস্ক স্থান পরীক্ষা করতে অক্ষম</string>
+    <string name="error_quota_low">কম উপলব্ধ কোটা</string>
+    <string name="error_quota_critical">পর্যাপ্ত কোটা উপলব্ধ নয়</string>
+    <string name="error_quota_unverifiable">উপলব্ধ কোটা চেক করতে অক্ষম</string>
+
+    <string name="error_folder_existence">ফোল্ডার পাওয়া যায়নি</string>
+    <string name="error_folder_invalid">অবৈধ ফোল্ডার</string>
+    <string name="error_folder_list">এই ফোল্ডারে ফাইল তালিকাভুক্ত করতে অক্ষম</string>
+    <string name="error_folder_delete">এই ফোল্ডারটি মুছতে অক্ষম৷</string>
+    <string name="error_folder_create">এই ফোল্ডার তৈরি করতে অক্ষম</string>
+    <string name="error_folder_create_tmp">অস্থায়ী ফাইলের জন্য ফোল্ডার তৈরি করতে অক্ষম</string>
+
+    <string name="error_path_reach">এই পথে পৌঁছাতে অক্ষম</string>
+
+    <string name="error_orphan_folder_not_specified">অনাথ ফোল্ডার নির্দিষ্ট করা নেই</string>
+    <string name="error_orphan_folder_in_use">এতিম ফাইল সংরক্ষণ করতে উৎসে উপস্থিত একটি ফোল্ডার নাম ব্যবহার করবেন না</string>
+
+    <string name="error_setforeground">অগ্রগতির বিজ্ঞপ্তি প্রদর্শন করা যাচ্ছে না। ব্যাকআপের সময়কাল ১০ মিনিটের মধ্যে সীমাবদ্ধ</string>
+
+    <!--Worker Log - Copy -->
+    <string name="log_files_copy_started">ব্যাকআপ শুরু হয় …</string>
+    <string name="log_orphans_move_long">এতিমদের স্থানচ্যুতি</string>
+    <string name="log_orphans_delete_long">এতিমদের সরান</string>
+    <string name="log_delete_obsolete_orphans">অপ্রচলিত অনাথ অপসারণ</string>
+    <string name="log_folders_create">নতুন ফোল্ডার তৈরি করা</string>
+    <string name="log_copy">কপি করা হচ্ছে</string>
+    <string name="log_move">চলন্ত</string>
+    <string name="log_delete">অপসারণ করা হচ্ছে</string>
+    <string name="log_nomedia_created">.nomedia ফাইল তৈরি করা হয়েছে</string>
+    <string name="log_nomedia_removed">.nomedia ফাইল মুছে ফেলা হয়েছে</string>
+    <string name="log_empty_folders_delete">খালি ফোল্ডার মুছুন</string>
+
+    <string name="error_file_read">এই ফাইলটি পড়তে অক্ষম৷</string>
+    <string name="error_file_read_finish">ফাইল রিডার বন্ধ করতে অক্ষম</string>
+    <string name="error_file_copy">এই ফাইল কপি করতে অক্ষম</string>
+    <string name="error_file_move">এই ফাইলটি সরাতে অক্ষম৷</string>
+    <string name="error_file_delete">এই ফাইলটি মুছতে অক্ষম৷</string>
+    <string name="error_file_corrupted">ফাইল দুর্নীতি সনাক্ত করা হয়েছে, আবার চেষ্টা করুন …</string>
+    <string name="error_file_corrupted_final">দুর্নীতি ছাড়া এই ফাইল কপি করতে অক্ষম. পরবর্তী সংরক্ষণে পুনরায় চেষ্টা করুন</string>
+    <string name="error_file_date_modification">ফাইল তারিখ পরিবর্তন ব্যর্থ হয়েছে. নমনীয় তুলনা মোডে স্যুইচ করা হচ্ছে</string>
+    <string name="success_file_date_modification">ফাইল তারিখ পরিবর্তন সফল. কঠোর তুলনা মোডে স্যুইচ করা হচ্ছে</string>
+    <string name="error_file_tmp_space">অস্থায়ী ফাইল তৈরি করার জন্য ডিভাইসের অভ্যন্তরীণ মেমরিতে পর্যাপ্ত খালি জায়গা নেই</string>
+    <string name="error_file_tmp_skipped">ফাইল এড়িয়ে গেছে</string>
+    <string name="error_file_tmp">অস্থায়ী ফাইল তৈরি করতে অক্ষম</string>
+    <string name="error_nomedia_create">.nomedia ফাইল তৈরি করতে অক্ষম</string>
+    <string name="error_nomedia_remove">.nomedia ফাইল মুছতে অক্ষম</string>
+    <string name="error_ftp_mlst">MLST কমান্ড, ফাইলের আকার এবং সুনির্দিষ্ট টাইমস্ট্যাম্প পুনরুদ্ধার করার জন্য প্রয়োজনীয়, এই সার্ভার দ্বারা সমর্থিত বলে মনে হচ্ছে না</string>
+
+    <!--Worker Log - End -->
+    <string name="log_backup_success">সফলভাবে সংরক্ষিত</string>
+    <string name="log_backup_warning">সতর্কতা সহ সফল ব্যাকআপ</string>
+    <string name="log_backup_canceled">ব্যাকআপ বাতিল হয়েছে</string>
+    <string name="error_backup_failed">ব্যাকআপ ব্যর্থ হয়েছে</string>
+
+    <string name="log_next_schedule_success">পরবর্তী নির্ধারিত ব্যাকআপ:</string>
+    <string name="log_next_schedule_failed">পরবর্তী নির্ধারিত প্রয়াস:</string>
+
+    <string name="log_backup_duration">ব্যাকআপ সময়কাল:</string>
+
+    <!--Activity - Logs-->
+    <string name="logs_folder_not_found">লগ ফোল্ডারটি খুঁজে পাওয়া যায়নি</string>
+    <string name="logs_file_not_found">এই ব্যাকআপের জন্য কোনো লগ ফাইল উপলব্ধ নেই৷</string>
+    <string name="logs_file_read_error">এই লগ ফাইলটি লোড করার সময় একটি ত্রুটি ঘটেছে৷</string>
+    <string name="logs_navigation_previous">আগের</string>
+    <string name="logs_navigation_next">পরবর্তী</string>
+    <string name="logs_recycler_hint">লগ ফাইলের বিষয়বস্তু</string>
+
+    <!--Notifications-->
+    <string name="notification_ongoing_channel_name">ব্যাকআপগুলি চলছে৷</string>
+    <string name="notification_ongoing_channel_description">বর্তমান ব্যাকআপের অগ্রগতি</string>
+    <string name="notification_result_channel_name">ব্যাকআপ করা হয়েছে</string>
+    <string name="notification_result_channel_description">সঞ্চালিত নির্ধারিত ব্যাকআপের ফলাফল</string>
+    <string name="notification_result">নির্ধারিত ব্যাকআপের ফলাফল</string>
+    <string name="notification_scheduled">নির্ধারিত ব্যাকআপ</string>
+    <string name="notification_no_backup">আজ কোনটাই করা হয়নি</string>
+    <string name="notification_active">চলছে</string>
+    <string name="notification_files">ফাইলস</string>
+    <string name="notification_no_file">কোন নতুন বা অনাথ ফাইল</string>
+    <string name="notification_orphans">অনাথ</string>
+    <string name="notification_success">আঘাত</string>
+    <string name="notification_warning">সতর্কতা</string>
+    <string name="notification_failed">ব্যর্থতা</string>
+    <string name="notification_canceled">বাতিলকরণ</string>
+
+    <!--Alert-->
+    <string name="alert_low_battery">পর্যাপ্ত ব্যাটারি নেই</string>
+
+    <!--Scheduler-->
+    <string name="error_backup_not_idle">এই ব্যাকআপ চালু করা অসম্ভব: ব্যাকআপ নিষ্ক্রিয় নয়</string>
+
+    <!--Spinners-->
+    <string-array name="locales">
+        <item>পদ্ধতি</item>
+        <item>বাংলা</item>       <!-- Bengali -->
+        <item>Čeština</item>    <!-- Czech -->
+        <item>Deutsch</item>    <!-- German -->
+        <item>ελληνικά</item>   <!-- Greek -->
+        <item>English</item>    <!-- English -->
+        <item>Español</item>    <!-- Spanish -->
+        <item>Français</item>   <!-- French -->
+        <item>हिन्दी</item>        <!-- Hindi -->
+        <item>Magyar</item>     <!-- Hungarian -->
+        <item>Indonesia</item>  <!-- Indonesian -->
+        <item>Italiano</item>   <!-- Italian -->
+        <item>日本語</item>      <!-- Japanese -->
+        <item>한국어</item>      <!-- Korean -->
+        <item>Nederlands</item> <!-- Dutch -->
+        <item>Polski</item>     <!-- Polish -->
+        <item>Português</item>  <!-- Portuguese -->
+        <item>Română</item>     <!-- Romanian -->
+        <item>Pусский</item>    <!-- Russian -->
+        <item>Svenska</item>    <!-- Swedish -->
+        <item>Türkçe</item>     <!-- Turkish -->
+        <item>Yкраїнська</item> <!-- Ukrainian -->
+        <item>中文</item>        <!-- Chinese -->
+    </string-array>
+
+    <string-array name="theme">
+        <item>পদ্ধতি</item>
+        <item>আলো</item>
+        <item>অন্ধকার</item>
+    </string-array>
+
+    <string-array name="scheduled_backup_notifications">
+        <item>কোনোটিই নয়</item>
+        <item>একাধিক - ইরেজেবল়</item>
+        <item>গ্লোবাল - ইরেজেবল</item>
+        <item>গ্লোবাল - স্থায়ী</item>
+    </string-array>
+
+    <string-array name="protocol">
+        <item>ডিভাইস</item>
+        <item>NFS</item>
+        <item>SMB</item>
+        <item>FTP</item>
+        <item>SFTP</item>
+        <item>WebDAV</item>
+    </string-array>
+
+    <string-array name="color_name_default">
+        <item>ডিফল্ট</item>
+        <item>লাল</item>
+        <item>কমলা</item>
+        <item>হলুদ</item>
+        <item>চুন</item>
+        <item>সবুজ</item>
+        <item>পুদিনা</item>
+        <item>সায়ান</item>
+        <item>আজিউর</item>
+        <item>নীল</item>
+        <item>ইন্ডিগো</item>
+        <item>ম্যাজেন্টা</item>
+        <item>গোলাপী</item>
+    </string-array>
+
+    <string-array name="color_name_none">
+        <item>None</item>
+        <item>লাল</item>
+        <item>কমলা</item>
+        <item>হলুদ</item>
+        <item>চুন</item>
+        <item>সবুজ</item>
+        <item>পুদিনা</item>
+        <item>সায়ান</item>
+        <item>আজিউর</item>
+        <item>নীল</item>
+        <item>ইন্ডিগো</item>
+        <item>ম্যাজেন্টা</item>
+        <item>গোলাপী</item>
+    </string-array>
+
+    <string-array name="date_comparison_mode">
+        <item>কঠোর (উৎস!= গন্তব্য)</item>
+        <item>নমনীয় (উৎস > গন্তব্য)</item>
+    </string-array>
+
+    <string-array name="orphan_options">
+        <item>রাখা</item>
+        <item>সরান</item>
+        <item>মুছুন</item>
+    </string-array>
+
+    <string-array name="interval_unit">
+        <item>দিনগুলি</item>
+        <item>ঘন্টার</item>
+        <item>মিনিট</item>
+    </string-array>
+
+</resources>
