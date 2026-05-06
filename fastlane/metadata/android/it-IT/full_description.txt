@@ -3,24 +3,24 @@ Progettata per essere più semplice e leggera dei software di sincronizzazione, 
 
 È possibile configurare più backup come segue:
 
-* Selezionare una directory di origine
-* Selezionare una directory di destinazione
-* Scegliere le opzioni di filtro (facoltativo)
-* Configurare la pianificazione automatica (facoltativo)
+- Selezionare una directory di origine
+- Selezionare una directory di destinazione
+- Scegliere le opzioni di filtro (facoltativo)
+- Configurare la pianificazione automatica (facoltativo)
 
 Mirror analizzerà il contenuto di entrambe le directory, lo confronterà e riprodurrà la struttura della directory di origine (sottodirectory e file) nella directory di destinazione, rispettando le opzioni di filtro selezionate.
 
 L'origine e la destinazione possono trovarsi su:
 
-* Memoria interna o esterna del dispositivo
-* Una condivisione NFS
-* Una condivisione SMB
-* Un server FTP o FTPS
-* Un server SFTP
-* Un server WebDAV
+- Memoria interna o esterna del dispositivo
+- Una condivisione NFS
+- Una condivisione SMB
+- Un server FTP o FTPS
+- Un server SFTP
+- Un server WebDAV
 
-**SICUREZZA E PRIVACY**
+<b>SICUREZZA E PRIVACY</b>
 
-* **Archiviazione locale:** Le informazioni sensibili vengono crittografate (AES-GCM + Android KeyStore) e archiviate localmente sul dispositivo utilizzando un database Room.
-* **Nessun tracciamento:** Questa applicazione non contiene strumenti di analisi, tracker, pubblicità o kit di sviluppo software (SDK) proprietari.
-* **Open Source:** Mirror è un progetto indipendente. Il codice sorgente è disponibile su GitHub per garantire trasparenza e verifica.
+- <b>Archiviazione locale:</b> Le informazioni sensibili vengono crittografate (AES-GCM + Android KeyStore) e archiviate localmente sul dispositivo utilizzando un database Room.
+- <b>Nessun tracciamento:</b> Questa applicazione non contiene strumenti di analisi, tracker, pubblicità o kit di sviluppo software (SDK) proprietari.
+- <b>Open Source:</b> Mirror è un progetto indipendente. Il codice sorgente è disponibile su GitHub per garantire trasparenza e verifica.

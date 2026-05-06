@@ -3,24 +3,24 @@ Zaprojektowana z myślą o prostszym i lżejszym działaniu niż oprogramowanie 
 
 Można skonfigurować wiele kopii zapasowych w następujący sposób:
 
-* Wybierz katalog źródłowy
-* Wybierz katalog docelowy
-* Wybierz opcje filtrowania (opcjonalnie)
-* Skonfiguruj automatyczne planowanie (opcjonalnie)
+- Wybierz katalog źródłowy
+- Wybierz katalog docelowy
+- Wybierz opcje filtrowania (opcjonalnie)
+- Skonfiguruj automatyczne planowanie (opcjonalnie)
 
 Mirror przeanalizuje zawartość obu katalogów, porówna je i odtworzy strukturę katalogu źródłowego (podkatalogi i pliki) w katalogu docelowym, uwzględniając wybrane opcje filtrowania.
 
 Źródło i miejsce docelowe mogą znajdować się w:
 
-* wewnętrznej lub zewnętrznej pamięci urządzenia
-* udziale NFS
-* udziale SMB
-* serwerze FTP lub FTPS
-* serwerze SFTP
-* serwerze WebDAV
+- wewnętrznej lub zewnętrznej pamięci urządzenia
+- udziale NFS
+- udziale SMB
+- serwerze FTP lub FTPS
+- serwerze SFTP
+- serwerze WebDAV
 
-**BEZPIECZEŃSTWO I PRYWATNOŚĆ**
+<b>BEZPIECZEŃSTWO I PRYWATNOŚĆ</b>
 
-* **Pamięć lokalna:** Informacje wrażliwe są szyfrowane (AES-GCM + Android KeyStore) i przechowywane lokalnie na Twoim urządzeniu za pomocą bazy danych Room.
-* **Brak śledzenia:** Ta aplikacja nie zawiera żadnych narzędzi analitycznych, modułów śledzących, reklam ani zastrzeżonych zestawów narzędzi programistycznych (SDK).
-* **Open Source:** Mirror to niezależny projekt. Kod źródłowy jest dostępny na GitHubie w celu zapewnienia przejrzystości i kontroli.
+- <b>Pamięć lokalna:</b> Informacje wrażliwe są szyfrowane (AES-GCM + Android KeyStore) i przechowywane lokalnie na Twoim urządzeniu za pomocą bazy danych Room.
+- <b>Brak śledzenia:</b> Ta aplikacja nie zawiera żadnych narzędzi analitycznych, modułów śledzących, reklam ani zastrzeżonych zestawów narzędzi programistycznych (SDK).
+- <b>Open Source:</b> Mirror to niezależny projekt. Kod źródłowy jest dostępny na GitHubie w celu zapewnienia przejrzystości i kontroli.

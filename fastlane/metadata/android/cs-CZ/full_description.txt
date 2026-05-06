@@ -3,24 +3,24 @@ Je navržena tak, aby byla jednodušší a lehčí než synchronizační softwar
 
 Více záloh můžete nakonfigurovat takto:
 
-* Vyberte zdrojový adresář
-* Vyberte cílový adresář
-* Vyberte možnosti filtrování (volitelné)
-* Nakonfigurujte automatické plánování (volitelné)
+- Vyberte zdrojový adresář
+- Vyberte cílový adresář
+- Vyberte možnosti filtrování (volitelné)
+- Nakonfigurujte automatické plánování (volitelné)
 
 Mirror analyzuje obsah obou adresářů, porovná je a reprodukuje strukturu zdrojového adresáře (podadresáře a soubory) v cílovém adresáři s ohledem na vámi zvolené možnosti filtrování.
 
 Zdroj a cíl se mohou nacházet na:
 
-* Interním nebo externím úložišti vašeho zařízení
-* Sdíleném úložišti NFS
-* Sdíleném úložišti SMB
-* Serveru FTP nebo FTPS
-* Serveru SFTP
-* Serveru WebDAV
+- Interním nebo externím úložišti vašeho zařízení
+- Sdíleném úložišti NFS
+- Sdíleném úložišti SMB
+- Serveru FTP nebo FTPS
+- Serveru SFTP
+- Serveru WebDAV
 
-**BEZPEČÍ A OCHRANA SOUKROMÍ**
+<b>BEZPEČÍ A OCHRANA SOUKROMÍ</b>
 
-* **Lokální úložiště:** Citlivé informace jsou šifrovány (AES-GCM + Android KeyStore) a uloženy lokálně ve vašem zařízení pomocí databáze Room.
-* **Žádné sledování:** Tato aplikace neobsahuje žádné analytické nástroje, trackery, reklamu ani proprietární sady pro vývoj softwaru (SDK).
-* **Open Source:** Mirror je nezávislý projekt. Zdrojový kód je k dispozici na GitHubu z důvodu transparentnosti a auditu.
+- <b>Lokální úložiště:</b> Citlivé informace jsou šifrovány (AES-GCM + Android KeyStore) a uloženy lokálně ve vašem zařízení pomocí databáze Room.
+- <b>Žádné sledování:</b> Tato aplikace neobsahuje žádné analytické nástroje, trackery, reklamu ani proprietární sady pro vývoj softwaru (SDK).
+- <b>Open Source:</b> Mirror je nezávislý projekt. Zdrojový kód je k dispozici na GitHubu z důvodu transparentnosti a auditu.

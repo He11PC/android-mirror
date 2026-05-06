@@ -3,24 +3,24 @@ Diseñada para ser más sencilla y ligera que el software de sincronización, te
 
 Puedes configurar varias copias de seguridad de la siguiente manera:
 
-* Selecciona un directorio de origen
-* Selecciona un directorio de destino
-* Elige opciones de filtrado (opcional)
-* Configura la programación automática (opcional)
+- Selecciona un directorio de origen
+- Selecciona un directorio de destino
+- Elige opciones de filtrado (opcional)
+- Configura la programación automática (opcional)
 
 Mirror analizará el contenido de ambos directorios, los comparará y reproducirá la estructura del directorio de origen (subdirectorios y archivos) en el directorio de destino, respetando las opciones de filtrado que hayas elegido.
 
 El origen y el destino pueden estar ubicados en:
 
-* El almacenamiento interno o externo de tu dispositivo
-* Un recurso compartido NFS
-* Un recurso compartido SMB
-* Un servidor FTP o FTPS
-* Un servidor SFTP
-* Un servidor WebDAV
+- El almacenamiento interno o externo de tu dispositivo
+- Un recurso compartido NFS
+- Un recurso compartido SMB
+- Un servidor FTP o FTPS
+- Un servidor SFTP
+- Un servidor WebDAV
 
-**SEGURIDAD Y PRIVACIDAD**
+<b>SEGURIDAD Y PRIVACIDAD</b>
 
-* **Almacenamiento local:** La información confidencial se cifra (AES-GCM + Android KeyStore) y se almacena localmente en tu dispositivo mediante una base de datos Room.
-* **Sin seguimiento:** Esta aplicación no contiene análisis, rastreadores, publicidad ni kits de desarrollo de software (SDK) propietarios.
-* **Código abierto:** Mirror es un proyecto independiente. El código fuente está disponible en GitHub para mayor transparencia y auditoría.
+- <b>Almacenamiento local:</b> La información confidencial se cifra (AES-GCM + Android KeyStore) y se almacena localmente en tu dispositivo mediante una base de datos Room.
+- <b>Sin seguimiento:</b> Esta aplicación no contiene análisis, rastreadores, publicidad ni kits de desarrollo de software (SDK) propietarios.
+- <b>Código abierto:</b> Mirror es un proyecto independiente. El código fuente está disponible en GitHub para mayor transparencia y auditoría.

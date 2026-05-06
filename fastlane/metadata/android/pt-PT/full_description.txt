@@ -3,24 +3,24 @@ Concebido para ser mais simples e leve do que o software de sincronização, per
 
 Pode configurar vários backups da seguinte forma:
 
-* Selecione um diretório de origem
-* Selecione um diretório de destino
-* Escolha as opções de filtragem (opcional)
-* Configure o agendamento automático (opcional)
+- Selecione um diretório de origem
+- Selecione um diretório de destino
+- Escolha as opções de filtragem (opcional)
+- Configure o agendamento automático (opcional)
 
 O Mirror irá analisar o conteúdo de ambos os diretórios, comparar e reproduzir a estrutura do diretório de origem (subdiretórios e ficheiros) no diretório de destino, respeitando as opções de filtragem escolhidas.
 
 A origem e o destino podem estar localizados em:
 
-* Armazenamento interno ou externo do seu dispositivo
-* Uma partilha NFS
-* Uma partilha SMB
-* Um servidor FTP ou FTPS
-* Um servidor SFTP
-* Um servidor WebDAV
+- Armazenamento interno ou externo do seu dispositivo
+- Uma partilha NFS
+- Uma partilha SMB
+- Um servidor FTP ou FTPS
+- Um servidor SFTP
+- Um servidor WebDAV
 
-**SEGURANÇA E PRIVACIDADE**
+<b>SEGURANÇA E PRIVACIDADE</b>
 
-* **Armazenamento Local:** As informações sensíveis são encriptadas (AES-GCM + Android KeyStore) e armazenadas localmente no seu dispositivo utilizando uma base de dados Room.
-* **Sem rastreio:** Esta aplicação não contém qualquer tipo de análise, rastreador, publicidade ou kit de desenvolvimento de software (SDK) proprietário.
-* **Código Aberto:** O Mirror é um projeto independente. O código-fonte está disponível no GitHub para transparência e auditoria.
+- <b>Armazenamento Local:</b> As informações sensíveis são encriptadas (AES-GCM + Android KeyStore) e armazenadas localmente no seu dispositivo utilizando uma base de dados Room.
+- <b>Sem rastreio:</b> Esta aplicação não contém qualquer tipo de análise, rastreador, publicidade ou kit de desenvolvimento de software (SDK) proprietário.
+- <b>Código Aberto:</b> O Mirror é um projeto independente. O código-fonte está disponível no GitHub para transparência e auditoria.

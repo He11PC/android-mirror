@@ -3,24 +3,24 @@ Het is ontworpen om eenvoudiger en lichter te zijn dan synchronisatiesoftware en
 
 U kunt meerdere back-ups als volgt configureren:
 
-* Selecteer een bronmap
-* Selecteer een bestemmingsmap
-* Kies filteropties (optioneel)
-* Configureer automatische planning (optioneel)
+- Selecteer een bronmap
+- Selecteer een bestemmingsmap
+- Kies filteropties (optioneel)
+- Configureer automatische planning (optioneel)
 
 Mirror analyseert de inhoud van beide mappen, vergelijkt deze en reproduceert de structuur van de bronmap (submappen en bestanden) in de bestemmingsmap, rekening houdend met de filteropties die u hebt gekozen.
 
 De bron en bestemming kunnen zich bevinden op:
 
-* De interne of externe opslag van uw apparaat
-* Een NFS-share
-* Een SMB-share
-* Een FTP- of FTPS-server
-* Een SFTP-server
-* Een WebDAV-server
+- De interne of externe opslag van uw apparaat
+- Een NFS-share
+- Een SMB-share
+- Een FTP- of FTPS-server
+- Een SFTP-server
+- Een WebDAV-server
 
-**BEVEILIGING & PRIVACY**
+<b>BEVEILIGING & PRIVACY</b>
 
-* **Lokale opslag:** Gevoelige informatie wordt versleuteld (AES-GCM + Android KeyStore) en lokaal op uw apparaat opgeslagen met behulp van een Room-database.
-* **Geen tracking:** Deze applicatie bevat geen analyses, trackers, eigen softwareontwikkelingskits (SDK's) of advertentiesoftware.
-* **Open source:** Mirror is een onafhankelijk project. De broncode is beschikbaar op GitHub voor transparantie en controle.
+- <b>Lokale opslag:</b> Gevoelige informatie wordt versleuteld (AES-GCM + Android KeyStore) en lokaal op uw apparaat opgeslagen met behulp van een Room-database.
+- <b>Geen tracking:</b> Deze applicatie bevat geen analyses, trackers, eigen softwareontwikkelingskits (SDK's) of advertentiesoftware.
+- <b>Open source:</b> Mirror is een onafhankelijk project. De broncode is beschikbaar op GitHub voor transparantie en controle.

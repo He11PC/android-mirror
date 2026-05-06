@@ -3,24 +3,24 @@ Sie ist einfacher und ressourcenschonender als herkömmliche Synchronisierungsso
 
 Sie können mehrere Backups wie folgt konfigurieren:
 
-* Quellverzeichnis auswählen
-* Zielverzeichnis auswählen
-* Filteroptionen auswählen (optional)
-* Automatische Planung konfigurieren (optional)
+- Quellverzeichnis auswählen
+- Zielverzeichnis auswählen
+- Filteroptionen auswählen (optional)
+- Automatische Planung konfigurieren (optional)
 
 Mirror analysiert den Inhalt beider Verzeichnisse, vergleicht ihn und reproduziert die Struktur des Quellverzeichnisses (Unterverzeichnisse und Dateien) im Zielverzeichnis unter Berücksichtigung der gewählten Filteroptionen.
 
 Quelle und Ziel können sich auf folgenden Speicherorten befinden:
 
-* Interner oder externer Speicher Ihres Geräts
-* NFS-Freigabe
-* SMB-Freigabe
-* FTP- oder FTPS-Server
-* SFTP-Server
-* WebDAV-Server
+- Interner oder externer Speicher Ihres Geräts
+- NFS-Freigabe
+- SMB-Freigabe
+- FTP- oder FTPS-Server
+- SFTP-Server
+- WebDAV-Server
 
-**SICHERHEIT & DATENSCHUTZ**
+<b>SICHERHEIT & DATENSCHUTZ</b>
 
-* **Lokaler Speicher:** Sensible Daten werden verschlüsselt (AES-GCM + Android KeyStore) und lokal auf Ihrem Gerät mithilfe einer Room-Datenbank gespeichert.
-* **Kein Tracking:** Diese Anwendung enthält keine Analysetools, Tracker, Werbung oder proprietäre Software Development Kits (SDKs).
-* **Open Source:** Mirror ist ein unabhängiges Projekt. Der Quellcode ist auf GitHub verfügbar, um Transparenz und Überprüfung zu gewährleisten.
+- <b>Lokaler Speicher:</b> Sensible Daten werden verschlüsselt (AES-GCM + Android KeyStore) und lokal auf Ihrem Gerät mithilfe einer Room-Datenbank gespeichert.
+- <b>Kein Tracking:</b> Diese Anwendung enthält keine Analysetools, Tracker, Werbung oder proprietäre Software Development Kits (SDKs).
+- <b>Open Source:</b> Mirror ist ein unabhängiges Projekt. Der Quellcode ist auf GitHub verfügbar, um Transparenz und Überprüfung zu gewährleisten.

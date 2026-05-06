@@ -3,24 +3,24 @@ Conçue pour être plus simple et plus légère que les logiciels de synchronisa
 
 Vous pouvez configurer plusieurs sauvegardes comme suit :
 
-* Sélectionnez un répertoire source
-* Sélectionnez un répertoire de destination
-* Choisissez les options de filtrage (facultatif)
-* Configurez la planification automatique (facultatif)
+- Sélectionnez un répertoire source
+- Sélectionnez un répertoire de destination
+- Choisissez les options de filtrage (facultatif)
+- Configurez la planification automatique (facultatif)
 
 Mirror analysera le contenu des deux répertoires, les comparera et reproduira la structure du répertoire source (sous-répertoires et fichiers) dans le répertoire de destination, en respectant les options de filtrage choisies.
 
 La source et la destination peuvent se trouver sur :
 
-* La mémoire interne ou externe de votre appareil
-* Un partage NFS
-* Un partage SMB
-* Un serveur FTP ou FTPS
-* Un serveur SFTP
-* Un serveur WebDAV
+- La mémoire interne ou externe de votre appareil
+- Un partage NFS
+- Un partage SMB
+- Un serveur FTP ou FTPS
+- Un serveur SFTP
+- Un serveur WebDAV
 
-**SÉCURITÉ ET CONFIDENTIALITÉ**
+<b>SÉCURITÉ ET CONFIDENTIALITÉ</b>
 
-* **Stockage local :** Les informations sensibles sont chiffrées (AES-GCM + Android KeyStore) et stockées localement sur votre appareil à l’aide d’une base de données Room.
-* **Aucun suivi :** Cette application ne contient aucun outil d'analyse, de suivi, de publicité ou de kit de développement logiciel (SDK) propriétaire.
-* **Logiciel libre :** Mirror est un projet indépendant. Son code source est disponible sur GitHub à des fins de transparence et d’audit.
+- <b>Stockage local :</b> Les informations sensibles sont chiffrées (AES-GCM + Android KeyStore) et stockées localement sur votre appareil à l’aide d’une base de données Room.
+- <b>Aucun suivi :</b> Cette application ne contient aucun outil d'analyse, de suivi, de publicité ou de kit de développement logiciel (SDK) propriétaire.
+- <b>Logiciel libre :</b> Mirror est un projet indépendant. Son code source est disponible sur GitHub à des fins de transparence et d’audit.

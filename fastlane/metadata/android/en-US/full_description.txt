@@ -3,24 +3,24 @@ Designed to be simpler and lighter than synchronization software, it allows you 
 
 You can configure multiple backups as follows:
 
-* Select a source directory
-* Select a destination directory
-* Choose filtering options (optional)
-* Configure automatic scheduling (optional)
+- Select a source directory
+- Select a destination directory
+- Choose filtering options (optional)
+- Configure automatic scheduling (optional)
 
 Mirror will analyze the contents of both directories, compare them and reproduce the structure of the source directory (subdirectories and files) in the destination directory, respecting the filtering options you have chosen.
 
 The source and destination can be located on:
 
-* Your device's internal or external storage
-* An NFS share
-* An SMB share
-* An FTP or FTPS server
-* An SFTP server
-* A WebDAV server
+- Your device's internal or external storage
+- An NFS share
+- An SMB share
+- An FTP or FTPS server
+- An SFTP server
+- A WebDAV server
 
-**SECURITY & PRIVACY**
+<b>SECURITY & PRIVACY</b>
 
-* **Local Storage:** Sensitive information is encrypted (AES-GCM + Android KeyStore) and stored locally on your device using a Room database.
-* **No Tracking:** This application does not contain any analytics, trackers, advertising or proprietary software development kits (SDKs).
-* **Open Source:** Mirror is an independent project. The source code is available on GitHub for transparency and audit.
+- <b>Local Storage:</b> Sensitive information is encrypted (AES-GCM + Android KeyStore) and stored locally on your device using a Room database.
+- <b>No Tracking:</b> This application does not contain any analytics, trackers, advertising or proprietary software development kits (SDKs).
+- <b>Open Source:</b> Mirror is an independent project. The source code is available on GitHub for transparency and audit.
