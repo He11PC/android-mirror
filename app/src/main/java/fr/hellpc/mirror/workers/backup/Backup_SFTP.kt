@@ -77,7 +77,7 @@ class Backup_SFTP(
             }
 
             session.apply {
-                setPassword(target.password?.cipherDecrypt())
+                setPassword(target.password?.cipherDecrypt()?.toByteArray())
                 connect()
             }
         }

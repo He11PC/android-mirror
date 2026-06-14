@@ -297,7 +297,7 @@ class Repository_FolderExplorer {
         }
 
         sftpSession.apply {
-            setPassword(target.password?.cipherDecrypt())
+            setPassword(target.password?.cipherDecrypt()?.toByteArray())
             connect()
             sftpChannel = openChannel("sftp") as ChannelSftp
         }

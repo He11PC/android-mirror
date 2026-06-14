@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 15
-        versionName = "26.03.28"
+        versionCode = 16
+        versionName = "26.06.08"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -58,9 +58,9 @@ android {
 dependencies {
     val vRoom = "2.8.4"
     val vLifecycle = "2.10.0"
-    val vCoroutines = "1.10.2"
+    val vCoroutines = "1.11.0"
 
-    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("androidx.core:core-ktx:1.18.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
@@ -69,7 +69,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$vCoroutines")
 
     // Components
-    implementation("com.google.android.material:material:1.13.0")
+    implementation("com.google.android.material:material:1.14.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("androidx.cardview:cardview:1.0.0")
@@ -92,17 +92,17 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
 
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.11.1")
-    implementation("com.google.guava:guava:33.5.0-android")
+    implementation("androidx.work:work-runtime-ktx:2.11.2")
+    implementation("com.google.guava:guava:33.6.0-android")
 
     // NFS
     implementation("com.emc.ecs:nfs-client:1.1.0")
     // SMB
     implementation("com.hierynomus:smbj:0.14.0")
     // FTP
-    implementation("commons-net:commons-net:3.12.0")
+    implementation("commons-net:commons-net:3.13.0")
     // SFTP
-    implementation("com.github.mwiede:jsch:2.27.8")
+    implementation("com.github.mwiede:jsch:2.28.2")
     // WebDav
     implementation("com.github.thegrizzlylabs:sardine-android:0.9")
     implementation("io.github.rburgst:okhttp-digest:3.1.1")

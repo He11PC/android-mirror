@@ -99,7 +99,7 @@ class Repository_Edit(private val daoTBackupData: Dao_TBackupData, private val d
 
             session.apply {
                 setConfig(config)
-                setPassword(password)
+                setPassword(password.toByteArray())
                 timeout = 30*1000
                 connect()
             }
