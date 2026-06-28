@@ -46,6 +46,7 @@ class Backup_FTP(
     private val target : Backup_Target,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
+    private val reportFrequency: Long,
     private val log: Manager_Log
 ): Backup_Interface {
 
@@ -258,7 +259,7 @@ class Backup_FTP(
                 trustManager = TrustManagerUtils.getValidateServerCertificateTrustManager()
                 isEndpointCheckingEnabled = true
                 autodetectUTF8 = true
-                bufferSize = 64*1024
+                bufferSize = 256*1024
 
                 target.port?.let { connect(target.server?.cipherDecrypt(), it) }
                     ?: connect(target.server?.cipherDecrypt())
@@ -308,7 +309,7 @@ class Backup_FTP(
         }.apply {
             try{
                 autodetectUTF8 = true
-                bufferSize = 64*1024
+                bufferSize = 256*1024
 
                 target.port?.let { connect(target.server?.cipherDecrypt(), it) }
                     ?: connect(target.server?.cipherDecrypt())
@@ -432,16 +433,21 @@ class Backup_FTP(
         val destPath = getAbsolutePath(listOf(file.path, file.name), target.path, true)
 
         val streamListener = object : CopyStreamAdapter() {
+            var lastReportTime = 0L
+
             override fun bytesTransferred(totalBytesTransferred: Long, bytesTransferred: Int, streamSize: Long) {
-                reportProgress(totalBytesTransferred)
-                if(totalBytesTransferred == file.size)
-                    removeCopyStreamListener(this)
+                val currentTime = System.currentTimeMillis()
+                if (currentTime - lastReportTime >= reportFrequency) {
+                    reportProgress(totalBytesTransferred)
+                    lastReportTime = currentTime
+                }
             }
         }
 
         try {
             client.copyStreamListener = streamListener
             reader.use { client.storeFile(destPath, it) }
+            reportProgress(file.size)
         }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
         finally { client.copyStreamListener = null }

@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 16
-        versionName = "26.06.08"
+        versionCode = 17
+        versionName = "26.06.22"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -40,6 +40,11 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            dependenciesInfo {
+                includeInApk = false
+                includeInBundle = false
+            }
         }
     }
 
@@ -57,7 +62,7 @@ android {
 
 dependencies {
     val vRoom = "2.8.4"
-    val vLifecycle = "2.10.0"
+    val vLifecycle = "2.11.0"
     val vCoroutines = "1.11.0"
 
     implementation("androidx.core:core-ktx:1.18.0")
@@ -102,7 +107,7 @@ dependencies {
     // FTP
     implementation("commons-net:commons-net:3.13.0")
     // SFTP
-    implementation("com.github.mwiede:jsch:2.28.2")
+    implementation("com.github.mwiede:jsch:2.28.3")
     // WebDav
     implementation("com.github.thegrizzlylabs:sardine-android:0.9")
     implementation("io.github.rburgst:okhttp-digest:3.1.1")

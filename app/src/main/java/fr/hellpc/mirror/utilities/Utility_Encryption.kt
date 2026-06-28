@@ -88,4 +88,36 @@ internal object Utility_Encryption {
             null
         }
     }
+
+    /** Decrypt String to ByteArray **/
+    internal fun String.cipherDecryptToBytes(): ByteArray? {
+        return try {
+            val combined = Base64.decode(this, Base64.NO_WRAP)
+
+            val iv = combined.copyOfRange(0, 12)
+            val encryptedData = combined.copyOfRange(12, combined.size)
+
+            val cipher = Cipher.getInstance("AES/GCM/NoPadding")
+            val spec = GCMParameterSpec(128, iv)
+            cipher.init(Cipher.DECRYPT_MODE, getKey(), spec)
+
+            cipher.doFinal(encryptedData)
+        }
+        catch(exp: Exception) {
+            Log.e("Decrypt", exp.message.toString())
+            null
+        }
+    }
+
+    /** Allows .use on a ByteArray **/
+    inline fun <R> ByteArray.use(block: (ByteArray) -> R): R {
+        try { return block(this) }
+        finally { this.fill(0) }
+    }
+
+    /** Allows .use on a ByteArray as a stream **/
+    inline fun ByteArray.useAsInputStream(block: (java.io.InputStream) -> Unit) {
+        try { this.inputStream().use { stream -> block(stream) } }
+        finally { this.fill(0) }
+    }
 }

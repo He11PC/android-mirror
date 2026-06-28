@@ -55,7 +55,7 @@ class Backup_SMB(
     private val target : Backup_Target,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
-    private val reportFrequency: Int,
+    private val reportFrequency: Long,
     private val log: Manager_Log
 ): Backup_Interface {
 
@@ -257,8 +257,8 @@ class Backup_SMB(
         try {
             Channels.newChannel(reader).use { inputChannel ->
                 var written = 0L
-                val buffer = ByteBuffer.allocate(64*1024)
-                var loop = 0
+                val buffer = ByteBuffer.allocate(1024*1024)
+                var lastReportTime = 0L
 
                 share.openFile(
                     destPath,
@@ -279,10 +279,15 @@ class Backup_SMB(
                             buffer.flip()
                             written += outputChannel.write(buffer)
                             buffer.clear()
-                            if(loop.mod(reportFrequency) == 0)
+
+                            val currentTime = System.currentTimeMillis()
+                            if(currentTime - lastReportTime >= reportFrequency) {
                                 reportProgress(written)
-                            loop ++
+                                lastReportTime = currentTime
+                            }
                         }
+
+                        reportProgress(file.size)
                     }
 
                     // Close file

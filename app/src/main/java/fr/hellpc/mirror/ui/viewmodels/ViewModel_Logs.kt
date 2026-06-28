@@ -26,6 +26,7 @@ import fr.hellpc.mirror.data.Logs_NavigationPosition
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.max
+import kotlin.time.Duration.Companion.milliseconds
 
 class ViewModel_Logs(private val repository: Repository_Logs): ViewModel() {
 
@@ -90,7 +91,7 @@ class ViewModel_Logs(private val repository: Repository_Logs): ViewModel() {
         showNavigationText.mutable.postValue(true)
 
         countDown += duration
-        delay(duration)
+        delay(duration.milliseconds)
         countDown = max(0L, countDown.minus(duration))
 
         showNavigationText.mutable.postValue(countDown > 0L)

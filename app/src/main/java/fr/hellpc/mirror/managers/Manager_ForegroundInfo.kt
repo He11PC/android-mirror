@@ -98,7 +98,7 @@ class Manager_ForegroundInfo {
         if(isInitialized && sizeCurrent > 0L) {
             val timeCurrent = System.currentTimeMillis()
             val delay = timeCurrent - lastUpdate
-            if(delay > 500) {
+            if(delay >= 500) {
                 notifications.notify(
                     notificationID,
                     managerNotifications.getOngoingNotification(

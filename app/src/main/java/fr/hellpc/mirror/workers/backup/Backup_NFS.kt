@@ -46,7 +46,7 @@ class Backup_NFS(
     private val target : Backup_Target,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
-    private val reportFrequency: Int,
+    private val reportFrequency: Long,
     private val log: Manager_Log
 ): Backup_Interface {
 
@@ -234,7 +234,7 @@ class Backup_NFS(
     override suspend fun getReader(file: WorkerBackup_File, connexion: Int): InputStream = withContext(dispatcherIO) {
         val srcFile = getAccess(getConnexion(connexion), getAbsolutePath(listOf(file.path, file.name), target.path, true))
 
-        return@withContext try { NfsFileInputStream(srcFile) }
+        return@withContext try { NfsFileInputStream(srcFile, 128*1024) }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_read), exp.message) }
     }
 
@@ -245,18 +245,23 @@ class Backup_NFS(
         try {
             Channels.newChannel(reader).use { inputChannel ->
                 var written = 0L
-                val buffer = ByteBuffer.allocate(64*1024)
-                var loop = 0
+                val buffer = ByteBuffer.allocate(1024*1024)
+                var lastReportTime = 0L
 
                 Channels.newChannel(NfsFileOutputStream(destFile)).use { outputChannel ->
                     while(inputChannel.read(buffer) > 0) {
                         buffer.flip()
                         written += outputChannel.write(buffer)
                         buffer.clear()
-                        if(loop.mod(reportFrequency) == 0)
+
+                        val currentTime = System.currentTimeMillis()
+                        if(currentTime - lastReportTime >= reportFrequency) {
                             reportProgress(written)
-                        loop ++
+                            lastReportTime = currentTime
+                        }
                     }
+
+                    reportProgress(file.size)
                 }
             }
         }

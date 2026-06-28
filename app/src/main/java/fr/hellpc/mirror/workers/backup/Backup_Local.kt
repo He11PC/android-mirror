@@ -50,7 +50,7 @@ class Backup_Local(
     private val target : Backup_Target,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
-    private val reportFrequency: Int,
+    private val reportFrequency: Long,
     private val log: Manager_Log
 ): Backup_Interface {
 
@@ -165,19 +165,23 @@ class Backup_Local(
 
         try {
             Channels.newChannel(reader).use { inputChannel ->
-                val buffer = ByteBuffer.allocate(64*1024)
-                var loop = 0
+                val buffer = ByteBuffer.allocate(16*1024)
+                var lastReportTime = 0L
 
                 FileOutputStream(destPath.toFile()).channel.use { outputChannel ->
                     while(inputChannel.read(buffer) > 0) {
                         buffer.flip()
                         outputChannel.write(buffer)
                         buffer.clear()
-                        val written = outputChannel.position()
-                        if(loop.mod(reportFrequency) == 0)
-                            reportProgress(written)
-                        loop ++
+
+                        val currentTime = System.currentTimeMillis()
+                        if(currentTime - lastReportTime >= reportFrequency) {
+                            reportProgress(outputChannel.position())
+                            lastReportTime = currentTime
+                        }
                     }
+
+                    reportProgress(file.size)
                 }
             }
         }

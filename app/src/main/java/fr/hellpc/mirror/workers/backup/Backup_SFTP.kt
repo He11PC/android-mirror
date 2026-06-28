@@ -29,6 +29,9 @@ import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.utilities.CriticalException
 import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
+import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecryptToBytes
+import fr.hellpc.mirror.utilities.Utility_Encryption.use
+import fr.hellpc.mirror.utilities.Utility_Encryption.useAsInputStream
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -44,6 +47,7 @@ class Backup_SFTP(
     private val target : Backup_Target,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
+    private val reportFrequency: Long,
     private val log: Manager_Log
 ): Backup_Interface {
 
@@ -72,13 +76,15 @@ class Backup_SFTP(
 
         try {
             JSch().apply {
-                setKnownHosts(target.hostKey?.cipherDecrypt()?.toByteArray()?.inputStream())
+                target.hostKey?.cipherDecryptToBytes()?.useAsInputStream { setKnownHosts(it) }
                 session = getSession(target.login?.cipherDecrypt(), target.server.cipherDecrypt(), target.port ?: 22)
             }
 
             session.apply {
-                setPassword(target.password?.cipherDecrypt()?.toByteArray())
-                connect()
+                target.password?.cipherDecryptToBytes()?.use {
+                    setPassword(it)
+                    connect()
+                }
             }
         }
         catch(exp: Exception) {
@@ -280,17 +286,28 @@ class Backup_SFTP(
 
         val streamListener = object : SftpProgressMonitor {
             var bytesTransferred = 0L
+            var lastReportTime = 0L
+
             override fun init(op: Int, src: String?, dest: String?, max: Long) { }
             override fun end() { }
 
             override fun count(count: Long): Boolean {
                 bytesTransferred += count
-                reportProgress(bytesTransferred)
+
+                val currentTime = System.currentTimeMillis()
+                if (currentTime - lastReportTime >= reportFrequency) {
+                    reportProgress(bytesTransferred)
+                    lastReportTime = currentTime
+                }
+
                 return true
             }
         }
 
-        try { reader.use { sftp.put(it, destPath, streamListener, ChannelSftp.OVERWRITE) } }
+        try {
+            reader.use { sftp.put(it, destPath, streamListener, ChannelSftp.OVERWRITE) }
+            reportProgress(file.size)
+        }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
 
         setDate(destPath, file.last_modified, sftp)

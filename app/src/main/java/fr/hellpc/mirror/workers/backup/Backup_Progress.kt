@@ -19,8 +19,8 @@ class Backup_Progress {
 
     // Progress bar
     private var progressBytesTotal = 0L
-    private var progressBytesConfirmed = 0L
-    private val progressBytesPending = mutableListOf(0L, 0L, 0L)
+    @Volatile private var progressBytesConfirmed = 0L
+    private val progressBytesPending = LongArray(3)
 
     // Time left
     private var timeStartDate = -1L
@@ -29,10 +29,10 @@ class Backup_Progress {
     private var timeBytesDone = 0L
 
     // End of backup stats
-    var statFilesCount = 0
-    var statFilesBytes = 0L
-    var statOrphansCount = 0
-    var statOrphansBytes = 0L
+    @Volatile var statFilesCount = 0
+    @Volatile var statFilesBytes = 0L
+    @Volatile var statOrphansCount = 0
+    @Volatile var statOrphansBytes = 0L
 
 
     /** Calculate total size of files to manage for progress bar **/
@@ -56,7 +56,7 @@ class Backup_Progress {
     }
 
     /** Increment counters during file transfer **/
-    fun incrementOnGoing(size: Long, connexion: Int) {
+    @Synchronized fun incrementOnGoing(size: Long, connexion: Int) {
         progressBytesPending[connexion-1] = size
     }
 

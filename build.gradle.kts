@@ -4,5 +4,7 @@ plugins {
 }
 
 tasks.register<Delete>("clean") {
+    group = "build"
+    description = "Delete the build directory to obtain a clean project"
     delete(getLayout().buildDirectory)
 }

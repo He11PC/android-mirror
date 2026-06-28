@@ -41,6 +41,9 @@ import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.FolderExplorer_File
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecryptToBytes
+import fr.hellpc.mirror.utilities.Utility_Encryption.use
+import fr.hellpc.mirror.utilities.Utility_Encryption.useAsInputStream
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -292,13 +295,15 @@ class Repository_FolderExplorer {
 
     private fun connectSftp(): Boolean {
         JSch().apply {
-            setKnownHosts(target.hostKey?.cipherDecrypt()?.toByteArray()?.inputStream())
+            target.hostKey?.cipherDecryptToBytes()?.useAsInputStream { setKnownHosts(it) }
             sftpSession = getSession(target.login?.cipherDecrypt(), target.server?.cipherDecrypt(), target.port ?: 22)
         }
 
         sftpSession.apply {
-            setPassword(target.password?.cipherDecrypt()?.toByteArray())
-            connect()
+            target.password?.cipherDecryptToBytes()?.use {
+                setPassword(it)
+                connect()
+            }
             sftpChannel = openChannel("sftp") as ChannelSftp
         }
 

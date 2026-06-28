@@ -68,8 +68,9 @@ import kotlin.math.round
 
 class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker(context, params) {
 
-    private val dispatcherDefault by lazy { Dispatchers.Default }
-    private val scopeDefault by lazy { CoroutineScope(Job() + dispatcherDefault) }
+    private val dispatcherDefault = Dispatchers.Default
+    private val scopeDefault = CoroutineScope(Job() + dispatcherDefault)
+    private val scopeIO = CoroutineScope(Job() + Dispatchers.IO)
 
     // -------------------------------------
 
@@ -82,9 +83,9 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     // -------------------------------------
 
-    private val backupID = inputData.getInt("ID_BACKUP", -1)
-    private val backupScheduled = inputData.getBoolean("SCHEDULED", false)
-    private val localeContext = applicationContext.setAppLocale()
+    private val backupID by lazy { inputData.getInt("ID_BACKUP", -1) }
+    private val backupScheduled by lazy { inputData.getBoolean("SCHEDULED", false) }
+    private val localeContext by lazy { applicationContext.setAppLocale() }
 
     // -------------------------------------
 
@@ -110,10 +111,10 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
     private val srcTxt by lazy { localeContext.getString(R.string.log_source) }
     private val destTxt by lazy { localeContext.getString(R.string.log_destination) }
 
-    private val colorBlue by lazy { "<font color=blue>" }
-    private val colorGreen by lazy { "<font color=green>" }
-    private val colorOrange by lazy { "<font color=orange>" }
-    private val colorRed by lazy { "<font color=red>" }
+    private val colorBlue = "<font color=blue>"
+    private val colorGreen = "<font color=green>"
+    private val colorOrange = "<font color=orange>"
+    private val colorRed = "<font color=red>"
 
     // -------------------------------------
 
@@ -580,29 +581,28 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     /** Check folder existence and permissions if possible **/
     private suspend fun initialise(isSource: Boolean, target: Backup_Target) {
-        val reportFrequencyLoops = 8 // Number of buffer loops between ongoing copy reports
-        val reportFrequencyMillis = 500L // Milliseconds between ongoing copy reports
+        val reportFrequency = 250L // Milliseconds between ongoing copy reports
 
         if(isSource) {
             targetSrc = when(target.protocol) {
-                "LOCAL" -> Backup_Local(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "NFS" -> Backup_NFS(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "SMB" -> Backup_SMB(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "FTP" -> Backup_FTP(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, log)
-                "SFTP" -> Backup_SFTP(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, log)
-                "WDAV" -> Backup_WebDav(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, false, reportFrequencyMillis, log)
+                "LOCAL" -> Backup_Local(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "NFS" -> Backup_NFS(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "SMB" -> Backup_SMB(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "FTP" -> Backup_FTP(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "SFTP" -> Backup_SFTP(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "WDAV" -> Backup_WebDav(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, false, reportFrequency, log)
                 else -> throw CriticalException(srcTxt, localeContext.getString(R.string.error_target), null)
             }
             targetSrc.initialise()
         }
         else {
             targetDest = when(target.protocol) {
-                "LOCAL" -> Backup_Local(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "NFS" -> Backup_NFS(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "SMB" -> Backup_SMB(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequencyLoops, log)
-                "FTP" -> Backup_FTP(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, log)
-                "SFTP" -> Backup_SFTP(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, log)
-                "WDAV" -> Backup_WebDav(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, backupData.source.protocol != "LOCAL", reportFrequencyMillis, log)
+                "LOCAL" -> Backup_Local(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "NFS" -> Backup_NFS(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "SMB" -> Backup_SMB(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "FTP" -> Backup_FTP(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "SFTP" -> Backup_SFTP(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "WDAV" -> Backup_WebDav(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, backupData.source.protocol != "LOCAL", reportFrequency, log)
                 else -> throw CriticalException(destTxt, localeContext.getString(R.string.error_target), null)
             }
             targetDest.initialise()
@@ -815,9 +815,9 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 canRetry = tentative <= maxRetry
                 // Sardine (WebDav) can't use InputStreams => upload from local file instead
                 success = if(backupData.source.protocol == "LOCAL" && backupData.destination.protocol == "WDAV")
-                        targetDest.write(backupData.source.path, file, connexion, canRetry, reportProgress = { launch { updateProgressOnGoing(it, connexion) } })
+                        targetDest.write(backupData.source.path, file, connexion, canRetry, reportProgress = { updateProgressOnGoing(it, connexion) })
                     else
-                        targetDest.write(targetSrc.getReader(file, connexion), file, connexion, canRetry, reportProgress = { launch { updateProgressOnGoing(it, connexion) } })
+                        targetDest.write(targetSrc.getReader(file, connexion), file, connexion, canRetry, reportProgress = { updateProgressOnGoing(it, connexion) })
                 // Close InputStream if source is FTP
                 targetSrc.closeReader(connexion)
                 // Update time left in case of corruption
@@ -927,7 +927,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
     // ---------------
 
     /** Update progress data during file transfer **/
-    private suspend fun updateProgressOnGoing(sizeDone: Long, connexion: Int) {
+    private fun updateProgressOnGoing(sizeDone: Long, connexion: Int) = scopeDefault.launch {
         progress.incrementOnGoing(sizeDone, connexion)
         updateProgressBar()
     }
@@ -939,14 +939,14 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
     }
 
     /** Update progress bar **/
-    private suspend fun updateProgressBar() = withContext(Dispatchers.Default) {
+    private fun updateProgressBar() {
         val progress = progress.getProgress()
-        launch { repository.setBackupProgress(backupID, progress.percentConfirmed, progress.percentCurrent) }
+        scopeIO.launch { repository.setBackupProgress(backupID, progress.percentConfirmed, progress.percentCurrent) }
         foregroundInfo.updateNotification(progress.sizeCurrent, progress.sizeTotal, progress.percentConfirmed, progress.percentCurrent, progress.timeLeft)
     }
 
     /** Update current file being transferred during backup **/
-    private fun updateProgressDetail(text: String?, position: Int) = scopeDefault.launch {
+    private fun updateProgressDetail(text: String?, position: Int) = scopeIO.launch {
         when(position) {
             1 -> repository.setBackupProgressDetail1(backupID, text)
             2 -> repository.setBackupProgressDetail2(backupID, text)

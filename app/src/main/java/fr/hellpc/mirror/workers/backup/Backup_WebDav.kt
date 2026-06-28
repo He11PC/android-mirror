@@ -370,7 +370,7 @@ class Backup_WebDav(
     private fun createTmpFile(reader: InputStream, tmpPath: Path, file: WorkerBackup_File, canRetry: Boolean): Boolean {
         try {
             Channels.newChannel(reader).use { inputChannel ->
-                val buffer = ByteBuffer.allocate(64*1024)
+                val buffer = ByteBuffer.allocate(16*1024)
                 FileOutputStream(tmpPath.toFile()).channel.use { outputChannel ->
                     while(inputChannel.read(buffer) > 0) {
                         buffer.flip()
