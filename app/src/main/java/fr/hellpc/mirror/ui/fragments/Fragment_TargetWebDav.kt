@@ -218,7 +218,7 @@ class Fragment_TargetWebDav : Fragment() {
     /** Get current data from UI **/
     fun getCurrentData(showWarning: Boolean): Backup_Target? {
         val server = editUtils.trimServer(binding.targetWebdavEditServer.text.toString())
-        val path = editUtils.trimPath(binding.targetWebdavEditPath.text.toString())
+        val path = editUtils.trimPath(binding.targetWebdavEditPath.text.toString(), false)
         val port = binding.targetWebdavEditPort.text.toString().toIntOrNull()
             ?: binding.targetWebdavEditPort.hint.toString().toIntOrNull()
             ?: if(binding.targetWebdavChkSsl.isChecked)

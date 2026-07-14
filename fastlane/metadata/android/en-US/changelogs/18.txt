@@ -1,0 +1,2 @@
+- Libraries update
+- Bug fix for the blacklist filter

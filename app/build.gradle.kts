@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 17
-        versionName = "26.06.22"
+        versionCode = 18
+        versionName = "26.07.12"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -107,7 +107,7 @@ dependencies {
     // FTP
     implementation("commons-net:commons-net:3.13.0")
     // SFTP
-    implementation("com.github.mwiede:jsch:2.28.3")
+    implementation("com.github.mwiede:jsch:2.28.4")
     // WebDav
     implementation("com.github.thegrizzlylabs:sardine-android:0.9")
     implementation("io.github.rburgst:okhttp-digest:3.1.1")

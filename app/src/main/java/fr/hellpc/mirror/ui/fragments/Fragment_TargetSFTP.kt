@@ -262,7 +262,7 @@ class Fragment_TargetSFTP : Fragment() {
     /** Get current data from UI **/
     fun getCurrentData(showWarning: Boolean): Backup_Target? {
         val server = editUtils.trimServer(binding.targetSftpEditServer.text.toString())
-        val path = editUtils.trimPath(binding.targetSftpEditPath.text.toString())
+        val path = editUtils.trimPath(binding.targetSftpEditPath.text.toString(), false)
         val port = getSftpPort()
 
         return if(server.isBlank()) {

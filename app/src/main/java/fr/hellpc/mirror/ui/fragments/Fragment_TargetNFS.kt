@@ -205,7 +205,7 @@ class Fragment_TargetNFS : Fragment() {
     fun getCurrentData(showWarning: Boolean): Backup_Target? {
         val server = editUtils.trimServer(binding.targetNfsEditServer.text.toString())
         val share = editUtils.trimDirectory(binding.targetNfsEditShare.text.toString())
-        val path = editUtils.trimPath(binding.targetNfsEditPath.text.toString())
+        val path = editUtils.trimPath(binding.targetNfsEditPath.text.toString(), false)
 
         return if(server.isBlank()) {
             if(showWarning) {

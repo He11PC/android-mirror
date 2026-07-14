@@ -97,7 +97,7 @@ class Utility_BackupTarget {
     fun getAllowedCharactersPath() = "[$charsServer$charsDirectory$charsPath$charsBengali]".toRegex()
 
     /** Trim single line path **/
-    fun trimPath(path: String): String {
+    fun trimPath(path: String, keepLeadingSlash: Boolean): String {
         val directoryList = path
             .replace('\\', '/')
             .trim()
@@ -109,7 +109,10 @@ class Utility_BackupTarget {
             directoryList[fi] = trimDirectory(directoryList[fi])
         }
 
-        return directoryList.joinToString("/")
+        return if(path.startsWith('/') && keepLeadingSlash)
+            '/' + directoryList.joinToString("/")
+        else
+            directoryList.joinToString("/")
     }
 
     /** Check if a path is valid **/
@@ -189,7 +192,7 @@ class Utility_BackupTarget {
             .toMutableList()
 
         for(pi in pathList.indices) {
-            pathList[pi] = trimPath(pathList[pi])
+            pathList[pi] = trimPath(pathList[pi], true)
         }
 
         return pathList.joinToString(System.lineSeparator())

@@ -206,7 +206,7 @@ class Fragment_TargetFTP : Fragment() {
     /** Get current data from UI **/
     fun getCurrentData(showWarning: Boolean): Backup_Target? {
         val server = editUtils.trimServer(binding.targetFtpEditServer.text.toString())
-        val path = editUtils.trimPath(binding.targetFtpEditPath.text.toString())
+        val path = editUtils.trimPath(binding.targetFtpEditPath.text.toString(), false)
         val port = binding.targetFtpEditPort.text.toString().toIntOrNull()
             ?: binding.targetFtpEditPort.hint.toString().toIntOrNull()
             ?: getString(R.string.target_ftp_port_hint).toInt()

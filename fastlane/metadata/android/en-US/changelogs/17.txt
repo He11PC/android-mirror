@@ -2,4 +2,4 @@
 - Progress bar refresh rate optimization
 - Buffer size optimization
 - SFTP login security hardening
-- Removal of APK dependancy metadata for reproducible builds (required by F-Droid)
+- Removal of APK dependency metadata for reproducible builds (required by F-Droid)

@@ -211,7 +211,7 @@ class Fragment_TargetSMB : Fragment() {
         val server = editUtils.trimServer(binding.targetSmbEditServer.text.toString())
         val domain = editUtils.trimServer(binding.targetSmbEditDomain.text.toString())
         val share = editUtils.trimDirectory(binding.targetSmbEditShare.text.toString())
-        val path = editUtils.trimPath(binding.targetSmbEditPath.text.toString())
+        val path = editUtils.trimPath(binding.targetSmbEditPath.text.toString(), false)
 
         return if(server.isBlank()) {
             if(showWarning) {
