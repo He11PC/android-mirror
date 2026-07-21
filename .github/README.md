@@ -35,7 +35,7 @@ The source and destination can be located on:
 
 ---
 
-## Screenshots:
+## Screenshots
 
 <p align="center">
   <a href="screenshots/home.png"><img src="screenshots/home.png" width="24%" alt="Home page"></a>
@@ -49,7 +49,7 @@ The source and destination can be located on:
 
 ---
 
-## Project Origins:
+## Project Origins
 
 I started this amateur project around 2021 as a self-taught and completely inexperienced Android/Kotlin developer, because I couldn't find any apps that met my needs.  
 I gradually adapted it for my family and friends until I realized its features could also be useful to others.
@@ -71,7 +71,7 @@ At least until Google manages to permanently ban sideloading…
 
 ---
 
-## Q&A:
+## Q&A
 
 **Why are you declaring `android:usesCleartextTraffic="true"` on the AndroidManifest.xml file?**
 
@@ -107,7 +107,7 @@ Yes, tap the top of the card you want to move to bring up the edit buttons, then
 
 ---
 
-## Credits and Third-Party Licenses:
+## Credits and Third-Party Licenses
 
 [EMC NFS](https://github.com/EMCECS/nfs-client-java): NFS v3 client - Licensed under Apache-2.0 by EMCECS
 
@@ -125,7 +125,7 @@ Yes, tap the top of the card you want to move to bring up the edit buttons, then
 
 ---
 
-## Support:
+## Support
 
 Mirror is a free and open-source application, distributed without advertising or tracking.  
 If you find it useful and would like to support my work, a small donation would be greatly appreciated.
@@ -136,7 +136,7 @@ If you find it useful and would like to support my work, a small donation would 
 
 ---
 
-## AI Usage & Licensing:
+## AI Usage & Licensing
 
 This project is licensed under AGPLv3.  
 For specific policies regarding AI assistance, scraping, and code generation, please refer to the AGENTS.md file.
