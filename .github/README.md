@@ -4,6 +4,7 @@
   <img src="logos/Mirror.png" alt="Mirror" width="250">
 </div>
 
+<br>
 
 Mirror is a multi-protocol mirror-type backup application for Android.  
 Designed to be simpler and lighter than synchronization software, it allows you to use your own infrastructure rather than third-party cloud services.
@@ -26,14 +27,14 @@ The source and destination can be located on:
 - An SFTP server
 - A WebDAV server
 
----
+<br>
 
 ## Security & Privacy
 
 - **Local Storage:** Sensitive information is encrypted (AES-GCM + Android KeyStore) and stored locally on your device using a Room database.
 - **No Tracking:** This application does not contain any analytics, trackers, advertising or proprietary software development kits (SDKs).
 
----
+<br>
 
 ## Screenshots
 
@@ -47,7 +48,17 @@ The source and destination can be located on:
   <a href="screenshots/permissions.png"><img src="screenshots/permissions.png" width="24%" alt="Permissions"></a>
 </p>
 
----
+<br>
+
+## Download
+
+<p align="center">
+  <a href="https://f-droid.org/packages/fr.hellpc.mirror/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" width="200"></a>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/He11PC/android-mirror"><img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png" width="200"></a>
+  <a href="https://github.com/He11PC/android-mirror/releases"><img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" width="200"></a>
+</p>
+
+<br>
 
 ## Project Origins
 
@@ -69,7 +80,7 @@ Since my appeals were also rejected and Google blocked all updates until I compl
 I continued to improve the application for my own personal use, and by the end of 2025, I began to think that, while a multinational corporation wasn't the solution I was hoping for, perhaps the application could be useful in the open-source world?  
 At least until Google manages to permanently ban sideloading…
 
----
+<br>
 
 ## Q&A
 
@@ -105,7 +116,7 @@ Just tap on them.
 
 Yes, tap the top of the card you want to move to bring up the edit buttons, then drag it from the six-dot icon on the right.
 
----
+<br>
 
 ## Credits and Third-Party Licenses
 
@@ -123,7 +134,7 @@ Yes, tap the top of the card you want to move to bring up the edit buttons, then
 
 [Autostarter](https://github.com/judemanutd/AutoStarter): Opens the autostart permission manager - Licensed under MIT by judemanutd
 
----
+<br>
 
 ## Support
 
@@ -134,7 +145,7 @@ If you find it useful and would like to support my work, a small donation would 
   <a href="https://buymeacoffee.com/hellpc"><img src="logos/bmc-button.png" alt="Buy me a coffee" width="250"></a>
 </div>
 
----
+<br>
 
 ## AI Usage & Licensing
 
