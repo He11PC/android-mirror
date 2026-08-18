@@ -39,13 +39,17 @@ The source and destination can be located on:
 ## Screenshots
 
 <p align="center">
-  <a href="screenshots/home.png"><img src="screenshots/home.png" width="24%" alt="Home page"></a>
-  <a href="screenshots/protocols.png"><img src="screenshots/protocols.png" width="24%" alt="Protocols"></a>
-  <a href="screenshots/options_1.png"><img src="screenshots/options_1.png" width="24%" alt="Options 1"></a>
-  <a href="screenshots/options_2.png"><img src="screenshots/options_2.png" width="24%" alt="Options 2"></a>
-  <a href="screenshots/log.png"><img src="screenshots/log.png" width="24%" alt="Log"></a>
-  <a href="screenshots/settings.png"><img src="screenshots/settings.png" width="24%" alt="Settings"></a>
-  <a href="screenshots/permissions.png"><img src="screenshots/permissions.png" width="24%" alt="Permissions"></a>
+  <a href="screenshots/home.png"><img src="screenshots/home.png" width="29%" hspace="8" alt="Home page"></a>
+  <a href="screenshots/protocols.png"><img src="screenshots/protocols.png" width="29%" hspace="8" alt="Protocols"></a>
+  <a href="screenshots/options_1.png"><img src="screenshots/options_1.png" width="29%" hspace="8" alt="Options 1"></a>
+</p>
+<p align="center">
+  <a href="screenshots/options_2.png"><img src="screenshots/options_2.png" width="29%" hspace="8" alt="Options 2"></a>
+  <a href="screenshots/log.png"><img src="screenshots/log.png" width="29%" hspace="8" alt="Log"></a>
+  <a href="screenshots/settings.png"><img src="screenshots/settings.png" width="29%" hspace="8" alt="Settings"></a>
+</p>
+<p align="center">
+  <a href="screenshots/permissions.png"><img src="screenshots/permissions.png" width="29%" hspace="8" alt="Permissions"></a>
 </p>
 
 <br>
