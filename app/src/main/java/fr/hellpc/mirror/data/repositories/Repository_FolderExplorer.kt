@@ -69,8 +69,8 @@ class Repository_FolderExplorer {
     private lateinit var smbSession: Session
     private lateinit var smbShare: DiskShare
 
-    private val ftp: FTPClient by lazy { FTPClient() }
-    private val ftps: FTPSClient by lazy { FTPSClient() }
+    private lateinit var ftp: FTPClient
+    private lateinit var ftps: FTPSClient
 
     private lateinit var sftpSession: com.jcraft.jsch.Session
     private lateinit var sftpChannel: ChannelSftp
@@ -215,6 +215,7 @@ class Repository_FolderExplorer {
 
         // ---
 
+        ftp = FTPClient()
         ftp.apply {
             autodetectUTF8 = true
             bufferSize = 16384
@@ -241,6 +242,7 @@ class Repository_FolderExplorer {
 
         // ---
 
+        ftps = FTPSClient()
         ftps.apply {
             trustManager = TrustManagerUtils.getValidateServerCertificateTrustManager()
             isEndpointCheckingEnabled = true
@@ -263,15 +265,19 @@ class Repository_FolderExplorer {
     }
 
     private fun disconnectFtp(): Boolean {
-        val client = if(target.ssl == true)
+        val client = if(target.ssl == true && ::ftps.isInitialized)
             ftps
-        else
+        else if (::ftp.isInitialized)
             ftp
+        else
+            null
 
-        val clientIsConnected = try { client.isConnected } catch(_: Exception) { false }
-        if(clientIsConnected) {
-            client.logout()
-            client.disconnect()
+        client?.let {
+            val clientIsConnected = try { it.isConnected } catch(_: Exception) { false }
+            if(clientIsConnected) {
+                it.logout()
+                it.disconnect()
+            }
         }
 
         return true
