@@ -180,7 +180,7 @@ class Backup_WebDav(
 
             // Some servers seem to not allow root url listing
             val checkUrl = if(target.path.isNotBlank())
-                target.path.substringBefore('/').toURL(false)
+                target.path.toURL(false)
             else
                 "".toURL(false)
 
