@@ -179,8 +179,20 @@ class Backup_WebDav(
                 .build()
 
             // Some servers seem to not allow root url listing
-            val checkUrl = if(target.path.isNotBlank())
-                target.path.toURL(false)
+            val checkUrl = if(target.path.isNotBlank()) {
+                val cleanPath = target.path.trim('/')
+                val rootSegment = if(cleanPath.contains(".php/", ignoreCase = true)) {
+                    val phpIndex = cleanPath.indexOf(".php/", ignoreCase = true) + 5
+                    val beforePhp = cleanPath.substring(0, phpIndex)
+                    val firstDir = cleanPath.substring(phpIndex).substringBefore('/')
+
+                    beforePhp + firstDir
+                }
+                else
+                    cleanPath.substringBefore('/')
+
+                rootSegment.toURL(false)
+            }
             else
                 "".toURL(false)
 
