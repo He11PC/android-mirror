@@ -142,10 +142,73 @@
         android:hint="@string/target_common_password_hint"
         android:importantForAutofill="no"
         android:inputType="textWebPassword|textNoSuggestions"
-        android:nextFocusForward="@id/target_webdav_edit_path"
+        android:nextFocusForward="@id/target_webdav_chk_self_signed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/target_webdav_barrier"
         app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_login"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/target_webdav_chk_self_signed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:nextFocusForward="@id/target_webdav_edit_hostkey"
+        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_password"
+        android:text="@string/target_common_self_signed" />
+
+    <TextView
+        android:id="@+id/target_webdav_txt_hostkey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_hostkey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_webdav_edit_hostkey"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_webdav_edit_hostkey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:hint="@string/target_common_hostkey_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:gravity="top"
+        android:textColor="@color/gray"
+        android:nextFocusForward="@id/target_webdav_edit_share"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/target_webdav_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_webdav_chk_self_signed"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/target_webdav_txt_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_share"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_webdav_edit_share"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_webdav_edit_share"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="@string/target_nfs_share_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:nextFocusForward="@id/target_webdav_edit_path"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target_webdav_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_hostkey"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -170,7 +233,7 @@
         android:nextFocusForward="@id/target_webdav_btn_path_search"
         app:layout_constraintEnd_toStartOf="@+id/target_webdav_btn_path_search"
         app:layout_constraintStart_toEndOf="@+id/target_webdav_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_share"
         tools:ignore="TextContrastCheck" />
 
     <ImageButton
@@ -183,25 +246,6 @@
         android:src="@drawable/ic_search"
         app:layout_constraintBottom_toBottomOf="@+id/target_webdav_edit_path"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_password" />
-
-    <TextView
-        android:id="@+id/target_webdav_txt_warning_ssl"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawablePadding="16dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp"
-        android:paddingBottom="10dp"
-        android:text="@string/target_webdav_ssl_warning"
-        android:textColor="@color/orange"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:drawableLeftCompat="@drawable/ic_warning"
-        app:drawableTint="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_path"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/target_webdav_edit_share" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

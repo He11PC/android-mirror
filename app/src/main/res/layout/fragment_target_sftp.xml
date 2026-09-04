@@ -132,7 +132,7 @@
         android:id="@+id/target_sftp_txt_hostkey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/target_sftp_hostkey"
+        android:text="@string/target_common_hostkey"
         app:layout_constraintBaseline_toBaselineOf="@+id/target_sftp_edit_hostkey"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -146,7 +146,7 @@
         android:clickable="true"
         android:cursorVisible="false"
         android:focusable="false"
-        android:hint="@string/target_sftp_hostkey_hint"
+        android:hint="@string/target_common_hostkey_hint"
         android:importantForAutofill="no"
         android:inputType="textMultiLine|textNoSuggestions"
         android:gravity="top"

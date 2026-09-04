@@ -81,8 +81,14 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
     val srcCredentialsExist: LiveData<Boolean> by lazy { MutableLiveData() }
     val destCredentialsExist: LiveData<Boolean> by lazy { MutableLiveData() }
 
+    val ftpHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
+    val ftpHostKeyError: LiveData<String> by lazy { MutableLiveData() }
+
     val sftpHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
     val sftpHostKeyError: LiveData<String> by lazy { MutableLiveData() }
+
+    val webdavHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
+    val webdavHostKeyError: LiveData<String> by lazy { MutableLiveData() }
 
 
     // -----------
@@ -353,9 +359,30 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
     }
 
 
-    // -------------
-    // SFTP host key
-    // -------------
+    // ---------
+    // Host keys
+    // ---------
+
+    /** Retrieve FTP server host key **/
+    suspend fun getFtpHostKey(server: String, port: Int): String? {
+        ftpHostKeyLoadingIsVisible.mutable.postValue(true)
+
+        return try {
+            repository.getFtpHostKey(server, port)
+        }
+        catch(exp: Exception) {
+            ftpHostKeyError.mutable.postValue(exp.message.toString())
+            null
+        }
+        finally {
+            ftpHostKeyLoadingIsVisible.mutable.postValue(false)
+        }
+    }
+
+    /** Reset FTP host key error message **/
+    fun resetFtpHostKeyError() = ftpHostKeyError.mutable.postValue(null)
+
+    // -------------------------------------
 
     /** Retrieve SFTP server host key and format it **/
     suspend fun getSftpHostKey(server: String, port: Int, login: String, password: String): String? {
@@ -376,4 +403,25 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     /** Reset SFTP host key error message **/
     fun resetSftpHostKeyError() = sftpHostKeyError.mutable.postValue(null)
+
+    // -------------------------------------
+
+    /** Retrieve WebDAV server host key **/
+    suspend fun getWebdavHostKey(server: String, port: Int, login: String, password: String): String? {
+        webdavHostKeyLoadingIsVisible.mutable.postValue(true)
+
+        return try {
+            repository.getWebdavHostKey(server, port, login, password)
+        }
+        catch(exp: Exception) {
+            webdavHostKeyError.mutable.postValue(exp.message.toString())
+            null
+        }
+        finally {
+            webdavHostKeyLoadingIsVisible.mutable.postValue(false)
+        }
+    }
+
+    /** Reset WebDAV host key error message **/
+    fun resetWebdavHostKeyError() = webdavHostKeyError.mutable.postValue(null)
 }

@@ -14,15 +14,20 @@ package fr.hellpc.mirror.ui.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,8 +41,8 @@ import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
 import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
 import fr.hellpc.mirror.data.Target_Credentials
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherEncrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
 import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.util.Locale
@@ -50,6 +55,8 @@ class Fragment_TargetWebDav : Fragment() {
 
     private val editUtils by lazy { Utility_BackupTarget() }
     private var fragmentProtocol = "WDAV"
+
+    private val credentialsSnackbar by lazy { Snackbar.make(requireActivity().findViewById(R.id.edit_lyt), getString(R.string.folder_explorer_missing_info), Snackbar.LENGTH_SHORT).setBackgroundTint(ContextCompat.getColor(App.instance, R.color.orange)) }
 
     // DB access
     private val viewModel: ViewModel_Edit by activityViewModels()
@@ -122,6 +129,7 @@ class Fragment_TargetWebDav : Fragment() {
         setupListeners()
         setupEditFilters()
         setupAutofill(isSource)
+        setupObservers()
 
         if(loadData)
             loadDataFromDb(isSource)
@@ -129,26 +137,49 @@ class Fragment_TargetWebDav : Fragment() {
 
     /** Setup listeners **/
     private fun setupListeners() = lifecycleScope.launch {
-        // Change port hint depending on SSL checkbox & show self signed certificates warning
+        // Change port hint depending on SSL checkbox & show self-signed certificates warning
         binding.targetWebdavChkSsl.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked) {
                 binding.targetWebdavEditPort.hint = getString(R.string.target_webdav_port_ssl_hint)
-                binding.targetWebdavTxtWarningSsl.visibility = View.VISIBLE
+                binding.targetWebdavChkSelfSigned.visibility = View.VISIBLE
+
+                if(binding.targetWebdavChkSelfSigned.isChecked) {
+                    binding.targetWebdavTxtHostkey.visibility= View.VISIBLE
+                    binding.targetWebdavEditHostkey.visibility= View.VISIBLE
+                }
             }
             else {
                 binding.targetWebdavEditPort.hint = getString(R.string.target_webdav_port_hint)
-                binding.targetWebdavTxtWarningSsl.visibility = View.GONE
+                binding.targetWebdavChkSelfSigned.visibility = View.GONE
+                binding.targetWebdavTxtHostkey.visibility= View.GONE
+                binding.targetWebdavEditHostkey.visibility= View.GONE
+            }
+        }
+
+        binding.targetWebdavChkSelfSigned.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) {
+                binding.targetWebdavTxtHostkey.visibility= View.VISIBLE
+                binding.targetWebdavEditHostkey.visibility= View.VISIBLE
+            }
+            else {
+                binding.targetWebdavTxtHostkey.visibility= View.GONE
+                binding.targetWebdavEditHostkey.visibility= View.GONE
             }
         }
 
         binding.targetWebdavBtnCredentialsFill.setOnClickListener { openAutoFill() }
         binding.targetWebdavBtnPathSearch.setOnClickListener { openFolderExplorer() }
+        binding.targetWebdavEditHostkey.setOnClickListener { getHostKey() }
     }
 
     /** Setup filters for EditText **/
     private fun setupEditFilters() = lifecycleScope.launch {
         binding.targetWebdavEditServer.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
             source.filter { editUtils.getAllowedCharactersServer().matches(it.toString()) }
+        })
+
+        binding.targetWebdavEditShare.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { editUtils.getAllowedCharactersPath().matches(it.toString()) }
         })
 
         binding.targetWebdavEditPath.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
@@ -171,6 +202,46 @@ class Fragment_TargetWebDav : Fragment() {
         }
 
         viewModel.checkBackupCredentials(isSource, fragmentProtocol)
+    }
+
+    /** Setup observers **/
+    private fun setupObservers() {
+        viewModel.webdavHostKeyError.observe(viewLifecycleOwner) {
+            if(!it.isNullOrBlank())
+                AlertDialog.Builder(requireContext(), R.style.AppTheme_ErrorDialogStyle).apply {
+                    setTitle(getString(R.string.global_error))
+                    setMessage(it)
+                    setPositiveButton(android.R.string.ok) { _, _ -> viewModel.resetWebdavHostKeyError() }
+                    show()
+                }
+        }
+
+        // ---
+
+        val loadingAnim = ProgressBar(requireContext()).apply {
+            isIndeterminate = true
+            indeterminateTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.blue))
+        }
+
+        val loadingLyt = FrameLayout(requireContext()).apply {
+            setPadding(32)
+            addView(loadingAnim)
+        }
+
+        val loadingDialog = AlertDialog.Builder(requireContext(), R.style.AppTheme_InfoDialogStyle).apply {
+            setTitle(getString(R.string.target_common_hostkey_load))
+            setCancelable(false)
+            setView(loadingLyt)
+        }
+
+        val popup = loadingDialog.create()
+
+        viewModel.webdavHostKeyLoadingIsVisible.observe(viewLifecycleOwner) {
+            if(it)
+                popup.show()
+            else
+                popup.dismiss()
+        }
     }
 
     /** Change editText focus **/
@@ -200,11 +271,13 @@ class Fragment_TargetWebDav : Fragment() {
             val intent = Intent(this.context, Activity_FolderExplorer::class.java)
                 .putExtra(Activity_FolderExplorer.PARAM_PROTOCOL, it.protocol)
                 .putExtra(Activity_FolderExplorer.PARAM_SERVER, it.server)
-                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
                 .putExtra(Activity_FolderExplorer.PARAM_PORT, it.port)
                 .putExtra(Activity_FolderExplorer.PARAM_SSL, it.ssl)
                 .putExtra(Activity_FolderExplorer.PARAM_LOGIN, it.login)
                 .putExtra(Activity_FolderExplorer.PARAM_PASSWORD, it.password)
+                .putExtra(Activity_FolderExplorer.PARAM_HOSTKEY, it.hostKey)
+                .putExtra(Activity_FolderExplorer.PARAM_SHARE, it.share)
+                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
 
             folderExplorer.launch(intent)
         }
@@ -215,21 +288,39 @@ class Fragment_TargetWebDav : Fragment() {
     // Data
     // ----
 
-    /** Get current data from UI **/
-    fun getCurrentData(showWarning: Boolean): Backup_Target? {
-        val server = editUtils.trimServer(binding.targetWebdavEditServer.text.toString())
-        val path = editUtils.trimPath(binding.targetWebdavEditPath.text.toString(), false)
-        val port = binding.targetWebdavEditPort.text.toString().toIntOrNull()
+    /** Get WebDAV port **/
+    private fun getWebdavPort(): Int {
+        return binding.targetWebdavEditPort.text.toString().toIntOrNull()
             ?: binding.targetWebdavEditPort.hint.toString().toIntOrNull()
             ?: if(binding.targetWebdavChkSsl.isChecked)
                 getString(R.string.target_webdav_port_ssl_hint).toInt()
             else
                 getString(R.string.target_webdav_port_hint).toInt()
+    }
+
+    /** Get current data from UI **/
+    fun getCurrentData(showWarning: Boolean): Backup_Target? {
+        val server = editUtils.trimServer(binding.targetWebdavEditServer.text.toString())
+        val share = editUtils.trimPath(binding.targetWebdavEditShare.text.toString(), false)
+        val path = editUtils.trimPath(binding.targetWebdavEditPath.text.toString(), false)
+        val port = getWebdavPort()
 
         return if(server.isBlank()) {
             if(showWarning) {
                 setFocus(binding.targetWebdavEditServer)
                 Snackbar.make(requireActivity().findViewById(R.id.edit_lyt), getString(R.string.folder_explorer_missing_info), Snackbar.LENGTH_SHORT).setBackgroundTint(ContextCompat.getColor(App.instance, R.color.orange)).show()
+            }
+            null
+        }
+        else if(binding.targetWebdavChkSelfSigned.isChecked && binding.targetWebdavEditHostkey.text.toString().isBlank()) {
+            if(showWarning)
+                Snackbar.make(requireActivity().findViewById(R.id.edit_lyt), getString(R.string.edit_invalid_hostkey_alert), Snackbar.LENGTH_SHORT).setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.red)).show()
+            null
+        }
+        else if(!editUtils.pathIsValid(share, true)) {
+            if(showWarning) {
+                setFocus(binding.targetWebdavEditShare)
+                Snackbar.make(requireActivity().findViewById(R.id.edit_lyt), getString(R.string.folder_explorer_missing_share), Snackbar.LENGTH_SHORT).setBackgroundTint(ContextCompat.getColor(App.instance, R.color.orange)).show()
             }
             null
         }
@@ -240,11 +331,11 @@ class Fragment_TargetWebDav : Fragment() {
                 fragmentProtocol,
                 server.cipherEncrypt(),
                 null,
-                null,
+                share.ifBlank { null },
                 path,
                 port,
                 binding.targetWebdavChkSsl.isChecked,
-                null,
+                if(binding.targetWebdavChkSsl.isChecked && binding.targetWebdavChkSelfSigned.isChecked) binding.targetWebdavEditHostkey.text.toString().ifBlank { null }?.cipherEncrypt() else null,
                 binding.targetWebdavEditLogin.text.toString().ifBlank { null }?.cipherEncrypt(),
                 binding.targetWebdavEditPassword.text.toString().ifBlank { null }?.cipherEncrypt(),
                 null,
@@ -281,13 +372,46 @@ class Fragment_TargetWebDav : Fragment() {
 
     /** Load target credentials to UI **/
     private fun loadCredentialsToUi(data: Target_Credentials) {
-        data.server?.cipherDecrypt().let { binding.targetWebdavEditServer.setText(it) }
+        data.server?.cipherDecrypt()?.let { binding.targetWebdavEditServer.setText(it) }
         data.port?.let { binding.targetWebdavEditPort.setText(String.format(Locale.getDefault(), "%d", data.port)) }
-        data.login?.cipherDecrypt().let { binding.targetWebdavEditLogin.setText(it) }
-        data.password?.cipherDecrypt().let { binding.targetWebdavEditPassword.setText(it) }
+        data.login?.cipherDecrypt()?.let { binding.targetWebdavEditLogin.setText(it) }
+        data.password?.cipherDecrypt()?.let { binding.targetWebdavEditPassword.setText(it) }
         if (data.ssl != null) {
             binding.targetWebdavChkSsl.isChecked = data.ssl
             binding.targetWebdavChkSsl.jumpDrawablesToCurrentState()
+
+            data.hostKey?.cipherDecrypt()?.let {
+                binding.targetWebdavChkSelfSigned.isChecked = true
+                binding.targetWebdavEditHostkey.setText(it)
+            }
         }
+        data.share?.let { binding.targetWebdavEditShare.setText(it) }
+    }
+
+    /** Retrieve server host key **/
+    private fun getHostKey() = lifecycleScope.launch {
+        val server = editUtils.trimServer(binding.targetWebdavEditServer.text.toString())
+        if(server.isBlank()) {
+            credentialsSnackbar.show()
+            return@launch
+        }
+
+        val login = binding.targetWebdavEditLogin.text.toString()
+        val password = binding.targetWebdavEditPassword.text.toString()
+        val port = getWebdavPort()
+
+        val hostKey = viewModel.getWebdavHostKey(server, port, login, password)
+
+        if(!hostKey.isNullOrBlank())
+            AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle).apply {
+                setTitle(getString(R.string.global_warning))
+                setMessage(getString(R.string.target_common_hostkey_confirmation) + "\n\n$hostKey")
+                setPositiveButton(getString(R.string.global_yes)) { _, _ ->
+                    binding.targetWebdavEditHostkey.setText(hostKey)
+                    setFocus(binding.targetWebdavEditPath)
+                }
+                setNegativeButton(getString(R.string.global_no)) { _, _ -> }
+                show()
+            }
     }
 }

@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">дозволи</string>
     <string name="permission_locked_title">Дозвіл заблоковано</string>
+    <string name="permission_locked_text">Android заблокував цей дозвіл.\n\nБажаєте відкрити налаштування програми та дозволити це вручну?</string>
 
     <string name="permission_files_title">Дозволити доступ до файлів (обов’ язково)</string>
     <string name="permission_files_text">Резервне копіювання неможливе без доступу до файлів і тек</string>
     <string name="permission_files_locked_text">Android заблокував цей дозвіл, зробивши додаток нефункціональним.\n\nБудь ласка, переконайтеся, що Mirror ніколи не збиратиме інформацію про вас або ваші дані.\n\nБажаєте відкрити параметри програми і дозволити її вручну?</string>
 
+    <string name="permission_lan_title">Дозволити доступ до локальної мережі (залежно)</string>
+    <string name="permission_lan_text">Потрібно, починаючи з Android 17, для зв\'язку з пристроями у вашій локальній мережі</string>
+
     <string name="permission_notifications_title">Дозволити сповіщення (наполегливо рекомендовано)</string>
     <string name="permission_notifications_text">Сповіщення використовуються для відображення прогресу поточного резервного копіювання та результату запланованого резервного копіювання</string>
-    <string name="permission_notifications_locked_text">Android заблокував цей дозвіл.\n\nБажаєте відкрити налаштування програми та дозволити це вручну?</string>
 
     <string name="permission_battery_title">Вимкнути оптимізацію акумулятора (рекомендовано)</string>
     <string name="permission_battery_text">Оптимізація акумулятора Android може бути надто агресивною та заважати запланованим резервним копіюванням</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Повторіть, щоб вийти без збереження</string>
     <string name="edit_invalid_alert">Будь ласка, вкажіть коректне джерело і призначення</string>
     <string name="edit_invalid_credentials_alert">Будь ласка, вкажіть коректні дані (ім’ я користувача/пароль)</string>
-    <string name="edit_invalid_hostkey_alert">Будь ласка, отримайте ключ хосту SFTP-сервера з міркувань безпеки</string>
+    <string name="edit_invalid_hostkey_alert">Будь ласка, отримайте ключ хоста вашого сервера з міркувань безпеки</string>
     <string name="edit_remote_alert_message">Створення резервних копій між двома віддаленими серверами через ваш пристрій не є найефективнішим.\n\nЯкщо ви можете, було б краще налаштувати резервне копіювання безпосередньо на одній із цих машин</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Поділитися:</string>
     <string name="target_common_search">Пошук</string>
     <string name="target_common_autofill">Автозаповнення</string>
+    <string name="target_common_self_signed">Дозволити самопідписані сертифікати</string>
+    <string name="target_common_hostkey">Ключ хосту:</string>
+    <string name="target_common_hostkey_hint">Торкніться, щоб отримати ключ хосту сервера</string>
+    <string name="target_common_hostkey_load">Отримання ключа хоста…</string>
+    <string name="target_common_hostkey_confirmation">Чи довіряєте ви цьому серверу?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Ідентифікатор користувача:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Використовувати SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android не дозволяє використовувати SSL/TLS з серверами з використанням опції відновлення сесії TLS на з\'єднанні даних</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Ключ хосту:</string>
-    <string name="target_sftp_hostkey_hint">Торкніться, щоб отримати ключ хосту сервера</string>
-    <string name="target_sftp_hostkey_load">Отримання ключа хоста…</string>
-    <string name="target_sftp_hostkey_confirmation">Чи довіряєте ви цьому серверу?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Використовувати SSL</string>
-    <string name="target_webdav_ssl_warning">Самопідписаних сертифікатів зазвичай недостатньо, і їх може бути відхилено під час перевірки безпеки</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Охорона</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Неможливо автентифікуватися</string>
     <string name="error_server_disconnect">Не вдається роз\'єднатися від сервера</string>
 
-    <string name="error_permission_read">Читати заборонено дозвіл</string>
-    <string name="error_permission_write">Відмовлено в авторизуванні</string>
+    <string name="error_permission_read">Здається, права на читання не надано</string>
+    <string name="error_permission_write">Здається, права на запис не надано</string>
     <string name="error_permission_unknown">Неможливо перевірити права доступу</string>
 
     <string name="error_space_low">Низький вільний простір</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Не вдалося створити тимчасовий файл</string>
     <string name="error_nomedia_create">Не вдалося створити файл .nomedia</string>
     <string name="error_nomedia_remove">Не вдалося вилучити файл . nomedia</string>
-    <string name="error_ftp_mlst">Команда MLST, необхідна для отримання розміру файлу та точної позначки часу, здається, не підтримується цим сервером</string>
+    <string name="error_ftp_file_date">Не вдається отримати дату зміни файлу</string>
+    <string name="error_ftp_file_size">Не вдається отримати розмір файлу</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Успішно збережено</string>

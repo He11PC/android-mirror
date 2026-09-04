@@ -54,7 +54,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.yield
 import java.net.URLConnection.guessContentTypeFromName
 import java.nio.file.FileSystems
-import java.nio.file.Path
+import java.nio.file.PathMatcher
 import java.nio.file.Paths
 import java.time.Duration
 import java.time.Instant
@@ -177,17 +177,19 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 val currentDestFiles = getContent(false).toMutableList()
 
                 // Extract Destination content (folders, files, orphans)
+                val orphansFolder = if(backupData.options.orph_folder != null && backupData.options.orph_action == 1) "/" + backupData.options.orph_folder else null
                 val currentDestFilesIterator = currentDestFiles.iterator()
-                currentDestFilesIterator.forEach {
-                    val fullPath = it.path+it.name.substringBeforeLast('/')
-                    if(backupData.options.orph_folder != null && backupData.options.orph_action == 1 && fullPath.startsWith("/" + backupData.options.orph_folder)) {
-                        if(it.isDirectory)
+                while(currentDestFilesIterator.hasNext()) {
+                    val file = currentDestFilesIterator.next()
+                    val fullPath = file.path+file.name.substringBeforeLast('/')
+                    if(orphansFolder != null && fullPath.startsWith(orphansFolder)) {
+                        if(file.isDirectory)
                             currentDestFoldersOrphan.add(fullPath)
                         else
-                            currentDestFilesOrphan.add(it)
+                            currentDestFilesOrphan.add(file)
                         currentDestFilesIterator.remove()
                     }
-                    else if(it.isDirectory) {
+                    else if(file.isDirectory) {
                         currentDestFolders.add(fullPath)
                         currentDestFilesIterator.remove()
                     }
@@ -226,19 +228,23 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 if(currentDestFiles.isEmpty())
                     newFilesToCopy.addAll(srcFiles)
                 else {
-                    for (src in srcFiles) {
+                    val isStrictDate = backupData.options.dateComparison_Strict
+                    for(src in srcFiles) {
                         val jobExtractFilesAndOrphans = launch {
                             var toCopy = true
                             val newFilesOrphanIterator = newFilesOrphan.iterator()
-                            for (dest in newFilesOrphanIterator) {
-                                if (src.path == dest.path && src.name == dest.name) {
-                                    val dateOK = if (backupData.options.dateComparison_Strict)
-                                        abs(Duration.between(src.last_modified, dest.last_modified).seconds) < 2 // Date is unreliable and can be 1 sec offset
-                                    else
-                                        src.last_modified.isBefore(dest.last_modified.plusSeconds(2))
+                            while(newFilesOrphanIterator.hasNext()) {
+                                val dest = newFilesOrphanIterator.next()
+                                if(src.path == dest.path && src.name == dest.name) {
+                                    if(src.size == dest.size) {
+                                        val dateOK = if(isStrictDate)
+                                            abs(Duration.between(src.last_modified, dest.last_modified).seconds) < 2 // Date is unreliable and can be 1 sec offset
+                                        else
+                                            src.last_modified.isBefore(dest.last_modified.plusSeconds(2))
 
-                                    if (dateOK && src.size == dest.size)
-                                        toCopy = false
+                                        if(dateOK)
+                                            toCopy = false
+                                    }
 
                                     newFilesOrphanIterator.remove()
                                     break
@@ -303,10 +309,11 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
                     // Don't delete folders with no file but with subfolders
                     val foldersToDeleteIterator = foldersToDelete.iterator()
-                    for(folder in foldersToDeleteIterator) {
-                        if(srcFolders.find { it.startsWith("$folder/") } != null)
-                            foldersToDeleteIterator.remove()
-                        if(finalDestFoldersOrphan.find { it.startsWith("$folder/") } != null)
+                    while(foldersToDeleteIterator.hasNext()) {
+                        val folder = foldersToDeleteIterator.next()
+                        val prefix = "$folder/"
+                        val toKeep = srcFolders.any { it.startsWith(prefix) } || finalDestFoldersOrphan.any { it.startsWith(prefix) }
+                        if(toKeep)
                             foldersToDeleteIterator.remove()
                     }
 
@@ -658,13 +665,21 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
         updateProgressDetail("[$srcTxt] " + localeContext.getString(R.string.log_excluding), 1)
         log.append(false, "$colorBlue<i>$srcTxt</i></font> " + localeContext.getString(R.string.log_excluding))
 
-        val blackList = backupData.options.flt_blackList?.split(System.lineSeparator())
+        val blackListMatchers: List<PathMatcher> = backupData.options.flt_blackList
+            ?.lineSequence()
+            ?.filter { it.isNotBlank() }
+            ?.map { rule ->
+                try { FileSystems.getDefault().getPathMatcher("glob:$rule") }
+                catch (exp: Exception) { throw CriticalException(srcTxt, localeContext.getString(R.string.error_blacklist), exp.message) }
+            }
+            ?.toList() ?: emptyList()
+
         val filesResult = mutableListOf<WorkerBackup_File>()
-        backupFileList.forEach{
-            if(it.isDirectory)
-                filesResult.add(it)
-            else if(mimeIsOK(it.name) && sizeIsOK(it.size) && !isBlackListed(Paths.get(it.path+it.name), blackList))
-                filesResult.add(it)
+        for(file in backupFileList) {
+            if(file.isDirectory)
+                filesResult.add(file)
+            else if(mimeIsOK(file.name) && sizeIsOK(file.size) && !isBlackListed("${file.path}${file.name}", blackListMatchers))
+                filesResult.add(file)
         }
 
         val numberFiles = filesResult.count { !it.isDirectory }
@@ -697,17 +712,15 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
     private fun sizeIsOK(size: Long) = size in (backupData.options.flt_minSize ?: 0L)..(backupData.options.flt_maxSize ?: MAX_VALUE)
 
     /** Check if folder is part of user black list **/
-    private fun isBlackListed(path: Path, blackList: List<String>?): Boolean {
-        if(blackList.isNullOrEmpty())
+    private fun isBlackListed(pathString: String, blackListMatchers: List<PathMatcher>): Boolean {
+        if(blackListMatchers.isEmpty())
             return false
 
-        val fileSystem = FileSystems.getDefault()
+        val path = Paths.get(pathString)
+        val fileName = path.fileName
 
-        blackList.forEach {
-            val matcher = try { fileSystem.getPathMatcher("glob:$it") }
-            catch(exp: Exception) { throw CriticalException(srcTxt, localeContext.getString(R.string.error_blacklist), exp.message) }
-
-            if(matcher.matches(path) || matcher.matches(path.fileName))
+        for(matcher in blackListMatchers) {
+            if(matcher.matches(path) || (fileName != null && matcher.matches(fileName)))
                 return true
         }
         return false

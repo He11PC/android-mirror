@@ -29,14 +29,22 @@ import fr.hellpc.mirror.managers.Manager_Log
 import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.utilities.CriticalException
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
 import java.time.Instant
+import java.util.concurrent.atomic.AtomicLong
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class Backup_NFS(
@@ -105,25 +113,30 @@ class Backup_NFS(
             val nfsRoot = getAccess(nfs1, rootPath)
 
             if(!nfsRoot.canLookup() || !nfsRoot.canRead())
-                throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+                generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
             if(!nfsRoot.canExtend() || !nfsRoot.canModify())
-                throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+                generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false) }
     }
 
     /** Check available space **/
     override suspend fun checkFreeSpace(size: Long) = withContext(dispatcherIO) {
-        try{
+        try {
             val freeSpace = getAccess(nfs1, getAbsolutePath(null, target.path, true)).freeSpace
-            val freeSpaceTxt = ": "+freeSpace.sizeToReadable()
-            if(freeSpace < size)
-                throw CriticalException(null, localeContext.getString(R.string.error_space_critical)+freeSpaceTxt, null)
-            else if (freeSpace < size+size*0.25)
-                generateWarning(localeContext.getString(R.string.error_space_low)+freeSpaceTxt, false, true)
+            if(freeSpace <= 0L) {
+                generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false)
+                return@withContext
+            }
+
+            val freeSpaceTxt = ": " + freeSpace.sizeToReadable()
+            when {
+                freeSpace < size -> generateWarning(localeContext.getString(R.string.error_space_critical) + freeSpaceTxt, false, true)
+                freeSpace < (size + (size * 0.25).toLong()) -> generateWarning(localeContext.getString(R.string.error_space_low) + freeSpaceTxt, false, true)
+            }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false) }
     }
 
@@ -166,7 +179,7 @@ class Backup_NFS(
     /** Make connexion **/
     private suspend fun makeConnexion(connexion: Int) = withContext(dispatcherIO) {
         val nfs = try {
-            if(target.uid == null && target.gid == null)
+            if(target.uid.isNullOrBlank() && target.gid.isNullOrBlank())
                 Nfs3(target.server?.cipherDecrypt(), target.share, CredentialNone(), 3)
             else
                 Nfs3(target.server?.cipherDecrypt(), target.share, CredentialUnix(target.uid?.cipherDecrypt()?.toInt()?:0, target.gid?.cipherDecrypt()?.toInt()?:0, null), 3)
@@ -200,23 +213,21 @@ class Backup_NFS(
 
     /** Recursive files listing **/
     private suspend fun listDirectory(directory: String, recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
-        val systemFiles = arrayOf(".", "..", ".DAV", "._DAV")
-
         val nfsPath = getAccess(nfs1, directory)
-        val resources = try { nfsPath.listFiles().filterNot { systemFiles.contains(it.name) } }
+        val resources = try { nfsPath.listFiles().filterNot { it.name.isVirtualDirectory() || it.name.isSystemFile() } }
         catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $directory", exp.message) }
 
         val filePath = directory.toRelativePath(target.path)
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
-        resources.forEach {
-            val fileName = it.name
-            val isDirectory = it.isDirectory
-            val lastModified = Instant.ofEpochMilli(it.lastModified())
+        for(resource in resources) {
+            val fileName = resource.name
+            val isDirectory = resource.isDirectory
+            val lastModified = Instant.ofEpochMilli(resource.lastModified())
 
             val skip = isDirectory && filesOnly
             if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, lastModified, it.attributes.size, isDirectory))
+                lstFiles.add(WorkerBackup_File(filePath, fileName, lastModified, resource.attributes.size, isDirectory))
 
             val doRecursive = isDirectory && recursive
             if(doRecursive)
@@ -242,23 +253,28 @@ class Backup_NFS(
     override suspend fun write(reader: InputStream, file: WorkerBackup_File, connexion: Int, canRetry: Boolean, reportProgress: (Long) -> Unit): Boolean = withContext(dispatcherIO) {
         val destFile = getAccess(getConnexion(connexion), getAbsolutePath(listOf(file.path, file.name), target.path, true))
 
+        val written = AtomicLong(0L)
+        val progressJob = CoroutineScope(Dispatchers.Default).launch {
+            var lastReported = 0L
+            while(isActive) {
+                delay(reportFrequency.milliseconds)
+                val currentWritten = written.get()
+                if(currentWritten > lastReported) {
+                    reportProgress(currentWritten)
+                    lastReported = currentWritten
+                }
+            }
+        }
+
         try {
             Channels.newChannel(reader).use { inputChannel ->
-                var written = 0L
                 val buffer = ByteBuffer.allocate(1024*1024)
-                var lastReportTime = 0L
-
                 Channels.newChannel(NfsFileOutputStream(destFile)).use { outputChannel ->
                     while(inputChannel.read(buffer) > 0) {
                         buffer.flip()
-                        written += outputChannel.write(buffer)
+                        val bytesWritten = outputChannel.write(buffer)
+                        written.addAndGet(bytesWritten.toLong())
                         buffer.clear()
-
-                        val currentTime = System.currentTimeMillis()
-                        if(currentTime - lastReportTime >= reportFrequency) {
-                            reportProgress(written)
-                            lastReportTime = currentTime
-                        }
                     }
 
                     reportProgress(file.size)
@@ -266,6 +282,7 @@ class Backup_NFS(
             }
         }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
+        finally { progressJob.cancel() }
 
         setDate(destFile, file.last_modified)
         val transferResult = verifyTransfer(destFile, file.last_modified, file.size)
@@ -339,69 +356,89 @@ class Backup_NFS(
     override suspend fun createDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val nfs = getConnexion(connexion)
         val attr = getMkdirAttributes(nfs)
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, true), nfs, attr) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, target.path, true), nfs, attr)
+        }
     }
 
     /** Create a folder on remote server if necessary **/
     private fun createDirectory(path: String, nfs: Nfs3, attr: NfsSetAttributes) {
+        if(path.trimEnd('/').isBlank())
+            return
+
         try {
-            require(path.isNotBlank() && path != "/")
             val nfsFolder = getAccess(nfs, path)
 
-            if(!nfsFolder.exists()) {
-                require(path != "/")
-
+            try { nfsFolder.mkdir(attr) }
+            catch(exp: Exception) {
                 val parentPath = path.parentDirectory()
-                val parent = getAccess(nfs, parentPath)
-                if(!parent.exists()) {
-                    require(path != parentPath)
+                if(path != parentPath && parentPath.trimEnd('/').isNotBlank()) {
                     createDirectory(parentPath, nfs, attr)
+                    try {
+                        nfsFolder.mkdir(attr)
+                        return
+                    } catch (_: Exception) { }
                 }
 
-                nfsFolder.mkdir(attr)
+                // Fail-safe: Check if directory already exists
+                if (nfsFolder.exists())
+                    return
+
+                throw exp
             }
         }
         catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_folder_create)+": $path", exp.message) }
     }
 
     /** Delete a folders list from remote server **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val nfs = getConnexion(connexion)
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, true), nfs) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, target.path, true), nfs)
+        }
     }
 
     /** Delete a folder from remote server **/
     private fun deleteDirectory(path: String, nfs: Nfs3) {
         val nfsFolder = getAccess(nfs, path)
 
-        if(!nfsFolder.exists())
-            return
+        try { nfsFolder.delete() }
+        catch(exp: CancellationException) { throw exp }
+        catch(_: Exception) {
+            try {
+                // Deletion failed, check content
+                val resources = nfsFolder.listFiles() ?: throw IOException()
+                var entryCount = 0
 
-        try {
-            if(nfsFolder.isEmptyDirectory())
-                nfsFolder.delete()
-            else
-                removeDirectory(path, nfs)
-        }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
-    }
+                // Delete WebDav system files if they exist
+                for(resource in resources) {
+                    val name = resource.name
+                    if (name.isVirtualDirectory()) continue
 
-    /** Remove system files from a folder and delete it if empty (.DAV) **/
-    private fun removeDirectory(path: String, nfs: Nfs3) {
-        try {
-            val systemFiles = arrayOf(".", "..")
-            val nfsFolder = getAccess(nfs, path)
-            val resources = nfsFolder.listFiles().filterNot { systemFiles.contains(it.name) }
-            resources.forEach {
-                if(it.isDirectory)
-                    removeDirectory("$path/${it.name}", nfs)
-                else if(path.contains(".DAV") || path.contains("._DAV"))
-                    getAccess(nfs, path+"/"+it.name).delete()
+                    entryCount++
+                    val resourcePath = if(path.endsWith("/")) "$path$name" else "$path/$name"
+
+                    if(resource.isDirectory)
+                        deleteDirectory(resourcePath, nfs)
+                    else if(name.isSystemFile())
+                        resource.delete()
+                    else
+                        throw IOException()
+                }
+
+                // Retry folder deletion after cleanup
+                if(entryCount > 0)
+                    nfsFolder.delete()
+                else
+                    throw IOException()
             }
-            if (nfsFolder.isEmptyDirectory())
-                nfsFolder.delete()
+            catch(exp: CancellationException) { throw exp }
+            catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
         }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
     }
 
 
@@ -425,15 +462,18 @@ class Backup_NFS(
     /** Move file on remote server **/
     private fun moveOrphan(srcFile: Nfs3File, destFile: Nfs3File) {
         try { require(srcFile.renameTo(destFile)) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(srcFile.name+": "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
     /** Delete a file from remote server **/
     private fun deleteOrphan(orphanFile: Nfs3File) {
-        try {
+        try { orphanFile.delete() }
+        catch(exp: IOException) {
             if(orphanFile.exists())
-                orphanFile.delete()
+                throw exp
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(orphanFile.name+": "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -441,12 +481,6 @@ class Backup_NFS(
     // --------------
     // NFS extensions
     // --------------
-
-    /** Check if a folder on remote server contains data **/
-    private fun Nfs3File.isEmptyDirectory(): Boolean {
-        return try { this.list().none { it != "." && it != ".." } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": "+this.path, exp.message) }
-    }
 
     /** Get parent directory **/
     private fun String.parentDirectory(): String {

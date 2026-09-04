@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Oprávnění</string>
     <string name="permission_locked_title">Uzamčené povolení</string>
+    <string name="permission_locked_text">Android toto oprávnění zablokoval.\n\nChcete otevřít nastavení aplikace a povolit je ručně?</string>
 
     <string name="permission_files_title">Povolit přístup k souborům (povinné)</string>
     <string name="permission_files_text">Zálohování není možné bez přístupu k souborům a složkám</string>
     <string name="permission_files_locked_text">Systém Android toto oprávnění zablokoval, takže aplikace není funkční.\n\nUjistěte se, že Mirror nikdy nebude shromažďovat informace o vás nebo vašich údajích.\n\nChcete otevřít nastavení aplikace a autorizovat ji ručně?</string>
 
+    <string name="permission_lan_title">Povolit přístup k síti LAN (závisí)</string>
+    <string name="permission_lan_text">Vyžadováno od verze Android 17 pro komunikaci se zařízeními v místní síti</string>
+
     <string name="permission_notifications_title">Povolit oznámení (důrazně doporučeno)</string>
     <string name="permission_notifications_text">Upozornění slouží k zobrazení průběhu probíhajících záloh a výsledku naplánovaných záloh</string>
-    <string name="permission_notifications_locked_text">Android toto oprávnění zablokoval.\n\nChcete otevřít nastavení aplikace a povolit je ručně?</string>
 
     <string name="permission_battery_title">Vypnutí optimalizace baterie (doporučeno)</string>
     <string name="permission_battery_text">Optimalizace baterie Androidu může být příliš agresivní a narušovat plánované zálohování</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Opakujte pro ukončení bez uložení</string>
     <string name="edit_invalid_alert">Uveďte platný zdroj a cíl</string>
     <string name="edit_invalid_credentials_alert">Uveďte prosím platné přihlašovací údaje (uživatelské jméno/heslo)</string>
-    <string name="edit_invalid_hostkey_alert">Z bezpečnostních důvodů získejte klíč hostitele serveru SFTP</string>
+    <string name="edit_invalid_hostkey_alert">Z bezpečnostních důvodů si prosím stáhněte klíč hostitele serveru</string>
     <string name="edit_remote_alert_message">Provádění záloh mezi dvěma vzdálenými servery prostřednictvím vašeho zařízení není nejefektivnější.\n\nPokud můžete, bylo by nejlepší nastavit zálohování přímo na jednom z těchto počítačů</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Sdílet:</string>
     <string name="target_common_search">Vyhledávání</string>
     <string name="target_common_autofill">Automatické vyplňování</string>
+    <string name="target_common_self_signed">Povolit certifikáty s vlastním podpisem</string>
+    <string name="target_common_hostkey">Klíč hostitele:</string>
+    <string name="target_common_hostkey_hint">Klepnutím načtete klíč hostitele serveru</string>
+    <string name="target_common_hostkey_load">Načítání hostitelského klíče…</string>
+    <string name="target_common_hostkey_confirmation">Důvěřujete tomuto serveru?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ID uživatele:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Použití protokolu SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Systém Android neumožňuje použití protokolu SSL/TLS se servery, které používají možnost obnovení relace TLS v datovém připojení</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Klíč hostitele:</string>
-    <string name="target_sftp_hostkey_hint">Klepnutím načtete klíč hostitele serveru</string>
-    <string name="target_sftp_hostkey_load">Načítání hostitelského klíče…</string>
-    <string name="target_sftp_hostkey_confirmation">Důvěřujete tomuto serveru?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Použití protokolu SSL</string>
-    <string name="target_webdav_ssl_warning">Certifikáty s vlastním podpisem obvykle nestačí a mohou být během bezpečnostních kontrol odmítnuty</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Zabezpečení</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Nelze ověřit</string>
     <string name="error_server_disconnect">Nelze se odpojit od serveru</string>
 
-    <string name="error_permission_read">Povolení ke čtení odepřeno</string>
-    <string name="error_permission_write">Oprávnění k zápisu odepřeno</string>
+    <string name="error_permission_read">Oprávnění pro čtení zřejmě nejsou udělena</string>
+    <string name="error_permission_write">Oprávnění pro zápis zřejmě nejsou udělena</string>
     <string name="error_permission_unknown">Nelze zkontrolovat oprávnění</string>
 
     <string name="error_space_low">Málo volného místa</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Nelze vytvořit dočasný soubor</string>
     <string name="error_nomedia_create">Nelze vytvořit soubor .nomedia</string>
     <string name="error_nomedia_remove">Nelze odstranit soubor .nomedia</string>
-    <string name="error_ftp_mlst">Zdá se, že tento server nepodporuje příkaz MLST, který je nutný k načtení velikosti souboru a přesného časového razítka</string>
+    <string name="error_ftp_file_date">Nelze načíst datum úpravy souboru</string>
+    <string name="error_ftp_file_size">Nelze načíst velikost souboru</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Úspěšné zálohování</string>

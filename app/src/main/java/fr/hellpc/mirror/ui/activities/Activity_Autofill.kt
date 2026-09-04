@@ -29,8 +29,8 @@ import fr.hellpc.mirror.data.Target_Credentials
 import fr.hellpc.mirror.databinding.ActivityAutofillBinding
 import fr.hellpc.mirror.ui.adapters.Adapter_Recycler_Autofill
 import fr.hellpc.mirror.ui.viewmodels.ViewModel_Autofill
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherEncrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
 import kotlinx.coroutines.launch
 
 class Activity_Autofill: AppCompatActivity() {

@@ -40,21 +40,24 @@ import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.FolderExplorer_File
 import fr.hellpc.mirror.data.room.Backup_Target
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecryptToBytes
-import fr.hellpc.mirror.utilities.Utility_Encryption.use
-import fr.hellpc.mirror.utilities.Utility_Encryption.useAsInputStream
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecryptToBytes
+import fr.hellpc.mirror.security.Security_Encryption.use
+import fr.hellpc.mirror.security.Security_Encryption.useAsInputStream
+import fr.hellpc.mirror.security.Security_FlexibleTrustManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
+import okhttp3.internal.tls.OkHostnameVerifier
 import org.apache.commons.net.ftp.FTP
 import org.apache.commons.net.ftp.FTPClient
 import org.apache.commons.net.ftp.FTPReply
 import org.apache.commons.net.ftp.FTPSClient
-import org.apache.commons.net.util.TrustManagerUtils
 import java.util.concurrent.ConcurrentHashMap
+import javax.net.ssl.SSLContext
+import javax.net.ssl.X509TrustManager
 
 
 class Repository_FolderExplorer {
@@ -77,6 +80,7 @@ class Repository_FolderExplorer {
 
     private lateinit var webdavScheme: String
     private lateinit var webdavServer: String
+    private val webdavAuthCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
     private lateinit var httpClient: OkHttpClient
     private lateinit var webdav: Sardine
 
@@ -134,10 +138,10 @@ class Repository_FolderExplorer {
     // ---
 
     private fun connectNfs(): Boolean {
-        nfs = if(target.uid == null && target.gid == null)
-            Nfs3(target.server?.cipherDecrypt(), target.share, CredentialNone(), 3)
+        nfs = if(target.uid.isNullOrBlank() && target.gid.isNullOrBlank())
+            Nfs3(target.server!!.cipherDecrypt(), target.share, CredentialNone(), 3)
         else
-            Nfs3(target.server?.cipherDecrypt(), target.share, CredentialUnix(target.uid?.cipherDecrypt()?.toInt()?:0, target.gid?.cipherDecrypt()?.toInt()?:0, null), 3)
+            Nfs3(target.server!!.cipherDecrypt(), target.share, CredentialUnix(target.uid?.cipherDecrypt()?.toInt()?:0, target.gid?.cipherDecrypt()?.toInt()?:0, null), 3)
 
         return Nfs3File(nfs, "/").exists()
     }
@@ -168,9 +172,9 @@ class Repository_FolderExplorer {
         val auth = if(target.login.isNullOrBlank())
             AuthenticationContext.anonymous()
         else
-            AuthenticationContext(target.login!!.cipherDecrypt(), (target.password?.cipherDecrypt() ?: "").toCharArray(), target.domain ?: "")
+            AuthenticationContext(target.login!!.cipherDecrypt(), target.password?.cipherDecrypt().orEmpty().toCharArray(), target.domain.orEmpty())
 
-        smbClient.connect(target.server?.cipherDecrypt()).apply {
+        smbClient.connect(target.server!!.cipherDecrypt()).apply {
             smbSession = try { authenticate(auth) }
             catch(exp: Exception) {
                 if(!target.login.isNullOrBlank())
@@ -242,10 +246,12 @@ class Repository_FolderExplorer {
 
         // ---
 
+        val flexibleTrustManager = Security_FlexibleTrustManager(target.hostKey?.cipherDecrypt())
+
         ftps = FTPSClient()
         ftps.apply {
-            trustManager = TrustManagerUtils.getValidateServerCertificateTrustManager()
-            isEndpointCheckingEnabled = true
+            trustManager = flexibleTrustManager
+            isEndpointCheckingEnabled = target.hostKey.isNullOrBlank()
             autodetectUTF8 = true
             bufferSize = 16384
 
@@ -275,7 +281,7 @@ class Repository_FolderExplorer {
         client?.let {
             val clientIsConnected = try { it.isConnected } catch(_: Exception) { false }
             if(clientIsConnected) {
-                it.logout()
+                try { it.logout() } catch(_: Exception) { }
                 it.disconnect()
             }
         }
@@ -302,14 +308,12 @@ class Repository_FolderExplorer {
     private fun connectSftp(): Boolean {
         JSch().apply {
             target.hostKey?.cipherDecryptToBytes()?.useAsInputStream { setKnownHosts(it) }
-            sftpSession = getSession(target.login?.cipherDecrypt(), target.server?.cipherDecrypt(), target.port ?: 22)
+            sftpSession = getSession(target.login?.cipherDecrypt().orEmpty(), target.server?.cipherDecrypt(), target.port ?: 22)
         }
 
         sftpSession.apply {
-            target.password?.cipherDecryptToBytes()?.use {
-                setPassword(it)
-                connect()
-            }
+            target.password?.cipherDecryptToBytes()?.use { setPassword(it) }
+            connect()
             sftpChannel = openChannel("sftp") as ChannelSftp
         }
 
@@ -341,16 +345,22 @@ class Repository_FolderExplorer {
         webdavScheme = if(target.ssl == true) "https" else "http"
         webdavServer = target.server?.cipherDecrypt()!!
 
-        val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
-        val credentials = Credentials(target.login?.cipherDecrypt(), target.password?.cipherDecrypt())
+        val flexibleTrustManager = Security_FlexibleTrustManager(target.hostKey?.cipherDecrypt())
+
+        val credentials = Credentials(target.login?.cipherDecrypt().orEmpty(), target.password?.cipherDecrypt().orEmpty())
         val authenticator = DispatchingAuthenticator.Builder()
             .with("digest", DigestAuthenticator(credentials))
             .with("basic", BasicAuthenticator(credentials))
             .build()
 
+        val sslContext = SSLContext.getInstance("TLS").apply { init(null, arrayOf(flexibleTrustManager), java.security.SecureRandom()) }
         httpClient = OkHttpClient.Builder()
-            .authenticator(CachingAuthenticatorDecorator(authenticator, authCache))
-            .addInterceptor(AuthenticationCacheInterceptor(authCache, DefaultRequestCacheKeyProvider()))
+            .authenticator(CachingAuthenticatorDecorator(authenticator, webdavAuthCache))
+            .addInterceptor(AuthenticationCacheInterceptor(webdavAuthCache, DefaultRequestCacheKeyProvider()))
+            .sslSocketFactory(sslContext.socketFactory, flexibleTrustManager as X509TrustManager)
+            .hostnameVerifier { hostname, session ->
+                if(target.hostKey.isNullOrBlank()) OkHostnameVerifier.verify(hostname, session) else true
+            }
             .build()
 
         webdav = OkHttpSardine(httpClient)
@@ -359,9 +369,11 @@ class Repository_FolderExplorer {
     }
 
     private fun disconnectWebdav(): Boolean {
-        if (::httpClient.isInitialized && httpClient.connectionPool.connectionCount() > 0)
+        (webdavAuthCache as? MutableMap)?.clear()
+
+        if (::httpClient.isInitialized)
             httpClient.apply {
-                dispatcher.executorService.shutdown()
+                dispatcher.cancelAll()
                 connectionPool.evictAll()
                 cache?.close()
             }
@@ -369,10 +381,18 @@ class Repository_FolderExplorer {
         return true
     }
 
-    private fun loadWebdav(path: String): List<FolderExplorer_File> = webdav
-        .list(path.toURL(), 1)
-        .filterNot { it.path == "/$path/" || it.name.startsWith("#") || systemFiles.contains(it.name) }
-        .map { FolderExplorer_File(it.name, it.isDirectory) }
+    private fun loadWebdav(path: String): List<FolderExplorer_File> {
+        val fullPath = path.getFullPath()
+
+        return webdav.list(fullPath.toURL(), 1)
+            .filterNot { it.path.trim('/') == fullPath || it.name.startsWith("#") || systemFiles.contains(it.name) }
+            .map { FolderExplorer_File(it.name, it.isDirectory) }
+    }
+
+    private fun String.getFullPath() = listOfNotNull(
+        target.share?.trim('/'),
+        this.trim('/')
+    ).filter { it.isNotEmpty() }.joinToString("/")
 
     private fun String.toURL(): String {
         return HttpUrl.Builder().apply {

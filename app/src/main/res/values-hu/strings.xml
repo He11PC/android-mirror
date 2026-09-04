@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Engedélyek</string>
     <string name="permission_locked_title">Zárolt engedély</string>
+    <string name="permission_locked_text">Az Android zárolta ezt az engedélyt.\n\nMeg akarja nyitni az alkalmazás beállításait, és manuálisan engedélyezni szeretné?</string>
 
     <string name="permission_files_title">Hozzáférés engedélyezése a fájlokhoz (kötelező)</string>
     <string name="permission_files_text">A biztonsági mentés lehetetlen a fájlok és mappák elérése nélkül</string>
     <string name="permission_files_locked_text">Az Android letiltotta ezt az engedélyt, így az alkalmazás nem működik.\n\nKérjük, győződjön meg arról, hogy a Mirror soha nem gyűjt adatokat Önről vagy az Ön adatairól.\n\nSzeretné megnyitni az alkalmazás beállításait és manuálisan engedélyezni azt?</string>
 
+    <string name="permission_lan_title">LAN-hozzáférés engedélyezése (attól függően)</string>
+    <string name="permission_lan_text">Az Android 17 óta szükséges a helyi hálózaton lévő eszközökkel való kommunikációhoz</string>
+
     <string name="permission_notifications_title">Értesítések engedélyezése (nagyon ajánlott)</string>
     <string name="permission_notifications_text">Az értesítések a folyamatban lévő biztonsági mentések folyamatának és az ütemezett biztonsági mentések eredményének megjelenítésére szolgálnak</string>
-    <string name="permission_notifications_locked_text">Az Android zárolta ezt az engedélyt.\n\nMeg akarja nyitni az alkalmazás beállításait, és manuálisan engedélyezni szeretné?</string>
 
     <string name="permission_battery_title">Az akkumulátor optimalizálásának kikapcsolása (ajánlott)</string>
     <string name="permission_battery_text">Az Android akkumulátor-optimalizálása túl agresszív lehet, és zavarhatja az ütemezett biztonsági mentéseket</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Ismételje meg a mentés nélküli kilépéshez</string>
     <string name="edit_invalid_alert">Kérjük, adjon meg érvényes forrást és célállomást</string>
     <string name="edit_invalid_credentials_alert">Kérjük, adja meg érvényes bejelentkezési adatait (felhasználónév/jelszó)</string>
-    <string name="edit_invalid_hostkey_alert">Biztonsági okokból kérje le SFTP-kiszolgáló gazdagépkulcsát</string>
+    <string name="edit_invalid_hostkey_alert">Biztonsági okokból kérjük, kérje le a szerver host kulcsát</string>
     <string name="edit_remote_alert_message">A két távoli szerver közötti biztonsági mentés az eszközön keresztül nem a leghatékonyabb.\n\nHa teheti, jobb, ha közvetlenül az egyik gépen állítja be a biztonsági másolatot</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Megosztás:</string>
     <string name="target_common_search">Keresés</string>
     <string name="target_common_autofill">Automatikus kitöltés</string>
+    <string name="target_common_self_signed">Önaláírt tanúsítványok engedélyezése</string>
+    <string name="target_common_hostkey">Gazdagép kulcsa:</string>
+    <string name="target_common_hostkey_hint">Koppintson a szerver gazdagép kulcsának lekéréséhez</string>
+    <string name="target_common_hostkey_load">Hosztkulcs lekérése…</string>
+    <string name="target_common_hostkey_confirmation">Bízik ebben a szerverben?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Felhasználói azonosító:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">SSL/TLS használata</string>
     <string name="target_ftp_ssl_warning">Az Android nem engedélyezi az SSL/TLS használatát a TLS munkamenet újraindítása opciót használó kiszolgálókkal az adatkapcsolaton</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Gazdagép kulcsa:</string>
-    <string name="target_sftp_hostkey_hint">Koppintson a szerver gazdagép kulcsának lekéréséhez</string>
-    <string name="target_sftp_hostkey_load">Hosztkulcs lekérése…</string>
-    <string name="target_sftp_hostkey_confirmation">Bízik ebben a szerverben?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">SSL használata</string>
-    <string name="target_webdav_ssl_warning">Az önaláírt tanúsítványok általában nem elegendőek, és a biztonsági ellenőrzések során elutasíthatják őket</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Biztonság</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Nem sikerült a hitelesítés</string>
     <string name="error_server_disconnect">Nem lehet leválasztani a kapcsolatot a kiszolgálóról</string>
 
-    <string name="error_permission_read">Olvasási engedély megtagadva</string>
-    <string name="error_permission_write">Írási engedély megtagadva</string>
+    <string name="error_permission_read">Úgy tűnik, hogy nincs olvasási jogosultság</string>
+    <string name="error_permission_write">Úgy tűnik, hogy nincs írási jogosultság</string>
     <string name="error_permission_unknown">Nem lehet ellenőrizni az engedélyeket</string>
 
     <string name="error_space_low">Kevés szabad hely</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Nem lehet ideiglenes fájlt létrehozni</string>
     <string name="error_nomedia_create">.nomedia fájl létrehozása nem lehetséges</string>
     <string name="error_nomedia_remove">Nem lehet törölni a .nomedia fájlt</string>
-    <string name="error_ftp_mlst">A fájlméret és a pontos időbélyeg lekéréséhez szükséges MLST parancsot a jelek szerint ez a szerver nem támogatja</string>
+    <string name="error_ftp_file_date">Nem sikerült lekérni a fájl módosítási dátumát</string>
+    <string name="error_ftp_file_size">Nem sikerült lekérni a fájlméretet</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Sikeres mentés</string>

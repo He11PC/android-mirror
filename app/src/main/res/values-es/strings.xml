@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Permisos</string>
     <string name="permission_locked_title">Autorización bloqueada</string>
+    <string name="permission_locked_text">Android ha bloqueado este permiso.\n\n¿Desea abrir la configuración de la aplicación y permitirla manualmente?</string>
 
     <string name="permission_files_title">Permitir el acceso a los archivos (requerido)</string>
     <string name="permission_files_text">Las copias de seguridad son imposibles sin acceso a tus archivos y carpetas</string>
     <string name="permission_files_locked_text">Android bloqueó este permiso haciendo que la aplicación no sea funcional.\n\nPor favor, asegúrese de que Mirror nunca recogerá ninguna información sobre usted o sus datos.\n\n¿Quieres abrir la configuración de la aplicación y permitirla manualmente?</string>
 
+    <string name="permission_lan_title">Permitir acceso a la LAN (condicional)</string>
+    <string name="permission_lan_text">Requerido desde Android 17 para comunicarse con dispositivos en su red de área local</string>
+
     <string name="permission_notifications_title">Permitir notificaciones (muy recomendado)</string>
     <string name="permission_notifications_text">Las notificaciones se utilizan para mostrar el progreso de las copias de seguridad en curso y el resultado de las copias de seguridad programadas</string>
-    <string name="permission_notifications_locked_text">Android ha bloqueado este permiso.\n\n¿Desea abrir la configuración de la aplicación y permitirla manualmente?</string>
 
     <string name="permission_battery_title">Desactivar la optimización de la batería (recomendado)</string>
     <string name="permission_battery_text">La optimización de la batería de Android puede ser demasiado agresiva e interferir con las copias de seguridad programadas</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Repetir para salir sin guardar</string>
     <string name="edit_invalid_alert">Indique el origen y el destino válidos</string>
     <string name="edit_invalid_credentials_alert">Por favor, indique unas credenciales válidas (nombre de usuario/contraseña)</string>
-    <string name="edit_invalid_hostkey_alert">Por seguridad, recupere la clave de host de su servidor SFTP</string>
+    <string name="edit_invalid_hostkey_alert">Por favor, obtenga la clave de host de su servidor por motivos de seguridad</string>
     <string name="edit_remote_alert_message">Hacer copias de seguridad entre dos servidores remotos a través de su dispositivo no es lo más eficiente.\n\nSi puede, sería mejor configurar su copia de seguridad directamente en una de estas máquinas</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Compartir:</string>
     <string name="target_common_search">Buscar</string>
     <string name="target_common_autofill">Autocompletar</string>
+    <string name="target_common_self_signed">Permitir certificados autofirmados</string>
+    <string name="target_common_hostkey">Clave de host:</string>
+    <string name="target_common_hostkey_hint">Pulse para recuperar la clave de host del servidor</string>
+    <string name="target_common_hostkey_load">Recuperando clave de host…</string>
+    <string name="target_common_hostkey_confirmation">¿Confía en este servidor?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ID de usuario:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Usar SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android impide el uso de SSL/TLS con servidores que utilizan la reanudación de sesión TLS en la conexión de datos</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Clave de host:</string>
-    <string name="target_sftp_hostkey_hint">Pulse para recuperar la clave de host del servidor</string>
-    <string name="target_sftp_hostkey_load">Recuperando clave de host…</string>
-    <string name="target_sftp_hostkey_confirmation">¿Confía en este servidor?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Usar SSL</string>
-    <string name="target_webdav_ssl_warning">Los certificados autofirmados no suelen ser suficientes y podrían ser rechazados durante las comprobaciones de seguridad</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Seguridad</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">No se puede iniciar sesión</string>
     <string name="error_server_disconnect">No se puede desconectar de este servidor</string>
 
-    <string name="error_permission_read">Permisos de lectura no permitidos</string>
-    <string name="error_permission_write">Permisos de escritura no permitidos</string>
+    <string name="error_permission_read">No parece que se hayan concedido permisos de lectura</string>
+    <string name="error_permission_write">No parece que se hayan concedido permisos de escritura</string>
     <string name="error_permission_unknown">No se pueden comprobar los permisos</string>
 
     <string name="error_space_low">El espacio libre es bajo</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">No se puede crear un archivo temporal</string>
     <string name="error_nomedia_create">No se ha podido crear el archivo .nomedia</string>
     <string name="error_nomedia_remove">No se puede eliminar el archivo .nomedia</string>
-    <string name="error_ftp_mlst">El comando MLST, necesario para recuperar el tamaño del archivo y la marca de tiempo precisa, no parece ser compatible con este servidor</string>
+    <string name="error_ftp_file_date">No se pudo obtener la fecha de modificación del archivo</string>
+    <string name="error_ftp_file_size">No se pudo obtener el tamaño del archivo</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Copia de seguridad correcta</string>

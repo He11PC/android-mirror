@@ -36,8 +36,8 @@ import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
 import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
 import fr.hellpc.mirror.data.Target_Credentials
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherEncrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
@@ -138,6 +138,10 @@ class Fragment_TargetNFS : Fragment() {
             source.filter { editUtils.getAllowedCharactersServer().matches(it.toString()) }
         })
 
+        binding.targetNfsEditShare.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { editUtils.getAllowedCharactersPath().matches(it.toString()) }
+        })
+
         binding.targetNfsEditPath.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
             source.filter { editUtils.getAllowedCharactersPath().matches(it.toString()) }
         })
@@ -204,7 +208,7 @@ class Fragment_TargetNFS : Fragment() {
     /** Get current data from UI **/
     fun getCurrentData(showWarning: Boolean): Backup_Target? {
         val server = editUtils.trimServer(binding.targetNfsEditServer.text.toString())
-        val share = editUtils.trimDirectory(binding.targetNfsEditShare.text.toString())
+        val share = editUtils.trimPath(binding.targetNfsEditShare.text.toString(), true)
         val path = editUtils.trimPath(binding.targetNfsEditPath.text.toString(), false)
 
         return if(server.isBlank()) {
@@ -270,9 +274,9 @@ class Fragment_TargetNFS : Fragment() {
 
     /** Load target credentials to UI **/
     private fun loadCredentialsToUi(data: Target_Credentials) {
-        data.server?.cipherDecrypt().let { binding.targetNfsEditServer.setText(it) }
+        data.server?.cipherDecrypt()?.let { binding.targetNfsEditServer.setText(it) }
         data.share?.let { binding.targetNfsEditShare.setText(it) }
-        data.uid?.cipherDecrypt().let { binding.targetNfsEditUid.setText(it) }
-        data.gid?.cipherDecrypt().let { binding.targetNfsEditGid.setText(it) }
+        data.uid?.cipherDecrypt()?.let { binding.targetNfsEditUid.setText(it) }
+        data.gid?.cipherDecrypt()?.let { binding.targetNfsEditGid.setText(it) }
     }
 }

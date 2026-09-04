@@ -12,31 +12,39 @@
 
 package fr.hellpc.mirror.workers.backup
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
+import fr.hellpc.mirror.data.WorkerBackup_File
+import fr.hellpc.mirror.data.WorkerBackup_TransferResult
+import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.managers.Manager_Log
 import fr.hellpc.mirror.managers.Manager_Workers
-import fr.hellpc.mirror.data.room.Backup_Target
-import fr.hellpc.mirror.data.WorkerBackup_File
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_FlexibleTrustManager
 import fr.hellpc.mirror.utilities.CriticalException
-import fr.hellpc.mirror.data.WorkerBackup_TransferResult
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.apache.commons.net.ftp.FTP
 import org.apache.commons.net.ftp.FTPClient
 import org.apache.commons.net.ftp.FTPFile
 import org.apache.commons.net.ftp.FTPReply
 import org.apache.commons.net.ftp.FTPSClient
 import org.apache.commons.net.io.CopyStreamAdapter
-import org.apache.commons.net.util.TrustManagerUtils
+import java.io.IOException
 import java.io.InputStream
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.properties.Delegates
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class Backup_FTP(
@@ -67,6 +75,8 @@ class Backup_FTP(
     private val ftps5: FTPSClient by lazy { FTPSClient() }
 
     private var ssl by Delegates.notNull<Boolean>()
+
+    private var useMlistFile = true
 
     private var warningTriggered = false
 
@@ -141,9 +151,9 @@ class Backup_FTP(
                 attr = fList.find { it.name == "." }
             if(attr != null) {
                 if(!attr.hasPermission(FTPFile.USER_ACCESS, FTPFile.READ_PERMISSION))
-                    throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+                    generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
                 if(!isSource && !attr.hasPermission(FTPFile.USER_ACCESS, FTPFile.WRITE_PERMISSION))
-                    throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+                    generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
             }
             else {
                 // ListDirectories didn't return parent folder => Check with MLST
@@ -161,13 +171,13 @@ class Backup_FTP(
                     generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false)
                 else {
                     if("e" !in permissions || "l" !in permissions)
-                        throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+                        generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
                     if(!isSource && !("c" in permissions && "m" in permissions))
-                        throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+                        generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
                 }
             }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false) }
     }
 
@@ -256,8 +266,8 @@ class Backup_FTP(
             else -> ftps5
         }.apply {
             try{
-                trustManager = TrustManagerUtils.getValidateServerCertificateTrustManager()
-                isEndpointCheckingEnabled = true
+                trustManager = Security_FlexibleTrustManager(target.hostKey?.cipherDecrypt())
+                isEndpointCheckingEnabled = target.hostKey.isNullOrBlank()
                 autodetectUTF8 = true
                 bufferSize = 256*1024
 
@@ -269,7 +279,7 @@ class Backup_FTP(
                 enterLocalPassiveMode()
             }
             catch(exp: Exception) {
-                if("certificate" in exp.message.toString().lowercase(Locale.getDefault()))
+                if("certificat" in exp.message.toString().lowercase(Locale.getDefault()))
                     throw CriticalException(originTxt, localeContext.getString(R.string.error_ssl_certificate), exp.message)
                 else
                     throw CriticalException(originTxt, localeContext.getString(R.string.error_server_reach), exp.message)
@@ -341,10 +351,11 @@ class Backup_FTP(
             }.apply {
                 try {
                     if(isConnected) {
-                        logout()
+                        try { logout() } catch(_: Exception) { }
                         disconnect()
                     }
                 }
+                catch(exp: CancellationException) { throw exp }
                 catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_server_disconnect), true, false) }
             }
         }
@@ -357,39 +368,59 @@ class Backup_FTP(
 
     /** List files on remote folder **/
     override suspend fun getContent(recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> {
-        return listDirectory(getAbsolutePath(null, target.path, true), recursive, filesOnly)
+        return listDirectory(getAbsolutePath(null, target.path, true), recursive, filesOnly, true)
     }
 
     /** Recursive files listing **/
-    private suspend fun listDirectory(directory: String, recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
+    private suspend fun listDirectory(directory: String, recursive: Boolean, filesOnly: Boolean, useMlistDir: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
         val client = if(ssl)
             ftps1
         else
             ftp1
 
-        val systemFiles = arrayOf(".", "..", ".DAV", "._DAV")
-        val resources = try { client.listFiles(directory).filterNot { systemFiles.contains(it.name) } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $directory", exp.message) }
+        val resources = try {
+            val files = if(useMlistDir)
+                client.mlistDir(directory)
+            else
+                client.listFiles(directory)
+            files?.filterNot { it.name.isVirtualDirectory() || it.name.isSystemFile() } ?: emptyList()
+        }
+        catch(exp: CancellationException) { throw exp }
+        catch(exp: Exception) {
+            if(useMlistDir)
+                return@withContext listDirectory(directory, recursive, filesOnly, false)
+            else
+                throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $directory", exp.message)
+        }
 
         val filePath = directory.toRelativePath(target.path)
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
-        resources.forEach {
-            val isDirectory = it.isDirectory
-            val fileName = it.name
-            val date = if(!isDirectory)
-                try { client.mlistFile("$directory/${it.name}").timestamp.toInstant() }
-                catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_ftp_mlst), exp.message) }
-            else
-                it.timestamp.toInstant()
+        for(resource in resources) {
+            val isDirectory = resource.isDirectory
+            val fileName = resource.name
+            val date = if(isDirectory || useMlistDir)
+                resource.timestamp!!.toInstant()
+            else {
+                val itemPath = "$directory/$fileName"
+                var preciseInstant: Instant? = null
+
+                if(useMlistFile) {
+                    try { preciseInstant = client.mlistFile(itemPath).timestamp.toInstant() }
+                    catch (_: Exception) { useMlistFile = false }
+                }
+
+                preciseInstant ?: getTimestampFromMDTM(itemPath, client)
+            }
+
 
             val skip = isDirectory && filesOnly
             if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, date, it.size, isDirectory))
+                lstFiles.add(WorkerBackup_File(filePath, fileName, date, resource.size, isDirectory))
 
             val doRecursive = isDirectory && recursive
             if(doRecursive)
-                lstFiles.addAll(listDirectory("$directory/$fileName", recursive, filesOnly))
+                lstFiles.addAll(listDirectory("$directory/$fileName", recursive, filesOnly, useMlistDir))
         }
         return@withContext lstFiles
     }
@@ -432,25 +463,44 @@ class Backup_FTP(
 
         val destPath = getAbsolutePath(listOf(file.path, file.name), target.path, true)
 
-        val streamListener = object : CopyStreamAdapter() {
-            var lastReportTime = 0L
-
-            override fun bytesTransferred(totalBytesTransferred: Long, bytesTransferred: Int, streamSize: Long) {
-                val currentTime = System.currentTimeMillis()
-                if (currentTime - lastReportTime >= reportFrequency) {
-                    reportProgress(totalBytesTransferred)
-                    lastReportTime = currentTime
+        val written = AtomicLong(0L)
+        val progressJob = CoroutineScope(Dispatchers.Default).launch {
+            var lastReported = 0L
+            while(isActive) {
+                delay(reportFrequency.milliseconds)
+                val currentWritten = written.get()
+                if(currentWritten > lastReported) {
+                    reportProgress(currentWritten)
+                    lastReported = currentWritten
                 }
             }
         }
 
-        try {
+        val streamListener = object : CopyStreamAdapter() {
+            override fun bytesTransferred(totalBytesTransferred: Long, bytesTransferred: Int, streamSize: Long) {
+                written.set(totalBytesTransferred)
+            }
+        }
+
+        val success = try {
             client.copyStreamListener = streamListener
             reader.use { client.storeFile(destPath, it) }
-            reportProgress(file.size)
         }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
-        finally { client.copyStreamListener = null }
+        finally {
+            client.copyStreamListener = null
+            progressJob.cancel()
+        }
+
+        if(!success) {
+            if(canRetry)
+                log.append(true,"<b>["+ localeContext.getString(R.string.log_note)+"]</b> ${file.name}: "+ localeContext.getString(R.string.error_file_corrupted))
+            else
+                generateWarning("${file.name}: "+ localeContext.getString(R.string.error_file_corrupted_final), false, true)
+            return@withContext false
+        }
+
+        reportProgress(file.size)
 
         setDate(destPath, file.last_modified, client)
         val transferResult = verifyTransfer(destPath, file.last_modified, file.size, client)
@@ -474,13 +524,37 @@ class Backup_FTP(
 
     /** Check if file transfer went wrong **/
     private fun verifyTransfer(file: String, date: Instant, size: Long, client: FTPClient): WorkerBackup_TransferResult {
-        val fileInfo = try { client.mlistFile(file) }
-        catch (_: Exception) { return WorkerBackup_TransferResult(false, false) }
+        var ftpDate: Instant
+        var ftpSize: Long
 
-        if(fileInfo == null)
-            throw CriticalException(null, localeContext.getString(R.string.error_ftp_mlst), null)
+        if(useMlistFile) {
+            try {
+                val fileInfo = client.mlistFile(file)
+                ftpDate = fileInfo.timestamp.toInstant()
+                ftpSize = fileInfo.size
+            }
+            catch(_: Exception) {
+                useMlistFile = false
+                ftpDate = getTimestampFromMDTM(file, client)
+                ftpSize = getFileSize(file, client)
+            }
+        }
+        else {
+            ftpDate = getTimestampFromMDTM(file, client)
+            ftpSize = getFileSize(file, client)
+        }
 
-        return WorkerBackup_TransferResult(dateIsOK(date, fileInfo.timestamp.toInstant()), fileIsOK(size,fileInfo.size))
+        return WorkerBackup_TransferResult(dateIsOK(date, ftpDate), fileIsOK(size,ftpSize))
+    }
+
+    /** Get file size **/
+    private fun getFileSize(path: String, client: FTPClient): Long {
+        try {
+            val ftpSize = client.getSize(path)?.toLong()
+            require(ftpSize != null)
+            return ftpSize
+        }
+        catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_ftp_file_size), exp.message) }
     }
 
 
@@ -500,6 +574,18 @@ class Backup_FTP(
 
             Manager_Workers().setDateComparisonMode(backupID, dateIsOK)
         }
+    }
+
+    /** Get file timestamp from MDTM **/
+    private fun getTimestampFromMDTM(path: String, client: FTPClient): Instant {
+        try {
+            val timeRaw = client.getModificationTime(path)
+            val timeString = timeRaw.trim().takeLast(14)
+            require(timeString.length == 14 && timeString.all { it.isDigit() })
+            val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
+            return java.time.LocalDateTime.parse(timeString, formatter).atZone(java.time.ZoneOffset.UTC).toInstant()
+        }
+        catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_ftp_file_date), exp.message) }
     }
 
     /** Change last modified date on remote server file **/
@@ -522,66 +608,82 @@ class Backup_FTP(
         else
             getConnexion(connexion)
 
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, true), client) }
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, target.path, true), client)
+        }
     }
 
     /** Create a folder on remote server if necessary **/
     private fun createDirectory(path: String, client: FTPClient) {
+        if (path.trimEnd('/').isBlank())
+            return
+
         try {
-            require(path.isNotBlank() && path != "/")
+            if(!client.makeDirectory(path)) {
+                  // 550 / 500+ : Directory creation failed
+                if(client.replyCode >= 400) {
+                    val parent = path.parentDirectory()
+                    if(path != parent && parent.trimEnd('/').isNotBlank()) {
+                        createDirectory(parent, client)
+                        if(client.makeDirectory(path))
+                            return
+                    }
 
-            if(!client.changeWorkingDirectory(path)) {
-                val parent = path.parentDirectory()
-                if(!client.changeWorkingDirectory(parent)) {
-                    require(path != parent)
-                    createDirectory(parent, client)
+                    // Fail-safe: Check if directory already exists
+                    if(client.changeWorkingDirectory(path))
+                        return
+
+                    throw IOException("FTP MKD failed with code ${client.replyCode}: ${client.replyString}")
                 }
-
-                require(client.mkd(path) < 400)
             }
         }
         catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_folder_create)+": $path", exp.message) }
     }
 
     /** Delete a folders list from remote server **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val client = if(ssl)
             getConnexionSSL(connexion)
         else
             getConnexion(connexion)
 
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, true), client) }
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, target.path, true), client)
+        }
     }
 
     /** Delete a folder from remote server **/
     private fun deleteDirectory(path: String, client: FTPClient) {
-        if(!client.changeWorkingDirectory(path))
-            return
-
         try {
-            client.changeToParentDirectory()
-            if(path.isEmptyDirectory(client))
-                require(client.removeDirectory(path))
-            else
-                removeDirectory(path, client)
-        }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
-    }
+            if(client.removeDirectory(path)) return
 
-    /** Remove system files from a folder and delete it if empty (.DAV) **/
-    private fun removeDirectory(path: String, client: FTPClient) {
-        try {
-            val systemFiles = arrayOf(".", "..")
-            val resources = client.listFiles(path).filterNot { systemFiles.contains(it.name) }
-            resources.forEach {
-                if(it.isDirectory)
-                    removeDirectory("$path/${it.name}", client)
-                else if(path.contains(".DAV") || path.contains("._DAV"))
-                    require(client.deleteFile("$path/${it.name}"))
+            // Deletion failed, check content
+            val resources = client.listFiles(path) ?: throw IOException()
+            var entryCount = 0
+
+            // Delete WebDav system files if they exist
+            for(resource in resources) {
+                val name = resource.name
+                if(name.isVirtualDirectory()) continue
+
+                entryCount++
+                val resourcePath = if(path.endsWith("/")) "$path$name" else "$path/$name"
+
+                if(resource.isDirectory)
+                    deleteDirectory(resourcePath, client)
+                else if(name.isSystemFile())
+                    require(client.deleteFile(resourcePath))
+                else
+                    throw IOException()
             }
-            if(path.isEmptyDirectory(client))
-                require(client.removeDirectory(path))
+
+            // Retry folder deletion after cleanup
+            if(entryCount == 0 || !client.removeDirectory(path))
+                throw IOException()
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
     }
 
@@ -609,6 +711,7 @@ class Backup_FTP(
         val destFile = getAbsolutePath(listOf(orphansFolder, orphanPath, orphanName), target.path, true)
 
         try { require(client.rename(srcFile, destFile)) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
@@ -616,9 +719,10 @@ class Backup_FTP(
     private fun deleteOrphan(orphanPath: String, orphanName: String, client: FTPClient) {
         val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, true)
         try {
-            if(client.mlistFile(orphanFile) != null)
-                require(client.deleteFile(orphanFile))
+            if(!client.deleteFile(orphanFile) && client.replyCode != 550)
+                throw IOException()
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -626,12 +730,6 @@ class Backup_FTP(
     // --------------
     // FTP extensions
     // --------------
-
-    /** Check if a folder on remote server contains data **/
-    private fun String.isEmptyDirectory(client: FTPClient): Boolean {
-        return try { client.listFiles(this).none { it.name != "." && it.name != ".." } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $this", exp.message) }
-    }
 
     /** Get parent directory **/
     private fun String.parentDirectory(): String {

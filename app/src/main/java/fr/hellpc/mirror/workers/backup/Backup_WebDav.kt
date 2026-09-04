@@ -23,6 +23,7 @@ import com.burgstaller.okhttp.digest.Credentials
 import com.burgstaller.okhttp.digest.DigestAuthenticator
 import com.thegrizzlylabs.sardineandroid.Sardine
 import com.thegrizzlylabs.sardineandroid.impl.OkHttpSardine
+import com.thegrizzlylabs.sardineandroid.impl.SardineException
 import com.thegrizzlylabs.sardineandroid.util.SardineUtil
 import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
@@ -31,14 +32,17 @@ import fr.hellpc.mirror.data.WorkerBackup_TransferResult
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.managers.Manager_Log
 import fr.hellpc.mirror.managers.Manager_Workers
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_FlexibleTrustManager
 import fr.hellpc.mirror.utilities.CriticalException
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
+import okhttp3.internal.tls.OkHostnameVerifier
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.nio.ByteBuffer
@@ -51,6 +55,8 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
+import javax.net.ssl.SSLContext
+import javax.net.ssl.X509TrustManager
 import javax.xml.namespace.QName
 
 class Backup_WebDav(
@@ -69,6 +75,7 @@ class Backup_WebDav(
 
     private val localeContext = App.getLocaleContext()
 
+    private val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
     private lateinit var httpClient: OkHttpClient
     private val webdav1: Sardine by lazy { OkHttpSardine(httpClient) }
     private val webdav2: Sardine by lazy { OkHttpSardine(httpClient) }
@@ -78,9 +85,8 @@ class Backup_WebDav(
 
     private lateinit var scheme: String
     private lateinit var server: String
+    private lateinit var fullPath: String
     private val tmpDirectory by lazy { Paths.get(App.instance.filesDir.toString()+"/$backupID/tmp") }
-
-    private var useDefaultExists = true
 
     private var warningTriggered = false
 
@@ -99,12 +105,17 @@ class Backup_WebDav(
         scheme = if(target.ssl == true) "https" else "http"
         server = target.server.cipherDecrypt()!!
 
+        fullPath = listOfNotNull(
+            target.share?.trim('/'),
+            target.path.trim('/')
+        ).filter { it.isNotEmpty() }.joinToString("/")
+
         makeConnexion()
     }
 
     /** Check folder availability **/
     override suspend fun checkRootFolder() = withContext(dispatcherIO) {
-        val rootPath = getAbsolutePath(null, target.path, false)
+        val rootPath = getAbsolutePath(null, fullPath, false)
         val rootUrl = rootPath.toURL(false)
 
         // Create tmp directory to upload from inputStream if necessary
@@ -133,14 +144,19 @@ class Backup_WebDav(
     /** Check available space **/
     override suspend fun checkFreeSpace(size: Long) = withContext(dispatcherIO) {
         try {
-            val freeSpace = webdav1.getQuota(getAbsolutePath(null, target.path, false).toURL(false)).quotaAvailableBytes
-            val freeSpaceTxt = ": "+freeSpace.sizeToReadable()
-            if(freeSpace < size)
-                throw CriticalException(null, localeContext.getString(R.string.error_quota_critical)+freeSpaceTxt, null)
-            else if (freeSpace < size+size*0.25)
-                generateWarning(localeContext.getString(R.string.error_quota_low)+freeSpaceTxt, false, true)
+            val freeSpace = webdav1.getQuota(getAbsolutePath(null, fullPath, false).toURL(false)).quotaAvailableBytes
+            if(freeSpace <= 0L) {
+                generateWarning(localeContext.getString(R.string.error_quota_unverifiable), false, false)
+                return@withContext
+            }
+
+            val freeSpaceTxt = ": " + freeSpace.sizeToReadable()
+            when {
+                freeSpace < size -> generateWarning(localeContext.getString(R.string.error_quota_critical) + freeSpaceTxt, false, true)
+                freeSpace < (size + (size * 0.25).toLong()) -> generateWarning(localeContext.getString(R.string.error_quota_low) + freeSpaceTxt, false, true)
+            }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_quota_unverifiable), false, false) }
     }
 
@@ -166,32 +182,52 @@ class Backup_WebDav(
     /** Make connexion **/
     private suspend fun makeConnexion() = withContext(dispatcherIO) {
         try{
-            val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
-            val credentials = Credentials(target.login?.cipherDecrypt(), target.password?.cipherDecrypt())
+            val flexibleTrustManager = Security_FlexibleTrustManager(target.hostKey?.cipherDecrypt())
+
+            val credentials = Credentials(target.login?.cipherDecrypt().orEmpty(), target.password?.cipherDecrypt().orEmpty())
             val authenticator = DispatchingAuthenticator.Builder()
                 .with("digest", DigestAuthenticator(credentials))
                 .with("basic", BasicAuthenticator(credentials))
                 .build()
 
+            val sslContext = SSLContext.getInstance("TLS").apply { init(null, arrayOf(flexibleTrustManager), java.security.SecureRandom()) }
+
             httpClient = OkHttpClient.Builder()
                 .authenticator(CachingAuthenticatorDecorator(authenticator, authCache))
                 .addInterceptor(AuthenticationCacheInterceptor(authCache, DefaultRequestCacheKeyProvider()))
+                .sslSocketFactory(sslContext.socketFactory, flexibleTrustManager as X509TrustManager)
+                .hostnameVerifier { hostname, session ->
+                    if(target.hostKey.isNullOrBlank()) OkHostnameVerifier.verify(hostname, session) else true
+                }
                 .build()
 
-            // Some servers seem to not allow root url listing
-            val checkUrl = if(target.path.isNotBlank())
-                target.path.substringBefore('/').toURL(false)
-            else
-                "".toURL(false)
+            val checkPath = if(!target.share.isNullOrBlank())
+                target.share
+            else if(target.path.isNotBlank()) {
+                val cleanPath = target.path.trim('/')
+                val rootSegment = if(cleanPath.contains(".php/", ignoreCase = true)) {
+                    val phpIndex = cleanPath.indexOf(".php/", ignoreCase = true) + 5
+                    val beforePhp = cleanPath.substring(0, phpIndex)
+                    val firstDir = cleanPath.substring(phpIndex).substringBefore('/')
 
-            require(webdav1.list(checkUrl, 0) != null)
+                    beforePhp + firstDir
+                }
+                else
+                    cleanPath.substringBefore('/')
+
+                rootSegment
+            }
+            else
+                ""
+
+            require(webdav1.list(checkPath.toURL(false), 0).isNotEmpty())
         }
         catch(exp: Exception) {
             val errorMsg = exp.message.toString()
             when {
                 "auth" in errorMsg.lowercase(Locale.getDefault()) -> throw CriticalException(originTxt, localeContext.getString(R.string.error_server_login), exp.message)
                 "host" in errorMsg.lowercase(Locale.getDefault()) -> throw CriticalException(originTxt, localeContext.getString(R.string.error_server_reach), exp.message)
-                "certification" in errorMsg.lowercase(Locale.getDefault()) -> throw CriticalException(originTxt, localeContext.getString(R.string.error_ssl_certificate), exp.message)
+                "certificat" in errorMsg.lowercase(Locale.getDefault()) -> throw CriticalException(originTxt, localeContext.getString(R.string.error_ssl_certificate), exp.message)
                 else -> throw CriticalException(originTxt, localeContext.getString(R.string.error_server_connect), exp.message)
             }
         }
@@ -200,15 +236,17 @@ class Backup_WebDav(
     /** Save average write speed for next session and disconnects from the server **/
     override suspend fun disconnect() = withContext(dispatcherIO) {
         progress.saveWriteSpeed()
+        (authCache as? MutableMap)?.clear()
 
         try {
-            if (::httpClient.isInitialized && httpClient.connectionPool.connectionCount() > 0)
+            if(::httpClient.isInitialized)
                 httpClient.apply {
-                    dispatcher.executorService.shutdown()
+                    dispatcher.cancelAll()
                     connectionPool.evictAll()
                     cache?.close()
                 }
         }
+        catch(exp: CancellationException) { throw exp }
         catch (_: Exception) { generateWarning(localeContext.getString(R.string.error_server_disconnect), true, false) }
     }
 
@@ -220,7 +258,7 @@ class Backup_WebDav(
     /** List files on remote folder **/
     override suspend fun getContent(recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
         val maxDepth = if (recursive) -1 else 1
-        val path = getAbsolutePath(null, target.path, false)
+        val path = getAbsolutePath(null, fullPath, false)
 
         val resources = try { webdav1.list(path.toURL(false), maxDepth) }
         catch(exp: Exception) {
@@ -233,27 +271,29 @@ class Backup_WebDav(
 
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
-        resources.forEach {
-            val isDirectory = it.isDirectory
-            val fileName = it.name
-            val filePath = if(it.displayName.isNullOrEmpty() && it.path == "/${target.path}/")
+        for(resource in resources) {
+            val isDirectory = resource.isDirectory
+            val fileName = resource.name
+            val filePath = if(resource.displayName.isNullOrEmpty() && resource.path == "/$fullPath/")
                 ""
             else
-                it.path.removePrefix("/${target.path}").substringBeforeLast(fileName)
+                resource.path.removePrefix("/$fullPath").substringBeforeLast(fileName)
 
             val skip = filePath == "" || (isDirectory && filesOnly)
             if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, it.modified.toInstant(), it.contentLength, isDirectory))
+                lstFiles.add(WorkerBackup_File(filePath, fileName, resource.modified.toInstant(), resource.contentLength, isDirectory))
         }
+
         return@withContext lstFiles
     }
 
     /** Recursive files listing if embedded recursive fails **/
     private suspend fun listDirectoryRecursive(path: String, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
-        val resources = try { webdav1.list(path.toURL(false), 1).filterNot { it.path == "/$path/" } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": ${target.path}", exp.message) }
+        val filePath = path.toRelativePath(fullPath)
 
-        val filePath = path.toRelativePath(target.path)
+        val resources = try { webdav1.list(path.toURL(false), 1).filterNot { it.path == "/$path/" } }
+        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $filePath", exp.message) }
+
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
         resources.forEach {
@@ -265,7 +305,7 @@ class Backup_WebDav(
                 lstFiles.add(WorkerBackup_File(filePath, fileName, it.modified.toInstant(), it.contentLength, isDirectory))
 
             if(isDirectory)
-                lstFiles.addAll(listDirectoryRecursive(getAbsolutePath(listOf(filePath, fileName), target.path, false), filesOnly))
+                lstFiles.addAll(listDirectoryRecursive(getAbsolutePath(listOf(filePath, fileName), fullPath, false), filesOnly))
         }
 
         return@withContext lstFiles
@@ -278,7 +318,7 @@ class Backup_WebDav(
 
     /** Get InputStream to download the file **/
     override suspend fun getReader(file: WorkerBackup_File, connexion: Int): InputStream = withContext(dispatcherIO) {
-        val srcUrl = getAbsolutePath(listOf(file.path, file.name), target.path, false).toURL(true)
+        val srcUrl = getAbsolutePath(listOf(file.path, file.name), fullPath, false).toURL(true)
 
         return@withContext try { getConnexion(connexion).get(srcUrl) }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_read), exp.message) }
@@ -288,7 +328,7 @@ class Backup_WebDav(
     override suspend fun write(srcRoot: String, file: WorkerBackup_File, connexion: Int, canRetry: Boolean, reportProgress: (Long) -> Unit): Boolean = withContext(dispatcherIO) {
         val webdav = getConnexion(connexion)
         val srcPath = Paths.get("$srcRoot${file.path}${file.name}")
-        val destUrl = getAbsolutePath(listOf(file.path, file.name), target.path, false).toURL(true)
+        val destUrl = getAbsolutePath(listOf(file.path, file.name), fullPath, false).toURL(true)
 
         val monitor = progress.startMonitor(file.size, connexion, reportProgress)
         val success = try { upload(webdav, srcPath, destUrl, file, canRetry) }
@@ -302,7 +342,7 @@ class Backup_WebDav(
     override suspend fun write(reader: InputStream, file: WorkerBackup_File, connexion: Int, canRetry: Boolean, reportProgress: (Long) -> Unit): Boolean = withContext(dispatcherIO) {
         val webdav = getConnexion(connexion)
         val tmpPath = Paths.get("$tmpDirectory/$connexion.tmp")
-        val destUrl = getAbsolutePath(listOf(file.path, file.name), target.path, false).toURL(true)
+        val destUrl = getAbsolutePath(listOf(file.path, file.name), fullPath, false).toURL(true)
 
         // Sardine can't use InputStream => intermediate tmp file on device local memory required
         if(hasEnoughTmpSpace(file)) {
@@ -453,42 +493,57 @@ class Backup_WebDav(
     /** Create folders on remote server if necessary **/
     override suspend fun createDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val webdav = getConnexion(connexion)
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, false), webdav) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, fullPath, false), webdav)
+        }
     }
 
     /** Create a folder on remote server if necessary **/
     private fun createDirectory(path: String, webdav: Sardine) {
-        val url = path.toURL(false)
+        // PHP script safeguard (Nextcloud, ownCloud, ...)
+        val cleanPath = path.trimEnd('/')
+        if(cleanPath.isBlank() || cleanPath.endsWith(".php", ignoreCase = true))
+            return
+
         try {
-            require(path.isNotBlank())
+            val url = path.toURL(false)
 
-            if(!url.exists(webdav)) {
-                val parent = path.parentDirectory()
-                val parentUrl = parent.toURL(false)
-                if(!parentUrl.exists(webdav)) {
-                    require(path != parent)
-                    createDirectory(parent, webdav)
+            try { webdav.createDirectory(url) }
+            catch(exp: SardineException) {
+                when(exp.statusCode) {
+                    // 405 (Method Not Allowed) / 412 (Precondition Failed) : Directory already exists
+                    405, 412 -> return
+                    // 404 (Not Found) / 409 (Conflict) : Parent directory doesn't exist
+                    404, 409 -> {
+                        val parent = path.parentDirectory()
+                        require(path != parent)
+                        createDirectory(parent, webdav)
+                        webdav.createDirectory(url)
+                    }
+                    else -> throw exp
                 }
-
-                webdav.createDirectory(url)
             }
         }
         catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_folder_create)+": $path", exp.message) }
     }
 
     /** Delete a folders list from remote server **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val webdav = getConnexion(connexion)
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, false), webdav) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, fullPath, false), webdav)
+        }
     }
 
     /** Delete a folder from remote server **/
     private fun deleteDirectory(path: String, webdav: Sardine) {
         val url = path.toURL(false)
-        try {
-            if(url.exists(webdav) && path.isEmptyDirectory(webdav))
-                webdav.delete(url)
-        }
+        try { webdav.delete(url) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
     }
 
@@ -509,20 +564,23 @@ class Backup_WebDav(
 
     /** Move file on remote server **/
     private fun moveOrphan(orphansFolder: String, orphanPath: String, orphanName: String, webdav: Sardine) {
-        val srcFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, false).toURL(true)
-        val destFile = getAbsolutePath(listOf(orphansFolder, orphanPath, orphanName), target.path, false).toURL(true)
+        val srcFile = getAbsolutePath(listOf(orphanPath, orphanName), fullPath, false).toURL(true)
+        val destFile = getAbsolutePath(listOf(orphansFolder, orphanPath, orphanName), fullPath, false).toURL(true)
 
         try { webdav.move(srcFile, destFile) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
     /** Delete a file from remote server **/
     private fun deleteOrphan(orphanPath: String, orphanName: String, webdav: Sardine) {
-        val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, false).toURL(true)
-        try {
-            if(orphanFile.exists(webdav))
-                webdav.delete(orphanFile)
+        val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), fullPath, false).toURL(true)
+        try { webdav.delete(orphanFile) }
+        catch(exp: SardineException) {
+            if(exp.statusCode != 404)
+                throw exp
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -533,21 +591,9 @@ class Backup_WebDav(
 
     /** Check if a resource exists on WebDav Server (Sardine.exists seems to fail on some servers) **/
     private fun String.exists(webdav: Sardine): Boolean {
-        return if(useDefaultExists)
-            try { webdav.exists(this) }
-            catch(_: Exception) {
-                useDefaultExists = false
-                this.exists(webdav)
-            }
-        else
-            try { webdav.list(this, 0) != null }
-            catch(_: Exception) { false }
-    }
-
-    /** Check if a directory on remote server contains data **/
-    private fun String.isEmptyDirectory(webdav: Sardine): Boolean {
-        return try { webdav.list(this.toURL(false), 1, false).size == 1 }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $this", exp.message) }
+        return try { webdav.list(this, 0).isNotEmpty() }
+        catch(exp: SardineException) { if(exp.statusCode == 404) false else throw exp }
+        catch(_: Exception) { false }
     }
 
     /** Create an http url from a path **/

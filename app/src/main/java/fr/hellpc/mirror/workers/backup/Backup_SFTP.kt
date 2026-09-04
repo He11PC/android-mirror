@@ -27,17 +27,25 @@ import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.managers.Manager_Log
 import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.utilities.CriticalException
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecryptToBytes
-import fr.hellpc.mirror.utilities.Utility_Encryption.use
-import fr.hellpc.mirror.utilities.Utility_Encryption.useAsInputStream
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecryptToBytes
+import fr.hellpc.mirror.security.Security_Encryption.use
+import fr.hellpc.mirror.security.Security_Encryption.useAsInputStream
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.InputStream
 import java.time.Instant
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicLong
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class Backup_SFTP(
@@ -77,14 +85,12 @@ class Backup_SFTP(
         try {
             JSch().apply {
                 target.hostKey?.cipherDecryptToBytes()?.useAsInputStream { setKnownHosts(it) }
-                session = getSession(target.login?.cipherDecrypt(), target.server.cipherDecrypt(), target.port ?: 22)
+                session = getSession(target.login?.cipherDecrypt().orEmpty(), target.server.cipherDecrypt(), target.port ?: 22)
             }
 
             session.apply {
-                target.password?.cipherDecryptToBytes()?.use {
-                    setPassword(it)
-                    connect()
-                }
+                target.password?.cipherDecryptToBytes()?.use { setPassword(it) }
+                connect()
             }
         }
         catch(exp: Exception) {
@@ -124,23 +130,28 @@ class Backup_SFTP(
     /** Check permissions **/
     private fun checkPermissions(attr: SftpATTRS) {
         if(!attr.permissionsString.contains('r', true))
-            throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+            generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
         if(!isSource && !attr.permissionsString.contains('w', true))
-            throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+            generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
     }
 
     /** Check available space **/
     override suspend fun checkFreeSpace(size: Long) = withContext(dispatcherIO) {
-        try{
+        try {
             val fsInfo = channel1.statVFS(getAbsolutePath(null, target.path, true))
             val freeSpace = fsInfo.avail*1024
-            val freeSpaceTxt = ": "+freeSpace.sizeToReadable()
-            if(freeSpace < size)
-                throw CriticalException(null, localeContext.getString(R.string.error_space_critical)+freeSpaceTxt, null)
-            else if (freeSpace < size+size*0.25)
-                generateWarning(localeContext.getString(R.string.error_space_low)+freeSpaceTxt, false, true)
+            if(freeSpace <= 0L) {
+                generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false)
+                return@withContext
+            }
+
+            val freeSpaceTxt = ": " + freeSpace.sizeToReadable()
+            when {
+                freeSpace < size -> generateWarning(localeContext.getString(R.string.error_space_critical) + freeSpaceTxt, false, true)
+                freeSpace < (size + (size * 0.25).toLong()) -> generateWarning(localeContext.getString(R.string.error_space_low) + freeSpaceTxt, false, true)
+            }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false) }
     }
 
@@ -229,6 +240,7 @@ class Backup_SFTP(
             if (::session.isInitialized && session.isConnected)
                 session.disconnect()
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_server_disconnect), true, false) }
     }
 
@@ -244,20 +256,19 @@ class Backup_SFTP(
 
     /** Recursive files listing **/
     private suspend fun listDirectory(directory: String, recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
-        val systemFiles = arrayOf(".", "..", ".DAV", "._DAV")
-        val resources = try { channel1.ls(directory.ifBlank { "/" }).filterNot { systemFiles.contains(it.filename) } }
+        val resources = try { channel1.ls(directory.ifBlank { "/" }).filterNot { it.filename.isVirtualDirectory() || it.filename.isSystemFile() } }
         catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $directory", exp.message) }
 
         val filePath = directory.toRelativePath(target.path)
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
-        resources.forEach {
-            val isDirectory = it.attrs.isDir
-            val fileName = it.filename
+        for(resource in resources) {
+            val isDirectory = resource.attrs.isDir
+            val fileName = resource.filename
 
             val skip = isDirectory && filesOnly
             if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, Instant.ofEpochSecond(it.attrs.mTime.toLong()), it.attrs.size, isDirectory))
+                lstFiles.add(WorkerBackup_File(filePath, fileName, Instant.ofEpochSecond(resource.attrs.mTime.toLong()), resource.attrs.size, isDirectory))
 
             val doRecursive = isDirectory && recursive
             if(doRecursive)
@@ -284,22 +295,25 @@ class Backup_SFTP(
         val sftp = getConnexion(connexion)
         val destPath = getAbsolutePath(listOf(file.path, file.name), target.path, true)
 
-        val streamListener = object : SftpProgressMonitor {
-            var bytesTransferred = 0L
-            var lastReportTime = 0L
+        val written = AtomicLong(0L)
+        val progressJob = CoroutineScope(Dispatchers.Default).launch {
+            var lastReported = 0L
+            while(isActive) {
+                delay(reportFrequency.milliseconds)
+                val currentWritten = written.get()
+                if(currentWritten > lastReported) {
+                    reportProgress(currentWritten)
+                    lastReported = currentWritten
+                }
+            }
+        }
 
+        val streamListener = object : SftpProgressMonitor {
             override fun init(op: Int, src: String?, dest: String?, max: Long) { }
             override fun end() { }
 
             override fun count(count: Long): Boolean {
-                bytesTransferred += count
-
-                val currentTime = System.currentTimeMillis()
-                if (currentTime - lastReportTime >= reportFrequency) {
-                    reportProgress(bytesTransferred)
-                    lastReportTime = currentTime
-                }
-
+                written.addAndGet(count)
                 return true
             }
         }
@@ -309,6 +323,7 @@ class Backup_SFTP(
             reportProgress(file.size)
         }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
+        finally { progressJob.cancel() }
 
         setDate(destPath, file.last_modified, sftp)
         val transferResult = verifyTransfer(destPath, file.last_modified, file.size, sftp)
@@ -371,64 +386,86 @@ class Backup_SFTP(
     /** Create folders on remote server if necessary **/
     override suspend fun createDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val sftp = getConnexion(connexion)
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, true), sftp) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, target.path, true), sftp)
+        }
     }
 
     /** Create a folder on remote server if necessary **/
     private fun createDirectory(path: String, sftp: ChannelSftp) {
+        if(path.trimEnd('/').isBlank())
+            return
+
         try {
-            require(path.isNotBlank() && path != "/")
-
-            if(!exists(path, sftp)) {
-                require(path != "/")
-
+            try { sftp.mkdir(path) }
+            catch(exp: SftpException) {
                 val parent = path.parentDirectory()
-                if(!exists(parent, sftp)) {
-                    require(path != parent)
+                if(path != parent && parent.trimEnd('/').isNotBlank()) {
                     createDirectory(parent, sftp)
+                    try {
+                        sftp.mkdir(path)
+                        return
+                    }
+                    catch(_: SftpException) { }
                 }
 
-                sftp.mkdir(path)
+                // Fail-safe: Check if directory already exists
+                if(exists(path, sftp))
+                    return
+
+                throw exp
             }
         }
         catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_folder_create)+": $path", exp.message) }
     }
 
     /** Delete a folder list from remote server **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
         val sftp = getConnexion(connexion)
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, true), sftp) }
+
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, target.path, true), sftp)
+        }
     }
 
     /** Delete a folder from remote server **/
     private fun deleteDirectory(path: String, sftp: ChannelSftp) {
-        try {
-            if(exists(path, sftp)) {
-                if(path.isEmptyDirectory(sftp))
+        try { sftp.rmdir(path) }
+        catch(exp: CancellationException) { throw exp }
+        catch(_: Exception) {
+            try {
+                // Deletion failed, check content
+                val resources = sftp.ls(path) ?: throw IOException()
+                var entryCount = 0
+
+                // Delete WebDav system files if they exist
+                for(resource in resources) {
+                    val name = resource.filename
+                    if (name.isVirtualDirectory()) continue
+
+                    entryCount++
+                    val resourcePath = if(path.endsWith("/")) "$path$name" else "$path/$name"
+
+                    if(resource.attrs.isDir)
+                        deleteDirectory(resourcePath, sftp)
+                    else if(name.isSystemFile())
+                        sftp.rm(resourcePath)
+                    else
+                        throw IOException()
+                }
+
+                // Retry folder deletion after cleanup
+                if(entryCount > 0)
                     sftp.rmdir(path)
                 else
-                    removeDirectory(path, sftp)
+                    throw IOException()
             }
+            catch(exp: CancellationException) { throw exp }
+            catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
         }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
-    }
-
-    /** Remove system files from a folder and delete it if empty (.DAV) **/
-    private fun removeDirectory(path: String, sftp: ChannelSftp) {
-        try {
-            val systemFiles = arrayOf(".", "..")
-            val resources = sftp.ls(path).filterNot { systemFiles.contains(it.filename) }
-
-            resources.forEach {
-                if(it.attrs.isDir)
-                    removeDirectory("$path/${it.filename}", sftp)
-                else if(path.contains(".DAV") || path.contains("._DAV"))
-                    sftp.rm("$path/${it.filename}")
-            }
-            if(path.isEmptyDirectory(sftp))
-                sftp.rmdir(path)
-        }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
     }
 
 
@@ -452,16 +489,19 @@ class Backup_SFTP(
         val destFile = getAbsolutePath(listOf(orphansFolder, orphanPath, orphanName), target.path, true)
 
         try { sftp.rename(srcFile, destFile) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
     /** Delete a file from remote server **/
     private fun deleteOrphan(orphanPath: String, orphanName: String, sftp: ChannelSftp) {
         val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, true)
-        try {
-            if(exists(orphanFile, sftp))
-                sftp.rm(orphanFile)
+        try { sftp.rm(orphanFile) }
+        catch(exp: SftpException) {
+            if(exp.id != SSH_FX_NO_SUCH_FILE)
+                throw exp
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -469,12 +509,6 @@ class Backup_SFTP(
     // ---------------
     // SFTP extensions
     // ---------------
-
-    /** Check if a folder on remote server contains data **/
-    private fun String.isEmptyDirectory(sftp: ChannelSftp): Boolean {
-        return try { sftp.ls(this).none { it.filename != "." && it.filename != ".." } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $this", exp.message) }
-    }
 
     /** Check if a file/folder exists **/
     private fun exists(path: String, sftp: ChannelSftp): Boolean {

@@ -36,8 +36,8 @@ import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
 import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
 import fr.hellpc.mirror.data.Target_Credentials
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherEncrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
@@ -192,10 +192,10 @@ class Fragment_TargetSMB : Fragment() {
                 .putExtra(Activity_FolderExplorer.PARAM_PROTOCOL, it.protocol)
                 .putExtra(Activity_FolderExplorer.PARAM_SERVER, it.server)
                 .putExtra(Activity_FolderExplorer.PARAM_DOMAIN, it.domain)
-                .putExtra(Activity_FolderExplorer.PARAM_SHARE, it.share)
-                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
                 .putExtra(Activity_FolderExplorer.PARAM_LOGIN, it.login)
                 .putExtra(Activity_FolderExplorer.PARAM_PASSWORD, it.password)
+                .putExtra(Activity_FolderExplorer.PARAM_SHARE, it.share)
+                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
 
             folderExplorer.launch(intent)
         }
@@ -275,10 +275,10 @@ class Fragment_TargetSMB : Fragment() {
 
     /** Load target credentials to UI **/
     private fun loadCredentialsToUi(data: Target_Credentials) {
-        data.server?.cipherDecrypt().let { binding.targetSmbEditServer.setText(it) }
+        data.server?.cipherDecrypt()?.let { binding.targetSmbEditServer.setText(it) }
         data.domain?.let { binding.targetSmbEditDomain.setText(it) }
         data.share?.let { binding.targetSmbEditShare.setText(it) }
-        data.login?.cipherDecrypt().let { binding.targetSmbEditLogin.setText(it) }
-        data.password?.cipherDecrypt().let { binding.targetSmbEditPassword.setText(it) }
+        data.login?.cipherDecrypt()?.let { binding.targetSmbEditLogin.setText(it) }
+        data.password?.cipherDecrypt()?.let { binding.targetSmbEditPassword.setText(it) }
     }
 }

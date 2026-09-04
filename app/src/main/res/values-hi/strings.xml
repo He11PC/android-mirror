@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">अनुमतियां</string>
     <string name="permission_locked_title">अनुमति लॉक</string>
+    <string name="permission_locked_text">Android ने इस अनुमति को लॉक कर दिया है।\n\nक्या आप एप्लिकेशन की सेटिंग खोलना चाहते हैं और इसे मैन्युअल रूप से अनुमति देना चाहते हैं?</string>
 
     <string name="permission_files_title">फ़ाइल एक्सेस की अनुमति दें (आवश्यक)</string>
     <string name="permission_files_text">आपकी फ़ाइलों और फ़ोल्डरों तक पहुँच के बिना बैकअप असंभव है</string>
     <string name="permission_files_locked_text">एंड्रॉइड ने ऐप को गैर-कार्यात्मक बनाते हुए इस अनुमति को अवरुद्ध कर दिया।\n\nकृपया सुनिश्चित करें कि Mirror कभी भी आपके या आपके डेटा के बारे में कोई जानकारी एकत्र नहीं करेगा।\n\nक्या आप ऐप सेटिंग खोलना चाहते हैं और इसे मैन्युअल रूप से अनुमति देना चाहते हैं?</string>
 
+    <string name="permission_lan_title">LAN एक्सेस की अनुमति दें (शर्तों पर निर्भर)</string>
+    <string name="permission_lan_text">आपके लोकल एरिया नेटवर्क पर मौजूद डिवाइस से कम्युनिकेट करने के लिए Android 17 से ज़रूरी है</string>
+
     <string name="permission_notifications_title">सूचनाओं की अनुमति दें (अत्यधिक अनुशंसित)</string>
     <string name="permission_notifications_text">सूचनाओं का उपयोग जारी बैकअप प्रगति और शेड्यूल किए गए बैकअप परिणामों को प्रदर्शित करने के लिए किया जाता है</string>
-    <string name="permission_notifications_locked_text">Android ने इस अनुमति को लॉक कर दिया है।\n\nक्या आप एप्लिकेशन की सेटिंग खोलना चाहते हैं और इसे मैन्युअल रूप से अनुमति देना चाहते हैं?</string>
 
     <string name="permission_battery_title">बैटरी अनुकूलन अक्षम करें (अनुशंसित)</string>
     <string name="permission_battery_text">एंड्रॉइड बैटरी ऑप्टिमाइज़ेशन बहुत आक्रामक हो सकता है और शेड्यूल किए गए बैकअप में बाधा उत्पन्न कर सकता है</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">बिना सहेजे बाहर निकलने के लिए दोहराएं</string>
     <string name="edit_invalid_alert">कृपया एक मान्य स्रोत और गंतव्य प्रदान करें</string>
     <string name="edit_invalid_credentials_alert">कृपया मान्य क्रेडेंशियल प्रदान करें (उपयोगकर्ता नाम/पासवर्ड)</string>
-    <string name="edit_invalid_hostkey_alert">कृपया सुरक्षा कारणों से अपनी SFTP सर्वर होस्ट कुंजी पुनः प्राप्त करें</string>
+    <string name="edit_invalid_hostkey_alert">सुरक्षा कारणों से कृपया अपनी सर्वर होस्ट की प्राप्त करें</string>
     <string name="edit_remote_alert_message">अपने डिवाइस के माध्यम से दो दूरस्थ सर्वरों के बीच बैकअप करना सबसे कुशल नहीं है।\n\nयदि आप कर सकते हैं, तो उन मशीनों में से किसी एक पर सीधे अपना बैकअप सेटअप करना बेहतर होगा</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">साझा करें:</string>
     <string name="target_common_search">खोज</string>
     <string name="target_common_autofill">स्वतः भरण</string>
+    <string name="target_common_self_signed">सेल्फ़-साइंड सर्टिफ़िकेट की अनुमति दें</string>
+    <string name="target_common_hostkey">होस्ट कुंजी:</string>
+    <string name="target_common_hostkey_hint">सर्वर होस्ट कुंजी प्राप्त करने के लिए टैप करें</string>
+    <string name="target_common_hostkey_load">होस्ट कुंजी प्राप्त की जा रही है …</string>
+    <string name="target_common_hostkey_confirmation">क्या आप इस सर्वर पर भरोसा करते हैं?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">उपयोगकर्ता आईडी:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">एसएसएल/टीएलएस का प्रयोग करें</string>
     <string name="target_ftp_ssl_warning">एंड्रॉइड डेटा कनेक्शन पर टीएलएस सत्र फिर से शुरू विकल्प का उपयोग कर सर्वर के साथ एसएसएल/टीएलएस के उपयोग की अनुमति नहीं देता है</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">होस्ट कुंजी:</string>
-    <string name="target_sftp_hostkey_hint">सर्वर होस्ट कुंजी प्राप्त करने के लिए टैप करें</string>
-    <string name="target_sftp_hostkey_load">होस्ट कुंजी प्राप्त की जा रही है …</string>
-    <string name="target_sftp_hostkey_confirmation">क्या आप इस सर्वर पर भरोसा करते हैं?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">एसएसएल का प्रयोग करें</string>
-    <string name="target_webdav_ssl_warning">स्व-हस्ताक्षरित प्रमाणपत्र आमतौर पर पर्याप्त नहीं होते हैं और सुरक्षा जांच के दौरान उन्हें अस्वीकार किया जा सकता है</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">सुरक्षा</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">प्रमाणित करने में असमर्थ</string>
     <string name="error_server_disconnect">सर्वर से डिस्कनेक्ट करने में असमर्थ</string>
 
-    <string name="error_permission_read">पढ़ने की अनुमति अस्वीकृत</string>
-    <string name="error_permission_write">लिखने की अनुमति अस्वीकृत</string>
+    <string name="error_permission_read">लगता है कि पढ़ने की अनुमति नहीं दी गई है</string>
+    <string name="error_permission_write">लगता है कि लिखने की अनुमति नहीं दी गई है</string>
     <string name="error_permission_unknown">अनुमतियों की जांच करने में असमर्थ</string>
 
     <string name="error_space_low">कम डिस्क स्थान</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">अस्थायी फ़ाइल बनाने में असमर्थ</string>
     <string name="error_nomedia_create">.nomedia फ़ाइल बनाने में असमर्थ</string>
     <string name="error_nomedia_remove">.nomedia फ़ाइल को हटाने में असमर्थ</string>
-    <string name="error_ftp_mlst">फ़ाइल आकार और सटीक टाइमस्टैम्प प्राप्त करने के लिए आवश्यक MLST कमांड, इस सर्वर द्वारा समर्थित नहीं प्रतीत होता है</string>
+    <string name="error_ftp_file_date">फ़ाइल में बदलाव की तारीख़ नहीं मिल सकी</string>
+    <string name="error_ftp_file_size">फ़ाइल का साइज़ नहीं मिल सका</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">सफलतापूर्वक बचाया</string>

@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Permisiuni</string>
     <string name="permission_locked_title">Permisiune blocată</string>
+    <string name="permission_locked_text">Android a blocat această permisiune.\n\nDoriți să deschideți setările aplicației și să o permiteți manual?</string>
 
     <string name="permission_files_title">Permiteți accesul la fișiere (obligatoriu)</string>
     <string name="permission_files_text">Copiile de rezervă sunt imposibile fără acces la fișierele și folderele dvs</string>
     <string name="permission_files_locked_text">Android a blocat această permisiune, făcând aplicația nefuncțională.\n\nVă rugăm să vă asigurați că Mirror nu va colecta niciodată informații despre dumneavoastră sau despre datele dumneavoastră.\n\nDoriți să deschideți setările aplicației și să o autorizați manual?</string>
 
+    <string name="permission_lan_title">Permite accesul la LAN (depinde)</string>
+    <string name="permission_lan_text">Necesar începând cu Android 17 pentru a comunica cu dispozitivele din rețeaua locală</string>
+
     <string name="permission_notifications_title">Permite notificări (foarte recomandat)</string>
     <string name="permission_notifications_text">Notificările sunt folosite pentru a afișa progresul backup-urilor în curs și rezultatul backup-urilor programate</string>
-    <string name="permission_notifications_locked_text">Android a blocat această permisiune.\n\nDoriți să deschideți setările aplicației și să o permiteți manual?</string>
 
     <string name="permission_battery_title">Dezactivați optimizarea bateriei (recomandat)</string>
     <string name="permission_battery_text">Optimizarea bateriei Android poate fi prea agresivă și poate interfera cu backup-urile programate</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Repetați pentru a ieși fără a salva</string>
     <string name="edit_invalid_alert">Vă rugăm să furnizați o sursă și o destinație valide</string>
     <string name="edit_invalid_credentials_alert">Vă rugăm să furnizați detalii de autentificare valide (nume de utilizator/parolă)</string>
-    <string name="edit_invalid_hostkey_alert">Vă rugăm să preluați cheia de gazdă a serverului SFTP din motive de securitate</string>
+    <string name="edit_invalid_hostkey_alert">Vă rugăm să recuperați cheia gazdă a serverului din motive de securitate</string>
     <string name="edit_remote_alert_message">Efectuarea de copii de siguranță între două servere la distanță prin intermediul dispozitivului dvs. nu este cea mai eficientă.\n\nDacă puteți, ar fi mai bine să configurați backup-ul direct pe una dintre acele mașini</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Distribuie:</string>
     <string name="target_common_search">Căutare</string>
     <string name="target_common_autofill">Completare automată</string>
+    <string name="target_common_self_signed">Permiteți certificate autosemnate</string>
+    <string name="target_common_hostkey">Cheie gazdă:</string>
+    <string name="target_common_hostkey_hint">Atingeți pentru a prelua cheia de gazdă a serverului</string>
+    <string name="target_common_hostkey_load">Se preia cheia gazdei…</string>
+    <string name="target_common_hostkey_confirmation">Aveți încredere în acest server?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ID utilizator:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Utilizați SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android nu permite utilizarea SSL/TLS cu serverele care utilizează opțiunea de reluare a sesiunii TLS pe conexiunea de date</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Cheie gazdă:</string>
-    <string name="target_sftp_hostkey_hint">Atingeți pentru a prelua cheia de gazdă a serverului</string>
-    <string name="target_sftp_hostkey_load">Se preia cheia gazdei…</string>
-    <string name="target_sftp_hostkey_confirmation">Aveți încredere în acest server?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Utilizați SSL</string>
-    <string name="target_webdav_ssl_warning">Certificatele autosemnate nu sunt de obicei suficiente și pot fi respinse în timpul verificărilor de securitate</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Securitate</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Nu se poate autentifica</string>
     <string name="error_server_disconnect">Nu se poate deconecta de la server</string>
 
-    <string name="error_permission_read">Permisiune de citire refuzată</string>
-    <string name="error_permission_write">Permisiune de scriere refuzată</string>
+    <string name="error_permission_read">Permisiunile de citire nu par a fi acordate</string>
+    <string name="error_permission_write">Permisiunile de scriere nu par a fi acordate</string>
     <string name="error_permission_unknown">Nu se poate verifica permisiunile</string>
 
     <string name="error_space_low">Spațiu liber redus</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Nu se poate crea fișierul temporar</string>
     <string name="error_nomedia_create">Nu se poate crea fișierul .nomedia</string>
     <string name="error_nomedia_remove">Nu se poate șterge fișierul .nomedia</string>
-    <string name="error_ftp_mlst">Comanda MLST, necesară pentru a prelua dimensiunea fișierului și marcajul temporal precis, nu pare să fie acceptată de acest server</string>
+    <string name="error_ftp_file_date">Nu se poate recupera data modificării fișierului</string>
+    <string name="error_ftp_file_size">Nu se poate recupera dimensiunea fișierului</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Copie de rezervă reușită</string>

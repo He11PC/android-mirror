@@ -14,12 +14,14 @@ package fr.hellpc.mirror.workers.backup
 
 import com.hierynomus.msdtyp.AccessMask
 import com.hierynomus.msdtyp.FileTime
+import com.hierynomus.mserref.NtStatus
 import com.hierynomus.msfscc.FileAttributes
 import com.hierynomus.msfscc.fileinformation.FileBasicInformation
 import com.hierynomus.msfscc.fileinformation.FileBasicInformation.DONT_UPDATE
 import com.hierynomus.mssmb2.SMB2CreateDisposition
 import com.hierynomus.mssmb2.SMB2CreateOptions
 import com.hierynomus.mssmb2.SMB2ShareAccess
+import com.hierynomus.mssmb2.SMBApiException
 import com.hierynomus.protocol.commons.EnumWithValue
 import com.hierynomus.security.bc.BCSecurityProvider
 import com.hierynomus.smbj.SMBClient
@@ -37,15 +39,23 @@ import fr.hellpc.mirror.managers.Manager_Log
 import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.utilities.CriticalException
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
 import java.time.Instant
 import java.util.EnumSet
+import java.util.concurrent.atomic.AtomicLong
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class Backup_SMB(
@@ -106,37 +116,43 @@ class Backup_SMB(
     }
 
     /** Check permissions **/
-    @OptIn(ExperimentalStdlibApi::class)
     private fun checkPermissions(pathRoot: String) {
         val flags = try { share.getFileInformation(pathRoot).accessInformation.accessFlags }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) {
             generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false)
             return
         }
 
         val permissions = try { EnumWithValue.EnumUtils.toEnumSet(flags.toHexString().toLong(), AccessMask::class.java) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) {
             generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false)
             return
         }
 
         if(!permissions.contains(AccessMask.FILE_READ_EA))
-            throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+            generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
         if(!isSource && !permissions.contains(AccessMask.FILE_WRITE_EA))
-            throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+            generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
     }
 
     /** Check available space **/
     override suspend fun checkFreeSpace(size: Long) = withContext(dispatcherIO) {
-        try{
+        try {
             val freeSpace = share.shareInformation.freeSpace
-            val freeSpaceTxt = ": "+freeSpace.sizeToReadable()
-            if(freeSpace < size)
-                throw CriticalException(null, localeContext.getString(R.string.error_space_critical)+freeSpaceTxt, null)
-            else if (freeSpace < size+size*0.25)
-                generateWarning(localeContext.getString(R.string.error_space_low)+freeSpaceTxt, false, true)
+            if(freeSpace <= 0L) {
+                generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false)
+                return@withContext
+            }
+
+            val freeSpaceTxt = ": " + freeSpace.sizeToReadable()
+            when {
+                freeSpace < size -> generateWarning(localeContext.getString(R.string.error_space_critical) + freeSpaceTxt, false, true)
+                freeSpace < (size + (size * 0.25).toLong()) -> generateWarning(localeContext.getString(R.string.error_space_low) + freeSpaceTxt, false, true)
+            }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false) }
     }
 
@@ -160,13 +176,13 @@ class Backup_SMB(
 
         client = SMBClient(config.build())
 
-        val connection = try { client.connect(target.server?.cipherDecrypt()) }
+        val connection = try { client.connect(target.server!!.cipherDecrypt()) }
         catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_server_reach), exp.message) }
 
         val auth = if(target.login.isNullOrBlank())
             AuthenticationContext.anonymous()
         else
-            AuthenticationContext(target.login.cipherDecrypt(), (target.password?.cipherDecrypt()?:"").toCharArray(), target.domain?:"")
+            AuthenticationContext(target.login.cipherDecrypt(), target.password?.cipherDecrypt().orEmpty().toCharArray(), target.domain.orEmpty())
 
         session = try { connection.authenticate(auth) }
         catch(exp: Exception) {
@@ -191,7 +207,9 @@ class Backup_SMB(
         try {
              if(::client.isInitialized)
                 client.close()
-        } catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_server_disconnect), true, false) }
+        }
+        catch(exp: CancellationException) { throw exp }
+        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_server_disconnect), true, false) }
     }
 
 
@@ -206,21 +224,20 @@ class Backup_SMB(
 
     /** Recursive files listing **/
     private suspend fun listDirectory(directory: String, recursive: Boolean, filesOnly: Boolean): MutableList<WorkerBackup_File> = withContext(dispatcherIO) {
-        val systemFiles = arrayOf(".", "..", ".DAV", "._DAV")
-        val resources = try { share.list(directory.toSmbPath(), "*").filterNot { systemFiles.contains(it.fileName) } }
+        val resources = try { share.list(directory.toSmbPath(), "*").filterNot { it.fileName.isVirtualDirectory() || it.fileName.isSystemFile() } }
         catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $directory", exp.message) }
 
         val filePath = directory.toRelativePath(target.path)
         val lstFiles = mutableListOf<WorkerBackup_File>()
 
-        resources.forEach {
-            val fileName = it.fileName
-            val isDirectory = EnumWithValue.EnumUtils.isSet(it.fileAttributes, FileAttributes.FILE_ATTRIBUTE_DIRECTORY)
-            val lastModified = it.lastWriteTime.toInstant()
+        for(resource in resources) {
+            val fileName = resource.fileName
+            val isDirectory = EnumWithValue.EnumUtils.isSet(resource.fileAttributes, FileAttributes.FILE_ATTRIBUTE_DIRECTORY)
+            val lastModified = resource.lastWriteTime.toInstant()
 
             val skip = isDirectory && filesOnly
             if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, lastModified, it.endOfFile, isDirectory))
+                lstFiles.add(WorkerBackup_File(filePath, fileName, lastModified, resource.endOfFile, isDirectory))
 
             val doRecursive = isDirectory && recursive
             if(doRecursive) {
@@ -254,12 +271,22 @@ class Backup_SMB(
     override suspend fun write(reader: InputStream, file: WorkerBackup_File, connexion: Int, canRetry: Boolean, reportProgress: (Long) -> Unit): Boolean = withContext(dispatcherIO) {
         val destPath = getAbsolutePath(listOf(file.path, file.name), target.path, false).toSmbPath()
 
+        val written = AtomicLong(0L)
+        val progressJob = CoroutineScope(Dispatchers.Default).launch {
+            var lastReported = 0L
+            while(isActive) {
+                delay(reportFrequency.milliseconds)
+                val currentWritten = written.get()
+                if(currentWritten > lastReported) {
+                    reportProgress(currentWritten)
+                    lastReported = currentWritten
+                }
+            }
+        }
+
         try {
             Channels.newChannel(reader).use { inputChannel ->
-                var written = 0L
                 val buffer = ByteBuffer.allocate(1024*1024)
-                var lastReportTime = 0L
-
                 share.openFile(
                     destPath,
                     EnumSet.of(AccessMask.GENERIC_WRITE),
@@ -277,14 +304,9 @@ class Backup_SMB(
                     Channels.newChannel(outputStream).use { outputChannel ->
                         while(inputChannel.read(buffer) > 0) {
                             buffer.flip()
-                            written += outputChannel.write(buffer)
+                            val bytesWritten = outputChannel.write(buffer)
+                            written.addAndGet(bytesWritten.toLong())
                             buffer.clear()
-
-                            val currentTime = System.currentTimeMillis()
-                            if(currentTime - lastReportTime >= reportFrequency) {
-                                reportProgress(written)
-                                lastReportTime = currentTime
-                            }
                         }
 
                         reportProgress(file.size)
@@ -296,6 +318,7 @@ class Backup_SMB(
             }
         }
         catch(exp: Exception) { throw CriticalException(null, "${file.name}: "+ localeContext.getString(R.string.error_file_copy), exp.message) }
+        finally { progressJob.cancel() }
 
         val transferResult = verifyTransfer(destPath, file.last_modified, file.size)
 
@@ -350,59 +373,83 @@ class Backup_SMB(
 
     /** Create folders on remote server if necessary **/
     override suspend fun createDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, false).toSmbPath()) }
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, target.path, false).toSmbPath())
+        }
     }
 
     /** Create a folder on remote server if necessary **/
     private fun createDirectory(path: String) {
-        try {
-            require(path.isNotBlank())
+        if(path.trimEnd('/').isBlank())
+            return
 
-            if(!share.folderExists(path)) {
+        try {
+            try { share.mkdir(path) }
+            catch(exp: Exception) {
                 val parent = path.parentDirectory()
-                if(!share.folderExists(parent)) {
-                    require(path != parent)
+                if(path != parent && parent.trimEnd('/').isNotBlank()) {
                     createDirectory(parent)
+                    try {
+                        share.mkdir(path)
+                        return
+                    }
+                    catch(_: Exception) { }
                 }
 
-                share.mkdir(path)
+                // Fail-safe: Check if directory already exists
+                if(share.folderExists(path))
+                    return
+
+                throw exp
             }
         }
         catch(exp: Exception) { throw CriticalException(null, localeContext.getString(R.string.error_folder_create)+": $path", (exp as? CriticalException)?.error ?: exp.message) }
     }
 
     /** Delete a folders list from remote server **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, false).toSmbPath()) }
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, target.path, false).toSmbPath())
+        }
     }
 
     /** Delete a folder from remote server **/
     private fun deleteDirectory(path: String) {
-        if(!share.folderExists(path))
-            return
+        try { share.rmdir(path, false) }
+        catch(exp: CancellationException) { throw exp }
+        catch(_: Exception) {
+            try {
+                // Deletion failed, check content
+                val resources = share.list(path, "*") ?: throw IOException()
+                var entryCount = 0
 
-        try {
-            if(path.isEmptyDirectory())
-                share.rmdir(path, false)
-            else
-                removeDirectory(path)
-        }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
-    }
+                // Delete WebDav system files if they exist
+                for(resource in resources) {
+                    val name = resource.fileName
+                    if (name.isVirtualDirectory()) continue
 
-    /** Remove system files from a folder and delete it if empty (.DAV) **/
-    private fun removeDirectory(path: String) {
-        try {
-            val systemFiles = arrayOf(".", "..")
-            val resources = share.list(path, "*").filterNot { systemFiles.contains(it.fileName) }
-            resources.forEach {
-                if(share.getFileInformation("$path\\${it.fileName}").standardInformation.isDirectory)
-                    removeDirectory("$path\\${it.fileName}")
+                    entryCount++
+                    val resourcePath = if(path.endsWith("/")) "$path$name" else "$path/$name"
+
+                    if(EnumWithValue.EnumUtils.isSet(resource.fileAttributes, FileAttributes.FILE_ATTRIBUTE_DIRECTORY))
+                        deleteDirectory(resourcePath)
+                    else if(name.isSystemFile())
+                        share.rm(resourcePath)
+                    else
+                        throw IOException()
+                }
+
+                // Retry folder deletion after cleanup
+                if(entryCount > 0)
+                    share.rmdir(path, false)
+                else
+                    throw IOException()
             }
-            if (path.isEmptyDirectory() || path.contains(".DAV") || path.contains("._DAV"))
-                share.rmdir(path, true)
+            catch(exp: CancellationException) { throw exp }
+            catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": "+path, false, true) }
         }
-        catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
     }
 
 
@@ -433,16 +480,20 @@ class Backup_SMB(
                 EnumSet.of(SMB2CreateOptions.FILE_NON_DIRECTORY_FILE)
             ).use { it.rename(destFile) }
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
     /** Delete a file from remote server **/
     private fun deleteOrphan(orphanPath: String, orphanName: String) {
         val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, false).toSmbPath()
-        try {
-            if(share.fileExists(orphanFile))
-                share.rm(orphanFile)
+        try { share.rm(orphanFile) }
+        catch(exp: SMBApiException) {
+            val status = exp.status
+            if (status != NtStatus.STATUS_OBJECT_NAME_NOT_FOUND && status != NtStatus.STATUS_OBJECT_PATH_NOT_FOUND)
+                throw exp
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -450,12 +501,6 @@ class Backup_SMB(
     // --------------
     // SMB extensions
     // --------------
-
-    /** Check if a folder on remote server contains data **/
-    private fun String.isEmptyDirectory(): Boolean {
-        return try { share.list(this, "*").none { it.fileName != "." && it.fileName != ".." } }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $this", exp.message) }
-    }
 
     /** Replace / with \ **/
     private fun String.toSmbPath() = this.replace('/', '\\')

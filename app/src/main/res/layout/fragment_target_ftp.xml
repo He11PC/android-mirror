@@ -99,7 +99,7 @@
         android:id="@+id/target_ftp_chk_ssl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
+        android:checked="true"
         android:nextFocusForward="@id/target_ftp_edit_login"
         android:text="@string/target_ftp_ssl" />
 
@@ -141,10 +141,51 @@
         android:hint="@string/target_common_password_hint"
         android:importantForAutofill="no"
         android:inputType="textWebPassword|textNoSuggestions"
-        android:nextFocusForward="@id/target_ftp_edit_path"
+        android:nextFocusForward="@id/target_ftp_chk_self_signed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/target_ftp_barrier"
         app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_login"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/target_ftp_chk_self_signed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:nextFocusForward="@id/target_ftp_edit_hostkey"
+        app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_password"
+        android:text="@string/target_common_self_signed" />
+
+    <TextView
+        android:id="@+id/target_ftp_txt_hostkey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/target_common_hostkey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/target_ftp_edit_hostkey"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/target_ftp_edit_hostkey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="16dp"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:hint="@string/target_common_hostkey_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:gravity="top"
+        android:textColor="@color/gray"
+        android:nextFocusForward="@id/target_ftp_edit_path"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/target_ftp_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/target_ftp_chk_self_signed"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -169,7 +210,7 @@
         android:nextFocusForward="@id/target_ftp_btn_path_search"
         app:layout_constraintEnd_toStartOf="@+id/target_ftp_btn_path_search"
         app:layout_constraintStart_toEndOf="@+id/target_ftp_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_hostkey"
         tools:ignore="TextContrastCheck" />
 
     <ImageButton
@@ -182,10 +223,10 @@
         android:src="@drawable/ic_search"
         app:layout_constraintBottom_toBottomOf="@+id/target_ftp_edit_path"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_password" />
+        app:layout_constraintTop_toBottomOf="@+id/target_ftp_edit_hostkey" />
 
     <TextView
-        android:id="@+id/target_ftp_txt_warning_ssl"
+        android:id="@+id/target_ftp_txt_warning_tls"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="16dp"

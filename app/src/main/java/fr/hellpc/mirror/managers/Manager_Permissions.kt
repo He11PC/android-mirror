@@ -41,6 +41,16 @@ class Manager_Permissions {
         }
     }
 
+    /** Check LAN access (above Android 17) **/
+    /*fun permissionLanIsGranted():Boolean {
+        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
+            val lan = ContextCompat.checkSelfPermission(App.instance, Manifest.permission.ACCESS_LOCAL_NETWORK)
+            lan == PackageManager.PERMISSION_GRANTED
+        }
+        else
+            true
+    }*/
+
     /** Check Notifications (above Tiramisu) **/
     fun permissionNotificationsIsGranted():Boolean {
         val notif = App.instance.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

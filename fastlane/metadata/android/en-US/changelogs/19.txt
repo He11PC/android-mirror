@@ -1,0 +1,7 @@
+- Support for self-signed FTP and WebDAV certificates
+- Improved FTP compatibility and security
+- Improved WebDAV compatibility
+- Faster directory creation/deletion and file deletion
+- More frequent progress bar updates during low-speed transfers
+- Various fixes, optimizations, and improvements
+- Library updates

@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="75dp"
         android:background="@drawable/background_card"
         android:backgroundTint="@color/primary"
         android:elevation="2dp"
@@ -81,7 +81,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/logs_navigation_previous"
             android:minWidth="32dp"
-            android:minHeight="32dp"
+            android:minHeight="40dp"
             app:srcCompat="@drawable/ic_arrow_left"
             app:tint="@android:color/white"
             tools:ignore="TouchTargetSizeCheck" />
@@ -89,7 +89,7 @@
         <SeekBar
             android:id="@+id/logs_navigation_bar"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="40dp"
             android:layout_toStartOf="@+id/logs_navigation_btn_next"
             android:layout_toEndOf="@+id/logs_navigation_btn_previous"
             android:min="1"
@@ -107,7 +107,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/logs_navigation_next"
             android:minWidth="32dp"
-            android:minHeight="32dp"
+            android:minHeight="40dp"
             app:srcCompat="@drawable/ic_arrow_right"
             app:tint="@android:color/white"
             tools:ignore="TouchTargetSizeCheck" />

@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Machtigingen</string>
     <string name="permission_locked_title">Toestemming vergrendeld</string>
+    <string name="permission_locked_text">Android heeft deze machtiging vergrendeld.\n\nWilt u de instellingen van de toepassing openen en deze handmatig toestaan?</string>
 
     <string name="permission_files_title">Toegang tot bestanden toestaan (verplicht)</string>
     <string name="permission_files_text">Back-ups zijn onmogelijk zonder toegang tot uw bestanden en mappen</string>
     <string name="permission_files_locked_text">Android heeft deze toestemming geblokkeerd waardoor de applicatie niet meer functioneert.\n\nZorg ervoor dat Mirror nooit informatie over u of uw gegevens zal verzamelen.\n\nWilt u de instellingen van de toepassing openen en deze handmatig autoriseren?</string>
 
+    <string name="permission_lan_title">LAN-toegang toestaan (afhankelijk)</string>
+    <string name="permission_lan_text">Vereist sinds Android 17 om te communiceren met apparaten op uw lokale netwerk (LAN)</string>
+
     <string name="permission_notifications_title">Meldingen toestaan (sterk aanbevolen)</string>
     <string name="permission_notifications_text">Meldingen worden gebruikt om de voortgang van lopende back-ups en het resultaat van geplande back-ups weer te geven</string>
-    <string name="permission_notifications_locked_text">Android heeft deze machtiging vergrendeld.\n\nWilt u de instellingen van de toepassing openen en deze handmatig toestaan?</string>
 
     <string name="permission_battery_title">Batterij-optimalisatie uitschakelen (aanbevolen)</string>
     <string name="permission_battery_text">De batterij-optimalisatie van Android kan te agressief zijn en de geplande back-ups verstoren</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Herhaal om af te sluiten zonder op te slaan</string>
     <string name="edit_invalid_alert">Geef een geldige bron en bestemming op</string>
     <string name="edit_invalid_credentials_alert">Geef geldige inloggegevens (gebruikersnaam/wachtwoord)</string>
-    <string name="edit_invalid_hostkey_alert">Haal uw SFTP-serverhostsleutel op om veiligheidsredenen</string>
+    <string name="edit_invalid_hostkey_alert">Haal om veiligheidsredenen uw server-hostsleutel op</string>
     <string name="edit_remote_alert_message">Back-ups maken tussen twee externe servers via uw apparaat is niet het meest efficiënt.\n\nAls u kunt, is het beter om uw back-up rechtstreeks op een van die machines in te stellen</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Delen:</string>
     <string name="target_common_search">Zoekopdracht</string>
     <string name="target_common_autofill">Automatisch aanvullen</string>
+    <string name="target_common_self_signed">Zelfondertekende certificaten toestaan</string>
+    <string name="target_common_hostkey">Hostsleutel:</string>
+    <string name="target_common_hostkey_hint">Tik om serverhostsleutel op te halen</string>
+    <string name="target_common_hostkey_load">Hostsleutel ophalen …</string>
+    <string name="target_common_hostkey_confirmation">Vertrouwt u deze server?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Gebruikers-ID:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">SSL/TLS gebruiken</string>
     <string name="target_ftp_ssl_warning">Android staat het gebruik van SSL/TLS niet toe met servers die de TLS-sessiehervattingsoptie op de gegevensverbinding gebruiken</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Hostsleutel:</string>
-    <string name="target_sftp_hostkey_hint">Tik om serverhostsleutel op te halen</string>
-    <string name="target_sftp_hostkey_load">Hostsleutel ophalen …</string>
-    <string name="target_sftp_hostkey_confirmation">Vertrouwt u deze server?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">SSL gebruiken</string>
-    <string name="target_webdav_ssl_warning">Zelfondertekende certificaten zijn meestal niet voldoende en kunnen worden afgewezen tijdens beveiligingscontroles</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Beveiliging</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Kan niet authentiseren</string>
     <string name="error_server_disconnect">Kan de verbinding met de server niet verbreken</string>
 
-    <string name="error_permission_read">Leesrechten geweigerd</string>
-    <string name="error_permission_write">Schrijfrechten geweigerd</string>
+    <string name="error_permission_read">Leesrechten lijken niet te zijn verleend</string>
+    <string name="error_permission_write">Schrijfrechten lijken niet te zijn verleend</string>
     <string name="error_permission_unknown">Kan machtigingen niet controleren</string>
 
     <string name="error_space_low">Weinig vrije ruimte</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Kan tijdelijk bestand niet maken</string>
     <string name="error_nomedia_create">Kan geen .nomedia bestand maken</string>
     <string name="error_nomedia_remove">Kan .nomedia bestand niet verwijderen</string>
-    <string name="error_ftp_mlst">De MLST-opdracht, die nodig is om de bestandsgrootte en het precieze tijdstempel op te halen, wordt blijkbaar niet ondersteund door deze server</string>
+    <string name="error_ftp_file_date">Kan de wijzigingsdatum van het bestand niet ophalen</string>
+    <string name="error_ftp_file_size">Kan de bestandsgrootte niet ophalen</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Succesvolle back-up</string>

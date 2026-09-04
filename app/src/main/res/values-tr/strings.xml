@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">İzinler</string>
     <string name="permission_locked_title">İzin kilitli</string>
+    <string name="permission_locked_text">Android bu izni kilitledi.\n\nUygulamanın ayarlarını açıp manuel olarak izin vermek istiyor musunuz?</string>
 
     <string name="permission_files_title">Dosyalara erişime izin ver (gerekli)</string>
     <string name="permission_files_text">Dosyalarınıza ve klasörlerinize erişmeden yedekleme yapmak mümkün değildir</string>
     <string name="permission_files_locked_text">Android, uygulamayı çalışmaz hale getirmek için bu izni engelledi.\n\nLütfen Mirror\'ın siz veya verileriniz hakkında hiçbir zaman bilgi toplamayacağından emin olun.\n\nUygulama ayarlarını açmak ve manuel olarak izin vermek istiyor musunuz?</string>
 
+    <string name="permission_lan_title">Yerel Ağ (LAN) erişimine izin ver (duruma bağlı)</string>
+    <string name="permission_lan_text">Yerel ağınızdaki cihazlarla iletişim kurmak için Android 17 sürümünden itibaren gereklidir</string>
+
     <string name="permission_notifications_title">Bildirimlere izin ver (kesinlikle önerilir)</string>
     <string name="permission_notifications_text">Bildirimler, devam eden yedekleme ilerlemesini ve planlanmış yedekleme sonuçlarını görüntülemek için kullanılır</string>
-    <string name="permission_notifications_locked_text">Android bu izni kilitledi.\n\nUygulamanın ayarlarını açıp manuel olarak izin vermek istiyor musunuz?</string>
 
     <string name="permission_battery_title">Pil Optimizasyonunu Devre dışı Bırak (önerilir)</string>
     <string name="permission_battery_text">Android pil optimizasyonu çok agresif olabilir ve planlanan yedeklemeleri etkileyebilir</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Kaydetmeden çıkmak için tekrarlayın</string>
     <string name="edit_invalid_alert">Lütfen geçerli bir Kaynak ve Hedef belirtin</string>
     <string name="edit_invalid_credentials_alert">Lütfen geçerli kimlik bilgileri (kullanıcı adı/parola) girin</string>
-    <string name="edit_invalid_hostkey_alert">Lütfen güvenlik nedeniyle SFTP sunucunuzun ana bilgisayar anahtarınızı alın</string>
+    <string name="edit_invalid_hostkey_alert">Güvenlik nedenleriyle lütfen sunucu ana bilgisayar anahtarınızı alın</string>
     <string name="edit_remote_alert_message">Cihazınız aracılığıyla iki uzak sunucu arasında yedekleme yapmak en verimli yöntem değildir.\n\nYapabiliyorsanız, yedeklemenizi doğrudan bu makinelerden birine kurmanız daha iyi olur</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Paylaşım:</string>
     <string name="target_common_search">Aramak</string>
     <string name="target_common_autofill">Otomatik Doldurma</string>
+    <string name="target_common_self_signed">Kendinden imzalı sertifikalara izin ver</string>
+    <string name="target_common_hostkey">Ana bilgisayar anahtarı:</string>
+    <string name="target_common_hostkey_hint">Sunucu ana bilgisayar anahtarını almak için dokunun</string>
+    <string name="target_common_hostkey_load">Ana bilgisayar anahtarı alınıyor …</string>
+    <string name="target_common_hostkey_confirmation">Bu sunucuya güveniyor musunuz?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Kullanıcı Kimliği:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">SSL/TLS Kullan</string>
     <string name="target_ftp_ssl_warning">Android, veri bağlantısında TLS oturumu sürdürme seçeneğini kullanan sunucularla SSL/TLS kullanımına izin vermez</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Ana bilgisayar anahtarı:</string>
-    <string name="target_sftp_hostkey_hint">Sunucu ana bilgisayar anahtarını almak için dokunun</string>
-    <string name="target_sftp_hostkey_load">Ana bilgisayar anahtarı alınıyor …</string>
-    <string name="target_sftp_hostkey_confirmation">Bu sunucuya güveniyor musunuz?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">SSL Kullan</string>
-    <string name="target_webdav_ssl_warning">Kendi kendine imzalanmış sertifikalar genellikle yeterli değildir ve güvenlik kontrolleri sırasında reddedilebilir</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Güvenlik</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Kimlik doğrulanamıyor</string>
     <string name="error_server_disconnect">Bağlantı kesilemiyor sunucudan</string>
 
-    <string name="error_permission_read">Okuma izni reddedildi</string>
-    <string name="error_permission_write">Yazma izni Reddedildi</string>
+    <string name="error_permission_read">Okuma izinleri verilmemiş gibi görünüyor</string>
+    <string name="error_permission_write">Yazma izinleri verilmemiş gibi görünüyor</string>
     <string name="error_permission_unknown">İzinler doğrulanamıyor</string>
 
     <string name="error_space_low">Az boş alan</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Geçici dosya oluşturulamıyor</string>
     <string name="error_nomedia_create">.nomedia dosyası oluşturulamıyor</string>
     <string name="error_nomedia_remove">.nomedia dosyası silinemiyor</string>
-    <string name="error_ftp_mlst">Dosya boyutunu ve kesin zaman damgasını almak için gereken MLST komutu bu sunucu tarafından desteklenmiyor gibi görünüyor</string>
+    <string name="error_ftp_file_date">Dosya değiştirme tarihi alınamadı</string>
+    <string name="error_ftp_file_size">Dosya boyutu alınamadı</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Başarıyla kaydedildi</string>

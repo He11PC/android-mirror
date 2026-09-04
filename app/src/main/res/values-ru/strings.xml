@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Разрешения</string>
     <string name="permission_locked_title">Разрешение заблокировано</string>
+    <string name="permission_locked_text">Android заблокировал это разрешение.\n\nВы хотите открыть настройки приложения и разрешить его вручную?</string>
 
     <string name="permission_files_title">Разрешить доступ к файлам (обязательно)</string>
     <string name="permission_files_text">Резервное копирование невозможно без доступа к вашим файлам и папкам</string>
     <string name="permission_files_locked_text">Android заблокировал это разрешение, сделав приложение нефункциональным.\n\nПожалуйста, убедитесь, что Mirror никогда не будет собирать информацию о вас или ваших данных.\n\nВы хотите открыть настройки приложения и разрешить его вручную?</string>
 
+    <string name="permission_lan_title">Разрешить доступ к локальной сети (зависит от условий)</string>
+    <string name="permission_lan_text">Требуется начиная с Android 17 для взаимодействия с устройствами в вашей локальной сети</string>
+
     <string name="permission_notifications_title">Разрешить уведомления (настоятельно рекомендуется)</string>
     <string name="permission_notifications_text">Уведомления используются для отображения хода текущего резервного копирования и результатов запланированного резервного копирования</string>
-    <string name="permission_notifications_locked_text">Android заблокировал это разрешение.\n\nВы хотите открыть настройки приложения и разрешить его вручную?</string>
 
     <string name="permission_battery_title">Отключить оптимизацию батареи (рекомендуется)</string>
     <string name="permission_battery_text">Оптимизация батареи Android может быть слишком агрессивной и мешать запланированному резервному копированию</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Повторите, чтобы выйти без сохранения</string>
     <string name="edit_invalid_alert">Пожалуйста, укажите действительные Источник и Пункт назначения</string>
     <string name="edit_invalid_credentials_alert">Пожалуйста, укажите действительные данные для входа в систему (имя пользователя/пароль)</string>
-    <string name="edit_invalid_hostkey_alert">Пожалуйста, восстановите ключ хоста вашего сервера SFTP в целях безопасности</string>
+    <string name="edit_invalid_hostkey_alert">Пожалуйста, получите ключ хоста вашего сервера в целях безопасности</string>
     <string name="edit_remote_alert_message">Выполнение резервных копий между двумя удаленными серверами через ваше устройство не является самым эффективным.\n\nЕсли вы можете, было бы лучше настроить резервную копию непосредственно на одной из этих машин</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Поделиться:</string>
     <string name="target_common_search">Поиск</string>
     <string name="target_common_autofill">Автозаполнение</string>
+    <string name="target_common_self_signed">Разрешить самоподписанные сертификаты</string>
+    <string name="target_common_hostkey">Ключ хоста:</string>
+    <string name="target_common_hostkey_hint">Нажмите, чтобы получить ключ хоста сервера</string>
+    <string name="target_common_hostkey_load">Получение ключа хоста…</string>
+    <string name="target_common_hostkey_confirmation">Вы доверяете этому серверу?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ID пользователя:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Используйте SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android не позволяет использовать SSL/TLS с серверами, использующими опцию возобновления сеанса TLS при соединении для передачи данных</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Ключ хоста:</string>
-    <string name="target_sftp_hostkey_hint">Нажмите, чтобы получить ключ хоста сервера</string>
-    <string name="target_sftp_hostkey_load">Получение ключа хоста…</string>
-    <string name="target_sftp_hostkey_confirmation">Вы доверяете этому серверу?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Использовать SSL</string>
-    <string name="target_webdav_ssl_warning">Самоподписанные сертификаты обычно недостаточны и могут быть отклонены во время проверок безопасности</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Безопасность</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Невозможно пройти аутентификацию</string>
     <string name="error_server_disconnect">Невозможно отключиться от сервера</string>
 
-    <string name="error_permission_read">Отказано в разрешении на чтение</string>
-    <string name="error_permission_write">Отказано в разрешении на запись</string>
+    <string name="error_permission_read">Похоже, права на чтение не предоставлены</string>
+    <string name="error_permission_write">Похоже, права на запись не предоставлены</string>
     <string name="error_permission_unknown">Невозможно проверить разрешения</string>
 
     <string name="error_space_low">Низкий клиренс</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Невозможно создать временный файл</string>
     <string name="error_nomedia_create">Невозможно создать файл .nomedia</string>
     <string name="error_nomedia_remove">Невозможно удалить файл .nomedia</string>
-    <string name="error_ftp_mlst">Команда MLST, необходимая для получения размера файла и точной временной метки, по-видимому, не поддерживается этим сервером</string>
+    <string name="error_ftp_file_date">Не удалось получить дату изменения файла</string>
+    <string name="error_ftp_file_size">Не удалось получить размер файла</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Успешное резервное копирование</string>

@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">权限</string>
     <string name="permission_locked_title">权限锁定</string>
+    <string name="permission_locked_text">安卓锁定了这个权限。\n\n您要打开应用程序的设置并手动允许吗？</string>
 
     <string name="permission_files_title">允许对文件的访问（必填）</string>
     <string name="permission_files_text">如果不能访问你的文件和文件夹，就不可能进行备份</string>
     <string name="permission_files_locked_text">安卓系统已经阻止了这一权限，使该应用程序无法运行。\n\n请确保Mirror永远不会收集关于你或你的数据的信息。\n\n你想打开应用程序的设置并手动授权吗？</string>
 
+    <string name="permission_lan_title">允许局域网访问（视情况而定）</string>
+    <string name="permission_lan_text">Android 17 及更高版本需要此权限，以便与局域网内的设备进行通信</string>
+
     <string name="permission_notifications_title">允许通知（强烈推荐）</string>
     <string name="permission_notifications_text">通知用于显示正在进行的备份进度和计划的备份结果</string>
-    <string name="permission_notifications_locked_text">安卓锁定了这个权限。\n\n您要打开应用程序的设置并手动允许吗？</string>
 
     <string name="permission_battery_title">禁用电池优化（建议）</string>
     <string name="permission_battery_text">Android 电池优化可能过于激进并会干扰计划的备份</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">重复，不保存就退出</string>
     <string name="edit_invalid_alert">请提供一个有效的来源和目的地</string>
     <string name="edit_invalid_credentials_alert">请提供有效的登录信息（用户名/密码）</string>
-    <string name="edit_invalid_hostkey_alert">出于安全原因，请检索您的 SFTP 服务器主机密钥</string>
+    <string name="edit_invalid_hostkey_alert">出于安全原因，请获取您的服务器主机密钥</string>
     <string name="edit_remote_alert_message">通过您的设备在两个远程服务器之间进行备份并不是最有效的。\n\n如果可以，最好直接在其中一台机器上设置备份</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">共享：</string>
     <string name="target_common_search">搜索</string>
     <string name="target_common_autofill">自动填充</string>
+    <string name="target_common_self_signed">允许自签名证书</string>
+    <string name="target_common_hostkey">主机密钥：</string>
+    <string name="target_common_hostkey_hint">点击检索服务器主机密钥</string>
+    <string name="target_common_hostkey_load">正在检索主机密钥…</string>
+    <string name="target_common_hostkey_confirmation">您信任此服务器吗？</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">用户 ID：</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">使用SSL/TLS</string>
     <string name="target_ftp_ssl_warning">安卓不允许在数据连接上使用TLS会话恢复选项的服务器使用SSL/TLS</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">主机密钥：</string>
-    <string name="target_sftp_hostkey_hint">点击检索服务器主机密钥</string>
-    <string name="target_sftp_hostkey_load">正在检索主机密钥…</string>
-    <string name="target_sftp_hostkey_confirmation">您信任此服务器吗？</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">使用SSL</string>
-    <string name="target_webdav_ssl_warning">自签名证书通常不够用，可能会在安全检查期间被拒绝</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">安全问题</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">无法认证</string>
     <string name="error_server_disconnect">无法与服务器断开连接</string>
 
-    <string name="error_permission_read">拒绝授权阅读</string>
-    <string name="error_permission_write">拒绝写入许可</string>
+    <string name="error_permission_read">似乎未授予读取权限</string>
+    <string name="error_permission_write">似乎未授予写入权限</string>
     <string name="error_permission_unknown">无法检查权限</string>
 
     <string name="error_space_low">自由空间小</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">无法创建临时文件</string>
     <string name="error_nomedia_create">无法创建.nomedia文件</string>
     <string name="error_nomedia_remove">无法删除.nomedia文件</string>
-    <string name="error_ftp_mlst">该服务器似乎不支持检索文件大小和精确时间戳所需的 MLST 命令</string>
+    <string name="error_ftp_file_date">无法获取文件修改日期</string>
+    <string name="error_ftp_file_size">无法获取文件大小</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">成功备份</string>

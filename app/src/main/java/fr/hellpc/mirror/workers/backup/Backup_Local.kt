@@ -23,6 +23,7 @@ import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.utilities.CriticalException
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -36,6 +37,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.nio.file.attribute.FileTime
+import java.nio.file.FileAlreadyExistsException
 import java.time.Instant
 import kotlin.io.path.fileSize
 import kotlin.io.path.getLastModifiedTime
@@ -92,9 +94,9 @@ class Backup_Local(
             }
 
             if(!Files.isReadable(rootPathNio))
-                throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_read), null)
+                generateWarning(localeContext.getString(R.string.error_permission_read), true, false)
             if(!isSource && !Files.isWritable(rootPathNio))
-                throw CriticalException(originTxt, localeContext.getString(R.string.error_permission_write), null)
+                generateWarning(localeContext.getString(R.string.error_permission_write), true, false)
         }
         catch(_: SecurityException) { generateWarning(localeContext.getString(R.string.error_permission_unknown), true, false) }
         catch(exp: CriticalException) { throw exp }
@@ -106,12 +108,12 @@ class Backup_Local(
         try {
             val freeSpace = StatFs(target.path).availableBytes
             val freeSpaceTxt = ": "+freeSpace.sizeToReadable()
-            if(freeSpace < size)
-                throw CriticalException(null, localeContext.getString(R.string.error_space_critical)+freeSpaceTxt, null)
-            else if (freeSpace < size+size*0.25)
-                generateWarning(localeContext.getString(R.string.error_space_low)+freeSpaceTxt, false, true)
+            when {
+                freeSpace < size -> generateWarning(localeContext.getString(R.string.error_space_critical) + freeSpaceTxt, false, true)
+                freeSpace < (size + (size * 0.25).toLong()) -> generateWarning(localeContext.getString(R.string.error_space_low) + freeSpaceTxt, false, true)
+            }
         }
-        catch(exp: CriticalException) { throw exp }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_space_unverifiable), false, false) }
     }
 
@@ -166,17 +168,18 @@ class Backup_Local(
         try {
             Channels.newChannel(reader).use { inputChannel ->
                 val buffer = ByteBuffer.allocate(16*1024)
+                var written = 0L
                 var lastReportTime = 0L
 
                 FileOutputStream(destPath.toFile()).channel.use { outputChannel ->
                     while(inputChannel.read(buffer) > 0) {
                         buffer.flip()
-                        outputChannel.write(buffer)
+                        written += outputChannel.write(buffer)
                         buffer.clear()
 
                         val currentTime = System.currentTimeMillis()
                         if(currentTime - lastReportTime >= reportFrequency) {
-                            reportProgress(outputChannel.position())
+                            reportProgress(written)
                             lastReportTime = currentTime
                         }
                     }
@@ -250,7 +253,10 @@ class Backup_Local(
 
     /** Create folders on remote server if necessary **/
     override suspend fun createDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
-        folderList.filter { it.isNotBlank() }.forEach { createDirectory(getAbsolutePath(listOf(it), target.path, false)) }
+        folderList.forEach {
+            if(it.isNotBlank())
+                createDirectory(getAbsolutePath(it, target.path, false))
+        }
     }
 
     /** Create a folder on local memory if necessary **/
@@ -260,13 +266,17 @@ class Backup_Local(
     }
 
     /** Delete a folders list from local memory **/
-    override suspend fun deleteDirectories(foldersList: List<String>, connexion: Int) = withContext(dispatcherIO) {
-        foldersList.filter { it.isNotBlank() }.forEach { deleteDirectory(getAbsolutePath(listOf(it), target.path, false)) }
+    override suspend fun deleteDirectories(folderList: List<String>, connexion: Int) = withContext(dispatcherIO) {
+        folderList.forEach {
+            if(it.isNotBlank())
+                deleteDirectory(getAbsolutePath(it, target.path, false))
+        }
     }
 
     /** Delete a folder from local memory **/
     private fun deleteDirectory(path: String) {
         try { Files.deleteIfExists(path.toLocalPath()) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_folder_delete)+": $path", false, true) }
     }
 
@@ -289,6 +299,7 @@ class Backup_Local(
         val destFile = getAbsolutePath(listOf(orphansFolder, orphanPath, orphanName), target.path, false).toLocalPath()
 
         try { Files.move(srcFile, destFile, StandardCopyOption.REPLACE_EXISTING) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_move), false, true) }
     }
 
@@ -296,6 +307,7 @@ class Backup_Local(
     private fun deleteOrphan(orphanPath: String, orphanName: String) {
         val orphanFile = getAbsolutePath(listOf(orphanPath, orphanName), target.path, false).toLocalPath()
         try { Files.deleteIfExists(orphanFile) }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning("$orphanName: "+localeContext.getString(R.string.error_file_delete), false, true) }
     }
 
@@ -309,23 +321,24 @@ class Backup_Local(
 
     /** Create a .nomedia file to hide content from gallery **/
     private fun createNomedia() {
-        val nomediaPath = getAbsolutePath(listOf(".nomedia"), target.path, false).toLocalPath()
+        val nomediaPath = getAbsolutePath(".nomedia", target.path, false).toLocalPath()
         try {
-            if (Files.notExists(nomediaPath)) {
-                Files.createFile(nomediaPath)
-                log.append(false, localeContext.getString(R.string.log_nomedia_created))
-            }
+            Files.createFile(nomediaPath)
+            log.append(false, localeContext.getString(R.string.log_nomedia_created))
         }
+        catch (_: FileAlreadyExistsException) { }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_nomedia_create), false, true) }
     }
 
     /** Remove .nomedia file **/
     private fun removeNomedia() {
-        val nomediaPath = getAbsolutePath(listOf(".nomedia"), target.path, false).toLocalPath()
+        val nomediaPath = getAbsolutePath(".nomedia", target.path, false).toLocalPath()
         try {
             if (Files.deleteIfExists(nomediaPath))
                 log.append(false, localeContext.getString(R.string.log_nomedia_removed))
         }
+        catch(exp: CancellationException) { throw exp }
         catch(_: Exception) { generateWarning(localeContext.getString(R.string.error_nomedia_remove), false, true) }
     }
 

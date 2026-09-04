@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Behörigheter</string>
     <string name="permission_locked_title">Tillstånd låst</string>
+    <string name="permission_locked_text">Android låste denna behörighet.\n\nVill du öppna programmets inställningar och tillåta det manuellt?</string>
 
     <string name="permission_files_title">Tillåt åtkomst till filer (krävs)</string>
     <string name="permission_files_text">Säkerhetskopieringar är omöjliga utan tillgång till dina filer och mappar</string>
     <string name="permission_files_locked_text">Android har blockerat denna behörighet, vilket gör att programmet inte fungerar.\n\nMirror kommer aldrig att samla in information om dig eller dina uppgifter.\n\nVill du öppna programmets inställningar och godkänna det manuellt?</string>
 
+    <string name="permission_lan_title">Tillåt LAN-åtkomst (beroende)</string>
+    <string name="permission_lan_text">Krävs sedan Android 17 för att kommunicera med enheter i ditt lokala nätverk</string>
+
     <string name="permission_notifications_title">Tillåt aviseringar (rekommenderas starkt)</string>
     <string name="permission_notifications_text">Meddelanden används för att visa pågående säkerhetskopieringsprogress och schemalagda säkerhetskopieringsresultat</string>
-    <string name="permission_notifications_locked_text">Android låste denna behörighet.\n\nVill du öppna programmets inställningar och tillåta det manuellt?</string>
 
     <string name="permission_battery_title">Inaktivera batterioptimering (rekommenderas)</string>
     <string name="permission_battery_text">Android-batterioptimering kan vara för aggressiv och störa schemalagda säkerhetskopieringar</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Upprepa för att avsluta utan att spara</string>
     <string name="edit_invalid_alert">Ange en giltig källa och en giltig destination</string>
     <string name="edit_invalid_credentials_alert">Ange giltiga inloggningsuppgifter (användarnamn/lösenord)</string>
-    <string name="edit_invalid_hostkey_alert">Hämta din SFTP-servervärdnyckel av säkerhetsskäl</string>
+    <string name="edit_invalid_hostkey_alert">Hämta din servernyckel av säkerhetsskäl</string>
     <string name="edit_remote_alert_message">Att göra säkerhetskopior mellan två fjärrservrar via din enhet är inte det mest effektiva.\n\nOm du kan, skulle det vara bättre att ställa in din säkerhetskopia direkt på en av dessa datorer</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Dela:</string>
     <string name="target_common_search">Sök</string>
     <string name="target_common_autofill">Autofyll</string>
+    <string name="target_common_self_signed">Tillåt självsignerade certifikat</string>
+    <string name="target_common_hostkey">Värdnyckel:</string>
+    <string name="target_common_hostkey_hint">Knacka för att hämta serverns värdnyckel</string>
+    <string name="target_common_hostkey_load">Hämtar värdnyckel …</string>
+    <string name="target_common_hostkey_confirmation">Litar du på den här servern?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Användar-ID:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Använd SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android tillåter inte användning av SSL/TLS med servrar som använder alternativet TLS-sessionsåterupptagande på dataanslutningen</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Värdnyckel:</string>
-    <string name="target_sftp_hostkey_hint">Knacka för att hämta serverns värdnyckel</string>
-    <string name="target_sftp_hostkey_load">Hämtar värdnyckel …</string>
-    <string name="target_sftp_hostkey_confirmation">Litar du på den här servern?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Använd SSL</string>
-    <string name="target_webdav_ssl_warning">Självsignerade certifikat är vanligtvis inte tillräckliga och kan avvisas under säkerhetskontroller</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Säkerhet</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Det går inte att autentisera</string>
     <string name="error_server_disconnect">Kan inte koppla bort från servern</string>
 
-    <string name="error_permission_read">Läsbehörighet nekad</string>
-    <string name="error_permission_write">Skrivbehörighet nekad</string>
+    <string name="error_permission_read">Läsbehörigheter verkar inte vara beviljade</string>
+    <string name="error_permission_write">Skrivbehörigheter verkar inte vara beviljade</string>
     <string name="error_permission_unknown">Det går inte att kontrollera behörigheter</string>
 
     <string name="error_space_low">Lågt ledigt utrymme</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Det gick inte att skapa en tillfällig fil</string>
     <string name="error_nomedia_create">Det går inte att skapa .nomedia-filen</string>
     <string name="error_nomedia_remove">Det går inte att ta bort .nomedia-filen</string>
-    <string name="error_ftp_mlst">MLST-kommandot, som krävs för att hämta filstorleken och den exakta tidsstämpeln, verkar inte stödjas av denna server</string>
+    <string name="error_ftp_file_date">Kunde inte hämta filens ändringsdatum</string>
+    <string name="error_ftp_file_size">Kunde inte hämta filstorleken</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Framgångsrik säkerhetskopiering</string>

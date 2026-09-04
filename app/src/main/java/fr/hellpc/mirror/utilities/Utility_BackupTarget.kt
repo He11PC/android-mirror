@@ -132,7 +132,7 @@ class Utility_BackupTarget {
         return when(protocol) {
             "LOCAL" -> path.replace("""(/storage/emulated/0/)|(/storage/[A-Z-\d]*/)""".toRegex(), "")
             "SMB" -> if(!share.isNullOrBlank()) "$share/$path" else path
-            "NFS" -> if(!share.isNullOrBlank()) share.substringAfterLast('/') + "/$path" else path
+            "NFS", "WDAV" -> if(!share.isNullOrBlank()) share.substringAfterLast('/') + "/$path" else path
             else -> path
         }
     }

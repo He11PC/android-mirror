@@ -74,6 +74,19 @@ class Activity_Permissions : AppCompatActivity() {
         manageSwitchFilesAccess()
     }
 
+    // Lan
+    /*private val requestLanPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted: Boolean ->
+        if(!isGranted && !shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_LOCAL_NETWORK))
+            permissionLanPermanentlyDeniedMessage()
+        else
+            manageSwitchLan()
+    }
+
+    // Notifications LAN permanently denied
+    private val forceLanPermission = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        manageSwitchLan()
+    }*/
+
     // Notifications
     private val requestNotificationsPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted: Boolean ->
         if(!isGranted && !shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS))
@@ -83,12 +96,12 @@ class Activity_Permissions : AppCompatActivity() {
     }
 
     // Notifications permission permanently denied
-    private val forceNotificationsPermissions = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val forceNotificationsPermission = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         manageSwitchNotifications()
     }
 
-    // Battery optimisations
-    private val requestBatteryOptimisations = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    // Battery optimizations
+    private val requestBatteryOptimizations = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         manageSwitchBattery()
     }
 
@@ -124,6 +137,7 @@ class Activity_Permissions : AppCompatActivity() {
     private fun loadUI() {
         setButtonsVisibility()
         setSwitchFilesAccess()
+        //setSwitchLan()
         setSwitchNotifications()
         setSwitchBattery()
         setSwitchPermanent()
@@ -198,9 +212,46 @@ class Activity_Permissions : AppCompatActivity() {
 
     // -------------------------------------
 
+    /** Set LAN switch **/
+    /*private fun setSwitchLan() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN)
+            binding.permissionsLanLyt.visibility = View.GONE
+        else {
+            // Manage switch
+            if (permissions.permissionLanIsGranted()) {
+                binding.permissionsLanSwitch.isChecked = true
+                binding.permissionsLanSwitch.isClickable = false
+            } else binding.permissionsLanSwitch.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    requestLanPermission.launch(Manifest.permission.ACCESS_LOCAL_NETWORK)
+            }
+        }
+    }
+
+    /** Message displayed when the user refuse permission twice **/
+    private fun permissionLanPermanentlyDeniedMessage() {
+        AlertDialog.Builder(this, R.style.AppTheme_AlertDialogStyle).apply {
+            this.setTitle(getString(R.string.permission_locked_title))
+            this.setMessage(getString(R.string.permission_locked_text))
+            this.setPositiveButton(android.R.string.ok) { _, _ -> forceLanPermission.launch(Intent(ACTION_APPLICATION_DETAILS_SETTINGS, "package:$pkgName".toUri())) }
+            this.setNegativeButton(android.R.string.cancel) { _, _ -> manageSwitchLan() }
+            this.show()
+        }
+    }
+
+    /** Manage Lan switch **/
+    private fun manageSwitchLan() {
+        if(permissions.permissionLanIsGranted())
+            binding.permissionsLanSwitch.isClickable = false
+        else
+            binding.permissionsLanSwitch.isChecked = false
+    }*/
+
+    // -------------------------------------
+
     /** Set notifications switch **/
     private fun setSwitchNotifications() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
             binding.permissionsNotificationsLyt.visibility = View.GONE
         else {
             // Manage switch
@@ -218,8 +269,8 @@ class Activity_Permissions : AppCompatActivity() {
     private fun permissionNotificationsPermanentlyDeniedMessage() {
         AlertDialog.Builder(this, R.style.AppTheme_AlertDialogStyle).apply {
             this.setTitle(getString(R.string.permission_locked_title))
-            this.setMessage(getString(R.string.permission_notifications_locked_text))
-            this.setPositiveButton(android.R.string.ok) { _, _ -> forceNotificationsPermissions.launch(Intent(ACTION_APPLICATION_DETAILS_SETTINGS, "package:$pkgName".toUri())) }
+            this.setMessage(getString(R.string.permission_locked_text))
+            this.setPositiveButton(android.R.string.ok) { _, _ -> forceNotificationsPermission.launch(Intent(ACTION_APPLICATION_DETAILS_SETTINGS, "package:$pkgName".toUri())) }
             this.setNegativeButton(android.R.string.cancel) { _, _ -> manageSwitchNotifications() }
             this.show()
         }
@@ -244,7 +295,7 @@ class Activity_Permissions : AppCompatActivity() {
         }
         else binding.permissionsBatterySwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
-                requestBatteryOptimisations.launch(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, "package:$pkgName".toUri()))
+                requestBatteryOptimizations.launch(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, "package:$pkgName".toUri()))
         }
     }
 

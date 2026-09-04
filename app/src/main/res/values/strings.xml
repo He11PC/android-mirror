@@ -63,14 +63,17 @@
     <!--Activity - Permissions-->
     <string name="permission_title">Permissions</string>
     <string name="permission_locked_title">Permission locked</string>
+    <string name="permission_locked_text">Android locked this permission.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
 
     <string name="permission_files_title">Allow files access (required)</string>
     <string name="permission_files_text">Backups are impossible without having access to your files and folders</string>
-    <string name="permission_files_locked_text">Android locked this permission making the app is non functional.\n\nPlease ensure that Mirror will never collect any information about you or your data.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
+    <string name="permission_files_locked_text">Android locked this permission making the app is non-functional.\n\nPlease ensure that Mirror will never collect any information about you or your data.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
+
+    <string name="permission_lan_title">Allow LAN access (depends)</string>
+    <string name="permission_lan_text">Required since Android 17 to communicate with devices on your Local Area Network</string>
 
     <string name="permission_notifications_title">Allow notifications (highly recommended)</string>
     <string name="permission_notifications_text">Notifications are used to display ongoing backups progression and scheduled backups result</string>
-    <string name="permission_notifications_locked_text">Android locked this permission.\n\nDo you want to open the application\'s settings and allow it manually ?</string>
 
     <string name="permission_battery_title">Disable battery optimization (recommended)</string>
     <string name="permission_battery_text">Android battery optimization can be too aggressive and interfere with scheduled backups</string>
@@ -126,8 +129,8 @@
     <string name="edit_exit_alert">Repeat to exit without saving</string>
     <string name="edit_invalid_alert">Please give valid source and destination</string>
     <string name="edit_invalid_credentials_alert">Please give valid credentials (login/password)</string>
-    <string name="edit_invalid_hostkey_alert">Please retrieve your SFTP server host key for security reasons</string>
-    <string name="edit_remote_alert_message">Doing backups between two remote servers through your device is not the most efficient.\n\nIf you can, it would be better to setup your backup directly on one of those machines</string>
+    <string name="edit_invalid_hostkey_alert">Please retrieve your server host key for security reasons</string>
+    <string name="edit_remote_alert_message">Doing backups between two remote servers through your device is not the most efficient.\n\nIf you can, it would be better to set up your backup directly on one of those machines</string>
 
     <!-- Fragment - Target-->
     <string name="target_tab_error">Unable to detect current tab</string>
@@ -154,6 +157,11 @@
     <string name="target_common_share">Share:</string>
     <string name="target_common_search">Search</string>
     <string name="target_common_autofill">Autofill</string>
+    <string name="target_common_self_signed">Allow self-signed certificates</string>
+    <string name="target_common_hostkey">Host key:</string>
+    <string name="target_common_hostkey_hint">Tap to retrieve server host key</string>
+    <string name="target_common_hostkey_load">Retrieving host key …</string>
+    <string name="target_common_hostkey_confirmation">Do you trust this server ?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">User ID:</string>
@@ -176,16 +184,11 @@
 
     <!--Fragment - Target SFTP-->
     <string name="target_sftp_port_hint" translatable="false">22</string>
-    <string name="target_sftp_hostkey">Host key:</string>
-    <string name="target_sftp_hostkey_hint">Tap to retrieve server host key</string>
-    <string name="target_sftp_hostkey_load">Retrieving host key …</string>
-    <string name="target_sftp_hostkey_confirmation">Do you trust this server ?</string>
 
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_port_hint" translatable="false">80</string>
     <string name="target_webdav_port_ssl_hint" translatable="false">443</string>
     <string name="target_webdav_ssl">Use SSL</string>
-    <string name="target_webdav_ssl_warning">Self-signed certificates are usually not sufficient and may be rejected during security checks</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Security</string>
@@ -292,8 +295,8 @@
     <string name="error_server_login">Unable to login</string>
     <string name="error_server_disconnect">Unable to disconnect from this server</string>
 
-    <string name="error_permission_read">Read permissions not allowed</string>
-    <string name="error_permission_write">Write permissions not allowed</string>
+    <string name="error_permission_read">Read permissions do not appear to be granted</string>
+    <string name="error_permission_write">Write permissions do not appear to be granted</string>
     <string name="error_permission_unknown">Unable to check permissions</string>
 
     <string name="error_space_low">Free space is low</string>
@@ -344,7 +347,8 @@
     <string name="error_file_tmp">Unable to create temporary file</string>
     <string name="error_nomedia_create">Unable to create .nomedia file</string>
     <string name="error_nomedia_remove">Unable to remove .nomedia file</string>
-    <string name="error_ftp_mlst">The MLST command, required to retrieve the file size and precise timestamp, does not appear to be supported by this server</string>
+    <string name="error_ftp_file_date">Unable to retrieve file modification date</string>
+    <string name="error_ftp_file_size">Unable to retrieve file size</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Backup success</string>

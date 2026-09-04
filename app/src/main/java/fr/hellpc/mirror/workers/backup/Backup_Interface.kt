@@ -60,7 +60,7 @@ sealed interface Backup_Interface {
     /** Create folders if necessary **/
     suspend fun createDirectories(folderList: List<String>, connexion: Int)
     /** Delete a folders list **/
-    suspend fun deleteDirectories(foldersList: List<String>, connexion: Int)
+    suspend fun deleteDirectories(folderList: List<String>, connexion: Int)
 
     /** Manage orphan file **/
     suspend fun manageOrphan(orphanFile: WorkerBackup_File, action: Int, orphansFolder: String?, connexion: Int)
@@ -81,21 +81,46 @@ sealed interface Backup_Interface {
     /** Check if warning has been triggered **/
     fun hasWarning(): Boolean
 
+    /** Check if a directory is a virtual directory to be ignored **/
+    fun String.isVirtualDirectory() = this == "." || this == ".."
+
+    /** Check if a file is a WebDAV system file **/
+    fun String.isSystemFile() = this.endsWith(".DAV") || this.startsWith("._")
+
 
     // ----------
     // Extensions
     // ----------
 
     /** Build an absolute path (with root folder) from a list (order matters) **/
-    fun getAbsolutePath(folders: List<String>?, rootPath: String, addPrefix: Boolean): String {
+    fun getAbsolutePath(folders: List<String>, rootPath: String, addPrefix: Boolean): String {
         val path = mutableListOf<String>()
 
         if(rootPath.isNotBlank())
             path.add(rootPath)
 
-        folders?.forEach { folder ->
-            folder.trim('/').takeIf { it.isNotBlank() }?.let { path.add(it) }
+        folders.forEach { folder ->
+            val trimmedFolder = folder.trim('/')
+            if(trimmedFolder.isNotEmpty())
+                path.add(trimmedFolder)
         }
+
+        return if(addPrefix)
+            path.takeIf { it.isNotEmpty() }?.joinToString("/", "/") ?: "/"
+        else
+            path.takeIf { it.isNotEmpty() }?.joinToString("/") ?: ""
+    }
+
+    /** Build an absolute path (with root folder) from a string (order matters) **/
+    fun getAbsolutePath(folder: String?, rootPath: String, addPrefix: Boolean): String {
+        val path = mutableListOf<String>()
+
+        if(rootPath.isNotBlank())
+            path.add(rootPath)
+
+        val trimmedFolder = folder?.trim('/')
+        if(!trimmedFolder.isNullOrEmpty())
+            path.add(trimmedFolder)
 
         return if(addPrefix)
             path.takeIf { it.isNotEmpty() }?.joinToString("/", "/") ?: "/"

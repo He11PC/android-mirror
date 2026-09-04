@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Αδεια</string>
     <string name="permission_locked_title">Η εξουσιοδότηση μπλοκαρίστηκε</string>
+    <string name="permission_locked_text">Το Android έχει αποκλείσει αυτήν την άδεια.\n\nΘέλετε να ανοίξετε τις ρυθμίσεις της εφαρμογής και να το επιτρέψετε μη αυτόματα;</string>
 
     <string name="permission_files_title">Επιτρέψτε την πρόσβαση σε αρχεία (απαιτείται)</string>
     <string name="permission_files_text">Η δημιουργία αντιγράφων ασφαλείας είναι αδύνατη χωρίς πρόσβαση στα αρχεία και τους φακέλους σας</string>
     <string name="permission_files_locked_text">Το Android έχει μπλοκάρει αυτή την άδεια καθιστώντας την εφαρμογή μη λειτουργική.\n\nΒεβαιωθείτε ότι το Mirror δεν θα συλλέξει ποτέ πληροφορίες για εσάς ή τα δεδομένα σας.\n\nΘέλετε να ανοίξετε τις ρυθμίσεις της εφαρμογής και να την επιτρέψετε χειροκίνητα;</string>
 
+    <string name="permission_lan_title">Να επιτρέπεται η πρόσβαση LAN (εξαρτάται)</string>
+    <string name="permission_lan_text">Απαιτείται από την έκδοση Android 17 για επικοινωνία με συσκευές στο τοπικό σας δίκτυο</string>
+
     <string name="permission_notifications_title">Να επιτρέπονται οι ειδοποιήσεις (συνιστάται ανεπιφύλακτα)</string>
     <string name="permission_notifications_text">Οι ειδοποιήσεις χρησιμοποιούνται για την εμφάνιση της προόδου των συνεχιζόμενων αντιγράφων ασφαλείας και του αποτελέσματος των προγραμματισμένων αντιγράφων ασφαλείας</string>
-    <string name="permission_notifications_locked_text">Το Android έχει αποκλείσει αυτήν την άδεια.\n\nΘέλετε να ανοίξετε τις ρυθμίσεις της εφαρμογής και να το επιτρέψετε μη αυτόματα;</string>
 
     <string name="permission_battery_title">Απενεργοποίηση βελτιστοποίησης μπαταρίας (συνιστάται)</string>
     <string name="permission_battery_text">Η βελτιστοποίηση μπαταρίας Android μπορεί να είναι πολύ επιθετική και να παρεμβαίνει στα προγραμματισμένα αντίγραφα ασφαλείας</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Επαναλάβετε για έξοδο χωρίς αποθήκευση</string>
     <string name="edit_invalid_alert">Παρακαλούμε δώστε έγκυρες πηγές και προορισμούς</string>
     <string name="edit_invalid_credentials_alert">Παρακαλούμε δώστε έγκυρα στοιχεία σύνδεσης (όνομα χρήστη/κωδικός πρόσβασης)</string>
-    <string name="edit_invalid_hostkey_alert">Ανακτήστε το κλειδί κεντρικού υπολογιστή του διακομιστή SFTP για λόγους ασφαλείας</string>
+    <string name="edit_invalid_hostkey_alert">Παρακαλώ ανακτήστε το κλειδί κεντρικού υπολογιστή του διακομιστή σας για λόγους ασφαλείας</string>
     <string name="edit_remote_alert_message">Η δημιουργία αντιγράφων ασφαλείας μεταξύ δύο απομακρυσμένων διακομιστών μέσω της συσκευής σας δεν είναι η πιο αποτελεσματική.\n\nΕάν μπορείτε, θα ήταν καλύτερο να δημιουργήσετε το αντίγραφο ασφαλείας σας απευθείας σε ένα από αυτά τα μηχανήματα</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Κοινή χρήση:</string>
     <string name="target_common_search">Αναζήτηση</string>
     <string name="target_common_autofill">Αυτόματη συμπλήρωση</string>
+    <string name="target_common_self_signed">Επιτρέπονται τα αυτο-υπογεγραμμένα πιστοποιητικά</string>
+    <string name="target_common_hostkey">Κλειδί κεντρικού υπολογιστή:</string>
+    <string name="target_common_hostkey_hint">Πατήστε για ανάκτηση κλειδιού κεντρικού υπολογιστή</string>
+    <string name="target_common_hostkey_load">Ανάκτηση κλειδιού κεντρικού υπολογιστή…</string>
+    <string name="target_common_hostkey_confirmation">Εμπιστεύεστε αυτόν τον διακομιστή;</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">Αναγνωριστικό χρήστη:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Χρήση SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Το Android δεν επιτρέπει τη χρήση SSL/TLS με διακομιστές που χρησιμοποιούν την επιλογή επαναφοράς συνόδου TLS στη σύνδεση δεδομένων</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Κλειδί κεντρικού υπολογιστή:</string>
-    <string name="target_sftp_hostkey_hint">Πατήστε για ανάκτηση κλειδιού κεντρικού υπολογιστή</string>
-    <string name="target_sftp_hostkey_load">Ανάκτηση κλειδιού κεντρικού υπολογιστή…</string>
-    <string name="target_sftp_hostkey_confirmation">Εμπιστεύεστε αυτόν τον διακομιστή;</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Χρήση SSL</string>
-    <string name="target_webdav_ssl_warning">Τα αυτο-υπογεγραμμένα πιστοποιητικά συνήθως δεν επαρκούν και ενδέχεται να απορριφθούν κατά τους ελέγχους ασφαλείας</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Ασφάλεια</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Αδυναμία ελέγχου ταυτότητας</string>
     <string name="error_server_disconnect">Δεν είναι δυνατή η αποσύνδεση από το διακομιστή</string>
 
-    <string name="error_permission_read">Άδεια ανάγνωσης απορριφθείσα</string>
-    <string name="error_permission_write">Απαγορεύεται η άδεια εγγραφής</string>
+    <string name="error_permission_read">Δεν φαίνεται να έχουν εκχωρηθεί δικαιώματα ανάγνωσης</string>
+    <string name="error_permission_write">Δεν φαίνεται να έχουν εκχωρηθεί δικαιώματα εγγραφής</string>
     <string name="error_permission_unknown">Αδυναμία ελέγχου δικαιωμάτων</string>
 
     <string name="error_space_low">Χαμηλός ελεύθερος χώρος</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Δεν είναι δυνατή η δημιουργία προσωρινού αρχείου</string>
     <string name="error_nomedia_create">Αδυναμία δημιουργίας του αρχείου .nomedia</string>
     <string name="error_nomedia_remove">Δεν είναι δυνατή η διαγραφή του αρχείου .nomedia</string>
-    <string name="error_ftp_mlst">Η εντολή MLST, που απαιτείται για την ανάκτηση του μεγέθους του αρχείου και της ακριβούς χρονικής σφραγίδας, δεν φαίνεται να υποστηρίζεται από αυτόν τον διακομιστή</string>
+    <string name="error_ftp_file_date">Δεν είναι δυνατή η ανάκτηση της ημερομηνίας τροποποίησης του αρχείου</string>
+    <string name="error_ftp_file_size">Δεν είναι δυνατή η ανάκτηση του μεγέθους του αρχείου</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Επιτυχημένο αντίγραφο ασφαλείας</string>

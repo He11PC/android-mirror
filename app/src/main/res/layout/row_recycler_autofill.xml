@@ -147,7 +147,7 @@
         android:id="@+id/row_autofill_txt_hostkey_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/target_sftp_hostkey"
+        android:text="@string/target_common_hostkey"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent" />
 

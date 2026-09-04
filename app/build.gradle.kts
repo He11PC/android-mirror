@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 36
 
-        versionCode = 18
-        versionName = "26.07.12"
+        versionCode = 19
+        versionName = "26.09.04"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -66,7 +66,7 @@ dependencies {
     val vCoroutines = "1.11.0"
 
     implementation("androidx.core:core-ktx:1.18.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.appcompat:appcompat:1.8.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Kotlin
@@ -75,11 +75,11 @@ dependencies {
 
     // Components
     implementation("com.google.android.material:material:1.14.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.2")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-    implementation("androidx.fragment:fragment-ktx:1.8.9")
+    implementation("androidx.fragment:fragment-ktx:1.9.0")
 
     // ROOM
     implementation("androidx.room:room-runtime:$vRoom")
@@ -98,16 +98,16 @@ dependencies {
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.11.2")
-    implementation("com.google.guava:guava:33.6.0-android")
+    implementation("com.google.guava:guava:33.7.1-android")
 
     // NFS
     implementation("com.emc.ecs:nfs-client:1.1.0")
     // SMB
-    implementation("com.hierynomus:smbj:0.14.0")
+    implementation("com.hierynomus:smbj:0.15.0")
     // FTP
     implementation("commons-net:commons-net:3.13.0")
     // SFTP
-    implementation("com.github.mwiede:jsch:2.28.4")
+    implementation("com.github.mwiede:jsch:2.28.7")
     // WebDav
     implementation("com.github.thegrizzlylabs:sardine-android:0.9")
     implementation("io.github.rburgst:okhttp-digest:3.1.1")

@@ -13,8 +13,17 @@
 package fr.hellpc.mirror.data.repositories
 
 import androidx.annotation.WorkerThread
+import com.burgstaller.okhttp.AuthenticationCacheInterceptor
+import com.burgstaller.okhttp.CachingAuthenticatorDecorator
+import com.burgstaller.okhttp.DefaultRequestCacheKeyProvider
+import com.burgstaller.okhttp.DispatchingAuthenticator
+import com.burgstaller.okhttp.basic.BasicAuthenticator
+import com.burgstaller.okhttp.digest.CachingAuthenticator
+import com.burgstaller.okhttp.digest.Credentials
+import com.burgstaller.okhttp.digest.DigestAuthenticator
 import com.jcraft.jsch.HostKey
 import com.jcraft.jsch.JSch
+import com.thegrizzlylabs.sardineandroid.impl.OkHttpSardine
 import fr.hellpc.mirror.data.BackupInfos_Status
 import fr.hellpc.mirror.data.dao.Dao_TBackupData
 import fr.hellpc.mirror.data.dao.Dao_TBackupStatus
@@ -22,10 +31,18 @@ import fr.hellpc.mirror.data.dao.Dao_VBackupInfos
 import fr.hellpc.mirror.data.dao.Dao_VBackupTargetCredentials
 import fr.hellpc.mirror.data.room.Backup_Colors
 import fr.hellpc.mirror.data.room.Backup_Data
+import fr.hellpc.mirror.security.Security_FlexibleTrustManager
+import fr.hellpc.mirror.utilities.untrustedCertException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import org.apache.commons.net.ftp.FTPSClient
 import java.util.Properties
+import java.util.concurrent.ConcurrentHashMap
+import javax.net.ssl.SSLContext
+import javax.net.ssl.X509TrustManager
 
 class Repository_Edit(private val daoTBackupData: Dao_TBackupData, private val daoTBackupStatus: Dao_TBackupStatus, private val daoVBackupsInfos: Dao_VBackupInfos, private val daoVBackupsTargetCredentials: Dao_VBackupTargetCredentials) {
 
@@ -82,9 +99,38 @@ class Repository_Edit(private val daoTBackupData: Dao_TBackupData, private val d
     }
 
 
-    // -------------
-    // SFTP host key
-    // -------------
+    // ---------
+    // Host keys
+    // ---------
+
+    /** Connect to FTP server to retrieve host key **/
+    @WorkerThread
+    suspend fun getFtpHostKey(server: String, port: Int): String = withContext(dispatcherIO) {
+        var hostKey: String? = null
+        val flexibleTrustManager = Security_FlexibleTrustManager(null)
+
+        FTPSClient().apply {
+            trustManager = flexibleTrustManager
+            isEndpointCheckingEnabled = false
+            autodetectUTF8 = true
+
+            try { connect(server, port) }
+            catch (exp: Exception) {
+                val untrusted = exp.untrustedCertException
+                if (untrusted != null)
+                    hostKey = untrusted.capturedHostKey
+            }
+            finally {
+                val clientIsConnected = try { isConnected } catch(_: Exception) { false }
+                if(clientIsConnected)
+                    disconnect()
+            }
+        }
+
+        require(!hostKey.isNullOrBlank())
+
+        return@withContext hostKey
+    }
 
     /** Connect to SFTP server to retrieve host key **/
     @WorkerThread
@@ -99,7 +145,8 @@ class Repository_Edit(private val daoTBackupData: Dao_TBackupData, private val d
 
             session.apply {
                 setConfig(config)
-                setPassword(password.toByteArray())
+                if(password.isNotBlank())
+                    setPassword(password.toByteArray())
                 timeout = 30*1000
                 connect()
             }
@@ -109,6 +156,59 @@ class Repository_Edit(private val daoTBackupData: Dao_TBackupData, private val d
         finally {
             if(session.isConnected)
                 session.disconnect()
+        }
+
+        require(hostKey != null)
+
+        return@withContext hostKey
+    }
+
+    /** Connect to WebDAV server to retrieve host key **/
+    @WorkerThread
+    suspend fun getWebdavHostKey(server: String, port: Int, login: String, password: String): String = withContext(dispatcherIO) {
+        val serverUrl = HttpUrl.Builder().apply {
+            scheme("https")
+            host(server)
+            port(port)
+            build()
+        }.toString()
+
+        var hostKey: String? = null
+        val flexibleTrustManager = Security_FlexibleTrustManager(null)
+
+        val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
+        val credentials = Credentials(login, password)
+        val authenticator = DispatchingAuthenticator.Builder()
+            .with("digest", DigestAuthenticator(credentials))
+            .with("basic", BasicAuthenticator(credentials))
+            .build()
+
+        val sslContext = SSLContext.getInstance("TLS").apply { init(null, arrayOf(flexibleTrustManager), java.security.SecureRandom()) }
+        val okHttpClient = OkHttpClient.Builder()
+            .authenticator(CachingAuthenticatorDecorator(authenticator, authCache))
+            .addInterceptor(AuthenticationCacheInterceptor(authCache, DefaultRequestCacheKeyProvider()))
+            .sslSocketFactory(sslContext.socketFactory, flexibleTrustManager as X509TrustManager)
+            .hostnameVerifier { _, _ -> true }
+            .build()
+
+        OkHttpSardine(okHttpClient).apply {
+            setCredentials(login, password)
+
+            try { list(serverUrl) }
+            catch (exp: Exception) {
+                val untrusted = exp.untrustedCertException
+                if (untrusted != null)
+                    hostKey = untrusted.capturedHostKey
+            }
+            finally {
+                (authCache as? MutableMap)?.clear()
+
+                okHttpClient.apply {
+                    dispatcher.cancelAll()
+                    connectionPool.evictAll()
+                    cache?.close()
+                }
+            }
         }
 
         require(hostKey != null)

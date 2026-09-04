@@ -123,6 +123,40 @@
 
             </LinearLayout>
 
+            <!-- <LinearLayout
+                android:id="@+id/permissions_lan_lyt"
+                style="@style/AppTheme.Layout_CardView"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill">
+
+                <TextView
+                    android:id="@+id/permissions_lan_txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_lan_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/permissions_lan_div"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blue" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/permissions_lan_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="@string/permission_lan_text"
+                    app:switchPadding="8dp" />
+
+            </LinearLayout> -->
+
             <LinearLayout
                 android:id="@+id/permissions_notifications_lyt"
                 style="@style/AppTheme.Layout_CardView"

@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">Izin</string>
     <string name="permission_locked_title">Izin dikunci</string>
+    <string name="permission_locked_text">Android mengunci izin ini.\n\nApakah Anda ingin membuka pengaturan aplikasi dan mengizinkannya secara manual?</string>
 
     <string name="permission_files_title">Izinkan akses file (wajib)</string>
     <string name="permission_files_text">Pencadangan tidak mungkin dilakukan tanpa memiliki akses ke file dan folder Anda</string>
     <string name="permission_files_locked_text">Android memblokir izin ini sehingga aplikasi tidak berfungsi.\n\nHarap pastikan bahwa Mirror tidak akan pernah mengumpulkan informasi apa pun tentang Anda atau data Anda.\n\nApakah Anda ingin membuka pengaturan aplikasi dan mengizinkannya secara manual?</string>
 
+    <string name="permission_lan_title">Izinkan akses LAN (tergantung)</string>
+    <string name="permission_lan_text">Diperlukan sejak Android 17 untuk berkomunikasi dengan perangkat di Local Area Network (LAN) Anda</string>
+
     <string name="permission_notifications_title">Izinkan notifikasi (sangat disarankan)</string>
     <string name="permission_notifications_text">Notifikasi digunakan untuk menampilkan kemajuan pencadangan yang sedang berlangsung dan hasil pencadangan terjadwal</string>
-    <string name="permission_notifications_locked_text">Android mengunci izin ini.\n\nApakah Anda ingin membuka pengaturan aplikasi dan mengizinkannya secara manual?</string>
 
     <string name="permission_battery_title">Nonaktifkan pengoptimalan baterai (disarankan)</string>
     <string name="permission_battery_text">Pengoptimalan baterai Android bisa terlalu agresif dan mengganggu pencadangan terjadwal</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">Ulangi untuk keluar tanpa menyimpan</string>
     <string name="edit_invalid_alert">Harap berikan Sumber dan Tujuan yang valid</string>
     <string name="edit_invalid_credentials_alert">Harap berikan kredensial yang valid (nama pengguna/kata sandi)</string>
-    <string name="edit_invalid_hostkey_alert">Silakan ambil kunci host server SFTP Anda demi alasan keamanan</string>
+    <string name="edit_invalid_hostkey_alert">Harap ambil kunci host server Anda demi alasan keamanan</string>
     <string name="edit_remote_alert_message">Melakukan pencadangan antara dua server jarak jauh melalui perangkat Anda bukanlah cara yang paling efisien.\n\nJika bisa, akan lebih baik menyiapkan cadangan Anda langsung di salah satu mesin tersebut</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">Bagikan:</string>
     <string name="target_common_search">Mencari</string>
     <string name="target_common_autofill">IsiOtomatis</string>
+    <string name="target_common_self_signed">Izinkan sertifikat yang ditandatangani sendiri</string>
+    <string name="target_common_hostkey">Kunci host:</string>
+    <string name="target_common_hostkey_hint">Ketuk untuk mengambil kunci host server</string>
+    <string name="target_common_hostkey_load">Mengambil kunci host …</string>
+    <string name="target_common_hostkey_confirmation">Apakah Anda memercayai server ini?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ID Pengguna:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">Gunakan SSL/TLS</string>
     <string name="target_ftp_ssl_warning">Android tidak mengizinkan penggunaan SSL/TLS dengan server yang menggunakan opsi resume sesi TLS pada koneksi data</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">Kunci host:</string>
-    <string name="target_sftp_hostkey_hint">Ketuk untuk mengambil kunci host server</string>
-    <string name="target_sftp_hostkey_load">Mengambil kunci host …</string>
-    <string name="target_sftp_hostkey_confirmation">Apakah Anda memercayai server ini?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">Gunakan SSL</string>
-    <string name="target_webdav_ssl_warning">Sertifikat yang ditandatangani sendiri biasanya tidak memadai dan dapat ditolak selama pemeriksaan keamanan</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">Keamanan</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">Tidak dapat mengautentikasi</string>
     <string name="error_server_disconnect">Tidak dapat memutuskan sambungan dari server</string>
 
-    <string name="error_permission_read">Izin baca ditolak</string>
-    <string name="error_permission_write">Izin menulis ditolak</string>
+    <string name="error_permission_read">Izin baca tampaknya tidak diberikan</string>
+    <string name="error_permission_write">Izin tulis tampaknya tidak diberikan</string>
     <string name="error_permission_unknown">Tidak dapat memeriksa izin</string>
 
     <string name="error_space_low">Ruang disk rendah</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">Tidak dapat membuat berkas sementara</string>
     <string name="error_nomedia_create">Tidak dapat membuat file .nomedia</string>
     <string name="error_nomedia_remove">Tidak dapat menghapus file .nomedia</string>
-    <string name="error_ftp_mlst">Perintah MLST, yang diperlukan untuk mengambil ukuran file dan stempel waktu yang tepat, tampaknya tidak didukung oleh server ini</string>
+    <string name="error_ftp_file_date">Tidak dapat mengambil tanggal modifikasi file</string>
+    <string name="error_ftp_file_size">Tidak dapat mengambil ukuran file</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">Pencadangan yang berhasil</string>

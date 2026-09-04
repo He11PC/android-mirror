@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">사용 권한</string>
     <string name="permission_locked_title">권한 잠김</string>
+    <string name="permission_locked_text">Android는 이 권한을 잠갔습니다.\n\n애플리케이션 설정을 열고 수동으로 허용하시겠습니까?</string>
 
     <string name="permission_files_title">파일 액세스 허용(필수)</string>
     <string name="permission_files_text">파일 및 폴더에 액세스하지 않으면 백업을 수행할 수 없습니다</string>
     <string name="permission_files_locked_text">Android가 이 권한을 차단해 앱이 작동하지 않습니다.\n\nMirror이 귀하 또는 귀하의 데이터에 대한 정보를 수집하지 않도록 하십시오.\n\n응용 프로그램 설정을 열고 수동으로 허용하시겠습니까?</string>
 
+    <string name="permission_lan_title">LAN 액세스 허용 (조건부)</string>
+    <string name="permission_lan_text">로컬 네트워크(LAN)상의 기기와 통신하기 위해 Android 17부터 필요합니다</string>
+
     <string name="permission_notifications_title">알림 허용(적극 권장)</string>
     <string name="permission_notifications_text">알림은 진행 중인 백업 진행 및 예약된 백업 결과를 표시하는 데 사용됩니다</string>
-    <string name="permission_notifications_locked_text">Android는 이 권한을 잠갔습니다.\n\n애플리케이션 설정을 열고 수동으로 허용하시겠습니까?</string>
 
     <string name="permission_battery_title">배터리 최적화 비활성화(권장)</string>
     <string name="permission_battery_text">Android 배터리 최적화가 너무 공격적일 수 있으며 예약된 백업을 방해할 수 있습니다</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">저장하지 않고 종료하려면 반복합니다</string>
     <string name="edit_invalid_alert">올바른 원본 및 대상을 입력하십시오</string>
     <string name="edit_invalid_credentials_alert">유효한 자격 증명(사용자 이름/암호)을 입력하십시오</string>
-    <string name="edit_invalid_hostkey_alert">보안상의 이유로 SFTP 서버 호스트 키를 검색하세요</string>
+    <string name="edit_invalid_hostkey_alert">보안상의 이유로 서버 호스트 키를 확인해 주십시오</string>
     <string name="edit_remote_alert_message">장치를 통해 두 원격 서버 간에 백업을 수행하는 것이 가장 효율적이지 않습니다.\n\n가능하다면 해당 시스템 중 하나에서 직접 백업을 설정하는 것이 좋습니다</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">공유:</string>
     <string name="target_common_search">찾다</string>
     <string name="target_common_autofill">자동 채우기</string>
+    <string name="target_common_self_signed">자체 서명 인증서 허용</string>
+    <string name="target_common_hostkey">호스트 키:</string>
+    <string name="target_common_hostkey_hint">탭하여 서버 호스트 키 검색</string>
+    <string name="target_common_hostkey_load">호스트 키 검색 중…</string>
+    <string name="target_common_hostkey_confirmation">이 서버를 신뢰하십니까?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">사용자 ID:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">SSL/TLS를 사용합니다</string>
     <string name="target_ftp_ssl_warning">Android에서는 데이터 연결 시 TLS 세션 재개 옵션을 사용하는 서버에서 SSL/TLS를 사용할 수 없습니다</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">호스트 키:</string>
-    <string name="target_sftp_hostkey_hint">탭하여 서버 호스트 키 검색</string>
-    <string name="target_sftp_hostkey_load">호스트 키 검색 중…</string>
-    <string name="target_sftp_hostkey_confirmation">이 서버를 신뢰하십니까?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">SSL을 사용합니다</string>
-    <string name="target_webdav_ssl_warning">자체 서명 인증서는 일반적으로 충분하지 않으며 보안 검사 중에 거부될 수 있습니다.</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">보안</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">인증할 수 없습니다</string>
     <string name="error_server_disconnect">연결을 끊을 수 없습니다 서버에서</string>
 
-    <string name="error_permission_read">읽기 권한이 거부되었습니다</string>
-    <string name="error_permission_write">쓰기 권한이 거부되었습니다</string>
+    <string name="error_permission_read">읽기 권한이 부여되지 않은 것 같습니다</string>
+    <string name="error_permission_write">쓰기 권한이 부여되지 않은 것 같습니다</string>
     <string name="error_permission_unknown">권한을 확인할 수 없습니다</string>
 
     <string name="error_space_low">사용 가능한 공간이 부족합니다</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">임시 파일을 만들 수 없습니다</string>
     <string name="error_nomedia_create">.nomedia 파일을 생성할 수 없습니다</string>
     <string name="error_nomedia_remove">.nomedia 파일을 삭제할 수 없습니다</string>
-    <string name="error_ftp_mlst">파일 크기와 정확한 타임스탬프를 검색하는 데 필요한 MLST 명령은 이 서버에서 지원되지 않는 것으로 보입니다</string>
+    <string name="error_ftp_file_date">파일 수정 날짜를 가져올 수 없습니다</string>
+    <string name="error_ftp_file_size">파일 크기를 가져올 수 없습니다</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">성공적으로 저장되었습니다</string>

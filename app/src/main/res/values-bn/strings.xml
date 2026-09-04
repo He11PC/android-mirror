@@ -63,14 +63,17 @@
     <!--Activity - Permissions -->
     <string name="permission_title">অনুমতি</string>
     <string name="permission_locked_title">অনুমোদন অবরুদ্ধ</string>
+    <string name="permission_locked_text">অ্যান্ড্রয়েড এই অনুমতিটি ব্লক করেছে৷\n\nআপনি কি অ্যাপ সেটিংস খুলতে চান এবং ম্যানুয়ালি অনুমতি দিতে চান?</string>
 
     <string name="permission_files_title">ফাইল অ্যাক্সেসের অনুমতি দিন (প্রয়োজনীয়)</string>
     <string name="permission_files_text">আপনার ফাইল এবং ফোল্ডারগুলিতে অ্যাক্সেস না থাকলে ব্যাকআপগুলি অসম্ভব৷</string>
     <string name="permission_files_locked_text">অ্যান্ড্রয়েড এই অনুমতিটিকে ব্লক করেছে যা অ্যাপটিকে অ-কার্যকরী করে তুলেছে।\n\nঅনুগ্রহ করে নিশ্চিত করুন যে Mirror কখনই আপনার বা আপনার ডেটা সম্পর্কে কোনো তথ্য সংগ্রহ করবে না।\n\nআপনি কি অ্যাপ সেটিংস খুলতে চান এবং ম্যানুয়ালি অনুমতি দিতে চান?</string>
 
+    <string name="permission_lan_title">LAN অ্যাক্সেসের অনুমতি দিন (শর্তসাপেক্ষ)</string>
+    <string name="permission_lan_text">আপনার লোকাল এরিয়া নেটওয়ার্কের (LAN) ডিভাইসগুলোর সাথে যোগাযোগের জন্য Android 17 থেকে এটি প্রয়োজন</string>
+
     <string name="permission_notifications_title">বিজ্ঞপ্তির অনুমতি দিন (দৃঢ়ভাবে প্রস্তাবিত)</string>
     <string name="permission_notifications_text">বিজ্ঞপ্তিগুলি চলমান ব্যাকআপগুলির অগ্রগতি এবং নির্ধারিত ব্যাকআপগুলির ফলাফল প্রদর্শন করতে ব্যবহৃত হয়</string>
-    <string name="permission_notifications_locked_text">অ্যান্ড্রয়েড এই অনুমতিটি ব্লক করেছে৷\n\nআপনি কি অ্যাপ সেটিংস খুলতে চান এবং ম্যানুয়ালি অনুমতি দিতে চান?</string>
 
     <string name="permission_battery_title">ব্যাটারি অপ্টিমাইজেশান অক্ষম করুন (প্রস্তাবিত)</string>
     <string name="permission_battery_text">অ্যান্ড্রয়েড ব্যাটারি অপ্টিমাইজেশন খুব আক্রমণাত্মক হতে পারে এবং নির্ধারিত ব্যাকআপগুলিতে হস্তক্ষেপ করতে পারে</string>
@@ -125,7 +128,7 @@
     <string name="edit_exit_alert">সংরক্ষণ না করে প্রস্থান করার জন্য পুনরাবৃত্তি করুন</string>
     <string name="edit_invalid_alert">একটি বৈধ উৎস এবং গন্তব্য প্রদান করুন</string>
     <string name="edit_invalid_credentials_alert">অনুগ্রহ করে বৈধ শংসাপত্র প্রদান করুন (ব্যবহারকারীর নাম/পাসওয়ার্ড)</string>
-    <string name="edit_invalid_hostkey_alert">নিরাপত্তার কারণে আপনার SFTP সার্ভার হোস্ট কীটি পুনরুদ্ধার করুন</string>
+    <string name="edit_invalid_hostkey_alert">নিরাপত্তার স্বার্থে অনুগ্রহ করে আপনার সার্ভার হোস্ট কি সংগ্রহ করুন</string>
     <string name="edit_remote_alert_message">আপনার ডিভাইসের মাধ্যমে দুটি দূরবর্তী সার্ভারের মধ্যে ব্যাকআপ করা সবচেয়ে কার্যকর নয়।\n\nআপনি যদি পারেন, তাহলে এই মেশিনগুলির মধ্যে একটিতে সরাসরি আপনার ব্যাকআপ সেট আপ করা ভাল</string>
 
     <!-- Fragment - Target-->
@@ -153,6 +156,11 @@
     <string name="target_common_share">শেয়ার করুন:</string>
     <string name="target_common_search">অনুসন্ধান</string>
     <string name="target_common_autofill">অটোফিল</string>
+    <string name="target_common_self_signed">সেলফ-সাইনড সার্টিফিকেট ব্যবহারের অনুমতি দিন</string>
+    <string name="target_common_hostkey">হোস্ট কী:</string>
+    <string name="target_common_hostkey_hint">সার্ভার হোস্ট কী পুনরুদ্ধার করতে আলতো চাপুন</string>
+    <string name="target_common_hostkey_load">হোস্ট কী পুনরুদ্ধার করা হচ্ছে …</string>
+    <string name="target_common_hostkey_confirmation">আপনি কি এই সার্ভারে বিশ্বাস করেন?</string>
 
     <!--Fragment - Target NFS-->
     <string name="target_nfs_uid">ইউজার আইডি:</string>
@@ -172,15 +180,8 @@
     <string name="target_ftp_ssl">SSL/TLS ব্যবহার করুন</string>
     <string name="target_ftp_ssl_warning">অ্যান্ড্রয়েড ডেটা সংযোগে TLS সেশন রিজিউম বিকল্প ব্যবহার করে সার্ভারের সাথে SSL/TLS ব্যবহারের অনুমতি দেয় না</string>
 
-    <!--Fragment - Target SFTP-->
-    <string name="target_sftp_hostkey">হোস্ট কী:</string>
-    <string name="target_sftp_hostkey_hint">সার্ভার হোস্ট কী পুনরুদ্ধার করতে আলতো চাপুন</string>
-    <string name="target_sftp_hostkey_load">হোস্ট কী পুনরুদ্ধার করা হচ্ছে …</string>
-    <string name="target_sftp_hostkey_confirmation">আপনি কি এই সার্ভারে বিশ্বাস করেন?</string>
-
     <!--Fragment - Target WebDav-->
     <string name="target_webdav_ssl">SSL ব্যবহার করুন</string>
-    <string name="target_webdav_ssl_warning">স্ব-স্বাক্ষরিত শংসাপত্রগুলি সাধারণত পর্যাপ্ত নয় এবং সুরক্ষা পরীক্ষার সময় প্রত্যাখ্যাত হতে পারে</string>
 
     <!--Fragment - Options-->
     <string name="backup_security">নিরাপত্তা</string>
@@ -287,8 +288,8 @@
     <string name="error_server_login">প্রমাণীকরণ করতে অক্ষম</string>
     <string name="error_server_disconnect">সার্ভার থেকে সংযোগ বিচ্ছিন্ন করতে অক্ষম</string>
 
-    <string name="error_permission_read">পড়ার অনুমতি অস্বীকার করা হয়েছে</string>
-    <string name="error_permission_write">অনুমতি প্রত্যাখ্যান লিখুন</string>
+    <string name="error_permission_read">পড়ার অনুমতি দেওয়া হয়নি বলে মনে হচ্ছে</string>
+    <string name="error_permission_write">লেখার অনুমতি দেওয়া হয়নি বলে মনে হচ্ছে</string>
     <string name="error_permission_unknown">অনুমতি চেক করতে অক্ষম</string>
 
     <string name="error_space_low">কম ডিস্ক স্থান</string>
@@ -339,7 +340,8 @@
     <string name="error_file_tmp">অস্থায়ী ফাইল তৈরি করতে অক্ষম</string>
     <string name="error_nomedia_create">.nomedia ফাইল তৈরি করতে অক্ষম</string>
     <string name="error_nomedia_remove">.nomedia ফাইল মুছতে অক্ষম</string>
-    <string name="error_ftp_mlst">MLST কমান্ড, ফাইলের আকার এবং সুনির্দিষ্ট টাইমস্ট্যাম্প পুনরুদ্ধার করার জন্য প্রয়োজনীয়, এই সার্ভার দ্বারা সমর্থিত বলে মনে হচ্ছে না</string>
+    <string name="error_ftp_file_date">ফাইলের পরিবর্তনের তারিখ পাওয়া যায়নি</string>
+    <string name="error_ftp_file_size">ফাইলের আকার পাওয়া যায়নি</string>
 
     <!--Worker Log - End -->
     <string name="log_backup_success">সফলভাবে সংরক্ষিত</string>

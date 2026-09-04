@@ -41,8 +41,8 @@ import fr.hellpc.mirror.ui.activities.Activity_Autofill
 import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
 import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherDecrypt
-import fr.hellpc.mirror.utilities.Utility_Encryption.cipherEncrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
+import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
 import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.util.Locale
@@ -195,7 +195,7 @@ class Fragment_TargetSFTP : Fragment() {
         }
 
         val loadingDialog = AlertDialog.Builder(requireContext(), R.style.AppTheme_InfoDialogStyle).apply {
-            setTitle(getString(R.string.target_sftp_hostkey_load))
+            setTitle(getString(R.string.target_common_hostkey_load))
             setCancelable(false)
             setView(loadingLyt)
         }
@@ -237,11 +237,11 @@ class Fragment_TargetSFTP : Fragment() {
             val intent = Intent(this.context, Activity_FolderExplorer::class.java)
                 .putExtra(Activity_FolderExplorer.PARAM_PROTOCOL, it.protocol)
                 .putExtra(Activity_FolderExplorer.PARAM_SERVER, it.server)
-                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
                 .putExtra(Activity_FolderExplorer.PARAM_PORT, it.port)
                 .putExtra(Activity_FolderExplorer.PARAM_LOGIN, it.login)
                 .putExtra(Activity_FolderExplorer.PARAM_PASSWORD, it.password)
                 .putExtra(Activity_FolderExplorer.PARAM_HOSTKEY, it.hostKey)
+                .putExtra(Activity_FolderExplorer.PARAM_PATH, it.path)
 
             folderExplorer.launch(intent)
         }
@@ -325,24 +325,23 @@ class Fragment_TargetSFTP : Fragment() {
 
     /** Load target credentials to UI **/
     private fun loadCredentialsToUi(data: Target_Credentials) {
-        data.server?.cipherDecrypt().let { binding.targetSftpEditServer.setText(it) }
+        data.server?.cipherDecrypt()?.let { binding.targetSftpEditServer.setText(it) }
         data.port?.let { binding.targetSftpEditPort.setText(String.format(Locale.getDefault(), "%d", it)) }
-        data.hostKey?.cipherDecrypt().let { binding.targetSftpEditHostkey.setText(it) }
-        data.login?.cipherDecrypt().let { binding.targetSftpEditLogin.setText(it) }
-        data.password?.cipherDecrypt().let { binding.targetSftpEditPassword.setText(it) }
+        data.hostKey?.cipherDecrypt()?.let { binding.targetSftpEditHostkey.setText(it) }
+        data.login?.cipherDecrypt()?.let { binding.targetSftpEditLogin.setText(it) }
+        data.password?.cipherDecrypt()?.let { binding.targetSftpEditPassword.setText(it) }
     }
 
     /** Retrieve server host key **/
     private fun getHostKey() = lifecycleScope.launch {
         val server = editUtils.trimServer(binding.targetSftpEditServer.text.toString())
-        val login = binding.targetSftpEditLogin.text.toString()
-        val password = binding.targetSftpEditPassword.text.toString()
-
-        if(server.isBlank() || login.isBlank() || password.isBlank()) {
+        if(server.isBlank()) {
             credentialsSnackbar.show()
             return@launch
         }
 
+        val login = binding.targetSftpEditLogin.text.toString()
+        val password = binding.targetSftpEditPassword.text.toString()
         val port = getSftpPort()
 
         val hostKey = viewModel.getSftpHostKey(server, port, login, password)
@@ -350,7 +349,7 @@ class Fragment_TargetSFTP : Fragment() {
         if(!hostKey.isNullOrBlank())
             AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle).apply {
                 setTitle(getString(R.string.global_warning))
-                setMessage(getString(R.string.target_sftp_hostkey_confirmation) + "\n\n$hostKey")
+                setMessage(getString(R.string.target_common_hostkey_confirmation) + "\n\n$hostKey")
                 setPositiveButton(getString(R.string.global_yes)) { _, _ ->
                     binding.targetSftpEditHostkey.setText(hostKey)
                     setFocus(binding.targetSftpEditPath)
