@@ -123,7 +123,7 @@
 
             </LinearLayout>
 
-            <!-- <LinearLayout
+            <LinearLayout
                 android:id="@+id/permissions_lan_lyt"
                 style="@style/AppTheme.Layout_CardView"
                 android:orientation="vertical"
@@ -155,7 +155,7 @@
                     android:text="@string/permission_lan_text"
                     app:switchPadding="8dp" />
 
-            </LinearLayout> -->
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/permissions_notifications_lyt"

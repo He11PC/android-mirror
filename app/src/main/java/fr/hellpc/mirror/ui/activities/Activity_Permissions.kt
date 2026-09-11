@@ -75,7 +75,7 @@ class Activity_Permissions : AppCompatActivity() {
     }
 
     // Lan
-    /*private val requestLanPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted: Boolean ->
+    private val requestLanPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted: Boolean ->
         if(!isGranted && !shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_LOCAL_NETWORK))
             permissionLanPermanentlyDeniedMessage()
         else
@@ -85,7 +85,7 @@ class Activity_Permissions : AppCompatActivity() {
     // Notifications LAN permanently denied
     private val forceLanPermission = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         manageSwitchLan()
-    }*/
+    }
 
     // Notifications
     private val requestNotificationsPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted: Boolean ->
@@ -137,7 +137,7 @@ class Activity_Permissions : AppCompatActivity() {
     private fun loadUI() {
         setButtonsVisibility()
         setSwitchFilesAccess()
-        //setSwitchLan()
+        setSwitchLan()
         setSwitchNotifications()
         setSwitchBattery()
         setSwitchPermanent()
@@ -213,7 +213,7 @@ class Activity_Permissions : AppCompatActivity() {
     // -------------------------------------
 
     /** Set LAN switch **/
-    /*private fun setSwitchLan() {
+    private fun setSwitchLan() {
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.CINNAMON_BUN)
             binding.permissionsLanLyt.visibility = View.GONE
         else {
@@ -245,7 +245,7 @@ class Activity_Permissions : AppCompatActivity() {
             binding.permissionsLanSwitch.isClickable = false
         else
             binding.permissionsLanSwitch.isChecked = false
-    }*/
+    }
 
     // -------------------------------------
 

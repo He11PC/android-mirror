@@ -12,15 +12,15 @@ kotlin {
 android {
     namespace = "fr.hellpc.mirror"
 
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "fr.hellpc.mirror"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
 
-        versionCode = 19
-        versionName = "26.09.04"
+        versionCode = 20
+        versionName = "26.09.10"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -56,16 +56,17 @@ android {
     packaging {
         resources {
             excludes += "META-INF/versions/{9,11,15}/OSGI-INF/MANIFEST.MF"
+            excludes += "assets/dexopt/baseline.prof*"
         }
     }
 }
 
 dependencies {
-    val vRoom = "2.8.4"
+    val vRoom = "2.8.5"
     val vLifecycle = "2.11.0"
     val vCoroutines = "1.11.0"
 
-    implementation("androidx.core:core-ktx:1.18.0")
+    implementation("androidx.core:core-ktx:1.19.0")
     implementation("androidx.appcompat:appcompat:1.8.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 

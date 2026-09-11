@@ -1,0 +1,2 @@
+- Adaptation to Android 17 requirements
+- New permission introduced: ACCESS_LOCAL_NETWORK

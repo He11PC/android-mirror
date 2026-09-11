@@ -36,7 +36,7 @@
         android:localeConfig="@xml/locales_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="36">
+        tools:targetApi="37">
 
         <!--Activity - Main-->
         <activity
