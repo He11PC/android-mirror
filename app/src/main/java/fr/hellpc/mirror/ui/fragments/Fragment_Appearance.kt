@@ -14,6 +14,7 @@ package fr.hellpc.mirror.ui.fragments
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import fr.hellpc.mirror.R
+import fr.hellpc.mirror.data.Spinner_ColorAndText
 import fr.hellpc.mirror.data.room.Backup_Colors
 import fr.hellpc.mirror.databinding.FragmentAppearanceBinding
 import fr.hellpc.mirror.ui.adapters.Adapter_Spinner_Color
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
-import fr.hellpc.mirror.data.Spinner_ColorAndText
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import kotlinx.coroutines.launch
 
 class Fragment_Appearance : Fragment() {
@@ -45,6 +46,9 @@ class Fragment_Appearance : Fragment() {
     private val colorValueBorders by lazy { resources.getIntArray(R.array.color_value_borders).toList() }
     private val colorValueIcons by lazy { resources.getIntArray(R.array.color_value_icons).toList() }
     private val colorValueProgressbarSecondary by lazy { resources.getIntArray(R.array.color_value_progressbar_secondary).toList() }
+
+    private var currentBgColor: Int = 0
+    private var currentBorderColor: Int = 0
 
     companion object {
         fun newInstance(): Fragment_Appearance { return Fragment_Appearance() }
@@ -238,24 +242,50 @@ class Fragment_Appearance : Fragment() {
 
     // -------------------------------------
 
-    /** Get mutated background **/
-    private fun getPreviewBackground(): GradientDrawable {
-        val background = binding.previewLyt.background as GradientDrawable
-        background.mutate()
-        return background
-    }
-
     /** Update appearance preview background **/
     private fun updatePreviewBackground(color: Int) {
-        val background = getPreviewBackground()
-        background.setColor(colorValueBackground[color])
+        val newColor = colorValueBackground[color]
+        if(currentBgColor == newColor) return
+
+        currentBgColor = newColor
+        applyPreviewBackgroundAndBorders()
     }
 
     /** Update appearance preview borders **/
     private fun updatePreviewBorders(color: Int) {
-        val background = getPreviewBackground()
-        color.takeIf { it > 0 }?.let { background.setStroke(2, colorValueBorders[it]) }
-            ?: background.setStroke(0, null)
+        if(currentBorderColor == color) return
+
+        currentBorderColor = color
+        applyPreviewBackgroundAndBorders()
+    }
+
+    /** Apply appearance preview background and borders **/
+    private fun applyPreviewBackgroundAndBorders() {
+        val context = binding.previewLyt.context
+
+        val borderThickness = if(currentBorderColor > 0) 2 else 0
+        val borderColor = if(currentBorderColor > 0) colorValueBorders[currentBorderColor] else 0
+
+        val defaultDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 4 * context.resources.displayMetrics.density // 4dp
+            setColor(currentBgColor)
+            setStroke(borderThickness, borderColor)
+        }
+
+        val focusedDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 4 * context.resources.displayMetrics.density // 4dp
+            setColor(ContextCompat.getColor(context, R.color.accent))
+            setStroke(borderThickness, borderColor)
+        }
+
+        val stateList = StateListDrawable().apply {
+            addState(intArrayOf(android.R.attr.state_focused), focusedDrawable)
+            addState(intArrayOf(), defaultDrawable)
+        }
+
+        binding.previewLyt.background = stateList
     }
 
     /** Update appearance preview icon **/
@@ -301,6 +331,10 @@ class Fragment_Appearance : Fragment() {
 
     /** Load data to UI **/
     private fun loadDataToUI(colors: Backup_Colors) {
+        currentBgColor = colorValueBackground[colors.background]
+        currentBorderColor = colors.borders
+        applyPreviewBackgroundAndBorders()
+
         binding.appearanceSpnBackground.setSelection(colors.background, false)
         binding.appearanceSpnBorders.setSelection(colors.borders, false)
         binding.appearanceSpnIcons.setSelection(colors.icons, false)

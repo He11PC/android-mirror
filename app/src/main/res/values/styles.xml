@@ -21,7 +21,7 @@
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorControlHighlight">@color/accent</item>
 
-        <item name="android:windowBackground">@color/background_app</item>
+        <item name="android:windowBackground">@color/primary_dark</item>
 
         <!-- Scrollbar color -->
         <item name="android:scrollbarThumbVertical">@color/pale_gray</item>
@@ -60,7 +60,7 @@
 
     <!-- ImageButton -->
     <style name="AppTheme.ImageButtonStyle" parent="Widget.AppCompat.ImageButton">
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@drawable/background_focusable</item>
         <item name="android:tint">@color/image_button</item>
     </style>
 
@@ -75,14 +75,14 @@
     <style name="AppTheme.TabLayout" parent="Widget.Design.TabLayout">
         <item name="android:background">@color/primary</item>
         <item name="tabIconTint">@color/tablayout_selector</item>
-        <item name="tabRippleColor">@color/blue_reversed</item>
+        <item name="tabRippleColor">@color/accent</item>
         <item name="tabIndicatorColor">#FFFFFF</item>
         <item name="tabIndicatorHeight">1dp</item>
         <item name="android:elevation">2dp</item>
     </style>
 
 
-    <!-- CardView style -->
+    <!-- CardView -->
     <style name="AppTheme.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="contentPadding">8dp</item>
         <item name="cardCornerRadius">4dp</item>
@@ -91,22 +91,12 @@
         <item name="cardBackgroundColor">@color/background_card</item>
     </style>
 
-
-    <!-- Normal layout, CardView appearance -->
     <style name="AppTheme.Layout_CardView">
         <item name="android:background">@drawable/background_card</item>
         <item name="android:elevation">2dp</item>
         <item name="android:padding">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_marginBottom">16dp</item>
-    </style>
-
-
-    <!-- Normal layout, CardView appearance, no vertical margin -->
-    <style name="AppTheme.Layout_CardView_NoMargin">
-        <item name="android:background">@drawable/background_card</item>
-        <item name="android:elevation">2dp</item>
-        <item name="android:padding">8dp</item>
     </style>
 
 
@@ -130,7 +120,7 @@
 
     <!-- TextViews styles -->
     <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@drawable/edit_underline</item>
+        <item name="android:background">@drawable/edit_underline_selector</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textColorHint">@color/pale_gray</item>
@@ -147,6 +137,7 @@
     <!-- CheckBox style -->
     <style name="AppTheme.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="buttonTint">@color/checkbox</item>
+        <item name="rippleColor">@color/accent</item>
         <item name="android:minHeight">48dp</item>
     </style>
 
@@ -175,6 +166,7 @@
         <item name="buttonBarNegativeButtonStyle">@style/AppTheme.NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">@style/AppTheme.NeutralButtonStyle</item>
+        <item name="buttonBarStyle">@style/AppTheme.ButtonBarTransparent</item>
         <item name="android:colorBackground">@color/background_popup</item>
         <item name="dialogCornerRadius">4dp</item>
     </style>
@@ -197,6 +189,7 @@
         <item name="buttonBarNegativeButtonStyle">@style/AppTheme.NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">@style/AppTheme.NeutralButtonStyle</item>
+        <item name="buttonBarStyle">@style/AppTheme.ButtonBarTransparent</item>
         <item name="android:colorBackground">@color/background_popup</item>
         <item name="dialogCornerRadius">4dp</item>
     </style>
@@ -219,6 +212,7 @@
         <item name="buttonBarNegativeButtonStyle">@style/AppTheme.NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
         <item name="buttonBarNeutralButtonStyle">@style/AppTheme.NeutralButtonStyle</item>
+        <item name="buttonBarStyle">@style/AppTheme.ButtonBarTransparent</item>
         <item name="android:colorBackground">@color/background_popup</item>
         <item name="dialogCornerRadius">4dp</item>
     </style>
@@ -236,29 +230,39 @@
 
 
     <!-- TimePicker style -->
-    <style name="AppTheme.TimePicker" parent="Theme.Material3.DayNight.Dialog">
+    <style name="AppTheme.TimePicker" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowBackground">@drawable/background_popup</item> <!-- Background -->
-        <item name="colorAccent">@color/primary</item> <!-- Left background in light theme -->
-        <item name="colorOnPrimary">@color/blue</item> <!-- Buttons -->
-        <item name="colorControlNormal">@color/gray</item> <!-- Icon -->
+        <item name="colorAccent">@color/primary</item> <!-- Top background in light theme -->
         <item name="android:colorControlActivated">@color/blue</item> <!-- Selector -->
-        <item name="android:textColorTertiary">@color/gray</item> <!-- Hour/Minute label -->
-        <item name="android:textColorHint">@color/text_black</item> <!-- Hour/Minute text -->
-        <item name="android:textColor">@color/gray</item> <!-- Type in time -->
+        <item name="android:textColor">@color/text_black</item> <!-- Hour/Minute text in clock mode -->
+        <item name="android:textColorHint">@color/text_black</item> <!-- Hour/Minute text in keyboard mode -->
+
+        <item name="buttonBarStyle">@style/AppTheme.ButtonBarTransparent</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.PositiveButtonStyle</item>
     </style>
 
 
     <!-- Dialog buttons -->
+    <style name="AppTheme.ButtonBarTransparent" parent="Widget.AppCompat.ButtonBar">
+        <item name="android:background">@color/dialog_buttons_bar</item>
+    </style>
+
     <style name="AppTheme.NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">@color/dialog_button_color</item>
+        <item name="backgroundTint">@color/dialog_button_focus</item>
     </style>
 
     <style name="AppTheme.PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">@color/dialog_button_color</item>
+        <item name="backgroundTint">@color/dialog_button_focus</item>
     </style>
 
     <style name="AppTheme.NeutralButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">@color/dialog_button_color</item>
+        <item name="backgroundTint">@color/dialog_button_focus</item>
     </style>
 
 </resources>

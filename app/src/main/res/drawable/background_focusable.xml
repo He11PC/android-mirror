@@ -11,21 +11,13 @@
   ~ See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:orientation="horizontal"
-    android:background="@drawable/background_focusable"
-    android:focusable="true">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/row_logs_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:textSize="12sp"
-        android:focusable="false"
-        android:paddingHorizontal="5dp" />
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <solid android:color="@color/accent" />
+        </shape>
+    </item>
 
-</LinearLayout>
+</selector>

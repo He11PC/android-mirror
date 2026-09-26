@@ -30,8 +30,10 @@ import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.ActionMenuView
 import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -40,6 +42,7 @@ import androidx.recyclerview.widget.ItemTouchHelper.END
 import androidx.recyclerview.widget.ItemTouchHelper.START
 import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
@@ -52,7 +55,7 @@ import fr.hellpc.mirror.managers.Manager_Permissions
 import fr.hellpc.mirror.managers.Manager_Workers
 import fr.hellpc.mirror.ui.adapters.Adapter_Recycler_Main
 import fr.hellpc.mirror.ui.adapters.Adapter_Spinner_Color
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Main
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Main
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import java.io.File
@@ -69,6 +72,9 @@ class Activity_Main : AppCompatActivity() {
     private var menuBackupAllIsVisible = false
     private var menuCancelAllIsVisible = false
     private var recyclerViewIsRefreshing = false
+
+    private lateinit var toolbar: MaterialToolbar
+    private var hasSetInitialFocus = false
 
     // DB access
     private val viewModel: ViewModel_Main by viewModels { ViewModel_Main.Factory }
@@ -124,6 +130,22 @@ class Activity_Main : AppCompatActivity() {
             loadBackupsList()
             setupColorThemesSpinner()
             managePermanentNotificationService(init)
+        }
+
+        toolbar = binding.mainToolbar
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if(hasFocus && !hasSetInitialFocus) {
+            toolbar.post {
+                val actionMenuView = toolbar.children.firstOrNull { it is ActionMenuView } as? ActionMenuView
+                val firstMenuItemButton = actionMenuView?.getChildAt(0)
+
+                if(firstMenuItemButton != null && !firstMenuItemButton.isInTouchMode && firstMenuItemButton.requestFocus())
+                    hasSetInitialFocus = true
+            }
         }
     }
 

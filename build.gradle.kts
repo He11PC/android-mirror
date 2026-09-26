@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application") version "9.3.2" apply false
-    id("com.google.devtools.ksp") version "2.3.11" apply false
+    id("com.android.application") version "9.4.1" apply false
+    id("com.google.devtools.ksp") version "2.3.12" apply false
 }
 
 tasks.register<Delete>("clean") {

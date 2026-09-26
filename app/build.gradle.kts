@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 37
 
-        versionCode = 20
-        versionName = "26.09.10"
+        versionCode = 21
+        versionName = "26.09.25"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -66,7 +66,7 @@ dependencies {
     val vLifecycle = "2.11.0"
     val vCoroutines = "1.11.0"
 
-    implementation("androidx.core:core-ktx:1.19.0")
+    implementation("androidx.core:core-ktx:1.19.1")
     implementation("androidx.appcompat:appcompat:1.8.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
@@ -80,7 +80,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-    implementation("androidx.fragment:fragment-ktx:1.9.0")
+    implementation("androidx.fragment:fragment-ktx:1.9.1")
 
     // ROOM
     implementation("androidx.room:room-runtime:$vRoom")
@@ -98,7 +98,7 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
 
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.11.2")
+    implementation("androidx.work:work-runtime-ktx:2.12.0")
     implementation("com.google.guava:guava:33.7.1-android")
 
     // NFS

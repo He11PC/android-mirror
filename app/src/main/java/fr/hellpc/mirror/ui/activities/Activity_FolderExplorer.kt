@@ -25,7 +25,7 @@ import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.databinding.ActivityFolderExplorerBinding
 import fr.hellpc.mirror.ui.adapters.Adapter_Recycler_FolderExplorer
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_FolderExplorer
+import fr.hellpc.mirror.ui.viewModels.ViewModel_FolderExplorer
 import kotlinx.coroutines.launch
 
 class Activity_FolderExplorer: AppCompatActivity() {

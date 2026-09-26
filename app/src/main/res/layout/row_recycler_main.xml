@@ -33,7 +33,8 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:longClickable="true"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="@drawable/background_focusable">
 
             <ImageView
                 android:id="@+id/row_main_top_img_source"

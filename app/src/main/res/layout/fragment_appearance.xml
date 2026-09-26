@@ -158,7 +158,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <fr.hellpc.mirror.ui.customviews.Custom_ReSpinner
+            <fr.hellpc.mirror.ui.customViews.Custom_ReSpinner
                 android:id="@+id/appearance_spn_theme"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

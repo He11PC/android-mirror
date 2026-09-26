@@ -26,7 +26,7 @@ import fr.hellpc.mirror.ui.adapters.Adapter_Spinner_Image
 import fr.hellpc.mirror.data.Spinner_IconAndText
 import fr.hellpc.mirror.databinding.FragmentTargetBinding
 import fr.hellpc.mirror.data.room.Backup_Target
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import kotlinx.coroutines.launch
 
 

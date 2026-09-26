@@ -422,8 +422,20 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 jobManageObsoleteOrphans.join()
 
                 launch { progress.copyStarted() }
-                val jobManageOrphans = launch { manageOrphans(newFilesOrphan, false, newFilesToCopy.count() < 9) }
-                manageBackup(newFilesToCopy)
+
+                val parallelInstances = when {
+                    numberFiles <= 1 -> numberFiles
+                    sizeFiles < 2L * 1024L * 1024L -> when {
+                        numberFiles <= 5 -> 1
+                        numberFiles <= 10 -> 2
+                        else -> 3
+                    }
+                    sizeFiles >= 25L * 1024L * 1024L -> minOf(numberFiles, 3)
+                    else -> if(numberFiles <= 4) 2 else 3
+                }
+
+                val jobManageOrphans = launch { manageOrphans(newFilesOrphan, false, parallelInstances < 3) }
+                manageBackup(newFilesToCopy, parallelInstances)
                 jobManageOrphans.join()
 
 
@@ -773,18 +785,16 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
     // Backup management
     // -----------------
 
-    /** Proceed to files backup **/
-    private suspend fun manageBackup(backupFileList: List<WorkerBackup_File>) = withContext(dispatcherDefault) {
-        val filesCount = backupFileList.count()
-
-        if(filesCount == 0)
+    /** Launch backup instances **/
+    private suspend fun manageBackup(backupFileList: List<WorkerBackup_File>, parallelInstances: Int) = withContext(dispatcherDefault) {
+        if(parallelInstances == 0)
             return@withContext
 
         backupPool.addAll(backupFileList)
 
-        when (filesCount) {
-            in 1..3 -> doBackup(1)
-            in 4..8 -> {
+        when(parallelInstances) {
+            1 -> doBackup(1)
+            2 -> {
                 val jobBackup = launch { doBackup(1) }
                 doBackup(2)
                 jobBackup.join()
@@ -801,14 +811,14 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
         backupPool.clear()
     }
 
-    /** Get file to backup from pool **/
+    /** Get file to back up from pool **/
     @Synchronized private fun getFileToBackup(): WorkerBackup_File {
         val file = backupPool[0]
         backupPool.removeAt(0)
         return file
     }
 
-    /** Proceed to files backup **/
+    /** File backup instance **/
     private suspend fun doBackup(connexion: Int) = withContext(dispatcherDefault) {
         do {
             val file = getFileToBackup()

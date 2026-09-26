@@ -39,7 +39,7 @@ import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.databinding.FragmentTargetSftpBinding
 import fr.hellpc.mirror.ui.activities.Activity_Autofill
 import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
 import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
 import fr.hellpc.mirror.security.Security_Encryption.cipherEncrypt
@@ -139,7 +139,18 @@ class Fragment_TargetSFTP : Fragment() {
     private fun setupListeners() = lifecycleScope.launch {
         binding.targetSftpBtnCredentialsFill.setOnClickListener { openAutoFill() }
         binding.targetSftpBtnPathSearch.setOnClickListener { openFolderExplorer() }
-        binding.targetSftpEditHostkey.setOnClickListener { getHostKey() }
+
+        binding.targetSftpEditHostkey.apply {
+            keyListener = null
+            movementMethod = null
+            showSoftInputOnFocus = false
+
+            setOnFocusChangeListener { view, hasFocus ->
+                if(hasFocus && isInTouchMode) { view.performClick() }
+            }
+
+            setOnClickListener { getHostKey() }
+        }
     }
 
     /** Setup filters for EditText **/

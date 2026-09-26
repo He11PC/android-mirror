@@ -20,8 +20,7 @@
     android:clipToPadding="false"
     android:orientation="vertical"
     tools:context=".ui.activities.Activity_Main"
-    android:fitsSystemWindows="true"
-    android:background="@color/primary_dark">
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/main_appbar_lyt"
@@ -39,7 +38,7 @@
             app:title="@string/application_name"
             app:titleTextColor="@color/design_default_color_on_primary" />
 
-        <fr.hellpc.mirror.ui.customviews.Custom_ReSpinner
+        <fr.hellpc.mirror.ui.customViews.Custom_ReSpinner
             android:id="@+id/main_spn_theme"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -122,7 +121,7 @@
 
     <TextView
         android:id="@+id/main_tooltip_add_txt"
-        style="@style/AppTheme.Layout_CardView_NoMargin"
+        style="@style/AppTheme.Layout_CardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_appbar_lyt"

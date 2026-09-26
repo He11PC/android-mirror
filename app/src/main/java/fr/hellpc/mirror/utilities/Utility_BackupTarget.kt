@@ -31,12 +31,11 @@ class Utility_BackupTarget {
 
     /** Get a readable protocol type **/
     fun getReadableProtocol (protocol: String, ssl: Boolean?, path: String): String {
-        return if(protocol == "LOCAL" && !path.contains("/storage/emulated/0/"))
-            "MicroSD"
-        else if(protocol == "FTP" && ssl == true)
-            protocol+"S"
-        else
-            protocol
+        return when(protocol) {
+            "LOCAL" if !path.contains("/storage/emulated/0/") -> "MicroSD"
+            "FTP" if ssl == true -> protocol + "S"
+            else -> protocol
+        }
     }
 
     /** Get the protocol icon **/

@@ -14,7 +14,6 @@ package fr.hellpc.mirror.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
@@ -54,17 +53,6 @@ class Activity_About : AppCompatActivity() {
 
         val txtVersion = "v${BuildConfig.VERSION_NAME}"
         binding.aboutAppTxtVersion.text = txtVersion
-
-        // Clickable html links
-        binding.aboutAppTxtAuthor.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutAppTxtLicense.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtNfs.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtSmb.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtFtp.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtSftp.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtWebdav.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtOkhttp.movementMethod = LinkMovementMethod.getInstance()
-        binding.aboutLibrariesTxtAutostarter.movementMethod = LinkMovementMethod.getInstance()
 
         // Support icons
         binding.aboutSupportImgCoffee.setOnClickListener {

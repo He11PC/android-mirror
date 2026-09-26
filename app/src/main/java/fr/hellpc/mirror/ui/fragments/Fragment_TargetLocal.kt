@@ -30,7 +30,7 @@ import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.databinding.FragmentTargetLocalBinding
 import fr.hellpc.mirror.managers.Manager_Alerts
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
 import kotlin.properties.Delegates
 
@@ -100,7 +100,18 @@ class Fragment_TargetLocal : Fragment() {
         tabIsSource = requireArguments().getString("TAB") == viewModel.srcTabName
         requireArguments().getString("PROTOCOL")?.let { fragmentProtocol = it }
 
-        binding.targetLocalEditPathSelect.setOnClickListener { openFolderExplorer() }
+        binding.targetLocalEditPathSelect.apply {
+            keyListener = null
+            movementMethod = null
+            showSoftInputOnFocus = false
+
+            setOnFocusChangeListener { view, hasFocus ->
+                if(hasFocus && isInTouchMode) { view.performClick() }
+            }
+
+            setOnClickListener { openFolderExplorer() }
+        }
+
         manageTimeZoneInfoVisibility()
 
         if(loadData || viewModel.backupIsLocked())

@@ -1,0 +1,3 @@
+- Added D-pad support
+- Minor optimizations
+- Library updates

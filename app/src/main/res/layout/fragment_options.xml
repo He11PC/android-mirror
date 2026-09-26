@@ -473,7 +473,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <fr.hellpc.mirror.ui.customViews.Custom_AutoLinkFocusTextView
                 android:id="@+id/options_filters_txt_black_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -661,7 +661,7 @@
                         android:layout_marginStart="8dp"
                         android:clickable="true"
                         android:cursorVisible="false"
-                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         android:importantForAutofill="no"
                         android:inputType="time"
                         tools:ignore="TextContrastCheck" />

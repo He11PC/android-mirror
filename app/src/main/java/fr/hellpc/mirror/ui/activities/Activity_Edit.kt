@@ -13,6 +13,7 @@
 package fr.hellpc.mirror.ui.activities
 
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -34,7 +36,7 @@ import fr.hellpc.mirror.ui.adapters.Adapter_ViewPager_Edit
 import fr.hellpc.mirror.ui.fragments.Fragment_Appearance
 import fr.hellpc.mirror.ui.fragments.Fragment_Options
 import fr.hellpc.mirror.ui.fragments.Fragment_Target
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import kotlinx.coroutines.launch
 
 
@@ -170,12 +172,15 @@ class Activity_Edit: AppCompatActivity() {
             Fragment_Options.newInstance(),
             Fragment_Appearance.newInstance()
         )
-        viewPager.adapter = Adapter_ViewPager_Edit(this, fragmentList)
-        viewPager.offscreenPageLimit = 3
+
+        viewPager.apply {
+            adapter = Adapter_ViewPager_Edit(this@Activity_Edit, fragmentList)
+            offscreenPageLimit = 3
+            setupViewPagerItemsFocusability()
+        }
 
         // Attach ViewPager2 fragments to tabLayout
-        val tabLayout = binding.editTabLyt
-        tabLayout.setupWithViewPager(
+        binding.editTabLyt.setupWithViewPager(
             viewPager,
             listOf(
                 R.drawable.ic_source,
@@ -186,6 +191,38 @@ class Activity_Edit: AppCompatActivity() {
         )
     }
 
+    /** Manage the focusability of ViewPager items based on their visibility **/
+    private fun ViewPager2.setupViewPagerItemsFocusability() {
+        val internalRecyclerView = getChildAt(0) as? RecyclerView ?: return
+
+        isFocusable = false
+        internalRecyclerView.isFocusable = false
+
+        val updateFocus = { activePosition: Int ->
+            post {
+                for(i in 0 until internalRecyclerView.childCount) {
+                    val pageView = internalRecyclerView.getChildAt(i) as? ViewGroup ?: continue
+                    val viewHolder = internalRecyclerView.getChildViewHolder(pageView)
+                    val position = viewHolder.bindingAdapterPosition
+
+                    if(position == activePosition)
+                        pageView.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
+                    else
+                        pageView.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
+                }
+            }
+        }
+
+        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                updateFocus(position)
+            }
+        })
+
+        updateFocus(currentItem)
+    }
+
     /** Link ViewPager2 fragments to TabLayout */
     private fun TabLayout.setupWithViewPager(viewPager: ViewPager2, icons: List<Int>) {
         if (icons.size != viewPager.adapter?.itemCount)
@@ -194,6 +231,29 @@ class Activity_Edit: AppCompatActivity() {
         TabLayoutMediator(this, viewPager) { tab, position ->
             tab.icon = ContextCompat.getDrawable(this.context, icons[position])
         }.attach()
+
+        // Select the active tab icon when it receives focus
+        var isTabLayoutFocused = false
+        for(i in 0 until tabCount) {
+            val tabView = getTabAt(i)?.view
+
+            tabView?.setOnFocusChangeListener { _, hasFocus ->
+                if(hasFocus) {
+                    if(!isTabLayoutFocused) {
+                        isTabLayoutFocused = true
+                        val activePosition = viewPager.currentItem
+                        if(i != activePosition)
+                            getTabAt(activePosition)?.view?.requestFocus()
+                    }
+                }
+                else {
+                    tabView.post {
+                        if (!hasFocus())
+                            isTabLayoutFocused = false
+                    }
+                }
+            }
+        }
     }
 
 

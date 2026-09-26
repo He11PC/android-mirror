@@ -29,7 +29,7 @@ class Adapter_Recycler_Logs: ListAdapter<String, Adapter_Recycler_Logs.LogRecycl
     private lateinit var context: Context
 
     private val colorsMap by lazy { mapOf(
-        "<font color=gray>" to "<font color=" + ContextCompat.getColor(context, R.color.pale_gray) + ">",
+        "<font color=gray>" to "<font color=" + ContextCompat.getColor(context, R.color.text_gray) + ">",
         "<font color=blue>" to "<font color=" + ContextCompat.getColor(context, R.color.blue) + ">",
         "<font color=green>" to "<font color=" + ContextCompat.getColor(context, R.color.green) + ">",
         "<font color=orange>" to "<font color=" + ContextCompat.getColor(context, R.color.orange) + ">",

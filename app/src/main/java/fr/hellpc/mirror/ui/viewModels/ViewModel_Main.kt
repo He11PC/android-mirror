@@ -10,7 +10,7 @@
  * See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
  */
 
-package fr.hellpc.mirror.ui.viewmodels
+package fr.hellpc.mirror.ui.viewModels
 
 import android.content.Context
 import androidx.core.content.edit

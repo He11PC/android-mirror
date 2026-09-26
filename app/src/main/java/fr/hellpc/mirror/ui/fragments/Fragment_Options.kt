@@ -15,7 +15,6 @@ package fr.hellpc.mirror.ui.fragments
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.InputFilter
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,7 @@ import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.room.Backup_Options
 import fr.hellpc.mirror.databinding.FragmentOptionsBinding
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Edit
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToLong
 import fr.hellpc.mirror.utilities.Utility_Conversion.sizeToReadable
@@ -79,8 +78,6 @@ class Fragment_Options : Fragment() {
 
     /** Initialize UI **/
     private fun initialize(loadData: Boolean) {
-        // Clickable html link
-        binding.optionsFiltersTxtBlackList.movementMethod = LinkMovementMethod.getInstance()
         resizeFileSizeTextViews()
 
         setupInteractionListeners()
@@ -118,17 +115,23 @@ class Fragment_Options : Fragment() {
     /** Setup user interaction listeners **/
     private fun setupInteractionListeners() = lifecycleScope.launch {
         // Time picker
-        binding.optionsScheduleEditTime.setOnClickListener {
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute -> viewModel.loadScheduledTime(hour, minute) }
+        binding.optionsScheduleEditTime.apply {
+            keyListener = null
+            movementMethod = null
+            showSoftInputOnFocus = false
 
-            TimePickerDialog(
-                activity,
-                R.style.AppTheme_TimePicker,
-                timeSetListener,
-                viewModel.timePickerValue.value!!.hour,
-                viewModel.timePickerValue.value!!.minute,
-                android.text.format.DateFormat.is24HourFormat(activity)
-            ).show()
+            setOnClickListener {
+                val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute -> viewModel.loadScheduledTime(hour, minute) }
+
+                TimePickerDialog(
+                    activity,
+                    R.style.AppTheme_TimePicker,
+                    timeSetListener,
+                    viewModel.timePickerValue.value!!.hour,
+                    viewModel.timePickerValue.value!!.minute,
+                    android.text.format.DateFormat.is24HourFormat(activity)
+                ).show()
+            }
         }
     }
 

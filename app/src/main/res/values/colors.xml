@@ -24,13 +24,12 @@
 
     <color name="text_black">#000000</color>
     <color name="text_notifications">#DE000000</color>
+    <color name="text_gray">#A5A5A5</color>
 
     <color name="gray">#666666</color>
-    <color name="gray_reversed">#BEBEBE</color>
     <color name="pale_gray">#A9A9A9</color>
 
     <color name="blue">#005580</color>
-    <color name="blue_reversed">#0088CC</color>
     <color name="green">#007000</color>
     <color name="orange">#FF8C00</color>
     <color name="red">#A00000</color>

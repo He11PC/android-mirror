@@ -14,6 +14,7 @@ package fr.hellpc.mirror.ui.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.widget.SeekBar
 import androidx.activity.OnBackPressedCallback
@@ -25,7 +26,7 @@ import fr.hellpc.mirror.R
 import fr.hellpc.mirror.databinding.ActivityLogsBinding
 import fr.hellpc.mirror.managers.Manager_Settings
 import fr.hellpc.mirror.ui.adapters.Adapter_Recycler_Logs
-import fr.hellpc.mirror.ui.viewmodels.ViewModel_Logs
+import fr.hellpc.mirror.ui.viewModels.ViewModel_Logs
 import fr.hellpc.mirror.data.Logs_NavigationPosition
 import fr.hellpc.mirror.utilities.Utility_HorizontalSwipe
 import kotlinx.coroutines.launch
@@ -138,17 +139,33 @@ class Activity_Logs : AppCompatActivity() {
 
         binding.logsNavigationBtnNext.setOnClickListener { viewModel.changePosition(1) }
 
-        binding.logsNavigationBar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
-                if(fromUser)
-                    refreshNavigationText(Logs_NavigationPosition(progress, seek.max))
+        binding.logsNavigationBar.apply {
+            setOnSeekBarChangeListener(object :
+                SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                    if(fromUser)
+                        refreshNavigationText(Logs_NavigationPosition(progress, seek.max))
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) { }
+
+                override fun onStopTrackingTouch(seek: SeekBar) { viewModel.jumpToPosition(seek.progress) }
+            })
+
+            setOnKeyListener { seek, keyCode, event ->
+                if(event.action == KeyEvent.ACTION_DOWN) {
+                    when(keyCode) {
+                        KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
+                            viewModel.jumpToPosition((seek as SeekBar).progress)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                else
+                    false
             }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) { }
-
-            override fun onStopTrackingTouch(seek: SeekBar) { viewModel.jumpToPosition(seek.progress) }
-        })
+        }
     }
 
     // -------------------------------------

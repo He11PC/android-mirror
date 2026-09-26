@@ -10,7 +10,7 @@
  * See the GNU Affero General Public License for more details <https://www.gnu.org/licenses/>.
  */
 
-package fr.hellpc.mirror.ui.customviews
+package fr.hellpc.mirror.ui.customViews
 
 import android.content.Context
 import android.util.AttributeSet
