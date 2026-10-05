@@ -28,10 +28,10 @@ import fr.hellpc.mirror.data.Spinner_ColorAndText
 
 class Adapter_Spinner_Color(ctx: Context, data: List<Spinner_ColorAndText>): ArrayAdapter<Spinner_ColorAndText>(ctx, 0, data) {
 
-    private val colorValueBackground by lazy { context.resources.getIntArray(R.array.color_value_background).toList() }
-    private val colorValueBorders by lazy { context.resources.getIntArray(R.array.color_value_borders).toList() }
-    private val colorValueIcons by lazy { context.resources.getIntArray(R.array.color_value_icons).toList() }
-    private val colorValueProgressbarSecondary by lazy { context.resources.getIntArray(R.array.color_value_progressbar_secondary).toList() }
+    private val colorValueBackground = context.resources.getIntArray(R.array.color_value_background).toList()
+    private val colorValueBorders = context.resources.getIntArray(R.array.color_value_borders).toList()
+    private val colorValueIcons = context.resources.getIntArray(R.array.color_value_icons).toList()
+    private val colorValueProgressbarSecondary = context.resources.getIntArray(R.array.color_value_progressbar_secondary).toList()
 
     override fun getView(position: Int, recycledView: View?, parent: ViewGroup): View {
         return this.createView(position, recycledView, parent)

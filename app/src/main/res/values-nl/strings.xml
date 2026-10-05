@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Back-ups van een externe bron naar een WebDav-server vereisen het maken van tijdelijke tussenliggende bestanden op uw apparaat</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Selecteer map</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Map/Submap</string>
     <string name="target_local_information_timezone">Het FAT-bestandssysteem, dat vaak wordt gebruikt voor externe opslag, kan geen tijdzones beheren en slaat datums op op basis van de lokale tijd van het apparaat. Als gevolg hiervan kan een volledige back-up van uw bestanden plaatsvinden na het wijzigen van de tijdzone</string>
     <string name="target_local_warning_android_10">Google besloot de toestemming van applicaties om op externe opslag te schrijven buiten hun privémap op Android 10 in te trekken.\n\nWilt u uw doelmap naar de Mirror-map verplaatsen?\n\nWees voorzichtig, Android zal het verwijderen wanneer u deze app verwijdert!</string>
 

@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">A távoli forrásról a WebDav-kiszolgálóra történő biztonsági mentéshez ideiglenes köztes fájlokat kell létrehozni az eszközön</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Mappa kiválasztása</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Mappa/alamappa</string>
     <string name="target_local_information_timezone">A külső tárolókon általánosan használt FAT fájlrendszer nem tudja kezelni az időzónákat, és az eszköz helyi ideje alapján tárolja a dátumokat. Ennek következtében előfordulhat, hogy az időzóna megváltoztatása után teljes biztonsági másolat készülhet a fájlokról</string>
     <string name="target_local_warning_android_10">A Google úgy döntött, hogy visszavonja az alkalmazások engedélyét, hogy a saját mappájukon kívüli külső tárhelyre írjanak Android 10 rendszeren.\n\nSzeretné áthelyezni a célmappát az Mirror mappába?\n\nLegyen óvatos, az Android törli, amikor eltávolítja ezt az alkalmazást!</string>
 

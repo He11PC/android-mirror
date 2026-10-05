@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">I backup da una sorgente remota a un server WebDav richiedono la creazione di file intermedi temporanei sul dispositivo</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Seleziona cartella</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Cartella/sottocartella</string>
     <string name="target_local_information_timezone">Il file system FAT, comunemente utilizzato su archivi esterni, non può gestire i fusi orari e memorizza le date in base all\'ora locale del dispositivo. Di conseguenza, potrebbe verificarsi un backup completo dei file dopo aver cambiato fuso orario</string>
     <string name="target_local_warning_android_10">Google ha deciso di revocare il permesso delle applicazioni di scrivere su una memoria esterna al di fuori della loro cartella privata su Android 10.\n\nVuoi spostare la cartella di destinazione all\'interno della cartella Mirror?\n\nFai attenzione, Android lo eliminerà quando disinstalli questa app!</string>
 

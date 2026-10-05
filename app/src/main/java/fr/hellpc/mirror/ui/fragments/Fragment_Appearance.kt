@@ -276,7 +276,7 @@ class Fragment_Appearance : Fragment() {
         val focusedDrawable = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             cornerRadius = 4 * context.resources.displayMetrics.density // 4dp
-            setColor(ContextCompat.getColor(context, R.color.accent))
+            setColor(ContextCompat.getColor(context, R.color.accent_transparent))
             setStroke(borderThickness, borderColor)
         }
 

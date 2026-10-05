@@ -16,7 +16,7 @@
     <item android:state_focused="true">
         <shape android:shape="rectangle">
             <corners android:radius="4dp" />
-            <solid android:color="@color/accent" />
+            <solid android:color="@color/accent_transparent" />
         </shape>
     </item>
 

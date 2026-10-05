@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 37
 
-        versionCode = 21
-        versionName = "26.09.25"
+        versionCode = 22
+        versionName = "26.10.02"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -56,7 +56,6 @@ android {
     packaging {
         resources {
             excludes += "META-INF/versions/{9,11,15}/OSGI-INF/MANIFEST.MF"
-            excludes += "assets/dexopt/baseline.prof*"
         }
     }
 }
@@ -99,7 +98,7 @@ dependencies {
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.12.0")
-    implementation("com.google.guava:guava:33.7.1-android")
+    implementation("com.google.guava:guava:33.7.2-android")
 
     // NFS
     implementation("com.emc.ecs:nfs-client:1.1.0")
@@ -123,4 +122,9 @@ dependencies {
     //testImplementation("junit:junit:4.13.2")
     //androidTestImplementation("androidx.test.ext:junit:1.1.5")
     //androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+// Disable Baseline Profiles (assets/dexopt/baseline.prof*) to resolve the reproducible builds issue
+tasks.withType<com.android.build.gradle.internal.tasks.CompileArtProfileTask> {
+    enabled = false
 }

@@ -44,7 +44,7 @@ class Adapter_Recycler_Main(val buttonClick: (BackupBtn_Action) -> Unit, val mov
 
     private lateinit var context: Context
     private val utilityPathFormat by lazy { Utility_BackupTarget() }
-    private val scopeMain by lazy { CoroutineScope(Job() + Dispatchers.Main) }
+    private val scopeMain = CoroutineScope(Job() + Dispatchers.Main)
 
     private val colorValueBackground by lazy { context.resources.getIntArray(R.array.color_value_background).toList() }
     private val colorValueBorders by lazy { context.resources.getIntArray(R.array.color_value_borders).toList() }
@@ -209,7 +209,7 @@ class Adapter_Recycler_Main(val buttonClick: (BackupBtn_Action) -> Unit, val mov
 
             // Card transparency
             if(status.status == "idle")
-                binding.rowMainCard.alpha = if(status.isDisabled) 0.6f else 1f
+                binding.rowMainCard.alpha = if(status.isDisabled) 0.75f else 1f
 
             // Backup queued
             if(status.status == "queue") {

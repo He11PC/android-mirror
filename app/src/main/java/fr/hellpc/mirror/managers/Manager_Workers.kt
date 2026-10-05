@@ -36,8 +36,8 @@ class Manager_Workers {
     
     private val repository = (App.instance.applicationContext as App).repositoryWorkerBackup
     private val prefService by lazy { App.instance.getSharedPreferences("SERVICE", Context.MODE_PRIVATE) }
-    private val scopeDefault by lazy { CoroutineScope(Job() + Dispatchers.Default) }
-    private val scopeIO by lazy { CoroutineScope(Job() + Dispatchers.IO) }
+    private val scopeDefault = CoroutineScope(Job() + Dispatchers.Default)
+    private val scopeIO = CoroutineScope(Job() + Dispatchers.IO)
 
 
     // ------

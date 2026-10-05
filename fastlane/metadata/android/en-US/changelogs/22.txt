@@ -1,0 +1,5 @@
+- Integrated local directory selector
+- Improved storage type detection (internal, microSD, USB)
+- Light and dark theme adjustments
+- Minor optimizations
+- Added monochrome application icon

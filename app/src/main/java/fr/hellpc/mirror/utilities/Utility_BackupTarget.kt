@@ -12,17 +12,35 @@
 
 package fr.hellpc.mirror.utilities
 
+import android.os.Build
+import android.os.storage.StorageManager
+import android.os.storage.StorageVolume
+import androidx.core.content.getSystemService
+import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
+import fr.hellpc.mirror.data.LocalStorageType
 import java.util.Locale
 
 class Utility_BackupTarget {
 
-    private val charsBengali by lazy { "[\\u0980-\\u09FF]" }
-    private val charsServer by lazy { "\\p{L}\\p{N}-.'" }
-    private val charsDirectory by lazy { "\\p{Sc}\\p{Z}\\p{Pc}\\p{Ps}\\p{Pe}=#&" }
-    private val charsPath by lazy { "/" }
-    private val charsGlob by lazy { "*?!:\\n\\r" }
-    private val forbiddenDirectoryNames by lazy { listOf("aux", "com1", "com2", "com3", "com4", "com5", "com6", "com7", "com8", "com9", "con", "lpt1", "lpt2", "lpt3", "lpt4", "lpt5", "lpt6", "lpt7", "lpt8", "lpt9", "nul", "prn", ".DAV", "._DAV") }
+    private val charsBengali = "[\\u0980-\\u09FF]"
+    private val charsServer = "\\p{L}\\p{N}-.'"
+    private val charsDirectory = "\\p{Sc}\\p{Z}\\p{Pc}\\p{Ps}\\p{Pe}=#&"
+    private val charsPath = "/"
+    private val charsGlob = "*?!:\\n\\r"
+    private val forbiddenDirectoryNames = listOf("aux", "com1", "com2", "com3", "com4", "com5", "com6", "com7", "com8", "com9", "con", "lpt1", "lpt2", "lpt3", "lpt4", "lpt5", "lpt6", "lpt7", "lpt8", "lpt9", "nul", "prn", ".DAV", "._DAV")
+    private val mountPointRegex = """^(?i)/(?:storage/(?:emulated/\d+|[a-f0-9-]+|usb[\w-]*)|sdcard|data/media/\d+|mnt/media_rw/[a-f0-9-]+)/""".toRegex()
+    private val mountPointParentRegex = """^(?i)/(?:storage(?:/emulated)?|mnt(?:/media_rw)?|data(?:/media)?)$""".toRegex()
+
+    private val getPathMethod by lazy {
+        try { StorageVolume::class.java.getMethod("getPath") }
+        catch(_: Exception) { null }
+    }
+
+    private val getIdMethod by lazy {
+        try { StorageVolume::class.java.getMethod("getId") }
+        catch (_: Exception) { null }
+    }
 
 
     // --------
@@ -30,9 +48,16 @@ class Utility_BackupTarget {
     // --------
 
     /** Get a readable protocol type **/
-    fun getReadableProtocol (protocol: String, ssl: Boolean?, path: String): String {
+    fun getReadableProtocol(protocol: String, ssl: Boolean?, path: String): String {
         return when(protocol) {
-            "LOCAL" if !path.contains("/storage/emulated/0/") -> "MicroSD"
+            "LOCAL" -> {
+                when(getLocalStorageType(path)) {
+                    LocalStorageType.INTERNAL -> "Internal"
+                    LocalStorageType.SD_CARD -> "MicroSD"
+                    LocalStorageType.USB_DRIVE -> "USB"
+                    else -> "Unknown"
+                }
+            }
             "FTP" if ssl == true -> protocol + "S"
             else -> protocol
         }
@@ -42,14 +67,82 @@ class Utility_BackupTarget {
     fun getProtocolIcon(protocol: String, path: String): Int {
         return when(protocol) {
             "LOCAL" -> {
-                if (path.contains("/storage/emulated/0/"))
-                    R.drawable.ic_phone
-                else
-                    R.drawable.ic_sd_card
+                when(getLocalStorageType(path)) {
+                    LocalStorageType.INTERNAL -> R.drawable.ic_phone
+                    LocalStorageType.SD_CARD -> R.drawable.ic_sd_card
+                    LocalStorageType.USB_DRIVE -> R.drawable.ic_usb
+                    else -> R.drawable.ic_question
+                }
             }
             "NFS", "SMB" -> R.drawable.ic_lan
             else -> R.drawable.ic_cloud
         }
+    }
+
+
+    // -----------
+    // Mount point
+    // -----------
+
+    /** Find the storage type (internal, sd, usb) of the mount point **/
+    fun getLocalStorageType(path: String): LocalStorageType {
+        if(path.isBlank())
+            return LocalStorageType.UNKNOWN
+
+        val storageManager = App.instance.getSystemService<StorageManager>()
+            ?: return LocalStorageType.UNKNOWN
+
+        val volume = storageManager.storageVolumes.firstOrNull {
+            val mountPoint = getVolumeMountPoint(it) ?: return@firstOrNull false
+            path.startsWith(mountPoint, ignoreCase = true)
+        } ?: return LocalStorageType.UNKNOWN
+
+        return getLocalStorageType(volume)
+    }
+
+    /** Find the storage type (internal, sd, usb) of the mount point from a volume **/
+    fun getLocalStorageType(volume: StorageVolume): LocalStorageType {
+        if(!volume.isRemovable)
+            return LocalStorageType.INTERNAL
+
+        val volumeId = try { (getIdMethod?.invoke(volume) as? String)?.lowercase() ?: "" }
+        catch(_: Exception) { "" }
+
+        if(volumeId.isNotEmpty())
+            if(volumeId.contains("public:8,") || volumeId.contains("disk:8,") || volumeId.contains("usb"))
+                return LocalStorageType.USB_DRIVE
+
+        val description = volume.getDescription(App.instance).lowercase()
+        if(description.contains("usb") || description.contains("otg"))
+            return LocalStorageType.USB_DRIVE
+
+        return LocalStorageType.SD_CARD
+    }
+
+    // -------------------------------------
+
+    /** Check if a path is the parent directory of a mount point root **/
+    fun pathIsMountPointParent(path: String): Boolean {
+        val cleanPath = path.trim().removeSuffix("/")
+        return mountPointParentRegex.matches(cleanPath)
+    }
+
+    /** Get the mount point path of a volume **/
+    fun getVolumeMountPoint(volume: StorageVolume): String? {
+        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+            volume.directory?.path
+        else
+            try { getPathMethod?.invoke(volume) as? String }
+            catch(_: Exception) { null }
+    }
+
+    /** Remove mount point from path **/
+    private fun String.removeMountPoint(): String {
+         if(this.isBlank())
+             return ""
+
+        val normalizedPath = if(this.endsWith("/")) this else "$this/"
+        return normalizedPath.replaceFirst(mountPointRegex, "")
     }
 
 
@@ -129,42 +222,11 @@ class Utility_BackupTarget {
     /** Format a path (add/remove information) to be readable by users **/
     fun getReadablePath(protocol: String, share: String?, path: String): String {
         return when(protocol) {
-            "LOCAL" -> path.replace("""(/storage/emulated/0/)|(/storage/[A-Z-\d]*/)""".toRegex(), "")
+            "LOCAL" -> path.removeMountPoint().trimEnd('/')
             "SMB" -> if(!share.isNullOrBlank()) "$share/$path" else path
             "NFS", "WDAV" -> if(!share.isNullOrBlank()) share.substringAfterLast('/') + "/$path" else path
             else -> path
         }
-    }
-
-    /** Converts wired android "path" to real useful one (thanks Google -_-') **/
-    fun findFullPath(path: String): String {
-        var cleanedPath = path
-        val actualResult: String
-        cleanedPath = cleanedPath.substring(5)
-        var index = 0
-        val result = StringBuilder("/storage")
-        run {
-            var i = 0
-            while (i < cleanedPath.length) {
-                if (cleanedPath[i] != ':') {
-                    result.append(cleanedPath[i])
-                } else {
-                    index = ++i
-                    result.append('/')
-                    break
-                }
-                i++
-            }
-        }
-        for (i in index until cleanedPath.length) {
-            result.append(cleanedPath[i])
-        }
-        actualResult = if (result.substring(9, 16).equals("primary", ignoreCase = true)) {
-            result.substring(0, 8) + "/emulated/0/" + result.substring(17)
-        } else {
-            result.toString()
-        }
-        return actualResult
     }
 
     /** Move external storage path to Mirror folder **/

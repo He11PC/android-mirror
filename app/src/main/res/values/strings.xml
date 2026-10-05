@@ -140,7 +140,7 @@
     <string name="target_location_warning_remote_to_webdav">Backups from a remote source to a WebDav server require the creation of temporary intermediate files on your device</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Select folder</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Folder/SubFolder</string>
     <string name="target_local_information_timezone">The FAT file system, commonly used on external storages, can\'t manage time zones and stores dates based on the device local time. As consequence, a complete backup of your files may occur after changing time zone</string>
     <string name="target_local_warning_android_10">Google decided to revoke applications\' permission to write on external storage outside their private folder on Android 10.\n\nDo you want to move your destination folder inside Mirror folder ?\n\nBe careful, Android will delete it when you uninstall this app !</string>
 

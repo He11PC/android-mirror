@@ -43,12 +43,12 @@ class ViewModel_Logs(private val repository: Repository_Logs): ViewModel() {
 
     // -------------------------------------
 
-    val logFile: LiveData<List<String>?> by lazy { MutableLiveData() }
-    val position: LiveData<Logs_NavigationPosition?> by lazy { MutableLiveData() }
-    val error: LiveData<String?> by lazy { MutableLiveData() }
-    val showNavigationText: LiveData<Boolean> by lazy { MutableLiveData() }
+    val logFile: LiveData<List<String>?> = MutableLiveData()
+    val position: LiveData<Logs_NavigationPosition?> = MutableLiveData()
+    val error: LiveData<String?> = MutableLiveData()
+    val showNavigationText: LiveData<Boolean> = MutableLiveData()
 
-    private val duration by lazy { 2000L }
+    private val duration = 2000L
     private var countDown = 0L
 
     // -------------------------------------

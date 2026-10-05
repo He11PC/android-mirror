@@ -19,7 +19,9 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorSecondary">@color/secondary</item>
+
         <item name="colorControlHighlight">@color/accent</item>
+        <item name="android:colorControlHighlight">@color/accent</item>
 
         <item name="android:windowBackground">@color/primary_dark</item>
 
@@ -28,8 +30,10 @@
 
         <!-- ImageButton -->
         <item name="imageButtonStyle">@style/AppTheme.ImageButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/AppTheme.ImageButtonStyle</item>
 
         <!-- Overflow Button style -->
+        <item name="actionOverflowButtonStyle">@style/AppTheme.OverflowButtonStyle</item>
         <item name="android:actionOverflowButtonStyle">@style/AppTheme.OverflowButtonStyle</item>
 
         <!-- TabLayout style -->
@@ -39,22 +43,39 @@
         <item name="materialCardViewStyle">@style/AppTheme.CardView</item>
 
         <!-- Spinner style -->
+        <item name="spinnerStyle">@style/AppTheme.Spinner</item>
         <item name="android:spinnerStyle">@style/AppTheme.Spinner</item>
         <item name="android:spinnerItemStyle">@style/AppTheme.Spinner.Item</item>
         <item name="spinnerDropDownItemStyle">@style/AppTheme.Spinner.DropDown</item>
 
         <!-- TextViews styles -->
         <item name="editTextStyle">@style/AppTheme.EditText</item>
+        <item name="android:editTextStyle">@style/AppTheme.EditText</item>
         <item name="android:textViewStyle">@style/AppTheme.TextView</item>
 
         <!-- CheckBox style -->
         <item name="checkboxStyle">@style/AppTheme.CheckBox</item>
+        <item name="android:checkboxStyle">@style/AppTheme.CheckBox</item>
 
         <!-- Switch style -->
         <item name="switchStyle">@style/AppTheme.Switch</item>
 
         <!-- ProgressBar style -->
         <item name="android:progressBarStyleHorizontal">@style/AppTheme.ProgressBar.Horizontal</item>
+
+        <!-- Dialog style -->
+        <item name="alertDialogTheme">@style/AppTheme.AlertDialogStyle</item>
+        <item name="android:alertDialogTheme">@style/AppTheme.AlertDialogStyle</item>
+    </style>
+
+
+    <!-- Button - CardView style -->
+    <style name="AppTheme.ButtonCard" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="cornerRadius">4dp</item>
+        <item name="backgroundTint">@color/button_card</item>
+        <item name="elevation">2dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="rippleColor">@android:color/transparent</item>
     </style>
 
 
@@ -103,7 +124,7 @@
     <!-- Spinner style -->
     <style name="AppTheme.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:popupBackground">@drawable/background_popup</item>
-        <item name="android:backgroundTint">@color/gray</item>
+        <item name="android:backgroundTint">@color/image_button</item>
         <item name="android:minHeight">48dp</item>
     </style>
 
@@ -136,7 +157,7 @@
 
     <!-- CheckBox style -->
     <style name="AppTheme.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/checkbox</item>
+        <item name="android:button">@drawable/checkbox</item>
         <item name="rippleColor">@color/accent</item>
         <item name="android:minHeight">48dp</item>
     </style>
@@ -192,6 +213,7 @@
         <item name="buttonBarStyle">@style/AppTheme.ButtonBarTransparent</item>
         <item name="android:colorBackground">@color/background_popup</item>
         <item name="dialogCornerRadius">4dp</item>
+        <item name="colorControlHighlight">@color/accent</item>
     </style>
 
     <style name="AppTheme.AlertDialogStyle.Title" parent="TextAppearance.AppCompat.Large">

@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Säkerhetskopiering från en fjärrkälla till en WebDav-server kräver att man skapar tillfälliga mellanliggande filer på din enhet</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Välj mapp</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Mapp/undermapp</string>
     <string name="target_local_information_timezone">FAT-filsystemet, som vanligtvis används på externa lagringar, kan inte hantera tidszoner och lagrar datum baserat på enhetens lokal tid. Som en konsekvens kan en fullständig säkerhetskopiering av dina filer ske efter att du har ändrat tidszon</string>
     <string name="target_local_warning_android_10">Google beslutade att återkalla appars tillåtelse att skriva på extern lagring utanför deras privata mapp på Android 10.\n\nVill du flytta din målmapp in i Mirror-mappen?\n\nVar försiktig, Android tar bort den när du avinstallerar den här appen!</string>
 

@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">किसी दूरस्थ स्रोत से WebDav सर्वर पर बैकअप के लिए आपके डिवाइस पर अस्थायी मध्यवर्ती फ़ाइलों के निर्माण की आवश्यकता होती है</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">फोल्डर का चयन करेंं</string>
+    <string name="target_local_path_hint">/storage/emulated/0/फ़ोल्डर/सबफ़ोल्डर</string>
     <string name="target_local_information_timezone">FAT फाइल सिस्टम, जो आमतौर पर बाहरी स्टोरेज पर उपयोग किया जाता है, डिवाइस के स्थानीय समय के आधार पर समय क्षेत्र और स्टोर की तारीखों का प्रबंधन नहीं कर सकता है। परिणामस्वरूप, समय क्षेत्र बदलने के बाद आपकी फ़ाइलों का पूर्ण बैकअप हो सकता है</string>
     <string name="target_local_warning_android_10">Google ने Android 10 पर अपने निजी फ़ोल्डर के बाहर बाह्य संग्रहण पर लिखने के लिए एप्लिकेशन की अनुमति को रद्द करने का निर्णय लिया।\n\nक्या आप अपने गंतव्य फ़ोल्डर को Fबैकअप फ़ोल्डर के अंदर ले जाना चाहते हैं?\n\nसावधान रहें, जब आप इस ऐप को अनइंस्टॉल करेंगे तो Android इसे हटा देगा!</string>
 

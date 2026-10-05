@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Kopie zapasowe ze zdalnego źródła na serwer WebDav wymagają utworzenia tymczasowych plików pośrednich na Twoim urządzeniu</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Wybierz katalog</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Folder/Podfolder</string>
     <string name="target_local_information_timezone">System plików FAT, powszechnie używany w zewnętrznych magazynach, nie może zarządzać strefami czasowymi i przechowuje daty na podstawie czasu lokalnego urządzenia. W konsekwencji po zmianie strefy czasowej może nastąpić utworzenie kompletnej kopii zapasowej Twoich plików</string>
     <string name="target_local_warning_android_10">Google zdecydowało się cofnąć pozwolenie aplikacji na zapis w pamięci zewnętrznej poza ich prywatnym folderem w systemie Android 10.\n\nCzy chcesz przenieść folder docelowy do folderu Mirror?\n\nUważaj, Android usunie go, gdy odinstalujesz tę aplikację!</string>
 
@@ -147,7 +147,7 @@
     <string name="target_common_server">Serwer:</string>
     <string name="target_common_server_hint">Nazwa domeny lub adres IP</string>
     <string name="target_common_path">Folder:</string>
-    <string name="target_common_path_hint">Folder/podfolder</string>
+    <string name="target_common_path_hint">Folder/Podfolder</string>
     <string name="target_common_login">Użytkownik:</string>
     <string name="target_common_login_hint">Nazwa_użytkownika</string>
     <string name="target_common_password">Hasło użytkownika:</string>

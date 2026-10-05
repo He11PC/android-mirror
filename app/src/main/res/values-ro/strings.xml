@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Backup-urile de la o sursă la distanță pe un server WebDav necesită crearea de fișiere intermediare temporare pe dispozitivul dvs</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Selectați folderul</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Dosar/Subdosar</string>
     <string name="target_local_information_timezone">Sistemul de fișiere FAT, utilizat în mod obișnuit pe stocările externe, nu poate gestiona fusurile orare și stochează datele în funcție de ora locală a dispozitivului. În consecință, după schimbarea fusului orar poate apărea o copie de rezervă completă a fișierelor dvs</string>
     <string name="target_local_warning_android_10">Google a decis să revoce permisiunea aplicațiilor de a scrie pe stocarea externă în afara folderului lor privat pe Android 10.\n\nDoriți să vă mutați folderul de destinație în folderul Mirror?\n\nFiți atenți, Android îl va șterge atunci când dezinstalați această aplicație!</string>
 

@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">リモート ソースから WebDav サーバーへのバックアップには、デバイス上に一時的な中間ファイルを作成する必要があります</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">フォルダーを選択</string>
+    <string name="target_local_path_hint">/storage/emulated/0/フォルダ/サブフォルダ</string>
     <string name="target_local_information_timezone">外部ストレージで一般的に使用される FAT ファイル システムは、タイム ゾーンを管理できず、デバイスのローカル時間に基づいて日付を保存します。 その結果、タイム ゾーンの変更後にファイルの完全なバックアップが行われる場合があります</string>
     <string name="target_local_warning_android_10">Google は、Android 10 のプライベート フォルダー外の外部ストレージへのアプリケーションの書き込み許可を取り消すことを決定しました。\n\n宛先フォルダーを Mirror フォルダー内に移動しますか?\n\nこのアプリをアンインストールすると、Android によって削除されますのでご注意ください</string>
 

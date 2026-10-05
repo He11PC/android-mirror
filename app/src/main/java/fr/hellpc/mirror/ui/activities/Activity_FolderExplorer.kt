@@ -148,14 +148,20 @@ class Activity_FolderExplorer: AppCompatActivity() {
         viewModel.errorMsg.observe(this) { errorMsg ->
             binding.folderExplorerTxtError.text = errorMsg
 
-            if(errorMsg.isNullOrBlank()) {
-                binding.folderExplorerBtnOk.visibility = View.VISIBLE
-                binding.folderExplorerTxtError.visibility = View.GONE
-            }
-            else {
-                binding.folderExplorerBtnOk.visibility = View.GONE
-                binding.folderExplorerProgressLoading.visibility = View.GONE
-                binding.folderExplorerTxtError.visibility = View.VISIBLE
+            when {
+                errorMsg == null -> {
+                    binding.folderExplorerBtnOk.visibility = View.VISIBLE
+                    binding.folderExplorerTxtError.visibility = View.GONE
+                }
+                errorMsg.isBlank() -> {
+                    binding.folderExplorerBtnOk.visibility = View.GONE
+                    binding.folderExplorerTxtError.visibility = View.GONE
+                }
+                else -> {
+                    binding.folderExplorerBtnOk.visibility = View.GONE
+                    binding.folderExplorerProgressLoading.visibility = View.GONE
+                    binding.folderExplorerTxtError.visibility = View.VISIBLE
+                }
             }
         }
     }

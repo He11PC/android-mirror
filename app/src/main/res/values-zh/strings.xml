@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">从远程源备份到 WebDav 服务器需要在您的设备上创建临时中间文件</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">选择文件夹</string>
+    <string name="target_local_path_hint">/storage/emulated/0/文件夹/子文件夹</string>
     <string name="target_local_information_timezone">FAT 文件系统通常用于外部存储，无法管理时区并根据设备本地时间存储日期。 因此，更改时区后可能会完整备份您的文件</string>
     <string name="target_local_warning_android_10">谷歌决定撤销应用程序在 Android 10 的私人文件夹外的外部存储上写入的权限。\n\n您想将目标文件夹移动到 Mirror 文件夹中吗？\n\n小心，Android 会在您卸载此应用时将其删除！</string>
 

@@ -47,14 +47,14 @@ class Manager_Notifications {
     private val prefService by lazy { App.instance.getSharedPreferences("SERVICE", Context.MODE_PRIVATE) }
     private val settings by lazy { Manager_Settings() }
 
-    private val colorValueBorders by lazy { App.resources.getIntArray(R.array.color_value_borders).toList() }
-    private val colorValueIcons by lazy { App.resources.getIntArray(R.array.color_value_icons).toList() }
-    private val colorValueProgressbarSecondary by lazy { App.resources.getIntArray(R.array.color_value_progressbar_secondary).toList() }
+    private val colorValueBorders = App.resources.getIntArray(R.array.color_value_borders).toList()
+    private val colorValueIcons = App.resources.getIntArray(R.array.color_value_icons).toList()
+    private val colorValueProgressbarSecondary = App.resources.getIntArray(R.array.color_value_progressbar_secondary).toList()
 
-    private val resultChannelID by lazy { "fr.hellpc.mirror.result_channel" }
-    private val resultGroup by lazy { "fr.hellpc.mirror.result_group" }
-    private val ongoingChannelID by lazy { "fr.hellpc.mirror.ongoing_channel" }
-    private val ongoingGroup by lazy { "fr.hellpc.mirror.ongoing_group" }
+    private val resultChannelID = "fr.hellpc.mirror.result_channel"
+    private val resultGroup = "fr.hellpc.mirror.result_group"
+    private val ongoingChannelID = "fr.hellpc.mirror.ongoing_channel"
+    private val ongoingGroup = "fr.hellpc.mirror.ongoing_group"
     private lateinit var currentChannelID: String
     private lateinit var currentGroup: String
 

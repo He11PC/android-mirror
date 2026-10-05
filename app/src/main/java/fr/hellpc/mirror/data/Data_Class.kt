@@ -171,9 +171,18 @@ data class Target_Credentials (
 // Folder explorer
 // ---------------
 
+enum class LocalStorageType {
+    INTERNAL,
+    SD_CARD,
+    USB_DRIVE,
+    UNKNOWN
+}
+
 data class FolderExplorer_File (
     val name: String,
-    val isDirectory: Boolean
+    val path: String?,
+    val isDirectory: Boolean,
+    val localStorageType: LocalStorageType?
 )
 
 

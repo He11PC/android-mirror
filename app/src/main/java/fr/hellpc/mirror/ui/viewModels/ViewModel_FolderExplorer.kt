@@ -41,10 +41,10 @@ class ViewModel_FolderExplorer(private val repository: Repository_FolderExplorer
 
     // -------------------------------------
 
-    val path: LiveData<String> by lazy { MutableLiveData() }
-    val folderList: LiveData<List<FolderExplorer_File>> by lazy { MutableLiveData() }
-    val isLoading: LiveData<Boolean> by lazy { MutableLiveData() }
-    val errorMsg: LiveData<String?> by lazy { MutableLiveData() }
+    val path: LiveData<String> = MutableLiveData()
+    val folderList: LiveData<List<FolderExplorer_File>> = MutableLiveData()
+    val isLoading: LiveData<Boolean> = MutableLiveData()
+    val errorMsg: LiveData<String?> = MutableLiveData()
 
     private var _isConnected = false
     val isConnected get() = _isConnected
@@ -69,40 +69,27 @@ class ViewModel_FolderExplorer(private val repository: Repository_FolderExplorer
             path.value?.let { currentPath ->
                 isLoading.mutable.postValue(true)
 
-                val newPath = getNewPath(currentPath, open)
+                val newPath = repository.getNewPath(currentPath, open)
                 if(currentPath != newPath)
                     path.mutable.postValue(newPath)
 
                 val newList: MutableList<FolderExplorer_File> = mutableListOf()
                 if(newPath.isNotEmpty())
-                    newList.add(FolderExplorer_File("..", true))
+                    newList.add(FolderExplorer_File("..", null,true, null))
                 newList.addAll(repository.loadFolder(newPath))
 
                 folderList.mutable.postValue(newList)
                 isLoading.mutable.postValue(false)
-                errorMsg.mutable.postValue(null)
+
+                if(!repository.pathIsAllowed)
+                    errorMsg.mutable.postValue(" ")
+                else
+                    errorMsg.mutable.postValue(null)
             }
         }
     }
 
     // -------------------------------------
-    
-    private fun getNewPath(currentPath: String, open: String?): String {
-        return if(open.isNullOrBlank())
-            currentPath
-        else if(open == "..") {
-            if(currentPath.contains("/"))
-                currentPath.substringBeforeLast("/")
-            else
-                ""
-        }
-        else {
-            if(currentPath.isEmpty())
-                open
-            else
-                "$currentPath/$open"
-        }
-    }
 
     fun showError(error: String) = viewModelScope.launch {
         errorMsg.mutable.postValue(error)
@@ -110,7 +97,7 @@ class ViewModel_FolderExplorer(private val repository: Repository_FolderExplorer
         path.value?.let { currentPath ->
             val newList: MutableList<FolderExplorer_File> = mutableListOf()
             if(currentPath.isNotEmpty())
-                newList.add(FolderExplorer_File("..", true))
+                newList.add(FolderExplorer_File("..", null,true, null))
             folderList.mutable.postValue(newList)
         }
     }

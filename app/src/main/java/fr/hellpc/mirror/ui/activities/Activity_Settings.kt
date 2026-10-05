@@ -34,7 +34,7 @@ import java.util.Locale
 class Activity_Settings : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private val settings by lazy { Manager_Settings() }
+    private val settings = Manager_Settings()
 
     private var currentTheme = settings.getTheme()
     private var currentLanguage = settings.getLocaleID()

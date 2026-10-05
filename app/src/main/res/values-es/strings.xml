@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Las copias de seguridad desde una fuente remota a un servidor WebDav requieren la creación de archivos intermedios temporales en su dispositivo</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Seleccione la carpeta</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Carpeta/Subcarpeta</string>
     <string name="target_local_information_timezone">El sistema de archivos FAT, comúnmente utilizado en almacenamientos externos, no puede manejar zonas horarias y guarda las fechas según la hora local del dispositivo. Por lo tanto, se puede realizar una copia de seguridad completa de sus archivos después de un cambio de zona horaria</string>
     <string name="target_local_warning_android_10">Google ha decidido revocar el permiso de las aplicaciones para escribir en el almacenamiento externo fuera de su carpeta privada en Android 10.\n\n¿Le gustaría mover su carpeta de destino a la carpeta Mirror?\n\n¡Tenga cuidado, Android lo eliminará cuando desinstale esta aplicación!</string>
 

@@ -15,16 +15,17 @@
     <color name="primary">#005580</color>
     <color name="primary_dark">#00334d</color>
     <color name="accent">#0088cc</color>
+    <color name="accent_transparent">#990088cc</color>
     <color name="secondary">#0088cc</color>
 
-    <color name="background_app">#EEEEEE</color>
+    <color name="background_app">#E0E0E0</color>
     <color name="background_card">#FFFFFF</color>
-    <color name="background_popup">#FFFFFF</color>
-    <color name="background_progressbar">#BFBFBF</color>
+    <color name="background_popup">#F5F5F5</color>
+    <color name="background_progressbar">#BEBEBE</color>
 
     <color name="text_black">#000000</color>
     <color name="text_notifications">#DE000000</color>
-    <color name="text_gray">#A5A5A5</color>
+    <color name="text_gray">#999999</color>
 
     <color name="gray">#666666</color>
     <color name="pale_gray">#A9A9A9</color>

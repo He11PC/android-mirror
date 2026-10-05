@@ -21,6 +21,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import fr.hellpc.mirror.App
+import fr.hellpc.mirror.data.LocalStorageType
 import fr.hellpc.mirror.data.repositories.Repository_Edit
 import fr.hellpc.mirror.data.room.Backup_Colors
 import fr.hellpc.mirror.data.room.Backup_Data
@@ -50,8 +51,8 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     // -------------------------------------
 
-    val srcTabName by lazy { "Source" }
-    val destTabName by lazy { "Destination" }
+    val srcTabName = "Source"
+    val destTabName = "Destination"
 
     private var backupId = -1
     private var isDisabled = false
@@ -61,34 +62,34 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     // -------------------------------------
 
-    val backupSrcProtocol: LiveData<String> by lazy { MutableLiveData() }
-    val backupDestProtocol: LiveData<String> by lazy { MutableLiveData() }
-    val backupSrc: LiveData<Backup_Target> by lazy { MutableLiveData() }
-    val backupDest: LiveData<Backup_Target> by lazy { MutableLiveData() }
-    val backupOpt: LiveData<Backup_Options> by lazy { MutableLiveData() }
-    val backupColors: LiveData<Backup_Colors> by lazy { MutableLiveData() }
+    val backupSrcProtocol: LiveData<String> = MutableLiveData()
+    val backupDestProtocol: LiveData<String> = MutableLiveData()
+    val backupSrc: LiveData<Backup_Target> = MutableLiveData()
+    val backupDest: LiveData<Backup_Target> = MutableLiveData()
+    val backupOpt: LiveData<Backup_Options> = MutableLiveData()
+    val backupColors: LiveData<Backup_Colors> = MutableLiveData()
 
-    val backupLocked: LiveData<Boolean> by lazy { MutableLiveData() }
-    val securityFailed: LiveData<Boolean> by lazy { MutableLiveData() }
+    val backupLocked: LiveData<Boolean> = MutableLiveData()
+    val securityFailed: LiveData<Boolean> = MutableLiveData()
 
-    val optWifiIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val optNomediaIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val webdavRemoteWarningIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val infoSrcTimeZoneIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val infoDestTimeZoneIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val timePickerValue: LiveData<LocalTime> by lazy { MutableLiveData() }
+    val optWifiIsVisible: LiveData<Boolean> = MutableLiveData()
+    val optNomediaIsVisible: LiveData<Boolean> = MutableLiveData()
+    val webdavRemoteWarningIsVisible: LiveData<Boolean> = MutableLiveData()
+    val infoSrcTimeZoneIsVisible: LiveData<Boolean> = MutableLiveData()
+    val infoDestTimeZoneIsVisible: LiveData<Boolean> = MutableLiveData()
+    val timePickerValue: LiveData<LocalTime> = MutableLiveData()
 
-    val srcCredentialsExist: LiveData<Boolean> by lazy { MutableLiveData() }
-    val destCredentialsExist: LiveData<Boolean> by lazy { MutableLiveData() }
+    val srcCredentialsExist: LiveData<Boolean> = MutableLiveData()
+    val destCredentialsExist: LiveData<Boolean> = MutableLiveData()
 
-    val ftpHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val ftpHostKeyError: LiveData<String> by lazy { MutableLiveData() }
+    val ftpHostKeyLoadingIsVisible: LiveData<Boolean> = MutableLiveData()
+    val ftpHostKeyError: LiveData<String> = MutableLiveData()
 
-    val sftpHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val sftpHostKeyError: LiveData<String> by lazy { MutableLiveData() }
+    val sftpHostKeyLoadingIsVisible: LiveData<Boolean> = MutableLiveData()
+    val sftpHostKeyError: LiveData<String> = MutableLiveData()
 
-    val webdavHostKeyLoadingIsVisible: LiveData<Boolean> by lazy { MutableLiveData() }
-    val webdavHostKeyError: LiveData<String> by lazy { MutableLiveData() }
+    val webdavHostKeyLoadingIsVisible: LiveData<Boolean> = MutableLiveData()
+    val webdavHostKeyError: LiveData<String> = MutableLiveData()
 
 
     // -----------
@@ -333,7 +334,7 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     /** Manage Time zone information visibility **/
     fun setInfoTimeZoneVisibility(tabIsSource: Boolean, path: String) = viewModelScope.launch {
-        if(path.isBlank() || path.startsWith("/storage/emulated/0/")) {
+        if(editUtils.getLocalStorageType(path) == LocalStorageType.INTERNAL) {
             if(tabIsSource)
                 infoSrcTimeZoneIsVisible.mutable.postValue(false)
             else

@@ -23,30 +23,40 @@
         android:id="@+id/target_local_txt_path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/target_local_edit_path_select"
+        android:layout_alignBaseline="@id/target_local_edit_path"
         android:text="@string/target_common_path" />
 
     <EditText
-        android:id="@+id/target_local_edit_path_select"
+        android:id="@+id/target_local_edit_path"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_toEndOf="@id/target_local_txt_path"
+        android:hint="@string/target_local_path_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:gravity="top"
         android:paddingTop="14dp"
         android:paddingBottom="16dp"
-        android:layout_toEndOf="@id/target_local_txt_path"
-        android:clickable="true"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:hint="@string/target_local_select"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine|textNoSuggestions"
         tools:ignore="TextContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/target_local_btn_path_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/target_common_search"
+        android:minWidth="32dp"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_search"
+        android:layout_alignParentEnd="true" />
+
 
     <TextView
         android:id="@+id/target_local_txt_info_timezone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/target_local_edit_path_select"
+        android:layout_below="@id/target_local_edit_path"
         android:drawablePadding="16dp"
         android:gravity="center_vertical"
         android:layout_marginTop="16dp"

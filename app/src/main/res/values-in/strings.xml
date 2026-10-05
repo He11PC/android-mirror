@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Pencadangan dari sumber jarak jauh ke server WebDav memerlukan pembuatan file perantara sementara di perangkat Anda</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Pilih folder</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Folder/Subfolder</string>
     <string name="target_local_information_timezone">Sistem file FAT, yang biasa digunakan pada penyimpanan eksternal, tidak dapat mengelola zona waktu dan menyimpan tanggal berdasarkan waktu lokal perangkat. Akibatnya, cadangan lengkap file Anda dapat terjadi setelah mengubah zona waktu</string>
     <string name="target_local_warning_android_10">Google memutuskan untuk mencabut izin aplikasi untuk menulis di penyimpanan eksternal di luar folder pribadi mereka di Android 10.\n\nApakah Anda ingin memindahkan folder tujuan Anda ke dalam folder Mirror ?\n\nHati-hati, Android akan menghapusnya saat Anda menghapus aplikasi ini!</string>
 

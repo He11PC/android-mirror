@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Os backups de uma fonte remota para um servidor WebDav requerem a criação de ficheiros intermédios temporários no seu dispositivo</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Selecione a pasta</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Pasta/Subpasta</string>
     <string name="target_local_information_timezone">O sistema de arquivos FAT, comumente usado em armazenamentos externos, não pode gerenciar fusos horários e armazena datas com base na hora local do dispositivo. Como consequência, um backup completo de seus arquivos pode ocorrer após a alteração do fuso horário</string>
     <string name="target_local_warning_android_10">O Google decidiu revogar a permissão dos aplicativos para escrever em armazenamento externo fora de sua pasta privada no Android 10.\n\nDeseja mover sua pasta de destino para dentro da pasta Mirror?\n\nTenha cuidado, o Android irá excluí-lo quando você desinstalar este aplicativo!</string>
 

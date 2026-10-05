@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Uzak bir kaynaktan bir WebDav sunucusuna yedeklemeler, cihazınızda geçici ara dosyaların oluşturulmasını gerektirir</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Dosya Seç</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Klasör/Alt Klasör</string>
     <string name="target_local_information_timezone">Genellikle harici depolarda kullanılan FAT dosya sistemi saat dilimlerini yönetemez ve tarihleri aygıtın yerel saatine göre saklar. Sonuç olarak, saat dilimini değiştirdikten sonra dosyalarınızın tam bir yedeği oluşabilir</string>
     <string name="target_local_warning_android_10">Google, uygulamaların Android 10\'daki özel klasörlerinin dışında harici depolamaya yazma iznini iptal etmeye karar verdi.\n\nHedef klasörünüzü Mirror klasörü içine taşımak istiyor musunuz?\n\nDikkatli olun, bu uygulamayı kaldırdığınızda Android onu silecek!</string>
 

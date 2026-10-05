@@ -12,6 +12,9 @@
 
 package fr.hellpc.mirror.data.repositories
 
+import android.os.storage.StorageManager
+import android.os.storage.StorageVolume
+import androidx.core.content.getSystemService
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator
 import com.burgstaller.okhttp.DefaultRequestCacheKeyProvider
@@ -39,12 +42,14 @@ import com.thegrizzlylabs.sardineandroid.impl.OkHttpSardine
 import fr.hellpc.mirror.App
 import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.FolderExplorer_File
+import fr.hellpc.mirror.data.LocalStorageType
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.security.Security_Encryption.cipherDecrypt
 import fr.hellpc.mirror.security.Security_Encryption.cipherDecryptToBytes
 import fr.hellpc.mirror.security.Security_Encryption.use
 import fr.hellpc.mirror.security.Security_Encryption.useAsInputStream
 import fr.hellpc.mirror.security.Security_FlexibleTrustManager
+import fr.hellpc.mirror.utilities.Utility_BackupTarget
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -55,16 +60,29 @@ import org.apache.commons.net.ftp.FTP
 import org.apache.commons.net.ftp.FTPClient
 import org.apache.commons.net.ftp.FTPReply
 import org.apache.commons.net.ftp.FTPSClient
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.concurrent.ConcurrentHashMap
 import javax.net.ssl.SSLContext
 import javax.net.ssl.X509TrustManager
+import kotlin.io.path.isDirectory
+import kotlin.io.path.name
+import kotlin.streams.asSequence
 
 
 class Repository_FolderExplorer {
 
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO
 
+    private val utilityBackup by lazy { Utility_BackupTarget() }
+
     private lateinit var target: Backup_Target
+
+    private val forbiddenLocalPath = setOf(
+        "/storage/emulated/0/Android/data",
+        "/storage/emulated/0/Android/obb"
+    )
 
     private lateinit var nfs: Nfs3
 
@@ -84,7 +102,8 @@ class Repository_FolderExplorer {
     private lateinit var httpClient: OkHttpClient
     private lateinit var webdav: Sardine
 
-    private val systemFiles by lazy { arrayOf("", ".", "..", ".DAV", "._DAV") }
+    private var _pathIsAllowed = true
+    val pathIsAllowed get() = _pathIsAllowed
 
 
     // ------
@@ -97,6 +116,7 @@ class Repository_FolderExplorer {
 
     suspend fun connect(): Boolean = withContext(dispatcherIO) {
         return@withContext when(target.protocol) {
+            "LOCAL" -> true
             "NFS" -> connectNfs()
             "SMB" -> connectSmb()
             "FTP" -> {
@@ -123,6 +143,7 @@ class Repository_FolderExplorer {
 
     suspend fun loadFolder(path: String): List<FolderExplorer_File> = withContext(dispatcherIO) {
         return@withContext when(target.protocol) {
+            "LOCAL" -> loadLocal(path)
             "NFS" -> loadNfs(path)
             "SMB" -> loadSmb(path)
             "FTP" -> loadFtp(path)
@@ -130,6 +151,91 @@ class Repository_FolderExplorer {
             "WDAV" -> loadWebdav(path)
             else -> emptyList()
         }.sortedWith(compareBy<FolderExplorer_File> { !it.isDirectory }.thenBy { it.name })
+    }
+
+    fun getNewPath(currentPath: String, open: String?): String {
+        val cleanedPath = currentPath.trimEnd('/')
+
+        return if(open.isNullOrBlank()) {
+            // Initial loading or reload
+            if(target.protocol == "LOCAL" && utilityBackup.pathIsMountPointParent(cleanedPath))
+                ""
+            else
+                cleanedPath
+        }
+        else if(open == "..") {
+            // Go to parent directory
+            val parent = cleanedPath.substringBeforeLast('/')
+            if(target.protocol == "LOCAL" && utilityBackup.pathIsMountPointParent(parent))
+                ""
+            else if(currentPath != parent)
+                parent
+            else
+                ""
+        }
+        else {
+            // Open a subdirectory
+            if(cleanedPath.isEmpty())
+                open
+            else
+                "$cleanedPath/$open"
+        }
+    }
+
+    /** Check if a directory is a virtual directory to be ignored **/
+    private fun String.isVirtualDirectory() = this == "." || this == ".."
+
+    /** Check if a file is a WebDAV system file **/
+    private fun String.isSystemFile() = this.endsWith(".DAV") || this.startsWith("._")
+
+    /** Check if a local directory is blocked by Android **/
+    private fun Path.isForbidden() = this.toString().trimEnd('/') in forbiddenLocalPath
+
+
+    // -----
+    // Local
+    // -----
+
+    private fun getLocalMountPoints(): List<FolderExplorer_File> {
+        val storageManager = App.instance.getSystemService<StorageManager>()
+            ?: return listOf(FolderExplorer_File(App.resources.getString(R.string.target_location_device), "/storage/emulated/0", true, LocalStorageType.INTERNAL))
+
+        val mountPoints = mutableListOf<FolderExplorer_File>()
+        val storageVolumes: List<StorageVolume> = storageManager.storageVolumes
+
+        for(volume in storageVolumes) {
+            val path = utilityBackup.getVolumeMountPoint(volume)
+            if(path != null) {
+                val name = volume.getDescription(App.instance).lowercase()
+                val type = utilityBackup.getLocalStorageType(volume)
+                mountPoints.add(FolderExplorer_File(name, path, true, type))
+            }
+        }
+
+        return mountPoints
+    }
+
+    private fun loadLocal(path: String): List<FolderExplorer_File> {
+        val cleanedPath = path.trimEnd('/')
+        return if(path.isBlank() || utilityBackup.pathIsMountPointParent(cleanedPath)) {
+            _pathIsAllowed = false
+            getLocalMountPoints()
+        }
+        else {
+            _pathIsAllowed = true
+            val rootPath = Paths.get(path)
+            Files.walk(rootPath, 1).use { stream ->
+                stream.asSequence()
+                    .filterNot {
+                        it == rootPath ||
+                        it.name.isSystemFile() ||
+                        it.name.isVirtualDirectory() ||
+                        it.isForbidden()
+                    }
+                    .map { FolderExplorer_File(it.name, null, it.isDirectory(), null) }
+                    .toList()
+            }
+        }
     }
 
 
@@ -148,8 +254,8 @@ class Repository_FolderExplorer {
 
     private fun loadNfs(path: String): List<FolderExplorer_File> = Nfs3File(nfs, "/$path")
         .listFiles()
-        .filterNot { systemFiles.contains(it.name) }
-        .map { FolderExplorer_File(it.name, it.isDirectory) }
+        .filterNot { it.name.isSystemFile() || it.name.isVirtualDirectory() }
+        .map { FolderExplorer_File(it.name, null, it.isDirectory, null) }
 
 
     // ---
@@ -198,8 +304,8 @@ class Repository_FolderExplorer {
 
     private fun loadSmb(path: String): List<FolderExplorer_File> = smbShare
         .list(path.toSmbPath(), "*")
-        .filterNot { systemFiles.contains(it.fileName) }
-        .map { FolderExplorer_File(it.fileName, EnumWithValue.EnumUtils.isSet(it.fileAttributes, FileAttributes.FILE_ATTRIBUTE_DIRECTORY)) }
+        .filterNot { it.fileName.isSystemFile() || it.fileName.isVirtualDirectory() }
+        .map { FolderExplorer_File(it.fileName, null, EnumWithValue.EnumUtils.isSet(it.fileAttributes, FileAttributes.FILE_ATTRIBUTE_DIRECTORY), null) }
 
     private fun String.toSmbPath() = this.replace('/', '\\')
 
@@ -296,8 +402,8 @@ class Repository_FolderExplorer {
             ftp
 
         return client.listFiles("/$path")
-            .filterNot { systemFiles.contains(it.name) }
-            .map { FolderExplorer_File(it.name, it.isDirectory) }
+            .filterNot { it.name.isSystemFile() || it.name.isVirtualDirectory() }
+            .map { FolderExplorer_File(it.name, null, it.isDirectory, null) }
     }
 
 
@@ -333,8 +439,8 @@ class Repository_FolderExplorer {
 
     private fun loadSftp(path: String): List<FolderExplorer_File> = sftpChannel
         .ls("/$path")
-        .filterNot { systemFiles.contains(it.filename) }
-        .map { FolderExplorer_File(it.filename, it.attrs.isDir) }
+        .filterNot { it.filename.isSystemFile() || it.filename.isVirtualDirectory() }
+        .map { FolderExplorer_File(it.filename, null, it.attrs.isDir, null) }
 
 
     // ------
@@ -385,8 +491,8 @@ class Repository_FolderExplorer {
         val fullPath = path.getFullPath()
 
         return webdav.list(fullPath.toURL(), 1)
-            .filterNot { it.path.trim('/') == fullPath || it.name.startsWith("#") || systemFiles.contains(it.name) }
-            .map { FolderExplorer_File(it.name, it.isDirectory) }
+            .filterNot { it.path.trim('/') == fullPath || it.name.startsWith("#") || it.name.isSystemFile() || it.name.isVirtualDirectory() }
+            .map { FolderExplorer_File(it.name, null, it.isDirectory, null) }
     }
 
     private fun String.getFullPath() = listOfNotNull(

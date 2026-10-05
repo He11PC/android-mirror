@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Zálohy ze vzdáleného zdroje na server WebDav vyžadují vytvoření dočasných přechodných souborů na vašem zařízení</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Kliknutím vyberte složku</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Složka/podsložka</string>
     <string name="target_local_information_timezone">Systém souborů FAT, běžně používaný na externích úložištích, nezvládá časová pásma a ukládá data na základě místního času zařízení. Po změně časového pásma proto může dojít k úplnému zálohování souborů</string>
     <string name="target_local_warning_android_10">Google se rozhodl odejmout aplikacím oprávnění zapisovat na externí úložiště mimo jejich soukromou složku v systému Android 10.\n\nChcete přesunout cílovou složku do složky Mirror?\n\nBuďte opatrní, Android ji smaže, když tuto aplikaci odinstalujete!</string>
 

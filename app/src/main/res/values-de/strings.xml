@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Backups von einer Remote-Quelle auf einen WebDav-Server erfordern die Erstellung temporärer Zwischendateien auf Ihrem Gerät</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Ordner auswählen</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Ordner/Unterordner</string>
     <string name="target_local_information_timezone">Das FAT-Dateisystem, das häufig auf externen Speichern verwendet wird, kann keine Zeitzonen verarbeiten und speichert Daten basierend auf der Ortszeit des Geräts. Daher kann nach einer Zeitzonenänderung eine vollständige Sicherung Ihrer Dateien erfolgen</string>
     <string name="target_local_warning_android_10">Google hat beschlossen, Apps die Berechtigung zum Schreiben auf externe Speicher außerhalb ihres privaten Ordners unter Android 10 zu entziehen.\n\nMöchten Sie Ihren Zielordner in den Mirror-Ordner verschieben?\n\nSeien Sie vorsichtig, Android wird es löschen, wenn Sie diese App deinstallieren!</string>
 

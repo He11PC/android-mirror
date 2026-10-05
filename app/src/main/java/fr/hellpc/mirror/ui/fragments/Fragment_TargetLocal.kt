@@ -16,22 +16,23 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.provider.DocumentsContract
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.room.Backup_Target
 import fr.hellpc.mirror.databinding.FragmentTargetLocalBinding
 import fr.hellpc.mirror.managers.Manager_Alerts
+import fr.hellpc.mirror.ui.activities.Activity_FolderExplorer
 import fr.hellpc.mirror.ui.viewModels.ViewModel_Edit
 import fr.hellpc.mirror.utilities.Utility_BackupTarget
+import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
 
 
@@ -41,23 +42,13 @@ class Fragment_TargetLocal : Fragment() {
     private val binding get() = _binding!!
     private var tabIsSource by Delegates.notNull<Boolean>()
 
-    private val utilityPathFormat by lazy { Utility_BackupTarget() }
+    private val editUtils by lazy { Utility_BackupTarget() }
     private var fragmentProtocol = "LOCAL"
 
     // DB access
     private val viewModel: ViewModel_Edit by activityViewModels()
 
     // -------------------------------------
-
-    // Folder browser result
-    private val selectFolder = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val path = result.data?.data?.path?.let { utilityPathFormat.findFullPath(it) } ?: ""
-            binding.targetLocalEditPathSelect.setText(path)
-            checkAndroidQLimitations(path)
-            viewModel.setInfoTimeZoneVisibility(tabIsSource, path)
-        }
-    }
 
     companion object {
         fun newInstance(tab: String, protocol: String) : Fragment_TargetLocal {
@@ -68,6 +59,16 @@ class Fragment_TargetLocal : Fragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    private var folderExplorer = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK)
+            result.data?.getStringExtra("FOLDER")?.let {
+                binding.targetLocalEditPath.setText(it)
+                binding.targetLocalEditPath.setSelection(binding.targetLocalEditPath.text.length)
+                checkAndroidQLimitations(it)
+                viewModel.setInfoTimeZoneVisibility(tabIsSource, it)
+            }
     }
 
 
@@ -100,22 +101,24 @@ class Fragment_TargetLocal : Fragment() {
         tabIsSource = requireArguments().getString("TAB") == viewModel.srcTabName
         requireArguments().getString("PROTOCOL")?.let { fragmentProtocol = it }
 
-        binding.targetLocalEditPathSelect.apply {
-            keyListener = null
-            movementMethod = null
-            showSoftInputOnFocus = false
-
-            setOnFocusChangeListener { view, hasFocus ->
-                if(hasFocus && isInTouchMode) { view.performClick() }
-            }
-
-            setOnClickListener { openFolderExplorer() }
-        }
-
+        setupListeners()
+        setupEditFilters()
         manageTimeZoneInfoVisibility()
 
         if(loadData || viewModel.backupIsLocked())
             loadDataFromDb()
+    }
+
+    /** Setup Listeners **/
+    private fun setupListeners() = lifecycleScope.launch {
+        binding.targetLocalBtnPathSearch.setOnClickListener { openFolderExplorer() }
+    }
+
+    /** Setup filters for EditText **/
+    private fun setupEditFilters() = lifecycleScope.launch {
+        binding.targetLocalEditPath.filters= arrayOf(InputFilter { source, _, _, _, _, _ ->
+            source.filter { editUtils.getAllowedCharactersPath().matches(it.toString()) }
+        })
     }
 
     /** Show information about time zone change if destination is External Storage **/
@@ -136,23 +139,29 @@ class Fragment_TargetLocal : Fragment() {
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.Q && !tabIsSource && !path.startsWith("/storage/emulated/0/") && !path.contains("Android/data/fr.hellpc.mirror/")) {
             val alertPreferences = Manager_Alerts()
             if(alertPreferences.showAndroid10ExternalFolderAlert())
-                binding.targetLocalEditPathSelect.setText(utilityPathFormat.movePathToProprietaryFolder(path))
+                binding.targetLocalEditPath.setText(editUtils.movePathToProprietaryFolder(path))
             else {
                 val context = activity
                 if(context != null)
                     AlertDialog.Builder(context, R.style.AppTheme_AlertDialogStyle).apply {
                         setTitle(getString(R.string.global_warning))
                         setMessage(getString(R.string.target_local_warning_android_10))
-                        setPositiveButton(getString(R.string.global_yes)) { _, _ -> binding.targetLocalEditPathSelect.setText(utilityPathFormat.movePathToProprietaryFolder(path)) }
+                        setPositiveButton(getString(R.string.global_yes)) { _, _ -> binding.targetLocalEditPath.setText(editUtils.movePathToProprietaryFolder(path)) }
                         setNegativeButton(getString(R.string.global_no)) { _, _ -> }
                         setNeutralButton(R.string.global_always) { _, _ ->
                             alertPreferences.disableAndroid10ExternalFolderAlert()
-                            binding.targetLocalEditPathSelect.setText(utilityPathFormat.movePathToProprietaryFolder(path))
+                            binding.targetLocalEditPath.setText(editUtils.movePathToProprietaryFolder(path))
                         }
                         show()
                     }
             }
         }
+    }
+
+    /** Change editText focus **/
+    private fun setFocus(view: View) = lifecycleScope.launch {
+        if(!view.hasFocus())
+            view.requestFocus()
     }
 
 
@@ -162,9 +171,13 @@ class Fragment_TargetLocal : Fragment() {
 
     /** Opens folder browser when user click path TextView **/
     private fun openFolderExplorer() {
-        selectFolder.launch(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-            .putExtra(DocumentsContract.EXTRA_INITIAL_URI, "content://com.android.externalstorage.documents/document/primary%3A".toUri())
-        )
+        setFocus(binding.targetLocalEditPath)
+
+        val intent = Intent(this.context, Activity_FolderExplorer::class.java)
+            .putExtra(Activity_FolderExplorer.PARAM_PROTOCOL, fragmentProtocol)
+            .putExtra(Activity_FolderExplorer.PARAM_PATH, editUtils.trimPath(binding.targetLocalEditPath.text.toString(), true))
+
+        folderExplorer.launch(intent)
     }
 
 
@@ -174,7 +187,9 @@ class Fragment_TargetLocal : Fragment() {
 
     /** Get current data from UI **/
     fun getCurrentData(): Backup_Target? {
-        return if(binding.targetLocalEditPathSelect.text.toString().isBlank())
+        val path = editUtils.trimPath(binding.targetLocalEditPath.text.toString(), true)
+
+        return if(!editUtils.pathIsValid(path, false))
             null
         else
             Backup_Target(
@@ -182,7 +197,7 @@ class Fragment_TargetLocal : Fragment() {
                 null,
                 null,
                 null,
-                binding.targetLocalEditPathSelect.text.toString(),
+                binding.targetLocalEditPath.text.toString(),
                 null,
                 null,
                 null,
@@ -201,7 +216,7 @@ class Fragment_TargetLocal : Fragment() {
             viewModel.backupDest
 
         target.observe(viewLifecycleOwner) { data ->
-            binding.targetLocalEditPathSelect.setText(data.path)
+            binding.targetLocalEditPath.setText(data.path)
             viewModel.setInfoTimeZoneVisibility(tabIsSource, data.path)
         }
     }

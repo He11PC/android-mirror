@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.hellpc.mirror.R
 import fr.hellpc.mirror.data.FolderExplorer_File
+import fr.hellpc.mirror.data.LocalStorageType
 import fr.hellpc.mirror.databinding.RowRecyclerFolderExplorerBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,9 +35,12 @@ import java.net.URLConnection.guessContentTypeFromName
 class Adapter_Recycler_FolderExplorer(val folderSelected: (String) -> Unit): ListAdapter<FolderExplorer_File, Adapter_Recycler_FolderExplorer.FolderExplorerRecyclerViewHolder>(FoldersComparator()) {
 
     private lateinit var context: Context
-    private val scopeMain by lazy { CoroutineScope(Job() + Dispatchers.Main) }
+    private val scopeMain = CoroutineScope(Job() + Dispatchers.Main)
 
     private val iconsMap by lazy { mapOf(
+        "phone" to getDrawable(context, R.drawable.ic_phone),
+        "sd" to getDrawable(context, R.drawable.ic_sd_card),
+        "usb" to getDrawable(context, R.drawable.ic_usb),
         "up" to getDrawable(context, R.drawable.ic_folder_up),
         "folder" to getDrawable(context, R.drawable.ic_folder),
         "file" to getDrawable(context, R.drawable.ic_file),
@@ -74,25 +78,28 @@ class Adapter_Recycler_FolderExplorer(val folderSelected: (String) -> Unit): Lis
     inner class FolderExplorerRecyclerViewHolder(private val binding: RowRecyclerFolderExplorerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: FolderExplorer_File) {
-            setupListeners(item.name, item.isDirectory)
-            setupIcon(item.name, item.isDirectory)
+            setupListeners(item.name, item.path, item.isDirectory)
+            setupIcon(item.name, item.isDirectory, item.localStorageType)
             setupColor(item.name, item.isDirectory)
 
             binding.rowFolderExplorerTxt.text = item.name
         }
 
         /** Setup buttons click listeners **/
-        private fun setupListeners(name: String, isDirectory: Boolean) = scopeMain.launch {
+        private fun setupListeners(name: String, path: String?, isDirectory: Boolean) = scopeMain.launch {
             if(isDirectory)
-                binding.rowFolderExplorerLyt.setOnClickListener { folderSelected(name) }
+                binding.rowFolderExplorerLyt.setOnClickListener { path?.let { folderSelected(it) } ?: folderSelected(name) }
             else
                 binding.rowFolderExplorerLyt.setOnClickListener(null)
         }
 
         /** Setup item icon **/
         @SuppressLint("UseCompatTextViewDrawableApis")
-        private fun setupIcon(name: String, isDirectory: Boolean) = scopeMain.launch {
+        private fun setupIcon(name: String, isDirectory: Boolean, localStorageType: LocalStorageType?) = scopeMain.launch {
             val icon = when {
+                localStorageType == LocalStorageType.INTERNAL -> iconsMap["phone"]
+                localStorageType == LocalStorageType.SD_CARD ||  localStorageType == LocalStorageType.UNKNOWN -> iconsMap["sd"]
+                localStorageType == LocalStorageType.USB_DRIVE -> iconsMap["usb"]
                 isDirectory -> if(name == "..") iconsMap["up"] else iconsMap["folder"]
                 else -> with(guessContentTypeFromName(name)) {
                     when {

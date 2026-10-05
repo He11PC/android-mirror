@@ -36,7 +36,7 @@ class Activity_Logs : AppCompatActivity() {
     private lateinit var binding: ActivityLogsBinding
     private val viewModel: ViewModel_Logs by viewModels { ViewModel_Logs.Factory }
 
-    private val preserveScrollPosition by lazy { Manager_Settings().getLogsPreserveScrollPosition() }
+    private val preserveScrollPosition = Manager_Settings().getLogsPreserveScrollPosition()
 
     private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() { finish() }

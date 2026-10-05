@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Резервное копирование из удаленного источника на сервер WebDav требует создания временных промежуточных файлов на вашем устройстве</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Выберите папку</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Папка/подпапка</string>
     <string name="target_local_information_timezone">Файловая система FAT, обычно используемая во внешних хранилищах, не может управлять часовыми поясами и хранит даты на основе местного времени устройства. Как следствие, полное резервное копирование ваших файлов может произойти после смены часового пояса</string>
     <string name="target_local_warning_android_10">Google решил отозвать разрешение приложений на запись во внешнее хранилище за пределами их личной папки на Android 10.\n\nВы хотите переместить папку назначения в папку Mirror?\n\nБудьте осторожны, Android удалит его при удалении этого приложения!</string>
 

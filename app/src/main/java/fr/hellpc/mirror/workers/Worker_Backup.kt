@@ -83,9 +83,9 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     // -------------------------------------
 
-    private val backupID by lazy { inputData.getInt("ID_BACKUP", -1) }
-    private val backupScheduled by lazy { inputData.getBoolean("SCHEDULED", false) }
-    private val localeContext by lazy { applicationContext.setAppLocale() }
+    private val backupID = inputData.getInt("ID_BACKUP", -1)
+    private val backupScheduled = inputData.getBoolean("SCHEDULED", false)
+    private val localeContext = applicationContext.setAppLocale()
 
     // -------------------------------------
 
@@ -99,7 +99,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     // -------------------------------------
 
-    private val backupPool by lazy { mutableListOf<WorkerBackup_File>() }
+    private val backupPool = mutableListOf<WorkerBackup_File>()
 
     private var numberFiles = 0
     private var numberOrphans = 0
@@ -108,8 +108,8 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     // -------------------------------------
 
-    private val srcTxt by lazy { localeContext.getString(R.string.log_source) }
-    private val destTxt by lazy { localeContext.getString(R.string.log_destination) }
+    private val srcTxt = localeContext.getString(R.string.log_source)
+    private val destTxt = localeContext.getString(R.string.log_destination)
 
     private val colorBlue = "<font color=blue>"
     private val colorGreen = "<font color=green>"

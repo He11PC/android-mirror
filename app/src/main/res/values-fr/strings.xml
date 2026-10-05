@@ -139,7 +139,7 @@
     <string name="target_location_warning_remote_to_webdav">Les sauvegardes depuis une source distante vers un serveur WebDav nécessitent la création de fichiers intermédiaires temporaires sur votre appareil</string>
 
     <!--Fragment - Target local-->
-    <string name="target_local_select">Sélectionner un dossier</string>
+    <string name="target_local_path_hint">/storage/emulated/0/Dossier/Sous-Dossier</string>
     <string name="target_local_information_timezone">Le système de fichiers FAT, couramment utilisé sur les stockages externes, ne peut pas gérer les fuseaux horaires et enregistre les dates en fonction de l\'heure locale de l\'appareil. Par conséquent, une sauvegarde complète de vos fichiers peut se produire après un changement de fuseau horaire</string>
     <string name="target_local_warning_android_10">Google a décidé de retirer aux applications l\'autorisation d\'écrire sur le stockage externe en dehors de leur dossier privé sur Android 10.\n\nSouhaitez-vous déplacer votre dossier de destination dans le dossier Mirror ?\n\nAttention, Android le supprimera lorsque vous désinstallerez cette application !</string>
 
