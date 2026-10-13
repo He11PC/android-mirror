@@ -13,6 +13,7 @@
 package fr.hellpc.mirror.workers
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -584,17 +585,16 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
     /** Check wifi state and cancel worker if necessary **/
     private fun checkWifi() {
-        if(!backupData.options.const_wifi)
+        if(!backupData.options.const_wifi || !applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI))
+            return
+
+        val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if(capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI))
             return
         else {
-            val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if(capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI))
-                return
-            else {
-                generateWarning(localeContext.getString(R.string.error_wifi))
-                throw CancellationException()
-            }
+            generateWarning(localeContext.getString(R.string.error_wifi))
+            throw CancellationException()
         }
     }
 

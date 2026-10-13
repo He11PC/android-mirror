@@ -1,0 +1,4 @@
+- Fixed a bug for devices without a battery
+- Fixed a bug for devices without a Wi-Fi module
+- Added a banner icon for Android TV
+- Library updates

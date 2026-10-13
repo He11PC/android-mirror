@@ -12,6 +12,7 @@
 
 package fr.hellpc.mirror.ui.viewModels
 
+import android.content.pm.PackageManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -243,10 +244,10 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     /**  Manage options and apply corrections if necessary */
     private fun manageOptions(protocolSrc: String, protocolDest: String, opt: Backup_Options): Backup_Options {
-        val optNomedia = if(protocolDest != "LOCAL" && opt.nomedia) false else opt.nomedia
-        val optWifi = if(protocolSrc == "LOCAL" && protocolDest == "LOCAL" && opt.const_wifi) false else opt.const_wifi
-        val optCharging = if(!opt.schedule) false else opt.const_charging
-        val optIdle = if(!opt.schedule) false else opt.const_idle
+        val optNomedia = !(protocolDest != "LOCAL" && opt.nomedia) && opt.nomedia
+        val optWifi = !(protocolSrc == "LOCAL" && protocolDest == "LOCAL" && opt.const_wifi) && opt.const_wifi
+        val optCharging = opt.schedule && opt.const_charging
+        val optIdle = opt.schedule && opt.const_idle
 
         var minSize = opt.flt_minSize
         var maxSize = opt.flt_maxSize
@@ -319,7 +320,9 @@ class ViewModel_Edit(private val repository: Repository_Edit): ViewModel() {
 
     /** Manage "Only on WiFi" option visibility **/
     private fun setWifiOptionVisibility(source: String, destination: String) = viewModelScope.launch {
-        optWifiIsVisible.mutable.postValue(source != "LOCAL" || destination != "LOCAL")
+        val hasWifi = App.instance.packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)
+        val isRemote = source != "LOCAL" || destination != "LOCAL"
+        optWifiIsVisible.mutable.postValue(isRemote && hasWifi)
     }
 
     /** Manage "Hide Destination from gallery" option visibility **/

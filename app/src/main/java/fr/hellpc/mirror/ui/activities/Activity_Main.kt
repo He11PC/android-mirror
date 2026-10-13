@@ -14,6 +14,7 @@ package fr.hellpc.mirror.ui.activities
 
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
@@ -474,10 +475,7 @@ class Activity_Main : AppCompatActivity() {
 
     /** Start single backup **/
     private fun launchBackup(id_backup: Int, wifiOnly: Boolean, showAlerts: Boolean) = lifecycleScope.launch {
-        val enoughBattery = if(showAlerts)
-            checkEnoughBattery()
-        else
-            true
+        val enoughBattery = !showAlerts || checkEnoughBattery()
 
         if(enoughBattery)
             managerWorkers.launchBackup(id_backup, false)
@@ -512,46 +510,55 @@ class Activity_Main : AppCompatActivity() {
     // -------------
 
     private fun checkEnoughBattery(): Boolean {
-        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter -> this.registerReceiver(null, ifilter) }
-        val status: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
-        val isCharging: Boolean = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL
-        val batteryPct: Float? = batteryStatus?.let { intent ->
-            val level: Int = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-            val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
-            level * 100 / scale.toFloat()
-        }
+        val intent = registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+            ?: return true
 
-        return if (batteryPct != null) {
-            if (batteryPct > 15 || isCharging)
-                true
-            else {
-                Snackbar.make(binding.mainLyt, getString(R.string.alert_low_battery), Snackbar.LENGTH_SHORT).setBackgroundTint(ContextCompat.getColor(this, R.color.orange)).show()
-                false
-            }
-        } else
-            true
+        // No battery (box, Android TV…)
+        if(!intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, true))
+            return true
+
+        // Plugged into mains power, USB or wirelessly
+        if(intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) != 0)
+            return true
+
+        val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+        val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+
+        // Invalid values
+        if(level < 0 || scale <= 0)
+            return true
+
+        val batteryPct = level * 100f / scale
+        if(batteryPct > 15)
+            return true
+
+        Snackbar.make(binding.mainLyt, getString(R.string.alert_low_battery), Snackbar.LENGTH_SHORT)
+            .setBackgroundTint(ContextCompat.getColor(this, R.color.orange))
+            .show()
+        return false
     }
 
     private fun checkWifi(wifiOnly: Boolean) = lifecycleScope.launch {
-        if(wifiOnly) {
-            val connectivityManager = applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if(!wifiOnly || !packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI))
+            return@launch
 
-            if(capabilities == null || !capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI))
-                AlertDialog.Builder(this@Activity_Main, R.style.AppTheme_AlertDialogStyle).apply {
-                    setTitle(R.string.wifi_required_title)
-                    setMessage(R.string.wifi_required_text)
-                    setPositiveButton(android.R.string.ok) { _, _ ->
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                            startActivity(Intent(Settings.Panel.ACTION_WIFI))
-                        else {
-                            val wifiMgr = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
-                            wifiMgr.isWifiEnabled = true
-                        }
+        val connectivityManager = applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+
+        if(capabilities == null || !capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI))
+            AlertDialog.Builder(this@Activity_Main, R.style.AppTheme_AlertDialogStyle).apply {
+                setTitle(R.string.wifi_required_title)
+                setMessage(R.string.wifi_required_text)
+                setPositiveButton(android.R.string.ok) { _, _ ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                        startActivity(Intent(Settings.Panel.ACTION_WIFI))
+                    else {
+                        @Suppress("DEPRECATION")
+                        (applicationContext.getSystemService(WIFI_SERVICE) as WifiManager).isWifiEnabled = true
                     }
-                    setNegativeButton(android.R.string.cancel) { _, _ -> }
-                    show()
                 }
-        }
+                setNegativeButton(android.R.string.cancel) { _, _ -> }
+                show()
+            }
     }
 }
