@@ -92,7 +92,7 @@ At least until Google manages to permanently ban sideloading…
 
 This is an Android requirement to allow unencrypted FTP and WebDAV protocols.
 
-**Why are you delcaring `android.permission.ACCESS_NETWORK_STATE` and `android.permission.CHANGE_WIFI_STATE` in the AndroidManifest.xml file?**
+**Why are you declaring `android.permission.ACCESS_NETWORK_STATE` and `android.permission.CHANGE_WIFI_STATE` in the AndroidManifest.xml file?**
 
 In the options, you can choose to perform your backup only via Wi-Fi, which requires checking your Wi-Fi connection status. If the backup was started manually, Mirror will prompt you to connect to your Wi-Fi network.
 
