@@ -1,0 +1,5 @@
+- An unreadable local Source subfolder can be ignored by adding it to the exclusion list
+- Fixed a bug that caused some backup failures to be recorded as cancellations
+- Fixed a bug that included the size of NFS directories in the file size count
+- In the logs, notes are now displayed in gray
+- Library updates

@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Nelze zobrazit oznámení o průběhu. Doba zálohování je omezena na 10 minut</string>
 
+    <string name="error_unreadable_item">Nepřečitatelná položka</string>
+    <string name="error_root_not_folder">kořen není adresář</string>
+    <string name="note_unreadable_folder_blacklisted">Nepřístupná složka vyloučena</string>
+    <string name="warning_item_vanished">Tato položka během vyhledávání souborů zmizela</string>
+    <string name="warning_symlink_ignored">Symbolický odkaz byl ignorován</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Ochrana začíná …</string>
     <string name="log_orphans_move_long">Stěhování sirotků</string>

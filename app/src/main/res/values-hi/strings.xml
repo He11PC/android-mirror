@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">प्रगति अधिसूचना प्रदर्शित करने में असमर्थ। बैकअप अवधि 10 मिनट तक सीमित है</string>
 
+    <string name="error_unreadable_item">पढ़ा न जा सकने वाला आइटम</string>
+    <string name="error_root_not_folder">रूट कोई डायरेक्टरी नहीं है</string>
+    <string name="note_unreadable_folder_blacklisted">अपठनीय फ़ोल्डर बहिष्कृत</string>
+    <string name="warning_item_vanished">फ़ाइल खोजते समय यह आइटम गायब हो गया</string>
+    <string name="warning_symlink_ignored">सिम्बॉलिक लिंक को अनदेखा किया गया</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">बैकअप शुरू होता है …</string>
     <string name="log_orphans_move_long">अनाथों का विस्थापन</string>

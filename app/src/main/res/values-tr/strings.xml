@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">İlerleme bildirimi görüntülenemiyor. Yedekleme süresi 10 dakikayla sınırlıdır</string>
 
+    <string name="error_unreadable_item">Okunamayan öğe</string>
+    <string name="error_root_not_folder">kök bir dizin değil</string>
+    <string name="note_unreadable_folder_blacklisted">Bu okunamayan klasör hariç tutuldu</string>
+    <string name="warning_item_vanished">Dosya araması sırasında bu öğe kayboldu</string>
+    <string name="warning_symlink_ignored">Sembolik bağlantı göz ardı edildi</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Yedekleme başlar …</string>
     <string name="log_orphans_move_long">Yetimlerin yer değiştirmesi</string>

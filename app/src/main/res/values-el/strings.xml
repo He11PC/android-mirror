@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Δεν είναι δυνατή η εμφάνιση της ειδοποίησης προόδου. Η διάρκεια δημιουργίας αντιγράφων ασφαλείας περιορίζεται στα 10 λεπτά</string>
 
+    <string name="error_unreadable_item">Μη αναγνώσιμο στοιχείο</string>
+    <string name="error_root_not_folder">Το root δεν είναι κατάλογος</string>
+    <string name="note_unreadable_folder_blacklisted">Ο μη αναγνώσιμος φάκελος εξαιρέθηκε</string>
+    <string name="warning_item_vanished">Αυτό το στοιχείο εξαφανίστηκε κατά την αναζήτηση αρχείων</string>
+    <string name="warning_symlink_ignored">Ο συμβολικός σύνδεσμος αγνοήθηκε</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Η προστασία αρχίζει …</string>
     <string name="log_orphans_move_long">Μετακίνηση ορφανών</string>

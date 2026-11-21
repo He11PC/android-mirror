@@ -84,7 +84,7 @@ class Manager_Log {
     private fun removeOldLogs(id: Int) {
         val logsRetention = Manager_Settings().getLogsRetention()
         val logs = try { Files.walk(Paths.get(App.instance.filesDir.toString()+"/$id/logs")).filter { it.isRegularFile() }.map { it.name }.sorted().collect(Collectors.toList()) }
-        catch(exp: Exception) { emptyList() }
+        catch(_: Exception) { emptyList() }
         val logsCount = logs.count()
 
         if(logsCount > logsRetention) {

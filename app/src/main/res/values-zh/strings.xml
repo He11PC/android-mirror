@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">无法显示进度通知。备份时长限制为 10 分钟</string>
 
+    <string name="error_unreadable_item">无法读取的项目</string>
+    <string name="error_root_not_folder">根路径不是目录</string>
+    <string name="note_unreadable_folder_blacklisted">已排除此无法读取的文件夹</string>
+    <string name="warning_item_vanished">此项目在文件搜索过程中消失</string>
+    <string name="warning_symlink_ignored">已忽略符号链接</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">备份开始 …</string>
     <string name="log_orphans_move_long">感动孤儿</string>

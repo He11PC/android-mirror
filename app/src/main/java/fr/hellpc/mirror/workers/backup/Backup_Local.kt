@@ -29,19 +29,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
+import java.nio.file.FileAlreadyExistsException
+import java.nio.file.FileVisitResult
 import java.nio.file.Files
+import java.nio.file.LinkOption
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.nio.file.SimpleFileVisitor
 import java.nio.file.StandardCopyOption
+import java.nio.file.attribute.BasicFileAttributes
 import java.nio.file.attribute.FileTime
-import java.nio.file.FileAlreadyExistsException
 import java.time.Instant
-import kotlin.io.path.fileSize
-import kotlin.io.path.getLastModifiedTime
-import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 import kotlin.io.path.pathString
 
@@ -49,7 +51,8 @@ class Backup_Local(
     private val backupID: Int,
     private val isSource: Boolean,
     private val originTxt: String,
-    private val target : Backup_Target,
+    private val target: Backup_Target,
+    private val blackList: String?,
     private val accurateDateAuto: Boolean,
     private var accurateDate: Boolean,
     private val reportFrequency: Long,
@@ -59,6 +62,17 @@ class Backup_Local(
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO
 
     private val localeContext = App.getLocaleContext()
+
+    private val unreadableSrcBlacklisted by lazy {
+        blackList?.lineSequence()
+            ?.map { it.trim() }
+            ?.filter { it.startsWith('/') && it.endsWith("/**") }
+            ?.map { it.removeSuffix("/**") }
+            ?.filter { it.length > 1 && it.none { c -> c in "*?[]{}\\" } }
+            ?.map { Paths.get(target.path, it.removePrefix("/")) }
+            ?.toList()
+            .orEmpty()
+    }
 
     private var warningTriggered = false
 
@@ -129,24 +143,64 @@ class Backup_Local(
         else
             1
 
-        val resources = try { Files.walk(getAbsolutePath(null, target.path, false).toLocalPath(), maxDepth).sorted() }
-        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": ${target.path}", exp.message) }
-
+        val root = getAbsolutePath(null, target.path, false).toLocalPath()
         val lstFiles = mutableListOf<WorkerBackup_File>()
+        try {
+            Files.walkFileTree(root, emptySet(), maxDepth, object : SimpleFileVisitor <Path>() {
 
-        resources.forEach {
-            val isDirectory = it.isDirectory()
-            val fileName = it.name
-            val filePath = it.pathString.removePrefix(target.path).substringBeforeLast(fileName)
+                override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
+                    when {
+                        attrs.isDirectory -> if(!filesOnly) getItemAttributes(file, attrs, root)?.let(lstFiles::add)
+                        attrs.isRegularFile -> getItemAttributes(file, attrs, root)?.let(lstFiles::add)
+                        file == root -> throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list) + ": $file", localeContext.getString(R.string.error_root_not_folder))
+                        attrs.isSymbolicLink -> generateWarning(localeContext.getString(R.string.warning_symlink_ignored)+": $file", true, false)
+                    }
+                    return FileVisitResult.CONTINUE
+                }
 
-            val skip = filePath == "" || fileName == ".nomedia" || (isDirectory && filesOnly)
+                override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {
+                    if(!filesOnly)
+                        getItemAttributes(dir, attrs, root)?.let(lstFiles::add)
+                    return FileVisitResult.CONTINUE
+                }
 
-            if(!skip)
-                lstFiles.add(WorkerBackup_File(filePath, fileName, it.getLastModifiedTime().toInstant(), it.fileSize(), isDirectory))
+                override fun visitFileFailed(file: Path, exc: IOException): FileVisitResult {
+                    if(exc is NoSuchFileException && file != root) {
+                        generateWarning(localeContext.getString(R.string.warning_item_vanished)+": $file", true, true)
+                        return FileVisitResult.CONTINUE
+                    }
+
+                    if(file == root || !isSource || !unreadableSrcIsBlacklisted(file)) {
+                        if(Files.isDirectory(file, LinkOption.NOFOLLOW_LINKS))
+                            throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": $file", exc.toString())
+                        else
+                            throw CriticalException(originTxt, localeContext.getString(R.string.error_unreadable_item)+": $file", exc.toString())
+                    }
+
+                    log.append(true,"<font color=gray><b>["+ localeContext.getString(R.string.log_note)+"]</b> "+ localeContext.getString(R.string.note_unreadable_folder_blacklisted)+": $file</font>")
+
+                    return FileVisitResult.SKIP_SUBTREE
+                }
+            })
         }
+        catch(exp: CriticalException) { throw exp }
+        catch(exp: Exception) { throw CriticalException(originTxt, localeContext.getString(R.string.error_folder_list)+": ${target.path}", exp.message) }
 
         return@withContext lstFiles
     }
+
+    /** Recover item attributes **/
+    private fun getItemAttributes(path: Path, attrs: BasicFileAttributes, root: Path): WorkerBackup_File? {
+        val itemName = path.name
+        val itemPath = path.pathString.removePrefix(target.path).substringBeforeLast(itemName)
+
+        return if(path == root || itemName == ".nomedia") null
+        else WorkerBackup_File(itemPath, itemName, attrs.lastModifiedTime().toInstant(), attrs.size(), attrs.isDirectory)
+    }
+
+
+    /** Check if an unreadable source subdirectory is blacklisted and can be ignored **/
+    private fun unreadableSrcIsBlacklisted(path: Path): Boolean = unreadableSrcBlacklisted.any { path.startsWith(it) }
 
 
     // ----------
@@ -195,7 +249,7 @@ class Backup_Local(
 
         if(!transferResult.sizeIsOK) {
             if(canRetry)
-                log.append(true,"<b>["+ localeContext.getString(R.string.log_note)+"]</b> ${file.name}: "+ localeContext.getString(R.string.error_file_corrupted))
+                log.append(true,"<font color=gray><b>["+ localeContext.getString(R.string.log_note)+"]</b> ${file.name}: " + localeContext.getString(R.string.error_file_corrupted) + "</font>")
             else
                 generateWarning("${file.name}: "+ localeContext.getString(R.string.error_file_corrupted_final), false, true)
             return@withContext false

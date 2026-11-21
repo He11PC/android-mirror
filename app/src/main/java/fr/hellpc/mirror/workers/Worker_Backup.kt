@@ -63,6 +63,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlin.Long.Companion.MAX_VALUE
+import kotlin.collections.sortBy
 import kotlin.math.abs
 import kotlin.math.round
 
@@ -473,14 +474,15 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 }
 
                 if(workerResult == "failure") {
-                    if(exp is CriticalException) {
-                        val msg = if(appSettings.getLogsNativeErrors() && exp.error != null)
-                            exp.error
+                    if(exp is CriticalException || exp.cause is CriticalException) {
+                        val origExp = exp as? CriticalException ?: exp.cause as CriticalException
+                        val msg = if(appSettings.getLogsNativeErrors() && origExp.error != null)
+                            origExp.error
                         else
-                            exp.message
+                            origExp.message
 
-                        if(exp.origin != null)
-                            log.append(true, "$colorRed<b>[" + localeContext.getString(R.string.log_error) + "</b> <i>${exp.origin}</i><b>]</b> " + "$msg</font>")
+                        if(origExp.origin != null)
+                            log.append(true, "$colorRed<b>[" + localeContext.getString(R.string.log_error) + "</b> <i>${origExp.origin}</i><b>]</b> " + "$msg</font>")
                         else
                             log.append(true, "$colorRed<b>[" + localeContext.getString(R.string.log_error) + "]</b> " + "$msg</font>")
                     }
@@ -604,7 +606,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
 
         if(isSource) {
             targetSrc = when(target.protocol) {
-                "LOCAL" -> Backup_Local(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "LOCAL" -> Backup_Local(backupID, isSource, srcTxt, target, backupData.options.flt_blackList, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "NFS" -> Backup_NFS(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "SMB" -> Backup_SMB(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "FTP" -> Backup_FTP(backupID, isSource, srcTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
@@ -616,7 +618,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
         }
         else {
             targetDest = when(target.protocol) {
-                "LOCAL" -> Backup_Local(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
+                "LOCAL" -> Backup_Local(backupID, isSource, destTxt, target, null, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "NFS" -> Backup_NFS(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "SMB" -> Backup_SMB(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
                 "FTP" -> Backup_FTP(backupID, isSource, destTxt, target, backupData.options.dateComparison_Auto, backupData.options.dateComparison_Strict, reportFrequency, log)
@@ -652,7 +654,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
             targetDest.getContent(true, false)
 
         val numberFiles = fileList.count { !it.isDirectory }
-        val sizeFiles = fileList.sumOf { it.size }
+        val sizeFiles = fileList.sumOf { if(it.isDirectory) 0L else it.size }
 
         var txt = localeContext.getString(R.string.log_found) + " $numberFiles"
         if(sizeFiles > 0L)
@@ -660,6 +662,7 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
         updateProgressDetail("[$target] $txt", position)
         log.append(false, "$colorBlue<i>$target</i></font> $txt")
 
+        fileList.sortBy { it.path + it.name }
         return@withContext fileList
     }
 
@@ -684,7 +687,8 @@ class Worker_Backup(context: Context, params: WorkerParameters): CoroutineWorker
                 try { FileSystems.getDefault().getPathMatcher("glob:$rule") }
                 catch (exp: Exception) { throw CriticalException(srcTxt, localeContext.getString(R.string.error_blacklist), exp.message) }
             }
-            ?.toList() ?: emptyList()
+            ?.toList()
+            .orEmpty()
 
         val filesResult = mutableListOf<WorkerBackup_File>()
         for(file in backupFileList) {

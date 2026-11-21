@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Impossibile visualizzare la notifica di avanzamento. La durata del backup è limitata a 10 minuti</string>
 
+    <string name="error_unreadable_item">Elemento illeggibile</string>
+    <string name="error_root_not_folder">la radice non è una directory</string>
+    <string name="note_unreadable_folder_blacklisted">Cartella illeggibile esclusa</string>
+    <string name="warning_item_vanished">Questo elemento è sparito durante la ricerca dei file</string>
+    <string name="warning_symlink_ignored">Collegamento simbolico ignorato</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Il backup inizia …</string>
     <string name="log_orphans_move_long">Spostamento di orfani</string>

@@ -330,7 +330,7 @@ class Backup_SFTP(
 
         if(!transferResult.sizeIsOK) {
             if(canRetry)
-                log.append(true,"<b>["+ localeContext.getString(R.string.log_note)+"]</b> ${file.name}: "+ localeContext.getString(R.string.error_file_corrupted))
+                log.append(true,"<font color=gray><b>["+ localeContext.getString(R.string.log_note)+"]</b> ${file.name}: " + localeContext.getString(R.string.error_file_corrupted) + "</font>")
             else
                 generateWarning("${file.name}: "+ localeContext.getString(R.string.error_file_corrupted_final), false, true)
             return@withContext false

@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Kan geen voortgangsmelding weergeven. De back-upduur is beperkt tot 10 minuten</string>
 
+    <string name="error_unreadable_item">Onleesbaar item</string>
+    <string name="error_root_not_folder">root is geen map</string>
+    <string name="note_unreadable_folder_blacklisted">Onleesbare map uitgesloten</string>
+    <string name="warning_item_vanished">Dit item is verdwenen tijdens het zoeken naar bestanden</string>
+    <string name="warning_symlink_ignored">Symbolische koppeling genegeerd</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Vrijwaring begint …</string>
     <string name="log_orphans_move_long">Verhuizing van wezen</string>

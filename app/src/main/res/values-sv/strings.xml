@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Det går inte att visa förloppsmeddelande. Säkerhetskopieringen är begränsad till 10 minuter</string>
 
+    <string name="error_unreadable_item">Oläsligt objekt</string>
+    <string name="error_root_not_folder">Roten är inte en katalog</string>
+    <string name="note_unreadable_folder_blacklisted">Oläsbar mapp exkluderad</string>
+    <string name="warning_item_vanished">Objektet försvann under filsökningen</string>
+    <string name="warning_symlink_ignored">Symbolisk länk ignorerades</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Skydd börjar …</string>
     <string name="log_orphans_move_long">Flyttning av föräldralösa barn</string>

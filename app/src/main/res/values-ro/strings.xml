@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Nu se poate afișa notificarea de progres. Durata copiei de rezervă este limitată la 10 minute</string>
 
+    <string name="error_unreadable_item">Element ilizibil</string>
+    <string name="error_root_not_folder">rădăcina nu este un director</string>
+    <string name="note_unreadable_folder_blacklisted">Folderul ilizibil a fost exclus</string>
+    <string name="warning_item_vanished">Acest element a dispărut în timpul căutării fișierelor</string>
+    <string name="warning_symlink_ignored">Legătură simbolică ignorată</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Începe salvgardarea …</string>
     <string name="log_orphans_move_long">Mutarea orfanilor</string>

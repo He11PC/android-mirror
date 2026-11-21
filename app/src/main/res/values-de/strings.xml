@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Fortschrittsbenachrichtigung kann nicht angezeigt werden. Die Sicherungsdauer ist auf 10 Minuten begrenzt</string>
 
+    <string name="error_unreadable_item">Nicht lesbares Element</string>
+    <string name="error_root_not_folder">Das Wurzelverzeichnis ist kein Verzeichnis</string>
+    <string name="note_unreadable_folder_blacklisted">Nicht lesbarer Ordner ausgeschlossen</string>
+    <string name="warning_item_vanished">Dieses Element ist während der Dateisuche verschwunden</string>
+    <string name="warning_symlink_ignored">Symbolischer Link ignoriert</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Backup beginnt …</string>
     <string name="log_orphans_move_long">Umzug von Waisen</string>

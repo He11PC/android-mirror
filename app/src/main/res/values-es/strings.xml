@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">No se puede mostrar la notificación de progreso. La duración de la copia de seguridad está limitada a 10 minutos</string>
 
+    <string name="error_unreadable_item">Elemento ilegible</string>
+    <string name="error_root_not_folder">La raíz no es un directorio</string>
+    <string name="note_unreadable_folder_blacklisted">Carpeta ilegible excluida</string>
+    <string name="warning_item_vanished">Este elemento desapareció durante la búsqueda de archivos</string>
+    <string name="warning_symlink_ignored">Enlace simbólico ignorado</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">La copia de seguridad comienza …</string>
     <string name="log_orphans_move_long">Traslado de huérfanos</string>

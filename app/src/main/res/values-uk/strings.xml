@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Неможливо відобразити сповіщення про прогрес. Тривалість резервного копіювання обмежена 10 хвилинами</string>
 
+    <string name="error_unreadable_item">Нечитабельний елемент</string>
+    <string name="error_root_not_folder">кореневий елемент не є каталогом</string>
+    <string name="note_unreadable_folder_blacklisted">Нечитабельна папка виключена</string>
+    <string name="warning_item_vanished">Цей елемент зник під час пошуку файлів</string>
+    <string name="warning_symlink_ignored">Символічне посилання проігноровано</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Починається резервне копіювання …</string>
     <string name="log_orphans_move_long">Переміщення дітей-сиріт</string>

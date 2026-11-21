@@ -381,7 +381,7 @@ class Backup_WebDav(
     /** Log/warn in case of wrong file size **/
     private fun alertWrongFileSize(fileName: String, canRetry: Boolean) {
         if(canRetry)
-            log.append(true,"<b>["+ localeContext.getString(R.string.log_note)+"]</b> ${fileName}: "+ localeContext.getString(R.string.error_file_corrupted))
+            log.append(true,"<font color=gray><b>["+ localeContext.getString(R.string.log_note)+"]</b> ${fileName}: " + localeContext.getString(R.string.error_file_corrupted) + "</font>")
         else
             generateWarning("${fileName}: "+ localeContext.getString(R.string.error_file_corrupted_final), false, true)
     }

@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Não é possível apresentar a notificação de progresso. A duração do backup está limitada a 10 minutos</string>
 
+    <string name="error_unreadable_item">Item ilegível</string>
+    <string name="error_root_not_folder">a raiz não é um diretório</string>
+    <string name="note_unreadable_folder_blacklisted">Pasta ilegível excluída</string>
+    <string name="warning_item_vanished">Este item desapareceu durante a pesquisa de ficheiros</string>
+    <string name="warning_symlink_ignored">Ligação simbólica ignorada</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">A salvaguarda começa …</string>
     <string name="log_orphans_move_long">Órfãos em movimento</string>

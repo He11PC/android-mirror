@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Невозможно отобразить уведомление о ходе выполнения. Длительность резервного копирования ограничена 10 минутами</string>
 
+    <string name="error_unreadable_item">Нечитаемый элемент</string>
+    <string name="error_root_not_folder">корневой элемент не является директорией</string>
+    <string name="note_unreadable_folder_blacklisted">Нечитаемая папка исключена</string>
+    <string name="warning_item_vanished">Этот элемент исчез во время поиска файлов</string>
+    <string name="warning_symlink_ignored">Символическая ссылка проигнорирована</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Резервное копирование начинается …</string>
     <string name="log_orphans_move_long">Переезд сирот</string>

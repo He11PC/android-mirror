@@ -320,6 +320,12 @@
 
     <string name="error_setforeground">Unable to display progress notification. Backup duration is limited to 10 minutes</string>
 
+    <string name="error_unreadable_item">Unreadable item</string>
+    <string name="error_root_not_folder">root is not a directory</string>
+    <string name="note_unreadable_folder_blacklisted">Unreadable folder excluded</string>
+    <string name="warning_item_vanished">This item vanished during file search</string>
+    <string name="warning_symlink_ignored">Symbolic link ignored</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Backup begins …</string>
     <string name="log_orphans_move_long">Moving orphan files</string>

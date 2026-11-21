@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Impossible d\'afficher la notification de progression. La durée de la sauvegarde est limitée à 10 minutes</string>
 
+    <string name="error_unreadable_item">Élément illisible</string>
+    <string name="error_root_not_folder">La racine n\'est pas un répertoire</string>
+    <string name="note_unreadable_folder_blacklisted">Dossier illisible exclu</string>
+    <string name="warning_item_vanished">Cet élément a disparu lors de la recherche de fichiers</string>
+    <string name="warning_symlink_ignored">Lien symbolique ignoré</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">La sauvegarde commence …</string>
     <string name="log_orphans_move_long">Déplacement des orphelins</string>

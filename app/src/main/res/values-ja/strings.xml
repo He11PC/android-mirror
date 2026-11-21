@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">進行状況通知を表示できません。バックアップ時間は 10 分に制限されています</string>
 
+    <string name="error_unreadable_item">読み取り不可能な項目</string>
+    <string name="error_root_not_folder">ルートがディレクトリではありません</string>
+    <string name="note_unreadable_folder_blacklisted">この読み取り不能なフォルダーは除外されています</string>
+    <string name="warning_item_vanished">ファイル検索中に項目が消失しました</string>
+    <string name="warning_symlink_ignored">シンボリックリンクは無視されました</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">セーフガード開始 …</string>
     <string name="log_orphans_move_long">孤児の移動</string>

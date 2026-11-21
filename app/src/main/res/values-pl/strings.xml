@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Nie można wyświetlić powiadomienia o postępie. Czas trwania kopii zapasowej jest ograniczony do 10 minut</string>
 
+    <string name="error_unreadable_item">Element nieczytelny</string>
+    <string name="error_root_not_folder">katalog główny nie jest katalogiem</string>
+    <string name="note_unreadable_folder_blacklisted">Wykluczono nieczytelny folder</string>
+    <string name="warning_item_vanished">Ten element zniknął podczas wyszukiwania plików</string>
+    <string name="warning_symlink_ignored">Zignorowano dowiązanie symboliczne</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Ochrona zaczyna się …</string>
     <string name="log_orphans_move_long">Przemieszczanie sierot</string>

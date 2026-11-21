@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Nem lehet megjeleníteni a folyamatról szóló értesítést. A biztonsági mentés időtartama legfeljebb 10 perc</string>
 
+    <string name="error_unreadable_item">Olvashatatlan elem</string>
+    <string name="error_root_not_folder">A gyökér nem könyvtár</string>
+    <string name="note_unreadable_folder_blacklisted">Olvashatatlan mappa kizárva</string>
+    <string name="warning_item_vanished">Ez az elem eltűnt a fájlkeresés során</string>
+    <string name="warning_symlink_ignored">Szimbolikus hivatkozás figyelmen kívül hagyva</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Az őrzés megkezdődik …</string>
     <string name="log_orphans_move_long">Árvák mozgatása</string>

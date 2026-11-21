@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">진행 알림을 표시할 수 없습니다. 백업 기간은 10분으로 제한됩니다</string>
 
+    <string name="error_unreadable_item">읽을 수 없는 항목</string>
+    <string name="error_root_not_folder">루트가 디렉토리가 아닙니다</string>
+    <string name="note_unreadable_folder_blacklisted">읽을 수 없는 이 폴더는 제외됨</string>
+    <string name="warning_item_vanished">파일 검색 중에 이 항목이 사라졌습니다</string>
+    <string name="warning_symlink_ignored">심볼릭 링크가 무시되었습니다</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">백업이 시작됩니다 …</string>
     <string name="log_orphans_move_long">고아 이주</string>

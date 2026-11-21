@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">Tidak dapat menampilkan pemberitahuan kemajuan. Durasi pencadangan dibatasi hingga 10 menit</string>
 
+    <string name="error_unreadable_item">Item tidak dapat dibaca</string>
+    <string name="error_root_not_folder">root bukan merupakan direktori</string>
+    <string name="note_unreadable_folder_blacklisted">Folder yang tidak dapat dibaca dikecualikan</string>
+    <string name="warning_item_vanished">Item ini hilang saat pencarian berkas</string>
+    <string name="warning_symlink_ignored">Tautan simbolis diabaikan</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">Pencadangan dimulai …</string>
     <string name="log_orphans_move_long">Pemindahan anak yatim</string>

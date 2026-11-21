@@ -313,6 +313,12 @@
 
     <string name="error_setforeground">অগ্রগতির বিজ্ঞপ্তি প্রদর্শন করা যাচ্ছে না। ব্যাকআপের সময়কাল ১০ মিনিটের মধ্যে সীমাবদ্ধ</string>
 
+    <string name="error_unreadable_item">পড়া যায় না এমন আইটেম</string>
+    <string name="error_root_not_folder">root কোনো ডিরেক্টরি নয়</string>
+    <string name="note_unreadable_folder_blacklisted">পড়া যায় না এমন ফোল্ডার বাদ দেওয়া হয়েছে</string>
+    <string name="warning_item_vanished">ফাইল খোঁজার সময় এই আইটেমটি অদৃশ্য হয়ে গেছে</string>
+    <string name="warning_symlink_ignored">সিম্বলিক লিঙ্ক উপেক্ষা করা হয়েছে</string>
+
     <!--Worker Log - Copy -->
     <string name="log_files_copy_started">ব্যাকআপ শুরু হয় …</string>
     <string name="log_orphans_move_long">এতিমদের স্থানচ্যুতি</string>

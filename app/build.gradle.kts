@@ -19,8 +19,8 @@ android {
         minSdk = 26
         targetSdk = 37
 
-        versionCode = 23
-        versionName = "26.10.11"
+        versionCode = 24
+        versionName = "26.11.20"
 
         javaCompileOptions {
             annotationProcessorOptions { arguments += mapOf("room.incremental" to "true", "room.expandProjection" to "true") }
@@ -62,7 +62,7 @@ android {
 
 dependencies {
     val vRoom = "2.8.5"
-    val vLifecycle = "2.11.0"
+    val vLifecycle = "2.11.1"
     val vCoroutines = "1.11.0"
 
     implementation("androidx.core:core-ktx:1.19.1")
@@ -98,7 +98,7 @@ dependencies {
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.12.0")
-    implementation("com.google.guava:guava:33.7.2-android")
+    implementation("com.google.guava:guava:33.8.0-android")
 
     // NFS
     implementation("com.emc.ecs:nfs-client:1.1.0")
